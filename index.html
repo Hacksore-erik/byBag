@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.3.1</title>
+<title>byBag v1.3.2</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -26,20 +26,29 @@ body::after{bottom:-20%;right:-20%;background:radial-gradient(circle,var(--glow-
 body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50%,#ff6bcb);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .header-spacer{height:60px}
 .container{padding:0 20px;max-width:500px;margin:0 auto;position:relative;z-index:1;width:100%}
-.stories-wrap{margin:6px 0 20px}
-.stories-title,.stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px}
-.stories-title{margin-bottom:10px}
-.stats-title{margin-bottom:12px}
-.stories-row{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 10px;scrollbar-width:none}
+
+/* STORIES — редизайн */
+.stories-wrap{margin:6px 0 22px}
+.stories-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px;margin-bottom:12px}
+.stories-row{display:flex;gap:12px;overflow-x:auto;padding:4px 4px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .stories-row::-webkit-scrollbar{display:none}
-.story-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:74px}
-.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s}
-body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6bcb,#3ddc84,#6b8cff)}
-.story-item:active .story-ring{transform:scale(.94)}
-.story-ring.viewed{background:var(--border-soft)}
-.story-inner{width:100%;height:100%;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;border:2px solid var(--bg);position:relative}
-.story-inner .story-badge{position:absolute;bottom:2px;right:2px;font-size:14px;width:22px;height:22px;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
-.story-item .story-label{font-size:10.5px;font-weight:600;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:74px;line-height:1.2}
+.story-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;width:78px}
+.story-ring{width:72px;height:72px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s cubic-bezier(.34,1.56,.64,1);position:relative}
+.story-item:active .story-ring{transform:scale(.9)}
+.story-ring.viewed{background:var(--border-soft);opacity:.6}
+.story-inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;border:2.5px solid var(--bg);position:relative;box-shadow:inset 0 -8px 16px rgba(0,0,0,.15)}
+.story-inner.metric{flex-direction:column;gap:0;font-size:0}
+.story-inner.metric .story-metric-value{font-size:20px;font-weight:900;color:#fff;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.3);margin-bottom:2px}
+.story-inner.metric .story-metric-icon{font-size:20px;line-height:1}
+.story-inner.metric .story-metric-sub{font-size:9px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+.story-inner .story-badge{position:absolute;bottom:2px;right:2px;font-size:13px;width:21px;height:21px;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.story-inner.trip-preview{font-size:0}
+.story-inner.trip-preview .story-trip-emoji{font-size:30px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.story-inner.trip-preview .story-trip-percent{position:absolute;bottom:4px;left:0;right:0;font-size:9px;font-weight:800;color:#fff;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.story-item .story-label{font-size:10.5px;font-weight:700;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:78px;line-height:1.2}
+.story-item .story-label .label-time{display:block;font-size:9px;font-weight:600;color:var(--text-3);opacity:.7;margin-top:1px}
+
+/* STORY VIEWER */
 .story-viewer{position:fixed;inset:0;background:#000;z-index:200;display:none;flex-direction:column}
 .story-viewer.active{display:flex}
 .story-progress-row{position:absolute;top:14px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
@@ -68,6 +77,8 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .story-tap-zone{position:absolute;top:60px;bottom:0;width:30%;z-index:5;cursor:pointer}
 .story-tap-zone.prev{left:0}
 .story-tap-zone.next{right:0;width:50%}
+
+/* WIDGET */
 .main-widget{position:relative;border-radius:25px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 16px 40px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
 .main-widget:active{transform:scale(.985)}
 @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -201,6 +212,7 @@ body.dark .nav-item.active{background:linear-gradient(135deg,rgba(107,140,255,.2
 body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-overlay.active{display:flex}
 .modal-overlay.above-checklist{z-index:170}
+.modal-overlay.on-top2{z-index:190}
 .modal{width:100%;max-width:500px;max-height:88vh;overflow-y:auto;overflow-x:hidden;border-radius:32px 32px 0 0;padding:20px 20px 32px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 40px var(--shadow);position:relative;box-sizing:border-box;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .modal::-webkit-scrollbar{display:none}
 .modal-handle{width:40px;height:4px;background:var(--border-soft);border-radius:10px;margin:0 auto 20px}
@@ -458,10 +470,10 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         </div>
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.3.1</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.3.2</div></div>
             <div class="profile-item" id="viewErrorLogBtn"><div class="pi-icon">🐛</div><div class="pi-label">Журнал ошибок</div><div class="pi-value" id="errorCountLabel">0</div><div class="pi-arrow">›</div></div>
         </div>
-        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.3.1</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.3.2</div>
     </div>
 </div>
 
@@ -687,7 +699,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div class="modal-overlay" id="categoryModal">
     <div class="modal">
-        <button type="button" class="modal-close" data-close="categoryModal">✕</button>
+        <button type="button" class="modal-close" id="categoryCloseBtn">✕</button>
         <div class="modal-handle"></div>
         <h2>Новая категория</h2>
         <div class="field-label">Название</div>
@@ -771,9 +783,9 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <script>
 // ============================================================
-// СИСТЕМА ОБРАБОТКИ ОШИБОК (вне IIFE, работает всегда)
+// СИСТЕМА ОБРАБОТКИ ОШИБОК
 // ============================================================
-var BB_VERSION = '1.3.1';
+var BB_VERSION = '1.3.2';
 var BB_ERROR_LOG_KEY = 'bybag_error_log';
 var BB_MAX_LOG = 20;
 
@@ -1076,7 +1088,7 @@ function downloadErrorLog() {
     var editing = { id: null, name: '', emoji: '🎒', colorIdx: 0, items: [] };
     var searchQuery = '', storyTimer = null, currentStoryIdx = 0;
     var weatherCache = {}, storyHandlersBound = false, searchDebounceTimer = null, currentOnbSlide = 0;
-    var pendingCategoryTarget = null;
+    var pendingCategoryTarget = null, categoryParent = null;
 
     function $(id) { try { return document.getElementById(id); } catch (e) { return null; } }
     function escapeHtml(s) {
@@ -1135,7 +1147,7 @@ function downloadErrorLog() {
         try { document.body.style.overflow = ''; document.body.style.position = ''; document.body.style.top = ''; document.body.style.width = ''; } catch (e) {}
     }
     function closeAllModals() {
-        try { document.querySelectorAll('.modal-overlay').forEach(function(m) { m.classList.remove('active'); m.classList.remove('above-checklist'); }); } catch (e) {}
+        try { document.querySelectorAll('.modal-overlay').forEach(function(m) { m.classList.remove('active'); m.classList.remove('above-checklist'); m.classList.remove('on-top2'); }); } catch (e) {}
     }
     function getCurrentTrip() {
         if (!activeTrips || !activeTrips.length) return null;
@@ -1147,7 +1159,7 @@ function downloadErrorLog() {
         return t || { type: 'rest', daysCount: 3, city: '', startDate: null };
     }
     function openModal(id) { resetUIBlocks(); var el = $(id); if (el) el.classList.add('active'); }
-    function closeModal(id) { var el = $(id); if (el) el.classList.remove('active'); resetUIBlocks(); }
+    function closeModal(id) { var el = $(id); if (el) { el.classList.remove('active'); el.classList.remove('on-top2'); } resetUIBlocks(); }
 
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
@@ -1318,22 +1330,66 @@ function downloadErrorLog() {
                 var inner = document.createElement('div');
                 inner.className = 'story-inner';
 
-                var emojiMap = { weather: '🌤️', countdown: '⏳', weight: '⚖️', tips: '💡', trip: trip.emoji || '🎒' };
-                if (item.type === 'trip') {
+                var labelText = '';
+                var labelTime = '';
+
+                if (item.type === 'weather') {
+                    inner.classList.add('metric');
+                    inner.style.background = 'linear-gradient(135deg,#5ec7ff,#3a86ff)';
+                    inner.innerHTML = '<div class="story-metric-icon">🌤️</div><div class="story-metric-sub">Погода</div>';
+                    labelText = 'Погода';
+                    labelTime = trip.city || '';
+                } else if (item.type === 'countdown') {
+                    inner.classList.add('metric');
+                    inner.style.background = 'linear-gradient(135deg,#ff9a5a,#d6336c)';
+                    var cd = trip.startDate ? countdown(trip.startDate) : '';
+                    var cdShort = cd.indexOf('через') === 0 ? cd.replace('через ', '') : cd;
+                    var cdDisplay = cdShort.length > 8 ? '⏳' : escapeHtml(cdShort);
+                    inner.innerHTML = '<div class="story-metric-value" style="font-size:' + (cdShort.length > 8 ? '22' : cdShort.length > 5 ? '16' : '20') + 'px">' + cdDisplay + '</div><div class="story-metric-sub">Отсчёт</div>';
+                    labelText = 'Отсчёт';
+                    labelTime = cd;
+                } else if (item.type === 'weight') {
+                    inner.classList.add('metric');
+                    var sw = getTripStats(trip);
+                    var kg = sw.totalWeight;
+                    var color = kg <= 8 ? '#4ecb71' : kg <= 23 ? '#f4a261' : '#d6336c';
+                    inner.style.background = 'linear-gradient(135deg,' + color + ',#' + color.slice(1).replace(/(..)(..)(..)/, function(m, r, g, b) {
+                        var rr = Math.max(0, parseInt(r,16) - 30);
+                        var gg = Math.max(0, parseInt(g,16) - 30);
+                        var bb = Math.max(0, parseInt(b,16) - 30);
+                        return rr.toString(16).padStart(2,'0') + gg.toString(16).padStart(2,'0') + bb.toString(16).padStart(2,'0');
+                    }) + ')';
+                    inner.innerHTML = '<div class="story-metric-value">' + kg.toFixed(1) + '</div><div class="story-metric-sub">кг</div>';
+                    labelText = 'Вес';
+                    labelTime = kg <= 8 ? 'ручная' : kg <= 23 ? 'багаж' : 'перевес';
+                } else if (item.type === 'tips') {
+                    inner.classList.add('metric');
+                    inner.style.background = 'linear-gradient(135deg,#a06bff,#6b8cff)';
+                    var season = trip.startDate ? getSeason(trip.startDate) : 'summer';
+                    var seasonEmoji = { summer: '☀️', winter: '❄️', spring: '🌸', autumn: '🍂' }[season];
+                    inner.innerHTML = '<div class="story-metric-icon" style="font-size:28px">' + seasonEmoji + '</div><div class="story-metric-sub">Советы</div>';
+                    labelText = 'Советы';
+                    labelTime = { summer: 'лето', winter: 'зима', spring: 'весна', autumn: 'осень' }[season];
+                } else if (item.type === 'trip') {
+                    inner.classList.add('trip-preview');
                     inner.style.background = 'linear-gradient(135deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')';
-                    var badge = document.createElement('div');
-                    badge.className = 'story-badge';
-                    badge.textContent = trip.emoji || '🎒';
-                    inner.appendChild(badge);
-                } else {
-                    inner.textContent = emojiMap[item.type] || '🧳';
+                    var s2 = item.isActive ? getTripStats(trip) : { percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0 };
+                    inner.innerHTML =
+                        '<div class="story-trip-emoji">' + (trip.emoji || '🎒') + '</div>' +
+                        '<div class="story-trip-percent">' + s2.percent + '%</div>';
+                    labelText = trip.name || 'Поездка';
+                    if (!item.isActive) labelTime = trip.date || 'завершена';
+                    else {
+                        var s3 = getTripStats(trip);
+                        labelTime = s3.done + '/' + s3.total;
+                    }
                 }
+
                 ring.appendChild(inner);
 
-                var labelMap = { weather: 'Погода', countdown: 'Отсчёт', weight: 'Вес', tips: 'Советы', trip: trip.name || 'Поездка' };
                 var label = document.createElement('div');
                 label.className = 'story-label';
-                label.textContent = labelMap[item.type] || 'Поездка';
+                label.innerHTML = escapeHtml(labelText) + (labelTime ? '<span class="label-time">' + escapeHtml(labelTime) + '</span>' : '');
 
                 el.appendChild(ring); el.appendChild(label);
                 el.addEventListener('click', function() { openStoryViewer(trips, idx); });
@@ -1924,7 +1980,6 @@ function downloadErrorLog() {
         showToast('Поездка создана!');
     }
 
-    // WIZARD — исправлено: без arguments.callee
     function pickWizEmoji(em) {
         wiz.emoji = em;
         renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji);
@@ -2065,7 +2120,11 @@ function downloadErrorLog() {
         var cs = document.createElement('select');
         cs.className = 'mini-field full';
         fillCategorySelect(cs, item.category);
-        cs.addEventListener('change', function() { item.category = cs.value; });
+        // Только сохранение значения — открытие модалки обрабатывается глобально
+        cs.addEventListener('change', function() {
+            if (cs.value === '__new__') return;
+            item.category = cs.value;
+        });
         fields.appendChild(cs);
         var ni = document.createElement('input');
         ni.type = 'text'; ni.className = 'mini-field full'; ni.value = item.note || '';
@@ -2092,10 +2151,10 @@ function downloadErrorLog() {
         selectEl.appendChild(addOpt);
     }
 
-    function handleCategoryChange(selectEl, fallback) {
+    function handleCategoryChange(selectEl, fallback, parentModalId) {
         if (selectEl.value === '__new__') {
             selectEl.value = fallback;
-            openCategoryModal(selectEl);
+            openCategoryModal(selectEl, parentModalId);
         }
     }
 
@@ -2134,7 +2193,6 @@ function downloadErrorLog() {
         openEditorById(editing.id);
     }
 
-    // EDITOR — исправлено: без arguments.callee
     function pickEditorEmoji(em) {
         editing.emoji = em;
         renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji);
@@ -2720,8 +2778,9 @@ function downloadErrorLog() {
         renderProfile();
     }
 
-    function openCategoryModal(targetSelect) {
+    function openCategoryModal(targetSelect, parentModalId) {
         pendingCategoryTarget = targetSelect || null;
+        categoryParent = parentModalId || null;
         var ni = $('newCatName'); if (ni) ni.value = '';
         var p = $('catEmojiPicker'); if (!p) return;
         p.innerHTML = '';
@@ -2736,7 +2795,34 @@ function downloadErrorLog() {
             });
             p.appendChild(d);
         });
-        openModal('categoryModal');
+        // Скрываем родителя
+        if (categoryParent) {
+            var parent = $(categoryParent);
+            if (parent) { parent.classList.remove('active'); parent.style.display = 'none'; }
+        }
+        var cm = $('categoryModal');
+        if (cm) {
+            cm.classList.add('active');
+            cm.classList.add('on-top2');
+            cm.style.display = '';
+        }
+        resetUIBlocks();
+    }
+
+    function cancelCategoryCreation() {
+        var cm = $('categoryModal');
+        if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
+        if (categoryParent) {
+            var parent = $(categoryParent);
+            if (parent) {
+                parent.classList.add('active');
+                parent.style.display = '';
+                if (categoryParent === 'manageCategoriesModal') renderCatList();
+            }
+            categoryParent = null;
+        }
+        pendingCategoryTarget = null;
+        resetUIBlocks();
     }
 
     function saveNewCategory() {
@@ -2747,11 +2833,29 @@ function downloadErrorLog() {
         var id = 'custcat_' + Date.now();
         customCategories[id] = { name: name, icon: emoji };
         saveCustomCategories();
-        closeModal('categoryModal');
-        if (pendingCategoryTarget) {
-            fillCategorySelect(pendingCategoryTarget, id);
-            pendingCategoryTarget.value = id;
+
+        // Скрываем модалку создания категории
+        var cm = $('categoryModal');
+        if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
+
+        // Обновляем селект, если есть
+        var target = pendingCategoryTarget;
+        if (target) {
+            fillCategorySelect(target, id);
+            target.value = id;
         }
+
+        // Возвращаем родителя
+        if (categoryParent) {
+            var parent = $(categoryParent);
+            if (parent) {
+                parent.classList.add('active');
+                parent.style.display = '';
+                if (categoryParent === 'manageCategoriesModal') renderCatList();
+            }
+            categoryParent = null;
+        }
+
         pendingCategoryTarget = null;
         renderProfile();
         showToast('Категория создана!');
@@ -2923,7 +3027,7 @@ function downloadErrorLog() {
                     if (id === 'addItemModal') closeAddItemModal(); else closeModal(id);
                 });
             });
-            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','categoryModal','manageCategoriesModal','errorLogModal'].forEach(function(id) {
+            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','manageCategoriesModal','errorLogModal'].forEach(function(id) {
                 var el = $(id);
                 if (el) el.addEventListener('click', function(e) {
                     if (e.target === this) {
@@ -2931,6 +3035,13 @@ function downloadErrorLog() {
                     }
                 });
             });
+            // categoryModal — закрытие по фону → cancelCategoryCreation
+            var catOverlay = $('categoryModal');
+            if (catOverlay) catOverlay.addEventListener('click', function(e) {
+                if (e.target === this) cancelCategoryCreation();
+            });
+            bind('categoryCloseBtn', 'click', cancelCategoryCreation);
+
             document.querySelectorAll('.nav-item').forEach(function(n) {
                 n.addEventListener('click', function() { switchPage(n.getAttribute('data-page')); });
             });
@@ -3003,7 +3114,7 @@ function downloadErrorLog() {
             bind('notifAllowBtn', 'click', handleNotifAllow);
             bind('notifLaterBtn', 'click', handleNotifLater);
             bind('manageCategoriesBtn', 'click', openManageCategories);
-            bind('addNewCatFromList', 'click', function() { openCategoryModal(null); });
+            bind('addNewCatFromList', 'click', function() { openCategoryModal(null, 'manageCategoriesModal'); });
             bind('saveCatBtn', 'click', saveNewCategory);
             bind('viewErrorLogBtn', 'click', function() { openErrorLog(); openModal('errorLogModal'); });
             bind('downloadLogBtn', 'click', downloadErrorLog);
@@ -3011,12 +3122,19 @@ function downloadErrorLog() {
                 if (confirm('Очистить журнал ошибок?')) { bbClearErrorLog(); openErrorLog(); renderProfile(); }
             });
 
-            ['advCat','adv2Cat','addItemCat'].forEach(function(selId) {
+            // Обработчики для селектов категорий — с указанием родительской модалки
+            ['advCat','adv2Cat'].forEach(function(selId) {
                 var sel = $(selId);
                 if (sel) sel.addEventListener('change', function() {
                     var fallback = sel.value === '__new__' ? 'other' : sel.value;
-                    handleCategoryChange(sel, fallback);
+                    var parent = selId === 'advCat' ? 'advancedItemModal' : 'advancedItemModal2';
+                    handleCategoryChange(sel, fallback, parent);
                 });
+            });
+            var addCat = $('addItemCat');
+            if (addCat) addCat.addEventListener('change', function() {
+                var fallback = addCat.value === '__new__' ? 'other' : addCat.value;
+                handleCategoryChange(addCat, fallback, 'addItemModal');
             });
 
             renderHome();
