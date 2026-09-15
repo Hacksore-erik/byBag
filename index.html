@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.3.0</title>
+<title>byBag v1.3.1</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -26,8 +26,6 @@ body::after{bottom:-20%;right:-20%;background:radial-gradient(circle,var(--glow-
 body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50%,#ff6bcb);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .header-spacer{height:60px}
 .container{padding:0 20px;max-width:500px;margin:0 auto;position:relative;z-index:1;width:100%}
-
-/* STORIES */
 .stories-wrap{margin:6px 0 20px}
 .stories-title,.stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px}
 .stories-title{margin-bottom:10px}
@@ -70,8 +68,6 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .story-tap-zone{position:absolute;top:60px;bottom:0;width:30%;z-index:5;cursor:pointer}
 .story-tap-zone.prev{left:0}
 .story-tap-zone.next{right:0;width:50%}
-
-/* WIDGET (уменьшен ~10%) */
 .main-widget{position:relative;border-radius:25px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 16px 40px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
 .main-widget:active{transform:scale(.985)}
 @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
@@ -108,8 +104,6 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .mini-bar .fill{height:100%;border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 .tap-hint{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--text-2);font-weight:600}
 .tap-hint .arrow{font-size:13px;color:var(--text-3)}
-
-/* CAROUSEL */
 .trips-carousel{position:relative;overflow:hidden;margin-bottom:8px;margin-top:6px;border-radius:25px}
 .trips-track{display:flex;transition:transform .35s cubic-bezier(.4,0,.2,1);will-change:transform}
 .trips-track .main-widget{flex:0 0 100%;margin:0;animation:none}
@@ -123,11 +117,8 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .add-trip-circle{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:40px;color:#fff;font-weight:300;line-height:1;box-shadow:0 12px 32px rgba(255,107,138,.35);padding-bottom:6px}
 .add-trip-title{font-size:16px;font-weight:800;color:var(--text)}
 .add-trip-desc{font-size:12px;color:var(--text-3);font-weight:600;padding:0 24px;text-align:center}
-
 .plus-one{position:fixed;font-size:22px;font-weight:800;color:var(--success);pointer-events:none;z-index:900;animation:plusOneFloat 1s ease-out forwards;text-shadow:0 2px 8px rgba(0,0,0,.2)}
 @keyframes plusOneFloat{0%{transform:translateY(0) scale(.6);opacity:0}15%{transform:translateY(-10px) scale(1.2);opacity:1}100%{transform:translateY(-70px) scale(.9);opacity:0}}
-
-/* EMPTY */
 .empty-hero{padding:36px 24px;margin:6px 0 16px;background:var(--card);border:1.5px dashed rgba(255,154,90,.4);border-radius:25px;text-align:center;cursor:pointer;animation:slideIn .5s ease}
 body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero .empty-icon{font-size:60px;margin-bottom:12px;display:inline-block;animation:float 3s ease-in-out infinite}
@@ -136,8 +127,6 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero p{font-size:13.5px;color:var(--text-2);line-height:1.5;margin-bottom:16px;font-weight:500}
 .empty-hero .empty-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:14px;font-weight:700;border-radius:100px}
 .empty-hero .empty-cta .plus{font-size:18px;font-weight:300}
-
-/* SECTIONS */
 .stats-section{margin-bottom:20px}
 .history-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px}
 .history-item .h-emoji{font-size:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--card-solid);border-radius:12px;flex-shrink:0}
@@ -147,8 +136,6 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .history-item .h-badge{font-size:11px;font-weight:700;padding:5px 10px;border-radius:10px;background:rgba(78,203,113,.15);color:var(--success);flex-shrink:0}
 body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 .icon-btn{background:transparent;border:none;color:var(--text-3);width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;opacity:.5}
-
-/* LISTS PAGE (уменьшено ~30%) */
 .lists-page-header{display:flex;align-items:baseline;justify-content:space-between;padding:6px 4px 14px}
 .lists-page-header .lph-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.6px}
 .lists-page-header .lph-count{font-size:12px;color:var(--text-3);font-weight:700}
@@ -167,8 +154,6 @@ body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 body.dark .list-card-actions .lca-btn.edit{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));color:#a9bdff}
 .list-card-actions .lca-btn.del{background:rgba(214,51,108,.1);color:var(--danger);flex:0 0 34px}
 body.dark .list-card-actions .lca-btn.del{background:rgba(255,94,138,.12)}
-
-/* PROFILE */
 .profile-hero{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:25px;box-shadow:0 16px 40px var(--shadow);display:flex;align-items:center;gap:18px;margin-bottom:20px;margin-top:6px;position:relative;overflow:hidden}
 .profile-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--glow-1),transparent 70%);pointer-events:none}
 .profile-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;position:relative;z-index:1;color:#fff;font-weight:700;overflow:hidden;background-size:cover;background-position:center;cursor:pointer}
@@ -197,8 +182,6 @@ body.dark .profile-item .pi-icon{background:rgba(107,140,255,.15)}
 .cat-list-item .cli-emoji{font-size:20px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:var(--card);border-radius:8px;flex-shrink:0}
 .cat-list-item .cli-name{flex:1;font-size:14px;font-weight:600;color:var(--text)}
 .cat-list-item .cli-del{background:rgba(214,51,108,.1);border:none;color:var(--danger);width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0;flex-shrink:0}
-
-/* ACHIEVEMENTS */
 .achievements-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
 .achievement{padding:16px 14px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 20px var(--shadow);text-align:center;opacity:.4;filter:grayscale(1)}
 .achievement.unlocked{opacity:1;filter:grayscale(0);background:linear-gradient(135deg,rgba(255,154,90,.15),rgba(255,107,138,.15));border-color:rgba(255,154,90,.4)}
@@ -206,8 +189,6 @@ body.dark .achievement.unlocked{background:linear-gradient(135deg,rgba(107,140,2
 .achievement .ach-icon{font-size:28px;margin-bottom:6px}
 .achievement .ach-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.3}
 .achievement .ach-desc{font-size:10.5px;color:var(--text-3);margin-top:4px;font-weight:500}
-
-/* BOTTOM NAV */
 .bottom-nav{position:fixed;bottom:16px;left:20px;right:20px;max-width:460px;margin:0 auto;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 12px 40px var(--shadow);display:flex;gap:6px;z-index:70;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
 .nav-item{flex:1;padding:11px 8px;border:none;background:transparent;border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit}
 .nav-item .nav-icon{font-size:20px;line-height:1;opacity:.55}
@@ -216,8 +197,6 @@ body.dark .achievement.unlocked{background:linear-gradient(135deg,rgba(107,140,2
 body.dark .nav-item.active{background:linear-gradient(135deg,rgba(107,140,255,.25),rgba(160,107,255,.25))}
 .nav-item.active .nav-icon{opacity:1;transform:scale(1.1)}
 .nav-item.active .nav-label{color:var(--danger)}
-
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(60,40,25,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;display:none;align-items:flex-end;justify-content:center;overflow:hidden}
 body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-overlay.active{display:flex}
@@ -273,8 +252,6 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .add-item-row{display:flex;gap:8px;margin-bottom:18px}
 .add-item-row .input-field{flex:1;margin-bottom:0;padding:14px;font-size:15px}
 .add-item-row .add-item-btn{width:50px;height:50px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
-
-/* CHECKLIST PAGE */
 .checklist-page{position:fixed;inset:0;background:var(--bg);z-index:150;display:none;flex-direction:column;overflow:hidden}
 .checklist-page.active{display:flex}
 .checklist-page-header{display:flex;align-items:center;gap:12px;padding:14px 20px 12px;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-soft);flex-shrink:0;position:relative;z-index:10}
@@ -364,13 +341,15 @@ body.dark .toast{background:rgba(107,140,255,.95)}
 .toggle.on{background:linear-gradient(135deg,var(--accent-1),var(--accent-2))}
 .toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:transform .3s}
 .toggle.on::after{transform:translateX(18px)}
-#errorScreen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center}
+#errorScreen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;overflow-y:auto}
 #errorScreen.show{display:flex}
-#errorScreen .err-icon{font-size:60px;margin-bottom:16px}
-#errorScreen h2{font-size:20px;margin-bottom:10px;color:var(--text)}
-#errorScreen p{font-size:14px;color:var(--text-2);margin-bottom:20px;line-height:1.5}
-#errorScreen button{padding:14px 28px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:4px}
-#errorScreen .err-msg{font-family:monospace;font-size:11px;color:var(--text-3);background:var(--card);padding:12px;border-radius:12px;margin-top:20px;max-width:100%;word-break:break-all;text-align:left;-webkit-user-select:text;user-select:text}
+#errorScreen .err-icon{font-size:52px;margin-bottom:10px}
+#errorScreen .err-code{display:inline-block;padding:5px 13px;background:rgba(214,51,108,.12);color:var(--danger);border-radius:100px;font-size:12.5px;font-weight:800;letter-spacing:.5px;margin-bottom:10px;font-family:'SF Mono',Menlo,Consolas,monospace}
+body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
+#errorScreen h2{font-size:19px;margin-bottom:8px;color:var(--text);font-weight:800;padding:0 10px}
+#errorScreen p{font-size:13px;color:var(--text-2);margin-bottom:16px;line-height:1.5;max-width:340px}
+#errorScreen button{padding:12px 18px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;margin:3px}
+#errorScreen .err-msg{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:10.5px;color:var(--text-3);background:var(--card);padding:14px;border-radius:14px;margin-top:16px;max-width:100%;word-break:break-word;white-space:pre-wrap;text-align:left;-webkit-user-select:text;user-select:text;max-height:38vh;overflow-y:auto;-webkit-overflow-scrolling:touch;line-height:1.5}
 .smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none;animation:slideIn .3s ease}
 body.dark .smart-hint{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.35)}
 .smart-hint.show{display:block}
@@ -414,11 +393,14 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div id="errorScreen">
     <div class="err-icon">😕</div>
-    <h2>Что-то пошло не так</h2>
-    <p>Не удалось загрузить приложение.<br>Попробуйте сбросить данные.</p>
-    <div>
-        <button onclick="hardReset()">Сбросить данные</button>
-        <button onclick="location.reload()" style="background:var(--card);color:var(--text)">Обновить</button>
+    <div class="err-code" id="errCode">Код: BB-9001</div>
+    <h2 id="errTitle">Что-то пошло не так</h2>
+    <p>Ничего страшного — скопируйте отчёт и отправьте разработчику.</p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:14px">
+        <button id="errCopyBtn" type="button">📋 Скопировать отчёт</button>
+        <button onclick="downloadErrorLog()" type="button" style="background:var(--card);color:var(--text)">💾 Журнал</button>
+        <button onclick="location.reload()" type="button" style="background:var(--card);color:var(--text)">🔄 Обновить</button>
+        <button onclick="hardReset()" type="button" style="background:rgba(214,51,108,.15);color:var(--danger)">🗑 Сброс</button>
     </div>
     <div class="err-msg" id="errMsg"></div>
 </div>
@@ -476,9 +458,10 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         </div>
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.3.0</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.3.1</div></div>
+            <div class="profile-item" id="viewErrorLogBtn"><div class="pi-icon">🐛</div><div class="pi-label">Журнал ошибок</div><div class="pi-value" id="errorCountLabel">0</div><div class="pi-arrow">›</div></div>
         </div>
-        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.3.0</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.3.1</div>
     </div>
 </div>
 
@@ -725,6 +708,17 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     </div>
 </div>
 
+<div class="modal-overlay" id="errorLogModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="errorLogModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Журнал ошибок</h2>
+        <div id="errorLogContainer"></div>
+        <button type="button" class="btn-secondary" id="downloadLogBtn" style="margin-top:14px">💾 Скачать JSON</button>
+        <button type="button" class="btn-danger" id="clearLogBtn">🗑 Очистить журнал</button>
+    </div>
+</div>
+
 <div class="modal-overlay" id="notifOnboardModal">
     <div class="modal">
         <div style="padding:8px 4px">
@@ -776,22 +770,210 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 <div class="toast" id="toast"></div>
 
 <script>
-window.addEventListener('error', function(e) {
-    console.error('byBag error:', e.error || e.message);
-    try {
-        var es = document.getElementById('errorScreen'), em = document.getElementById('errMsg');
-        if (es && em) {
-            em.textContent = (e.error && e.error.stack) ? e.error.stack : (e.message || 'Неизвестная ошибка');
-            es.classList.add('show');
-        }
-    } catch (ex) {}
-});
-function hardReset() { try { localStorage.clear(); } catch (e) {} location.reload(); }
+// ============================================================
+// СИСТЕМА ОБРАБОТКИ ОШИБОК (вне IIFE, работает всегда)
+// ============================================================
+var BB_VERSION = '1.3.1';
+var BB_ERROR_LOG_KEY = 'bybag_error_log';
+var BB_MAX_LOG = 20;
 
+var BB_ERROR_NAMES = {
+    1001:'Ошибка инициализации приложения', 1002:'Не удалось загрузить данные', 1003:'Не удалось применить тему',
+    2001:'Ошибка чтения localStorage', 2002:'Ошибка записи в localStorage', 2003:'Повреждённые данные, сброшены',
+    3001:'Ошибка рендера главной', 3002:'Ошибка рендера списков', 3003:'Ошибка рендера профиля',
+    3004:'Ошибка рендера чеклиста', 3005:'Ошибка рендера историй',
+    4001:'Ошибка открытия модалки', 4002:'Ошибка сохранения формы',
+    5001:'Не удалось загрузить погоду', 5002:'Город не найден',
+    6001:'Ошибка истории', 7001:'Ошибка изменения вещи', 7002:'Ошибка удаления вещи',
+    8001:'Ошибка аватара', 8002:'Ошибка профиля',
+    9001:'Неизвестная ошибка', 9002:'Unhandled Promise Rejection', 9003:'Ошибка ресурса (img/script)',
+    9004:'Запрещённая конструкция в strict mode (arguments.callee)'
+};
+
+function bbGetDeviceInfo() {
+    try {
+        return {
+            ua: navigator.userAgent,
+            platform: navigator.platform || 'unknown',
+            lang: navigator.language,
+            screen: (window.screen ? window.screen.width + 'x' + window.screen.height : '?'),
+            dpr: window.devicePixelRatio || 1,
+            url: location.href,
+            time: new Date().toISOString(),
+            tz: (typeof Intl !== 'undefined' && Intl.DateTimeFormat ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'unknown'),
+            online: navigator.onLine
+        };
+    } catch (e) { return { error: 'device info failed: ' + e.message }; }
+}
+
+function bbGetDataState() {
+    try {
+        var st = {
+            currentPage: (document.querySelector('.page.active') || {}).id || '?',
+            modalsOpen: document.querySelectorAll('.modal-overlay.active').length,
+            checklistOpen: !!(document.getElementById('checklistPage') && document.getElementById('checklistPage').classList.contains('active')),
+            storyOpen: !!(document.getElementById('storyViewer') && document.getElementById('storyViewer').classList.contains('active')),
+            onboardingOpen: !!(document.getElementById('onboardingViewer') && document.getElementById('onboardingViewer').classList.contains('active'))
+        };
+        try { st.trips = JSON.parse(localStorage.getItem('bybag_active_trips') || '[]').length; } catch (e) { st.trips = '?'; }
+        try { st.history = JSON.parse(localStorage.getItem('bybag_history') || '[]').length; } catch (e) { st.history = '?'; }
+        try { st.customTypes = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_types') || '{}')).length; } catch (e) { st.customTypes = '?'; }
+        try { st.customCats = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_categories') || '{}')).length; } catch (e) { st.customCats = '?'; }
+        return st;
+    } catch (e) { return { error: 'data state failed: ' + e.message }; }
+}
+
+function bbLogError(code, message, extra) {
+    try {
+        var entry = {
+            code: code,
+            name: BB_ERROR_NAMES[code] || 'Ошибка',
+            message: String(message || ''),
+            stack: (extra && extra.stack) ? String(extra.stack).slice(0, 2000) : '',
+            device: bbGetDeviceInfo(),
+            data: bbGetDataState(),
+            version: BB_VERSION,
+            ts: Date.now()
+        };
+        var log = [];
+        try { log = JSON.parse(localStorage.getItem(BB_ERROR_LOG_KEY) || '[]'); } catch (e) { log = []; }
+        if (!Array.isArray(log)) log = [];
+        log.unshift(entry);
+        if (log.length > BB_MAX_LOG) log = log.slice(0, BB_MAX_LOG);
+        try { localStorage.setItem(BB_ERROR_LOG_KEY, JSON.stringify(log)); } catch (e) {}
+        try { var lbl = document.getElementById('errorCountLabel'); if (lbl) lbl.textContent = log.length; } catch (e) {}
+        return entry;
+    } catch (e) { return null; }
+}
+
+function bbGetErrorLog() {
+    try { return JSON.parse(localStorage.getItem(BB_ERROR_LOG_KEY) || '[]'); } catch (e) { return []; }
+}
+function bbClearErrorLog() {
+    try { localStorage.removeItem(BB_ERROR_LOG_KEY); } catch (e) {}
+    try { var lbl = document.getElementById('errorCountLabel'); if (lbl) lbl.textContent = '0'; } catch (e) {}
+}
+
+function bbBuildErrorReport(code, message, err) {
+    var entry = bbLogError(code, message, { stack: err && err.stack });
+    var lines = [];
+    lines.push('🐛 byBag v' + BB_VERSION + ' — отчёт об ошибке');
+    lines.push('');
+    lines.push('Код: BB-' + code + ' (' + (BB_ERROR_NAMES[code] || '?') + ')');
+    lines.push('Сообщение: ' + message);
+    if (err && err.message && err.message !== message) lines.push('Технически: ' + err.message);
+    lines.push('');
+    lines.push('📱 Устройство:');
+    var d = entry ? entry.device : bbGetDeviceInfo();
+    lines.push('  UA: ' + d.ua);
+    lines.push('  Платформа: ' + d.platform);
+    lines.push('  Экран: ' + d.screen + ' @ ' + d.dpr + 'x');
+    lines.push('  Язык: ' + d.lang + ' / ' + d.tz);
+    lines.push('  Online: ' + (d.online ? 'да' : 'нет'));
+    lines.push('  URL: ' + d.url);
+    lines.push('  Время: ' + d.time);
+    lines.push('');
+    lines.push('💾 Состояние:');
+    var s = entry ? entry.data : bbGetDataState();
+    Object.keys(s).forEach(function(k) { lines.push('  ' + k + ': ' + s[k]); });
+    if (err && err.stack) {
+        lines.push('');
+        lines.push('📚 Stack trace:');
+        lines.push(err.stack);
+    }
+    return lines.join('\n');
+}
+
+function showErrorScreen(code, message, err) {
+    try {
+        var es = document.getElementById('errorScreen');
+        var em = document.getElementById('errMsg');
+        var ec = document.getElementById('errCode');
+        var et = document.getElementById('errTitle');
+        var report = bbBuildErrorReport(code, message, err);
+        if (!es) { console.error('BB-' + code, message, err); return; }
+        if (em) em.textContent = report;
+        if (ec) ec.textContent = 'Код: BB-' + code;
+        if (et) et.textContent = message || (BB_ERROR_NAMES[code] || 'Что-то пошло не так');
+        es.classList.add('show');
+        var copyBtn = document.getElementById('errCopyBtn');
+        if (copyBtn) {
+            copyBtn.onclick = function() {
+                try {
+                    if (navigator.share) { navigator.share({ title: 'byBag error', text: report }).catch(function() {}); return; }
+                    var ta = document.createElement('textarea');
+                    ta.value = report; document.body.appendChild(ta); ta.select();
+                    document.execCommand('copy'); document.body.removeChild(ta);
+                    copyBtn.textContent = '✓ Скопировано';
+                    setTimeout(function() { copyBtn.textContent = '📋 Скопировать отчёт'; }, 1500);
+                } catch (e) { copyBtn.textContent = '✗ Не удалось'; }
+            };
+        }
+    } catch (e) { console.error('showErrorScreen failed', e); }
+}
+
+function bbDetectErrorCode(msg, stack) {
+    msg = String(msg || ''); stack = String(stack || '');
+    if (msg.indexOf('arguments.callee') !== -1 || stack.indexOf('callee') !== -1) return 9004;
+    if (stack.indexOf('localStorage') !== -1 || msg.indexOf('localStorage') !== -1 || msg.indexOf('QuotaExceeded') !== -1) return 2001;
+    if (stack.indexOf('renderHome') !== -1) return 3001;
+    if (stack.indexOf('renderListsPage') !== -1) return 3002;
+    if (stack.indexOf('renderProfile') !== -1) return 3003;
+    if (stack.indexOf('renderChecklist') !== -1) return 3004;
+    if (stack.indexOf('renderWeather') !== -1 || stack.indexOf('loadWeather') !== -1) return 5001;
+    if (stack.indexOf('init') !== -1 || msg.indexOf('init') !== -1) return 1001;
+    return 9001;
+}
+
+window.addEventListener('error', function(e) {
+    var msg = e.message || 'Неизвестная ошибка';
+    var stack = (e.error && e.error.stack) || '';
+    var code = 9001;
+    if (e.target && e.target.tagName === 'IMG') code = 9003;
+    else code = bbDetectErrorCode(msg, stack);
+    showErrorScreen(code, msg, e.error || { message: msg, stack: stack });
+}, true);
+
+window.addEventListener('unhandledrejection', function(e) {
+    var reason = e.reason || {};
+    var msg = reason.message || String(reason) || 'Unhandled promise rejection';
+    var code = bbDetectErrorCode(msg, reason.stack || '');
+    if (code === 9001) code = 9002;
+    showErrorScreen(code, msg, reason);
+});
+
+function hardReset() {
+    try {
+        if (!confirm('Сбросить ВСЕ данные приложения? Это нельзя отменить.')) return;
+        localStorage.clear();
+    } catch (e) {}
+    location.reload();
+}
+
+function downloadErrorLog() {
+    try {
+        var log = bbGetErrorLog();
+        if (!log.length) { alert('Журнал пуст'); return; }
+        var text = JSON.stringify(log, null, 2);
+        var blob = new Blob([text], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'bybag-errors-' + Date.now() + '.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    } catch (e) { alert('Не удалось скачать журнал: ' + e.message); }
+}
+
+// ============================================================
+// ОСНОВНОЕ ПРИЛОЖЕНИЕ
+// ============================================================
 (function() {
     'use strict';
 
-    var APP_VERSION = '1.3.0';
+    var APP_VERSION = BB_VERSION;
     var MAX_ACTIVE_TRIPS = 2;
 
     var CATEGORIES = {
@@ -937,9 +1119,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function loadJSON(key, def) {
         try { var v = localStorage.getItem(key); if (!v) return def; var p = JSON.parse(v); return p === null ? def : p; }
-        catch (e) { try { localStorage.removeItem(key); } catch (e2) {} return def; }
+        catch (e) {
+            try { localStorage.removeItem(key); } catch (e2) {}
+            bbLogError(2003, 'Повреждённые данные: ' + key, { stack: e.stack });
+            return def;
+        }
     }
-    function saveJSON(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+    function saveJSON(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); }
+        catch (e) {
+            bbLogError(2002, 'Ошибка записи localStorage: ' + key, { stack: e.stack });
+        }
+    }
     function resetUIBlocks() {
         try { document.body.style.overflow = ''; document.body.style.position = ''; document.body.style.top = ''; document.body.style.width = ''; } catch (e) {}
     }
@@ -958,7 +1149,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function openModal(id) { resetUIBlocks(); var el = $(id); if (el) el.classList.add('active'); }
     function closeModal(id) { var el = $(id); if (el) el.classList.remove('active'); resetUIBlocks(); }
 
-    // ============ SAVE / LOAD ============
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
         if (!Array.isArray(activeTrips)) activeTrips = [];
@@ -1026,7 +1216,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function saveAchievements() { saveJSON('bybag_achievements', achievementsState); }
     function saveViewedStories() { saveJSON('bybag_viewed_stories', viewedStories); }
 
-    // ============ THEME ============
     function applyTheme() {
         try {
             document.documentElement.style.backgroundColor = settings.dark ? '#0d1220' : '#faf6f0';
@@ -1036,10 +1225,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 if (el) el.classList.toggle('on', !!(id === 'darkToggle' ? settings.dark : id === 'notifToggle' ? settings.notif : settings.vibrate));
             });
             var sh = $('smartHintsToggle'); if (sh) sh.classList.toggle('on', !!settings.smartHints);
-        } catch (e) {}
+        } catch (e) { bbLogError(1003, 'Ошибка темы', { stack: e.stack }); }
     }
 
-    // ============ HELPERS ============
     function formatTripDate(trip) {
         if (!trip.startDate) return trip.date || '';
         try { return new Date(trip.startDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }); } catch (e) { return trip.date || ''; }
@@ -1092,7 +1280,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         try { var mem = loadJSON('bybag_personal_qty', {}); mem[itemKey] = qty; saveJSON('bybag_personal_qty', mem); } catch (e) {}
     }
 
-    // ============ STORIES ============
+    // STORIES
     function buildTripsForStories() {
         var arr = [];
         activeTrips.forEach(function(t) {
@@ -1107,55 +1295,53 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function buildStories() {
-        var slot = $('storiesSlot'); if (!slot) return;
-        slot.innerHTML = '';
-        var trips = buildTripsForStories();
-        if (!trips.length) return;
+        try {
+            var slot = $('storiesSlot'); if (!slot) return;
+            slot.innerHTML = '';
+            var trips = buildTripsForStories();
+            if (!trips.length) return;
 
-        var wrap = document.createElement('div');
-        wrap.className = 'stories-wrap';
-        wrap.innerHTML = '<div class="stories-title">Истории</div>';
-        var row = document.createElement('div');
-        row.className = 'stories-row';
+            var wrap = document.createElement('div');
+            wrap.className = 'stories-wrap';
+            wrap.innerHTML = '<div class="stories-title">Истории</div>';
+            var row = document.createElement('div');
+            row.className = 'stories-row';
 
-        trips.forEach(function(item, idx) {
-            var trip = item.trip;
-            var storyId = item.type + '_' + (trip.id || idx) + '_' + idx;
-            var el = document.createElement('div');
-            el.className = 'story-item';
+            trips.forEach(function(item, idx) {
+                var trip = item.trip;
+                var storyId = item.type + '_' + (trip.id || idx) + '_' + idx;
+                var el = document.createElement('div');
+                el.className = 'story-item';
 
-            var ring = document.createElement('div');
-            ring.className = 'story-ring' + (viewedStories[storyId] ? ' viewed' : '');
-            var inner = document.createElement('div');
-            inner.className = 'story-inner';
+                var ring = document.createElement('div');
+                ring.className = 'story-ring' + (viewedStories[storyId] ? ' viewed' : '');
+                var inner = document.createElement('div');
+                inner.className = 'story-inner';
 
-            var emojiMap = {
-                weather: '🌤️', countdown: '⏳', weight: '⚖️', tips: '💡', trip: trip.emoji || '🎒'
-            };
-            if (item.type === 'trip') {
-                inner.style.background = 'linear-gradient(135deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')';
-                var badge = document.createElement('div');
-                badge.className = 'story-badge';
-                badge.textContent = trip.emoji || '🎒';
-                inner.appendChild(badge);
-            } else {
-                inner.textContent = emojiMap[item.type] || '🧳';
-            }
-            ring.appendChild(inner);
+                var emojiMap = { weather: '🌤️', countdown: '⏳', weight: '⚖️', tips: '💡', trip: trip.emoji || '🎒' };
+                if (item.type === 'trip') {
+                    inner.style.background = 'linear-gradient(135deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')';
+                    var badge = document.createElement('div');
+                    badge.className = 'story-badge';
+                    badge.textContent = trip.emoji || '🎒';
+                    inner.appendChild(badge);
+                } else {
+                    inner.textContent = emojiMap[item.type] || '🧳';
+                }
+                ring.appendChild(inner);
 
-            var labelMap = {
-                weather: 'Погода', countdown: 'Отсчёт', weight: 'Вес', tips: 'Советы', trip: trip.name || 'Поездка'
-            };
-            var label = document.createElement('div');
-            label.className = 'story-label';
-            label.textContent = labelMap[item.type] || 'Поездка';
+                var labelMap = { weather: 'Погода', countdown: 'Отсчёт', weight: 'Вес', tips: 'Советы', trip: trip.name || 'Поездка' };
+                var label = document.createElement('div');
+                label.className = 'story-label';
+                label.textContent = labelMap[item.type] || 'Поездка';
 
-            el.appendChild(ring); el.appendChild(label);
-            el.addEventListener('click', function() { openStoryViewer(trips, idx); });
-            row.appendChild(el);
-        });
-        wrap.appendChild(row);
-        slot.appendChild(wrap);
+                el.appendChild(ring); el.appendChild(label);
+                el.addEventListener('click', function() { openStoryViewer(trips, idx); });
+                row.appendChild(el);
+            });
+            wrap.appendChild(row);
+            slot.appendChild(wrap);
+        } catch (e) { bbLogError(3005, 'Ошибка рендера историй', { stack: e.stack }); }
     }
 
     function openStoryViewer(trips, idx) {
@@ -1240,7 +1426,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                     .then(function(r) { return r.json(); })
                     .then(function(d) { d._cityName = g.name; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeatherStoryData(d, content); });
             })
-            .catch(function() {
+            .catch(function(e) {
+                bbLogError(5001, 'Не удалось загрузить погоду в сторис', { stack: e.stack });
                 content.innerHTML += '<p style="color:rgba(255,255,255,.7);margin-top:10px">Не удалось загрузить</p>';
             });
     }
@@ -1371,7 +1558,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         buildStories();
     }
 
-    // ============ HOME ============
     function renderHome() {
         try {
             buildStories();
@@ -1380,7 +1566,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             if (activeTrips.length === 0) ws.appendChild(buildEmptyState());
             else ws.appendChild(buildTripsCarousel());
             renderHistory();
-        } catch (e) { console.error('renderHome error', e); }
+        } catch (e) {
+            bbLogError(3001, 'Ошибка рендера главной', { stack: e.stack });
+        }
     }
 
     function buildEmptyState() {
@@ -1534,72 +1722,73 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         return widget;
     }
 
-    // ============ LISTS PAGE ============
     function renderListsPage() {
-        var cont = $('listsPageContent');
-        if (!cont) return;
-        cont.innerHTML = '';
-        var keys = Object.keys(customTypes);
+        try {
+            var cont = $('listsPageContent');
+            if (!cont) return;
+            cont.innerHTML = '';
+            var keys = Object.keys(customTypes);
 
-        var header = document.createElement('div');
-        header.className = 'lists-page-header';
-        header.innerHTML = '<div class="lph-title">Все списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
-        cont.appendChild(header);
+            var header = document.createElement('div');
+            header.className = 'lists-page-header';
+            header.innerHTML = '<div class="lph-title">Все списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
+            cont.appendChild(header);
 
-        if (!keys.length) {
-            var empty = document.createElement('div');
-            empty.className = 'empty-hero';
-            empty.style.marginTop = '0';
-            empty.innerHTML = '<div class="empty-icon">📋</div><h2>Пока нет списков</h2><p>Создайте свой список вещей для быстрого добавления в поездки</p><div class="empty-cta"><span class="plus">+</span> Создать список</div>';
-            empty.addEventListener('click', function() { startWizard(); });
-            cont.appendChild(empty);
-            return;
-        }
+            if (!keys.length) {
+                var empty = document.createElement('div');
+                empty.className = 'empty-hero';
+                empty.style.marginTop = '0';
+                empty.innerHTML = '<div class="empty-icon">📋</div><h2>Пока нет списков</h2><p>Создайте свой список вещей для быстрого добавления в поездки</p><div class="empty-cta"><span class="plus">+</span> Создать список</div>';
+                empty.addEventListener('click', function() { startWizard(); });
+                cont.appendChild(empty);
+                return;
+            }
 
-        var grid = document.createElement('div');
-        grid.className = 'lists-grid';
+            var grid = document.createElement('div');
+            grid.className = 'lists-grid';
 
-        keys.forEach(function(key) {
-            var t = customTypes[key];
-            var card = document.createElement('div');
-            card.className = 'list-card';
+            keys.forEach(function(key) {
+                var t = customTypes[key];
+                var card = document.createElement('div');
+                card.className = 'list-card';
 
-            var head = document.createElement('div');
-            head.className = 'list-card-head';
-            head.style.background = 'linear-gradient(135deg,' + (t.c1 || '#ffb347') + ',' + (t.c2 || '#ff7e5f') + ')';
-            head.innerHTML = '<div class="lch-emoji">' + (t.emoji || '🎒') + '</div><div class="lch-deco">' + (t.emoji || '🎒') + '</div>';
+                var head = document.createElement('div');
+                head.className = 'list-card-head';
+                head.style.background = 'linear-gradient(135deg,' + (t.c1 || '#ffb347') + ',' + (t.c2 || '#ff7e5f') + ')';
+                head.innerHTML = '<div class="lch-emoji">' + (t.emoji || '🎒') + '</div><div class="lch-deco">' + (t.emoji || '🎒') + '</div>';
 
-            var body = document.createElement('div');
-            body.className = 'list-card-body';
-            body.innerHTML = '<div class="lcb-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lcb-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div>';
+                var body = document.createElement('div');
+                body.className = 'list-card-body';
+                body.innerHTML = '<div class="lcb-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lcb-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div>';
 
-            var actions = document.createElement('div');
-            actions.className = 'list-card-actions';
+                var actions = document.createElement('div');
+                actions.className = 'list-card-actions';
 
-            var editBtn = document.createElement('button');
-            editBtn.type = 'button';
-            editBtn.className = 'lca-btn edit';
-            editBtn.innerHTML = '<span>✎</span> Изменить';
-            editBtn.addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
+                var editBtn = document.createElement('button');
+                editBtn.type = 'button';
+                editBtn.className = 'lca-btn edit';
+                editBtn.innerHTML = '<span>✎</span> Изменить';
+                editBtn.addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
 
-            var delBtn = document.createElement('button');
-            delBtn.type = 'button';
-            delBtn.className = 'lca-btn del';
-            delBtn.innerHTML = '🗑';
-            delBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
+                var delBtn = document.createElement('button');
+                delBtn.type = 'button';
+                delBtn.className = 'lca-btn del';
+                delBtn.innerHTML = '🗑';
+                delBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
+                });
+
+                actions.appendChild(editBtn);
+                actions.appendChild(delBtn);
+                card.appendChild(head);
+                card.appendChild(body);
+                card.appendChild(actions);
+                card.addEventListener('click', function() { openEditor(key); });
+                grid.appendChild(card);
             });
-
-            actions.appendChild(editBtn);
-            actions.appendChild(delBtn);
-            card.appendChild(head);
-            card.appendChild(body);
-            card.appendChild(actions);
-            card.addEventListener('click', function() { openEditor(key); });
-            grid.appendChild(card);
-        });
-        cont.appendChild(grid);
+            cont.appendChild(grid);
+        } catch (e) { bbLogError(3002, 'Ошибка рендера списков', { stack: e.stack }); }
     }
 
     function renderHistory() {
@@ -1674,7 +1863,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         showToast('Поездка создана заново!');
     }
 
-    // ============ TYPE GRID & CREATE TRIP ============
     function renderTypeGrid() {
         var grid = $('typeGrid'); if (!grid) return;
         grid.innerHTML = '';
@@ -1736,13 +1924,23 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         showToast('Поездка создана!');
     }
 
-    // ============ WIZARD (создание списка) ============
+    // WIZARD — исправлено: без arguments.callee
+    function pickWizEmoji(em) {
+        wiz.emoji = em;
+        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji);
+        updateWiz1Preview();
+    }
+    function pickWizColor(i) {
+        wiz.colorIdx = i;
+        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor);
+        updateWiz1Preview();
+    }
     function startWizard() {
         wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
         var ni = $('wiz1NameInput'); if (ni) ni.value = '';
         var nb = $('wiz1NextBtn'); if (nb) nb.disabled = true;
-        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, function(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, arguments.callee); updateWiz1Preview(); });
-        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, function(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, arguments.callee); updateWiz1Preview(); });
+        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji);
+        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor);
         updateWiz1Preview();
         openModal('wizardStep1');
     }
@@ -1826,7 +2024,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         showToast('Список "' + wiz.name + '" создан!');
     }
 
-    // ============ ADVANCED ROW ============
     function buildAdvancedRow(item, idx, target) {
         var row = document.createElement('div');
         row.className = 'advanced-item-row';
@@ -1902,7 +2099,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
     }
 
-    // ============ ADVANCED ITEM MODALS ============
     function openAdvanced(target) {
         var p = target === 'wizard' ? 'adv' : 'adv2';
         ['Name','Qty','Weight','Note'].forEach(function(f) {
@@ -1938,7 +2134,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         openEditorById(editing.id);
     }
 
-    // ============ LIST EDITOR ============
+    // EDITOR — исправлено: без arguments.callee
+    function pickEditorEmoji(em) {
+        editing.emoji = em;
+        renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji);
+        updateEditorPreview();
+    }
+    function pickEditorColor(i) {
+        editing.colorIdx = i;
+        renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor);
+        updateEditorPreview();
+    }
+
     function openEditor(id) {
         if (!customTypes[id]) return;
         var t = customTypes[id];
@@ -1953,8 +2160,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var ln = $('listName'); if (ln) ln.value = editing.name;
         var db = $('deleteListBtn'); if (db) db.style.display = 'block';
         var ni = $('newItemInput'); if (ni) ni.value = '';
-        renderEmojiPicker('emojiPicker', editing.emoji, function(em) { editing.emoji = em; renderEmojiPicker('emojiPicker', editing.emoji, arguments.callee); updateEditorPreview(); });
-        renderColorPicker('colorPicker', editing.colorIdx, function(i) { editing.colorIdx = i; renderColorPicker('colorPicker', editing.colorIdx, arguments.callee); updateEditorPreview(); });
+        renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji);
+        renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor);
         renderEditorItems(); updateEditorPreview();
         openModal('listEditorModal');
     }
@@ -2031,7 +2238,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         saveHistory(); renderHome(); renderProfile();
     }
 
-    // ============ CHECKLIST ============
     function openChecklistPage() {
         var trip = getCurrentTrip();
         if (!trip) return;
@@ -2050,61 +2256,63 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         renderHome();
     }
     function renderChecklistPage() {
-        var trip = getCurrentTrip();
-        if (!trip) { closeChecklistPage(); return; }
-        var tEl = $('checklistPageTitle');
-        if (tEl) tEl.textContent = (trip.emoji || '🎒') + ' ' + (trip.name || '');
-        var sEl = $('checklistPageSubtitle');
-        if (sEl) {
-            var cd = trip.startDate ? countdown(trip.startDate) : '';
-            var parts = [];
-            if (trip.date) parts.push(formatTripDate(trip));
-            if (cd) parts.push(cd);
-            if (trip.city) parts.push('📍 ' + trip.city);
-            sEl.textContent = parts.join(' · ');
-        }
-        var s = getTripStats(trip);
-        var pt = $('tripProgressText'); if (pt) pt.textContent = s.done + ' / ' + s.total;
-        var f = $('tripProgressFill');
-        if (f) { f.style.width = s.percent + '%'; f.classList.toggle('complete', s.percent === 100 && s.total > 0); }
-        var tw = $('tripWeight'); if (tw) tw.textContent = s.doneWeight.toFixed(1) + ' / ' + s.totalWeight.toFixed(1) + ' кг';
-        renderWeightLimits(s.totalWeight);
-        var tg = $('hideDoneToggle'); if (tg) tg.classList.toggle('active', !!settings.hideDone);
-        var cont = $('checklistContainer'); if (!cont) return;
-        cont.innerHTML = '';
-        var q = searchQuery.toLowerCase().trim();
-        var vis = [];
-        trip.items.forEach(function(it, i) {
-            if (settings.hideDone && it.done) return;
-            if (q && it.text.toLowerCase().indexOf(q) === -1) return;
-            vis.push({ item: it, idx: i });
-        });
-        if (!vis.length) {
-            var em = document.createElement('div');
-            em.className = 'empty-search';
-            if (q) em.textContent = 'Ничего не найдено по "' + searchQuery + '"';
-            else if (settings.hideDone && s.done === s.total && s.total > 0) em.textContent = '🎉 Всё собрано!';
-            else em.textContent = 'Пока пусто';
-            cont.appendChild(em);
-            return;
-        }
-        var groups = {};
-        vis.forEach(function(v) { var c = v.item.category || 'other'; (groups[c] = groups[c] || []).push(v); });
-        var allCats = getAllCategories();
-        Object.keys(allCats).forEach(function(k) {
-            if (!groups[k] || !groups[k].length) return;
-            var cat = allCats[k];
-            var sec = document.createElement('div');
-            sec.className = 'cat-section';
-            var allIn = trip.items.filter(function(i) { return (i.category || 'other') === k; });
-            var doneIn = allIn.filter(function(i) { return i.done; }).length;
-            var hd = document.createElement('div');
-            hd.className = 'cat-header';
-            hd.innerHTML = '<span class="cat-icon">' + cat.icon + '</span><span>' + escapeHtml(cat.name) + '</span><span class="cat-count">' + doneIn + '/' + allIn.length + '</span>';
-            sec.appendChild(hd);
-            groups[k].forEach(function(v) { sec.appendChild(buildSwipeItem(v.item, v.idx)); });
-            cont.appendChild(sec);
-        });
+        try {
+            var trip = getCurrentTrip();
+            if (!trip) { closeChecklistPage(); return; }
+            var tEl = $('checklistPageTitle');
+            if (tEl) tEl.textContent = (trip.emoji || '🎒') + ' ' + (trip.name || '');
+            var sEl = $('checklistPageSubtitle');
+            if (sEl) {
+                var cd = trip.startDate ? countdown(trip.startDate) : '';
+                var parts = [];
+                if (trip.date) parts.push(formatTripDate(trip));
+                if (cd) parts.push(cd);
+                if (trip.city) parts.push('📍 ' + trip.city);
+                sEl.textContent = parts.join(' · ');
+            }
+            var s = getTripStats(trip);
+            var pt = $('tripProgressText'); if (pt) pt.textContent = s.done + ' / ' + s.total;
+            var f = $('tripProgressFill');
+            if (f) { f.style.width = s.percent + '%'; f.classList.toggle('complete', s.percent === 100 && s.total > 0); }
+            var tw = $('tripWeight'); if (tw) tw.textContent = s.doneWeight.toFixed(1) + ' / ' + s.totalWeight.toFixed(1) + ' кг';
+            renderWeightLimits(s.totalWeight);
+            var tg = $('hideDoneToggle'); if (tg) tg.classList.toggle('active', !!settings.hideDone);
+            var cont = $('checklistContainer'); if (!cont) return;
+            cont.innerHTML = '';
+            var q = searchQuery.toLowerCase().trim();
+            var vis = [];
+            trip.items.forEach(function(it, i) {
+                if (settings.hideDone && it.done) return;
+                if (q && it.text.toLowerCase().indexOf(q) === -1) return;
+                vis.push({ item: it, idx: i });
+            });
+            if (!vis.length) {
+                var em = document.createElement('div');
+                em.className = 'empty-search';
+                if (q) em.textContent = 'Ничего не найдено по "' + searchQuery + '"';
+                else if (settings.hideDone && s.done === s.total && s.total > 0) em.textContent = '🎉 Всё собрано!';
+                else em.textContent = 'Пока пусто';
+                cont.appendChild(em);
+                return;
+            }
+            var groups = {};
+            vis.forEach(function(v) { var c = v.item.category || 'other'; (groups[c] = groups[c] || []).push(v); });
+            var allCats = getAllCategories();
+            Object.keys(allCats).forEach(function(k) {
+                if (!groups[k] || !groups[k].length) return;
+                var cat = allCats[k];
+                var sec = document.createElement('div');
+                sec.className = 'cat-section';
+                var allIn = trip.items.filter(function(i) { return (i.category || 'other') === k; });
+                var doneIn = allIn.filter(function(i) { return i.done; }).length;
+                var hd = document.createElement('div');
+                hd.className = 'cat-header';
+                hd.innerHTML = '<span class="cat-icon">' + cat.icon + '</span><span>' + escapeHtml(cat.name) + '</span><span class="cat-count">' + doneIn + '/' + allIn.length + '</span>';
+                sec.appendChild(hd);
+                groups[k].forEach(function(v) { sec.appendChild(buildSwipeItem(v.item, v.idx)); });
+                cont.appendChild(sec);
+            });
+        } catch (e) { bbLogError(3004, 'Ошибка рендера чеклиста', { stack: e.stack }); }
     }
     function renderWeightLimits(tw) {
         var w = $('weightLimits'); if (!w) return;
@@ -2198,19 +2406,21 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         catch (e) { return esc; }
     }
     function toggleItem(idx) {
-        var trip = getCurrentTrip();
-        if (!trip || !trip.items[idx]) return;
-        var was = trip.items[idx].done;
-        trip.items[idx].done = !was;
-        if (!was) {
-            vibrate();
-            var r = document.querySelector('.ring-wrap');
-            if (r) { var rc = r.getBoundingClientRect(); spawnPlusOne(rc.left + rc.width / 2, rc.top + rc.height / 2); }
-        }
-        var all = trip.items.every(function(i) { return i.done; });
-        if (!was && all) { fireConfetti(); vibrateStrong(); }
-        saveActive();
-        renderChecklistPage(); renderHome(); renderProfile();
+        try {
+            var trip = getCurrentTrip();
+            if (!trip || !trip.items[idx]) return;
+            var was = trip.items[idx].done;
+            trip.items[idx].done = !was;
+            if (!was) {
+                vibrate();
+                var r = document.querySelector('.ring-wrap');
+                if (r) { var rc = r.getBoundingClientRect(); spawnPlusOne(rc.left + rc.width / 2, rc.top + rc.height / 2); }
+            }
+            var all = trip.items.every(function(i) { return i.done; });
+            if (!was && all) { fireConfetti(); vibrateStrong(); }
+            saveActive();
+            renderChecklistPage(); renderHome(); renderProfile();
+        } catch (e) { bbLogError(7001, 'Ошибка переключения вещи', { stack: e.stack }); }
     }
     function spawnPlusOne(x, y) {
         var el = document.createElement('div');
@@ -2221,7 +2431,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         setTimeout(function() { el.remove(); }, 1100);
     }
 
-    // ============ WEATHER ============
     function loadWeather() {
         var card = $('weatherCard'); if (!card) return;
         var trip = getCurrentTrip();
@@ -2244,7 +2453,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                     .then(function(r) { return r.json(); })
                     .then(function(d) { d._cityName = loc.name; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeather(d); });
             })
-            .catch(function() {
+            .catch(function(e) {
+                bbLogError(5001, 'Не удалось загрузить погоду', { stack: e.stack });
                 var de = $('weatherDesc'); if (de) de.textContent = 'Не удалось загрузить погоду';
                 var ie = $('weatherIcon'); if (ie) ie.textContent = '❓';
             });
@@ -2283,7 +2493,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
     }
 
-    // ============ ADD ITEM MODAL ============
     function openAddItemModal() {
         var trip = getCurrentTrip();
         if (!trip) { showToast('Нет активной поездки'); return; }
@@ -2321,7 +2530,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var overlay = $('addItemModal'); if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    // ============ SMART HINTS ============
     function findSmartHints(itemText, trip) {
         var lower = itemText.toLowerCase().trim();
         if (lower.length < 3) return [];
@@ -2418,7 +2626,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
     }
 
-    // ============ PROFILE ============
     function calcStats() {
         var tt = history.length + activeTrips.length;
         var ad = 0, at = 0, aw = 0, pt = 0;
@@ -2441,13 +2648,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             e = $('profileTotalWeight'); if (e) e.textContent = s.allWeight.toFixed(1);
             e = $('profileName'); if (e) e.textContent = profile.name || 'Эрик';
             e = $('catCountLabel'); if (e) e.textContent = Object.keys(customCategories).length;
+            e = $('errorCountLabel'); if (e) e.textContent = bbGetErrorLog().length;
             var av = $('profileAvatar'), lt = $('profileAvatarLetter');
             if (av && lt) {
                 if (profile.avatar) { av.style.backgroundImage = 'url(' + profile.avatar + ')'; av.classList.add('has-photo'); lt.textContent = ''; }
                 else { av.style.backgroundImage = ''; av.classList.remove('has-photo'); lt.textContent = (profile.name || 'Э').charAt(0).toUpperCase(); }
             }
             renderAchievements(s);
-        } catch (e) {}
+        } catch (e) { bbLogError(3003, 'Ошибка рендера профиля', { stack: e.stack }); }
     }
 
     function renderAchievements(s) {
@@ -2486,17 +2694,20 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         rd.onload = function(ev) {
             var img = new Image();
             img.onload = function() {
-                var c = document.createElement('canvas');
-                c.width = 200; c.height = 200;
-                var x = c.getContext('2d');
-                var mn = Math.min(img.width, img.height);
-                x.drawImage(img, (img.width - mn) / 2, (img.height - mn) / 2, mn, mn, 0, 0, 200, 200);
-                var d = c.toDataURL('image/jpeg', .85);
-                profile.avatar = d;
-                var ea = $('editAvatar'); if (ea) ea.style.backgroundImage = 'url(' + d + ')';
-                var el = $('editAvatarLetter'); if (el) el.textContent = '';
-                saveProfile(); renderProfile();
+                try {
+                    var c = document.createElement('canvas');
+                    c.width = 200; c.height = 200;
+                    var x = c.getContext('2d');
+                    var mn = Math.min(img.width, img.height);
+                    x.drawImage(img, (img.width - mn) / 2, (img.height - mn) / 2, mn, mn, 0, 0, 200, 200);
+                    var d = c.toDataURL('image/jpeg', .85);
+                    profile.avatar = d;
+                    var ea = $('editAvatar'); if (ea) ea.style.backgroundImage = 'url(' + d + ')';
+                    var el = $('editAvatarLetter'); if (el) el.textContent = '';
+                    saveProfile(); renderProfile();
+                } catch (ex) { bbLogError(8001, 'Ошибка обработки аватара', { stack: ex.stack }); }
             };
+            img.onerror = function() { bbLogError(8001, 'Не удалось загрузить изображение'); };
             img.src = ev.target.result;
         };
         rd.readAsDataURL(f);
@@ -2509,7 +2720,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         renderProfile();
     }
 
-    // ============ CUSTOM CATEGORIES ============
     function openCategoryModal(targetSelect) {
         pendingCategoryTarget = targetSelect || null;
         var ni = $('newCatName'); if (ni) ni.value = '';
@@ -2576,7 +2786,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                     saveCustomCategories();
                     renderCatList();
                     renderProfile();
-                    renderChecklistPage();
+                    if ($('checklistPage') && $('checklistPage').classList.contains('active')) renderChecklistPage();
                     showToast('Удалено');
                 }
             });
@@ -2585,7 +2795,30 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         });
     }
 
-    // ============ ONBOARDING ============
+    function openErrorLog() {
+        var cont = $('errorLogContainer'); if (!cont) return;
+        cont.innerHTML = '';
+        var log = bbGetErrorLog();
+        if (!log.length) {
+            var emp = document.createElement('div');
+            emp.style.cssText = 'text-align:center;padding:24px;color:var(--text-3);font-size:13.5px;font-weight:500';
+            emp.textContent = '🎉 Ошибок нет!';
+            cont.appendChild(emp);
+            return;
+        }
+        log.forEach(function(entry) {
+            var item = document.createElement('div');
+            item.style.cssText = 'padding:12px;background:var(--card);border:1px solid var(--border-soft);border-radius:12px;margin-bottom:8px;font-family:\'SF Mono\',Menlo,monospace;font-size:11px;line-height:1.5;word-break:break-word';
+            var date = new Date(entry.ts);
+            var dateStr = date.toLocaleString('ru-RU');
+            item.innerHTML = '<div style="font-weight:800;color:var(--danger);margin-bottom:4px">BB-' + entry.code + ' · ' + escapeHtml(entry.name || '') + '</div>' +
+                '<div style="color:var(--text-2);margin-bottom:4px">' + dateStr + '</div>' +
+                '<div style="color:var(--text);margin-bottom:4px">' + escapeHtml(entry.message || '') + '</div>' +
+                (entry.stack ? '<details style="margin-top:6px"><summary style="cursor:pointer;color:var(--text-3);font-weight:600">Stack</summary><div style="margin-top:6px;color:var(--text-3);white-space:pre-wrap">' + escapeHtml(entry.stack.slice(0, 500)) + '</div></details>' : '');
+            cont.appendChild(item);
+        });
+    }
+
     function showOnboarding() {
         currentOnbSlide = 0;
         var viewer = $('onboardingViewer'); if (!viewer) return;
@@ -2633,7 +2866,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         currentOnbSlide++; renderOnbSlide(); renderOnbDots();
     }
 
-    // ============ NAV ============
     function switchPage(page) {
         document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.toggle('active', n.getAttribute('data-page') === page); });
         document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -2643,7 +2875,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (page === 'lists') renderListsPage();
     }
 
-    // ============ REMINDERS / NOTIF ============
     function checkReminders() {
         try {
             if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
@@ -2681,7 +2912,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (el) { try { el.addEventListener(ev, fn); } catch (e) {} }
     }
 
-    // ============ INIT ============
     function init() {
         try {
             loadData();
@@ -2693,7 +2923,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                     if (id === 'addItemModal') closeAddItemModal(); else closeModal(id);
                 });
             });
-            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','categoryModal','manageCategoriesModal'].forEach(function(id) {
+            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','categoryModal','manageCategoriesModal','errorLogModal'].forEach(function(id) {
                 var el = $(id);
                 if (el) el.addEventListener('click', function(e) {
                     if (e.target === this) {
@@ -2775,8 +3005,12 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             bind('manageCategoriesBtn', 'click', openManageCategories);
             bind('addNewCatFromList', 'click', function() { openCategoryModal(null); });
             bind('saveCatBtn', 'click', saveNewCategory);
+            bind('viewErrorLogBtn', 'click', function() { openErrorLog(); openModal('errorLogModal'); });
+            bind('downloadLogBtn', 'click', downloadErrorLog);
+            bind('clearLogBtn', 'click', function() {
+                if (confirm('Очистить журнал ошибок?')) { bbClearErrorLog(); openErrorLog(); renderProfile(); }
+            });
 
-            // Категории: обработчики изменения селектов
             ['advCat','adv2Cat','addItemCat'].forEach(function(selId) {
                 var sel = $(selId);
                 if (sel) sel.addEventListener('change', function() {
@@ -2795,11 +3029,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             setTimeout(checkReminders, 3000);
             setInterval(checkReminders, 3600000);
         } catch (e) {
-            console.error('init error:', e);
-            try {
-                var es = $('errorScreen'), em = $('errMsg');
-                if (es && em) { em.textContent = (e.stack || e.message || 'Неизвестная ошибка'); es.classList.add('show'); }
-            } catch (ex) {}
+            bbLogError(1001, 'Ошибка инициализации приложения', { stack: e.stack });
+            showErrorScreen(1001, 'Ошибка инициализации приложения', e);
         }
     }
 
