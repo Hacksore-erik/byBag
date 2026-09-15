@@ -3055,9 +3055,9 @@ Em    }
             bind('notifLaterBtn', 'click', handleNotifLater);
 
             renderHome();
-            renderProfile();
-            renderListsPage();
-            renderMapPage();
+try { renderProfile(); } catch(e) { console.error('profile render:', e); }
+try { renderListsPage(); } catch(e) { console.error('lists render:', e); }
+try { renderMapPage(); } catch(e) { console.error('map render:', e); }
 
             try {
                 if (!localStorage.getItem('bybag_onboarding_done')) setTimeout(showOnboarding, 800);
