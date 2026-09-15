@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v2.0.0</title>
+<title>byBag v2.0.2</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -27,19 +27,22 @@ body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50
 .header-spacer{height:60px}
 .container{padding:0 20px;max-width:500px;margin:0 auto;position:relative;z-index:1;width:100%}
 
-/* TIPS (бывшие истории) */
+/* TIPS */
 .tips-wrap{margin:6px 0 22px}
 .tips-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px;margin-bottom:12px}
 .tips-row{display:flex;gap:12px;overflow-x:auto;padding:4px 4px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .tips-row::-webkit-scrollbar{display:none}
-.tip-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;width:78px}
+.tip-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;width:78px;position:relative}
 .tip-ring{width:72px;height:72px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s cubic-bezier(.34,1.56,.64,1);position:relative}
 body.dark .tip-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6bcb,#3ddc84,#6b8cff)}
+.tip-ring.whats-new{animation:pulseRing 2s ease-in-out infinite}
+@keyframes pulseRing{0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,107,138,.6)}50%{transform:scale(1.03);box-shadow:0 0 0 10px rgba(255,107,138,0)}}
 .tip-item:active .tip-ring{transform:scale(.9)}
 .tip-inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;border:2.5px solid var(--bg);position:relative;box-shadow:inset 0 -8px 16px rgba(0,0,0,.15)}
+.tip-badge-new{position:absolute;top:-2px;right:-2px;background:linear-gradient(135deg,#ff2d55,#ff5e8a);color:#fff;font-size:8.5px;font-weight:900;padding:3px 6px;border-radius:100px;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 3px 8px rgba(255,45,85,.5);border:2px solid var(--bg);z-index:5;animation:badgePulse 1.5s ease-in-out infinite}
+@keyframes badgePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 .tip-item .tip-label{font-size:10.5px;font-weight:700;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:78px;line-height:1.2}
-
-/* TIP VIEWER */
+.tip-item.whats-new-active .tip-label{color:var(--accent-2)}
 .tip-viewer{position:fixed;inset:0;z-index:200;display:none;flex-direction:column}
 .tip-viewer.active{display:flex}
 .tip-viewer-bg{position:absolute;inset:0;z-index:0}
@@ -68,11 +71,10 @@ body.dark .tip-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6bc
 @keyframes tipCardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .tip-card-icon{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .tip-card-text{flex:1;color:#fff;font-size:14px;line-height:1.5;font-weight:500;padding-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.25)}
-.tip-card-text strong{font-weight:800;color:#fff}
+.tip-card-text strong{font-weight:800;color:#fff;display:block;margin-bottom:2px;font-size:14.5px}
 .tip-nav{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-bottom:20px}
 .tip-nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .3s;cursor:pointer}
 .tip-nav-dot.active{width:24px;border-radius:100px;background:#fff}
-.tip-empty{color:rgba(255,255,255,.8);text-align:center;font-size:14px;font-weight:600;padding:40px 20px}
 
 /* WIDGET */
 .main-widget{position:relative;border-radius:25px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 16px 40px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
@@ -226,9 +228,6 @@ body.dark .type-option.create-new{background:linear-gradient(135deg,rgba(160,107
 body.dark .type-option.create-new .name{color:#a06bff}
 .type-option .checkmark{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:var(--success);display:none;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
 .type-option.selected .checkmark{display:flex}
-.custom-type-badge{position:absolute;top:4px;left:4px;background:rgba(192,132,252,.9);color:#fff;font-size:7px;font-weight:700;padding:2px 4px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
-body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
-/* List picker */
 .list-picker{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;max-height:220px;overflow-y:auto;padding:2px}
 .list-picker-empty{text-align:center;padding:16px;color:var(--text-3);font-size:13px;font-weight:500}
 .list-picker-item{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--card);border:1.5px solid var(--border-soft);border-radius:14px;cursor:pointer;transition:all .2s}
@@ -266,7 +265,6 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .advanced-item-head .item-remove{background:rgba(255,107,138,.12);border:none;color:var(--accent-2);width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 .advanced-item-fields{display:grid;grid-template-columns:1fr;gap:8px}
 .advanced-item-fields .mini-field{padding:8px 10px;border-radius:10px;background:var(--card-solid);border:1px solid var(--border-soft);font-family:inherit;font-size:13px;color:var(--text);outline:none;width:100%;-webkit-appearance:none;appearance:none}
-.advanced-item-fields .mini-field.full{grid-column:1/-1}
 .add-item-row{display:flex;gap:8px;margin-bottom:18px}
 .add-item-row .input-field{flex:1;margin-bottom:0;padding:14px;font-size:15px}
 .add-item-row .add-item-btn{width:50px;height:50px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
@@ -441,10 +439,10 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
         </div>
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">2.0.0</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">2.0.2</div></div>
             <div class="profile-item" id="viewErrorLogBtn"><div class="pi-icon">🐛</div><div class="pi-label">Журнал ошибок</div><div class="pi-value" id="errorCountLabel">0</div><div class="pi-arrow">›</div></div>
         </div>
-        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v2.0.0</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v2.0.2</div>
     </div>
 </div>
 
@@ -512,13 +510,13 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
     <div class="modal">
         <button type="button" class="modal-close" data-close="wizardStep1">✕</button>
         <div class="modal-handle"></div>
-        <div class="preview-card" id="wiz1Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f)">
-            <div class="preview-emoji" id="wiz1Emoji">🎒</div>
+        <div class="preview-card" id="wiz1Preview" style="background:linear-gradient(135deg,#a8e6cf,#56c596)">
+            <div class="preview-emoji" id="wiz1Emoji">👕</div>
             <div class="preview-name" id="wiz1Name">Название списка</div>
             <div class="preview-count" id="wiz1Count">0 вещей</div>
         </div>
         <div class="field-label">Название списка</div>
-        <input type="text" class="input-field" id="wiz1NameInput" placeholder="Например: Кемпинг" maxlength="30">
+        <input type="text" class="input-field" id="wiz1NameInput" placeholder="Например: Аптечка" maxlength="30">
         <div class="field-label">Иконка</div>
         <div class="emoji-picker" id="wiz1EmojiPicker"></div>
         <div class="field-label">Цветовая палитра</div>
@@ -531,8 +529,8 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
     <div class="modal">
         <button type="button" class="modal-close" data-close="wizardStep2">✕</button>
         <div class="modal-handle"></div>
-        <div class="preview-card" id="wiz2Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f);margin-bottom:20px">
-            <div class="preview-emoji" id="wiz2Emoji">🎒</div>
+        <div class="preview-card" id="wiz2Preview" style="background:linear-gradient(135deg,#a8e6cf,#56c596);margin-bottom:20px">
+            <div class="preview-emoji" id="wiz2Emoji">👕</div>
             <div class="preview-name" id="wiz2Name">Название списка</div>
             <div class="preview-count" id="wiz2Count">0 вещей</div>
         </div>
@@ -572,7 +570,7 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
         <div class="modal-handle"></div>
         <h2 id="listEditorTitle">Редактировать список</h2>
         <div class="preview-card" id="previewCard">
-            <div class="preview-emoji" id="previewEmoji">🎒</div>
+            <div class="preview-emoji" id="previewEmoji">👕</div>
             <div class="preview-name" id="previewName">Название списка</div>
             <div class="preview-count" id="previewCount">0 вещей</div>
         </div>
@@ -730,9 +728,9 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
 
 <script>
 // ============================================================
-// СИСТЕМА ОБРАБОТКИ ОШИБОК (v2.0.0)
+// СИСТЕМА ОБРАБОТКИ ОШИБОК v2.0.2
 // ============================================================
-var BB_VERSION = '2.0.0';
+var BB_VERSION = '2.0.2';
 var BB_ERROR_LOG_KEY = 'bybag_error_log';
 var BB_MAX_LOG = 30;
 
@@ -758,13 +756,9 @@ var BB_ERROR_NAMES = {
 function bbGetDeviceInfo() {
     try {
         return {
-            ua: navigator.userAgent,
-            platform: navigator.platform || 'unknown',
-            lang: navigator.language,
+            ua: navigator.userAgent, platform: navigator.platform || 'unknown', lang: navigator.language,
             screen: (window.screen ? window.screen.width + 'x' + window.screen.height : '?'),
-            dpr: window.devicePixelRatio || 1,
-            url: location.href,
-            time: new Date().toISOString(),
+            dpr: window.devicePixelRatio || 1, url: location.href, time: new Date().toISOString(),
             tz: (typeof Intl !== 'undefined' && Intl.DateTimeFormat ? Intl.DateTimeFormat().resolvedOptions().timeZone : 'unknown'),
             online: navigator.onLine
         };
@@ -792,14 +786,9 @@ function bbGetDataState() {
 function bbLogError(code, message, extra) {
     try {
         var entry = {
-            code: code,
-            name: BB_ERROR_NAMES[code] || 'Ошибка',
-            message: String(message || ''),
+            code: code, name: BB_ERROR_NAMES[code] || 'Ошибка', message: String(message || ''),
             stack: (extra && extra.stack) ? String(extra.stack).slice(0, 2000) : '',
-            device: bbGetDeviceInfo(),
-            data: bbGetDataState(),
-            version: BB_VERSION,
-            ts: Date.now()
+            device: bbGetDeviceInfo(), data: bbGetDataState(), version: BB_VERSION, ts: Date.now()
         };
         var log = [];
         try { log = JSON.parse(localStorage.getItem(BB_ERROR_LOG_KEY) || '[]'); } catch (e) { log = []; }
@@ -934,21 +923,22 @@ function downloadErrorLog() {
 }
 
 // ============================================================
-// ОСНОВНОЕ ПРИЛОЖЕНИЕ v2.0.0
+// ОСНОВНОЕ ПРИЛОЖЕНИЕ v2.0.2
 // ============================================================
 (function() {
     'use strict';
 
-    var APP_VERSION = BB_VERSION;
+    // ============ КОНСТАНТЫ ============
     var MAX_ACTIVE_TRIPS = 2;
+    var SWIPE_THRESHOLD = 0.2;
+    var SWIPE_ITEM_THRESHOLD = 70;
+    var WEATHER_CACHE_TTL = 1800000;
+    var VIEWED_WHATS_NEW_KEY = 'bybag_viewed_whats_new';
 
     var CATEGORIES = {
-        clothes: { name: 'Одежда', icon: '👕' },
-        documents: { name: 'Документы', icon: '📄' },
-        tech: { name: 'Техника', icon: '📱' },
-        hygiene: { name: 'Гигиена', icon: '🧴' },
-        meds: { name: 'Аптека', icon: '💊' },
-        other: { name: 'Прочее', icon: '📦' }
+        clothes: { name: 'Одежда', icon: '👕' }, documents: { name: 'Документы', icon: '📄' },
+        tech: { name: 'Техника', icon: '📱' }, hygiene: { name: 'Гигиена', icon: '🧴' },
+        meds: { name: 'Аптека', icon: '💊' }, other: { name: 'Прочее', icon: '📦' }
     };
 
     var ACHIEVEMENTS = [
@@ -981,6 +971,16 @@ function downloadErrorLog() {
         { c1: '#ff9e7d', c2: '#e63946', ring: '#e63946' }, { c1: '#7ee8fa', c2: '#2c73d2', ring: '#2c73d2' }
     ];
 
+    var LIST_COLOR_PALETTES = [
+        { c1: '#a8e6cf', c2: '#56c596', ring: '#56c596' }, { c1: '#c8b6e2', c2: '#8b6fc4', ring: '#8b6fc4' },
+        { c1: '#ffd3b6', c2: '#ff9a76', ring: '#ff9a76' }, { c1: '#b8dff0', c2: '#5aa9d6', ring: '#5aa9d6' },
+        { c1: '#f8c8d8', c2: '#d97ba0', ring: '#d97ba0' }, { c1: '#ffe9b8', c2: '#f4c462', ring: '#f4c462' },
+        { c1: '#a2d5d5', c2: '#4a9d9d', ring: '#4a9d9d' }, { c1: '#e8b796', c2: '#c17a4e', ring: '#c17a4e' },
+        { c1: '#c9d6a3', c2: '#8ba356', ring: '#8ba356' }, { c1: '#d5c3e8', c2: '#9b7bc4', ring: '#9b7bc4' },
+        { c1: '#e0d5c7', c2: '#b09b82', ring: '#b09b82' }, { c1: '#c5cdd6', c2: '#7d8a99', ring: '#7d8a99' }
+    ];
+
+    var LIST_EMOJI_CHOICES = ['👕','👖','👟','🧥','🎒','📱','💻','🎧','🔌','🧴','🪥','💊','🩹','🛂','📄','💳','📖','✏️','🍫','🧸'];
     var EMOJI_CHOICES = ['🎒','🧳','✈️','🚗','🏔️','🌊','🎿','🚴','🎣','🍕','🎉','💼','🏖️','🏕️','🌆','🚢','🐕','🎨','📚','🎵'];
     var CAT_EMOJI = ['📦','🍔','🎮','⚽','🎸','🐕','👶','💊','💻','🎨','📚','🚲','🎁','🧸','🛠️','🌱'];
 
@@ -992,82 +992,79 @@ function downloadErrorLog() {
         81:{icon:'🌧️',desc:'Сильный ливень'},82:{icon:'⛈️',desc:'Очень сильный ливень'},95:{icon:'⛈️',desc:'Гроза'},96:{icon:'⛈️',desc:'Гроза с градом'}
     };
 
-    // Советы — 6 категорий
+    // Что нового — объединённые v2.0.x
+    var WHATS_NEW = {
+        emoji: '✨',
+        title: 'Что нового',
+        subtitle: 'Крупное обновление v2.0',
+        color1: '#ff9a5a', color2: '#ff6b8a',
+        items: [
+            { icon: '📋', title: 'Объединение списков', desc: 'При создании поездки — базовый тип + любое количество своих списков' },
+            { icon: '🎨', title: 'Новые иконки для списков', desc: 'Одежда, техника, аптека, документы — вместо иконок поездок' },
+            { icon: '🌈', title: 'Пастельная палитра', desc: '12 сдержанных цветов: мятная, лавандовая, персиковая, небесная' },
+            { icon: '💡', title: 'Советы вместо историй', desc: '6 категорий: упаковка, документы, техника, одежда, безопасность, лайфхаки' },
+            { icon: '🆕', title: 'Бейдж «Что нового»', desc: 'Теперь вы не пропустите изменения при обновлениях' }
+        ],
+        minor: 'Мелочи: пастельная миграция старых списков, улучшены миграции данных'
+    };
+
     var TIPS_CATEGORIES = [
-        {
-            id: 'packing', name: 'Упаковка', emoji: '🧳', color1: '#ff9a5a', color2: '#ff6b8a',
-            desc: 'Как упаковать чемодан',
-            tips: [
-                { icon: '👕', text: '<strong>Скручивайте одежду в рулоны</strong> — экономит место и меньше мнётся' },
-                { icon: '👟', text: '<strong>Обувь — вниз, носки внутрь.</strong> Так они не деформируются и заполняют пустоты' },
-                { icon: '🧴', text: 'Жидкости <strong>в отдельный зип-пакет</strong> + пищевая плёнка под крышку' },
-                { icon: '👖', text: '<strong>Тяжёлое — на дно</strong> (у колесиков). Так чемодан устойчив и не переворачивается' },
-                { icon: '🎒', text: 'Мелочи и провода — в <strong>маленькие мешочки</strong> по типам, чтобы не путались' },
-                { icon: '🪥', text: '<strong>Зубную щётку в колпачок</strong> — гигиеничнее и не пачкает сумку' }
-            ]
-        },
-        {
-            id: 'docs', name: 'Документы', emoji: '📄', color1: '#5ec7ff', color2: '#3a86ff',
-            desc: 'Что взять из документов',
-            tips: [
-                { icon: '🛂', text: 'Паспорт + <strong>копия в отдельном месте</strong> (и фото в облаке)' },
-                { icon: '✈️', text: 'Посадочные и брони — <strong>скриншот + распечатка</strong>, в аэропорту пригодится' },
-                { icon: '💳', text: '<strong>2 разные карты</strong> в разных сумках + немного наличных' },
-                { icon: '🩺', text: 'Медстраховка для заграницы — <strong>распечатайте</strong>, иногда просят бумажный вариант' },
-                { icon: '🎫', text: 'Билеты на поезд/автобус <strong>в офлайн-доступе</strong> — сеть может пропасть' },
-                { icon: '📱', text: 'Запишите <strong>номер посольства</strong> на случай проблем за рубежом' }
-            ]
-        },
-        {
-            id: 'tech', name: 'Техника', emoji: '📱', color1: '#a06bff', color2: '#6b8cff',
-            desc: 'Про гаджеты в дороге',
-            tips: [
-                { icon: '🔌', text: '<strong>Один powerbank вместо пяти зарядок.</strong> 20000 мАч хватает на 3–4 дня' },
-                { icon: '🧵', text: 'Провода <strong>скрепите резинками</strong> или в стяжки — не запутаются в сумке' },
-                { icon: '🎧', text: 'Наушники <strong>в отдельном кейсе</strong>, чтобы не поцарапать в кармане' },
-                { icon: '💻', text: 'Ноутбук — <strong>в мягкий чехол</strong>, отдельно от жидкостей и обуви' },
-                { icon: '🔋', text: '<strong>Отключите авто-синк</strong> в роуминге: телефон проживёт вдвое дольше' },
-                { icon: '🔌', text: '<strong>Универсальный переходник</strong> пригодится в любой стране' }
-            ]
-        },
-        {
-            id: 'clothes', name: 'Одежда', emoji: '👕', color1: '#4ecb71', color2: '#2f9c53',
-            desc: 'Как собрать гардероб',
-            tips: [
-                { icon: '🎨', text: '<strong>Правило капсулы:</strong> 3 низа + 3 верха + 1 куртка = 9 образов' },
-                { icon: '👖', text: 'Возьмите <strong>2 пары обуви максимум</strong>: одна в дорогу, вторая в чемодан' },
-                { icon: '🧥', text: 'В холодный климат — <strong>слоями</strong>: термобельё + флиска + куртка' },
-                { icon: '🌧️', text: 'В дождь спасает <strong>компактный дождевик</strong> размером с кулак' },
-                { icon: '👕', text: 'Тёмные цвета <strong>практичнее в дороге</strong>: меньше видны пятна' },
-                { icon: '👙', text: 'Носки и нижнее бельё — <strong>+1 запасной комплект</strong> на всякий случай' }
-            ]
-        },
-        {
-            id: 'security', name: 'Безопасность', emoji: '🔒', color1: '#d6336c', color2: '#ff5e8a',
-            desc: 'Как защитить имущество',
-            tips: [
-                { icon: '🎒', text: 'Рюкзак — <strong>на грудь в толпе</strong>. За спиной легко стать целью' },
-                { icon: '💰', text: 'Деньги — <strong>в 2-3 местах</strong>: кошелёк, носки, внутренний карман' },
-                { icon: '📷', text: 'Фото содержимого чемодана <strong>поможет при потере</strong> — сохраните в облако' },
-                { icon: '🔐', text: 'На чемодане — <strong>кодовый замок</strong>, не простой навесной' },
-                { icon: '📞', text: '<strong>Скиньте маршрут близким</strong>: отели, рейсы, время прилёта' },
-                { icon: '🚕', text: 'Такси только <strong>официальное</strong>, не соглашайтесь на «быстрее и дешевле»' }
-            ]
-        },
-        {
-            id: 'lifehacks', name: 'Лайфхаки', emoji: '💡', color1: '#ffd166', color2: '#f4a261',
-            desc: 'Полезные мелочи',
-            tips: [
-                { icon: '🧊', text: 'Замороженная бутылка воды = <strong>и еда, и охлаждение</strong> для сумки' },
-                { icon: '🧴', text: 'Дезодорант-спрей <strong>не протечёт</strong> в отличие от роликового' },
-                { icon: '🧦', text: 'В обувь положите <strong>носки или бельё</strong> — экономия места' },
-                { icon: '🍫', text: 'Сникерс в кармане спасёт <strong>от голода в дороге</strong>, если нет кафе' },
-                { icon: '💊', text: 'Мини-аптечка: <strong>обезболивающее, пластырь, активированный уголь</strong>' },
-                { icon: '🧴', text: 'Пробники косметики <strong>вместо больших флаконов</strong>: легче и не жалко выкинуть' },
-                { icon: '📌', text: 'Булавка на молнии — <strong>быстрый «замок»</strong> от воришек в метро' },
-                { icon: '🛍️', text: 'Пустой складной мешок <strong>для сувениров</strong> занимает мало места' }
-            ]
-        }
+        { id: 'packing', name: 'Упаковка', emoji: '🧳', color1: '#ff9a5a', color2: '#ff6b8a', desc: 'Как упаковать чемодан',
+          tips: [
+            { icon: '👕', text: '<strong>Скручивайте одежду в рулоны</strong> — экономит место и меньше мнётся' },
+            { icon: '👟', text: '<strong>Обувь — вниз, носки внутрь.</strong> Так они не деформируются и заполняют пустоты' },
+            { icon: '🧴', text: 'Жидкости <strong>в отдельный зип-пакет</strong> + пищевая плёнка под крышку' },
+            { icon: '👖', text: '<strong>Тяжёлое — на дно</strong> (у колесиков). Так чемодан устойчив и не переворачивается' },
+            { icon: '🎒', text: 'Мелочи и провода — в <strong>маленькие мешочки</strong> по типам, чтобы не путались' },
+            { icon: '🪥', text: '<strong>Зубную щётку в колпачок</strong> — гигиеничнее и не пачкает сумку' }
+          ] },
+        { id: 'docs', name: 'Документы', emoji: '📄', color1: '#5ec7ff', color2: '#3a86ff', desc: 'Что взять из документов',
+          tips: [
+            { icon: '🛂', text: 'Паспорт + <strong>копия в отдельном месте</strong> (и фото в облаке)' },
+            { icon: '✈️', text: 'Посадочные и брони — <strong>скриншот + распечатка</strong>, в аэропорту пригодится' },
+            { icon: '💳', text: '<strong>2 разные карты</strong> в разных сумках + немного наличных' },
+            { icon: '🩺', text: 'Медстраховка для заграницы — <strong>распечатайте</strong>, иногда просят бумажный вариант' },
+            { icon: '🎫', text: 'Билеты на поезд/автобус <strong>в офлайн-доступе</strong> — сеть может пропасть' },
+            { icon: '📱', text: 'Запишите <strong>номер посольства</strong> на случай проблем за рубежом' }
+          ] },
+        { id: 'tech', name: 'Техника', emoji: '📱', color1: '#a06bff', color2: '#6b8cff', desc: 'Про гаджеты в дороге',
+          tips: [
+            { icon: '🔌', text: '<strong>Один powerbank вместо пяти зарядок.</strong> 20000 мАч хватает на 3–4 дня' },
+            { icon: '🧵', text: 'Провода <strong>скрепите резинками</strong> или в стяжки — не запутаются в сумке' },
+            { icon: '🎧', text: 'Наушники <strong>в отдельном кейсе</strong>, чтобы не поцарапать в кармане' },
+            { icon: '💻', text: 'Ноутбук — <strong>в мягкий чехол</strong>, отдельно от жидкостей и обуви' },
+            { icon: '🔋', text: '<strong>Отключите авто-синк</strong> в роуминге: телефон проживёт вдвое дольше' },
+            { icon: '🔌', text: '<strong>Универсальный переходник</strong> пригодится в любой стране' }
+          ] },
+        { id: 'clothes', name: 'Одежда', emoji: '👕', color1: '#4ecb71', color2: '#2f9c53', desc: 'Как собрать гардероб',
+          tips: [
+            { icon: '🎨', text: '<strong>Правило капсулы:</strong> 3 низа + 3 верха + 1 куртка = 9 образов' },
+            { icon: '👖', text: 'Возьмите <strong>2 пары обуви максимум</strong>: одна в дорогу, вторая в чемодан' },
+            { icon: '🧥', text: 'В холодный климат — <strong>слоями</strong>: термобельё + флиска + куртка' },
+            { icon: '🌧️', text: 'В дождь спасает <strong>компактный дождевик</strong> размером с кулак' },
+            { icon: '👕', text: 'Тёмные цвета <strong>практичнее в дороге</strong>: меньше видны пятна' },
+            { icon: '👙', text: 'Носки и нижнее бельё — <strong>+1 запасной комплект</strong> на всякий случай' }
+          ] },
+        { id: 'security', name: 'Безопасность', emoji: '🔒', color1: '#d6336c', color2: '#ff5e8a', desc: 'Как защитить имущество',
+          tips: [
+            { icon: '🎒', text: 'Рюкзак — <strong>на грудь в толпе</strong>. За спиной легко стать целью' },
+            { icon: '💰', text: 'Деньги — <strong>в 2-3 местах</strong>: кошелёк, носки, внутренний карман' },
+            { icon: '📷', text: 'Фото содержимого чемодана <strong>поможет при потере</strong> — сохраните в облако' },
+            { icon: '🔐', text: 'На чемодане — <strong>кодовый замок</strong>, не простой навесной' },
+            { icon: '📞', text: '<strong>Скиньте маршрут близким</strong>: отели, рейсы, время прилёта' },
+            { icon: '🚕', text: 'Такси только <strong>официальное</strong>, не соглашайтесь на «быстрее и дешевле»' }
+          ] },
+        { id: 'lifehacks', name: 'Лайфхаки', emoji: '💡', color1: '#ffd166', color2: '#f4a261', desc: 'Полезные мелочи',
+          tips: [
+            { icon: '🧊', text: 'Замороженная бутылка воды = <strong>и еда, и охлаждение</strong> для сумки' },
+            { icon: '🧴', text: 'Дезодорант-спрей <strong>не протечёт</strong> в отличие от роликового' },
+            { icon: '🧦', text: 'В обувь положите <strong>носки или бельё</strong> — экономия места' },
+            { icon: '🍫', text: 'Сникерс в кармане спасёт <strong>от голода в дороге</strong>, если нет кафе' },
+            { icon: '💊', text: 'Мини-аптечка: <strong>обезболивающее, пластырь, активированный уголь</strong>' },
+            { icon: '🧴', text: 'Пробники косметики <strong>вместо больших флаконов</strong>: легче и не жалко выкинуть' },
+            { icon: '📌', text: 'Булавка на молнии — <strong>быстрый «замок»</strong> от воришек в метро' },
+            { icon: '🛍️', text: 'Пустой складной мешок <strong>для сувениров</strong> занимает мало места' }
+          ] }
     ];
 
     var ONBOARDING_SLIDES = [
@@ -1078,19 +1075,18 @@ function downloadErrorLog() {
         {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды, следите за прогрессом и делайте каждую поездку лучше.',list:[{icon:'🏆',text:'Достижения за поездки'},{icon:'📊',text:'Личная статистика'},{icon:'🎨',text:'Свои списки и категории'}]}
     ];
 
+    // ============ СОСТОЯНИЕ ============
     var customTypes = {}, customCategories = {}, activeTrips = [], history = [];
-    var currentTripIndex = 0, selectedType = null;
-    var selectedListIds = [];
+    var currentTripIndex = 0, selectedType = null, selectedListIds = [];
     var profile = { name: 'Эрик', avatar: null };
     var settings = { dark: false, notif: true, vibrate: true, hideDone: false };
-    var achievementsState = {}, viewedTips = {};
-    var wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
-    var editing = { id: null, name: '', emoji: '🎒', colorIdx: 0, items: [] };
-    var searchQuery = '';
-    var weatherCache = {}, searchDebounceTimer = null, currentOnbSlide = 0;
-    var currentTipIdx = 0;
-    var pendingCategoryTarget = null, categoryParent = null;
+    var achievementsState = {}, viewedTips = {}, viewedWhatsNew = false;
+    var wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };
+    var editing = { id: null, name: '', emoji: '👕', colorIdx: 0, items: [] };
+    var searchQuery = '', weatherCache = {}, searchDebounceTimer = null, currentOnbSlide = 0;
+    var currentTipIdx = 0, pendingCategoryTarget = null, categoryParent = null;
 
+    // ============ УТИЛИТЫ ============
     function $(id) { try { return document.getElementById(id); } catch (e) { return null; } }
     function escapeHtml(s) {
         try { return String(s).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
@@ -1159,7 +1155,23 @@ function downloadErrorLog() {
     function openModal(id) { resetUIBlocks(); var el = $(id); if (el) el.classList.add('active'); }
     function closeModal(id) { var el = $(id); if (el) { el.classList.remove('active'); el.classList.remove('on-top2'); } resetUIBlocks(); }
 
-    // ============ DATA ============
+    // ============ ДАННЫЕ ============
+    function migrateListColors() {
+        Object.keys(customTypes).forEach(function(k) {
+            var t = customTypes[k];
+            var found = false;
+            for (var i = 0; i < LIST_COLOR_PALETTES.length; i++) {
+                if (LIST_COLOR_PALETTES[i].c1 === t.c1 && LIST_COLOR_PALETTES[i].c2 === t.c2) { found = true; break; }
+            }
+            if (!found) {
+                t.c1 = LIST_COLOR_PALETTES[0].c1;
+                t.c2 = LIST_COLOR_PALETTES[0].c2;
+                t.ring = LIST_COLOR_PALETTES[0].ring;
+            }
+        });
+        saveCustomTypes();
+    }
+
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
         if (!Array.isArray(activeTrips)) activeTrips = [];
@@ -1170,6 +1182,7 @@ function downloadErrorLog() {
         settings = loadJSON('bybag_settings', { dark: false, notif: true, vibrate: true, hideDone: false });
         achievementsState = loadJSON('bybag_achievements', {});
         viewedTips = loadJSON('bybag_viewed_tips', {});
+        viewedWhatsNew = !!loadJSON(VIEWED_WHATS_NEW_KEY, false);
 
         if (!Array.isArray(history)) history = [];
         if (typeof customTypes !== 'object' || customTypes === null || Array.isArray(customTypes)) customTypes = {};
@@ -1194,11 +1207,12 @@ function downloadErrorLog() {
             if (!Array.isArray(t.items)) t.items = [];
             t.items = t.items.map(normalizeItem);
             t.name = t.name || 'Свой список';
-            t.emoji = t.emoji || '🎒';
-            t.c1 = t.c1 || '#ffb347';
-            t.c2 = t.c2 || '#ff7e5f';
-            t.ring = t.ring || '#ff7e5f';
+            t.emoji = t.emoji || '👕';
+            t.c1 = t.c1 || LIST_COLOR_PALETTES[0].c1;
+            t.c2 = t.c2 || LIST_COLOR_PALETTES[0].c2;
+            t.ring = t.ring || LIST_COLOR_PALETTES[0].ring;
         });
+        migrateListColors();
 
         Object.keys(customCategories).forEach(function(k) {
             var c = customCategories[k];
@@ -1221,6 +1235,7 @@ function downloadErrorLog() {
     function saveSettings() { saveJSON('bybag_settings', settings); }
     function saveAchievements() { saveJSON('bybag_achievements', achievementsState); }
     function saveViewedTips() { saveJSON('bybag_viewed_tips', viewedTips); }
+    function saveViewedWhatsNew() { saveJSON(VIEWED_WHATS_NEW_KEY, true); viewedWhatsNew = true; }
 
     function applyTheme() {
         try {
@@ -1256,18 +1271,8 @@ function downloadErrorLog() {
         items.forEach(function(i) { if (i.done) done++; });
         return { done: done, total: items.length, percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0 };
     }
-    function getSeason(dateStr) {
-        if (!dateStr) return 'summer';
-        try {
-            var m = new Date(dateStr).getMonth();
-            if (m >= 5 && m <= 7) return 'summer';
-            if (m >= 11 || m <= 1) return 'winter';
-            if (m >= 2 && m <= 4) return 'spring';
-            return 'autumn';
-        } catch (e) { return 'summer'; }
-    }
 
-    // ============ TIPS ============
+    // ============ СОВЕТЫ ============
     function buildTips() {
         try {
             var slot = $('tipsSlot'); if (!slot) return;
@@ -1277,6 +1282,12 @@ function downloadErrorLog() {
             wrap.innerHTML = '<div class="tips-title">Советы</div>';
             var row = document.createElement('div');
             row.className = 'tips-row';
+
+            // Карточка "Что нового" — первой, если не просмотрена
+            if (!viewedWhatsNew) {
+                var wnItem = buildWhatsNewTipItem();
+                row.appendChild(wnItem);
+            }
 
             TIPS_CATEGORIES.forEach(function(cat, idx) {
                 var item = document.createElement('div');
@@ -1296,9 +1307,85 @@ function downloadErrorLog() {
                 item.addEventListener('click', function() { openTipViewer(idx); });
                 row.appendChild(item);
             });
+
+            // Если "Что нового" просмотрена — переносим её в конец
+            if (viewedWhatsNew) {
+                var wnItemEnd = buildWhatsNewTipItem();
+                row.appendChild(wnItemEnd);
+            }
+
             wrap.appendChild(row);
             slot.appendChild(wrap);
         } catch (e) { bbLogError(3005, 'Ошибка рендера советов', { stack: e.stack }); }
+    }
+
+    function buildWhatsNewTipItem() {
+        var item = document.createElement('div');
+        item.className = 'tip-item' + (!viewedWhatsNew ? ' whats-new-active' : '');
+        var ring = document.createElement('div');
+        ring.className = 'tip-ring' + (!viewedWhatsNew ? ' whats-new' : '');
+        if (!viewedWhatsNew) {
+            // Пульсирующий градиент с фирменными цветами + иконка приложения
+            ring.style.background = 'conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#ff9a5a)';
+        }
+        var inner = document.createElement('div');
+        inner.className = 'tip-inner';
+        inner.style.background = 'linear-gradient(135deg,' + WHATS_NEW.color1 + ',' + WHATS_NEW.color2 + ')';
+        inner.textContent = '🧳';
+        ring.appendChild(inner);
+        if (!viewedWhatsNew) {
+            var badge = document.createElement('div');
+            badge.className = 'tip-badge-new';
+            badge.textContent = 'NEW';
+            item.appendChild(badge);
+        }
+        var label = document.createElement('div');
+        label.className = 'tip-label';
+        label.textContent = 'Что нового';
+        item.appendChild(ring);
+        item.appendChild(label);
+        item.addEventListener('click', function() { openWhatsNewViewer(); });
+        return item;
+    }
+
+    function openWhatsNewViewer() {
+        var v = $('tipViewer'); if (!v) return;
+        v.classList.add('active');
+        resetUIBlocks();
+        var bg = $('tipViewerBg'); if (bg) bg.style.background = 'linear-gradient(135deg,' + WHATS_NEW.color1 + ',' + WHATS_NEW.color2 + ')';
+        var deco = $('tipViewerDeco'); if (deco) deco.textContent = WHATS_NEW.emoji;
+        var avatar = $('tipViewerAvatar'); if (avatar) avatar.textContent = WHATS_NEW.emoji;
+        var title = $('tipViewerTitle'); if (title) title.textContent = WHATS_NEW.title;
+        var sub = $('tipViewerSub'); if (sub) sub.textContent = WHATS_NEW.subtitle;
+        renderWhatsNewContent();
+        // После просмотра — помечаем как прочитанное
+        if (!viewedWhatsNew) {
+            saveViewedWhatsNew();
+        }
+    }
+
+    function renderWhatsNewContent() {
+        var content = $('tipViewerContent'); if (!content) return;
+        content.innerHTML = '';
+        var hero = document.createElement('div');
+        hero.className = 'tip-hero';
+        hero.innerHTML = '<div class="tip-hero-emoji">' + WHATS_NEW.emoji + '</div><h2>' + escapeHtml(WHATS_NEW.title) + '</h2><p>' + escapeHtml(WHATS_NEW.subtitle) + '</p>';
+        content.appendChild(hero);
+        var cards = document.createElement('div');
+        cards.className = 'tip-cards';
+        WHATS_NEW.items.forEach(function(it) {
+            var c = document.createElement('div');
+            c.className = 'tip-card';
+            c.innerHTML = '<div class="tip-card-icon">' + it.icon + '</div><div class="tip-card-text"><strong>' + escapeHtml(it.title) + '</strong>' + escapeHtml(it.desc) + '</div>';
+            cards.appendChild(c);
+        });
+        if (WHATS_NEW.minor) {
+            var minor = document.createElement('div');
+            minor.style.cssText = 'text-align:center;color:rgba(255,255,255,.7);font-size:12px;font-weight:600;padding:16px 20px 0';
+            minor.textContent = WHATS_NEW.minor;
+            cards.appendChild(minor);
+        }
+        content.appendChild(cards);
     }
 
     function openTipViewer(idx) {
@@ -1313,7 +1400,6 @@ function downloadErrorLog() {
         var title = $('tipViewerTitle'); if (title) title.textContent = cat.name;
         var sub = $('tipViewerSub'); if (sub) sub.textContent = cat.desc;
         renderTipContent(cat, idx);
-        // Кнопки навигации
         var nav = document.createElement('div');
         nav.className = 'tip-nav';
         TIPS_CATEGORIES.forEach(function(c, i) {
@@ -1352,7 +1438,7 @@ function downloadErrorLog() {
         buildTips();
     }
 
-    // ============ HOME ============
+    // ============ ГЛАВНАЯ ============
     function renderHome() {
         try {
             buildTips();
@@ -1378,7 +1464,6 @@ function downloadErrorLog() {
         var track = document.createElement('div');
         track.className = 'trips-track';
         track.id = 'tripsTrack';
-
         activeTrips.forEach(function(trip) { track.appendChild(buildWidget(trip)); });
         var canAdd = activeTrips.length < MAX_ACTIVE_TRIPS;
         if (canAdd) {
@@ -1411,7 +1496,6 @@ function downloadErrorLog() {
                 try { localStorage.setItem('bybag_swipe_hint_shown', '1'); } catch (e) {}
             }
         }
-
         setTimeout(function() {
             var tr = $('tripsTrack');
             if (tr) tr.style.transform = 'translateX(-' + (currentTripIndex * 100) + '%)';
@@ -1454,7 +1538,7 @@ function downloadErrorLog() {
             if (!isDown || !track) return;
             isDown = false;
             var dx = e.changedTouches[0].clientX - startX;
-            var threshold = el.offsetWidth * 0.2;
+            var threshold = el.offsetWidth * SWIPE_THRESHOLD;
             track.style.transition = '';
             if (isHoriz && Math.abs(dx) > threshold) {
                 if (dx < 0 && currentTripIndex < total - 1) goToTrip(currentTripIndex + 1);
@@ -1477,27 +1561,18 @@ function downloadErrorLog() {
         widget.style.setProperty('--c1', trip.c1 || '#ffb347');
         widget.style.setProperty('--c2', trip.c2 || '#ff7e5f');
         widget.innerHTML =
-            '<div class="widget-hero">' +
-                '<div class="bg-emoji">' + (trip.emoji || '🎒') + '</div>' +
+            '<div class="widget-hero"><div class="bg-emoji">' + (trip.emoji || '🎒') + '</div>' +
                 '<div class="hero-top"><div class="hero-label"><span class="dot"></span>Активная поездка</div><button type="button" class="hero-close">✕</button></div>' +
-                '<div class="hero-title">' +
-                    (complete ? '<div class="complete-badge">✓ Всё собрано</div>' : '') +
+                '<div class="hero-title">' + (complete ? '<div class="complete-badge">✓ Всё собрано</div>' : '') +
                     '<h2>' + escapeHtml(trip.name || 'Поездка') + '</h2>' +
                     '<div class="hero-date">📅 ' + formatTripDate(trip) + (cdText ? '<span class="hero-countdown">' + cdText + '</span>' : '') + '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="widget-body">' +
-                '<div class="ring-wrap"><svg viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="' + radius + '"></circle><circle class="ring-fill" cx="50" cy="50" r="' + radius + '" stroke="' + ringColor + '" stroke-dasharray="' + circ + '" stroke-dashoffset="' + offset + '"></circle></svg>' +
+                '</div></div>' +
+            '<div class="widget-body"><div class="ring-wrap"><svg viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="' + radius + '"></circle><circle class="ring-fill" cx="50" cy="50" r="' + radius + '" stroke="' + ringColor + '" stroke-dasharray="' + circ + '" stroke-dashoffset="' + offset + '"></circle></svg>' +
                 '<div class="ring-center"><div class="ring-percent">' + s.percent + '<span class="sign">%</span></div></div></div>' +
-                '<div class="widget-meta">' +
-                    '<div class="meta-row"><span class="meta-key">Собрано</span><span class="meta-val done">' + s.done + ' / ' + s.total + '</span></div>' +
-                    '<div class="meta-row"><span class="meta-key">Осталось</span><span class="meta-val left">' + remaining + '</span></div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="widget-footer">' +
-                '<div class="mini-bar"><div class="fill" style="width:' + s.percent + '%;background:' + (complete ? 'linear-gradient(90deg,#4ecb71,#2f9c53)' : 'linear-gradient(90deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')') + '"></div></div>' +
-                '<div class="tap-hint"><span>' + (complete ? 'Готово к отправлению 🎉' : 'Открыть список вещей') + '</span><span class="arrow">→</span></div>' +
-            '</div>';
+                '<div class="widget-meta"><div class="meta-row"><span class="meta-key">Собрано</span><span class="meta-val done">' + s.done + ' / ' + s.total + '</span></div>' +
+                '<div class="meta-row"><span class="meta-key">Осталось</span><span class="meta-val left">' + remaining + '</span></div></div></div>' +
+            '<div class="widget-footer"><div class="mini-bar"><div class="fill" style="width:' + s.percent + '%;background:' + (complete ? 'linear-gradient(90deg,#4ecb71,#2f9c53)' : 'linear-gradient(90deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')') + '"></div></div>' +
+                '<div class="tap-hint"><span>' + (complete ? 'Готово к отправлению 🎉' : 'Открыть список вещей') + '</span><span class="arrow">→</span></div></div>';
         widget.addEventListener('click', function(e) {
             if (e.target.closest('.hero-close')) return;
             var i = activeTrips.indexOf(trip);
@@ -1514,14 +1589,12 @@ function downloadErrorLog() {
         return widget;
     }
 
-    // ============ LISTS ============
+    // ============ СПИСКИ ============
     function renderListsPage() {
         try {
-            var cont = $('listsPageContent');
-            if (!cont) return;
+            var cont = $('listsPageContent'); if (!cont) return;
             cont.innerHTML = '';
             var keys = Object.keys(customTypes);
-
             var header = document.createElement('div');
             header.className = 'lists-page-header';
             header.innerHTML = '<div class="lph-title">Мои списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
@@ -1539,44 +1612,32 @@ function downloadErrorLog() {
 
             var grid = document.createElement('div');
             grid.className = 'lists-grid';
-
             keys.forEach(function(key) {
                 var t = customTypes[key];
                 var card = document.createElement('div');
                 card.className = 'list-card';
-
                 var head = document.createElement('div');
                 head.className = 'list-card-head';
-                head.style.background = 'linear-gradient(135deg,' + (t.c1 || '#ffb347') + ',' + (t.c2 || '#ff7e5f') + ')';
-                head.innerHTML = '<div class="lch-emoji">' + (t.emoji || '🎒') + '</div><div class="lch-deco">' + (t.emoji || '🎒') + '</div>';
-
+                head.style.background = 'linear-gradient(135deg,' + (t.c1 || '#a8e6cf') + ',' + (t.c2 || '#56c596') + ')';
+                head.innerHTML = '<div class="lch-emoji">' + (t.emoji || '👕') + '</div><div class="lch-deco">' + (t.emoji || '👕') + '</div>';
                 var body = document.createElement('div');
                 body.className = 'list-card-body';
                 body.innerHTML = '<div class="lcb-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lcb-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div>';
-
                 var actions = document.createElement('div');
                 actions.className = 'list-card-actions';
-
                 var editBtn = document.createElement('button');
-                editBtn.type = 'button';
-                editBtn.className = 'lca-btn edit';
+                editBtn.type = 'button'; editBtn.className = 'lca-btn edit';
                 editBtn.innerHTML = '<span>✎</span> Изменить';
                 editBtn.addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
-
                 var delBtn = document.createElement('button');
-                delBtn.type = 'button';
-                delBtn.className = 'lca-btn del';
+                delBtn.type = 'button'; delBtn.className = 'lca-btn del';
                 delBtn.innerHTML = '🗑';
                 delBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
                 });
-
-                actions.appendChild(editBtn);
-                actions.appendChild(delBtn);
-                card.appendChild(head);
-                card.appendChild(body);
-                card.appendChild(actions);
+                actions.appendChild(editBtn); actions.appendChild(delBtn);
+                card.appendChild(head); card.appendChild(body); card.appendChild(actions);
                 card.addEventListener('click', function() { openEditor(key); });
                 grid.appendChild(card);
             });
@@ -1658,7 +1719,7 @@ function downloadErrorLog() {
         showToast('Поездка создана заново!');
     }
 
-    // ============ TYPE MODAL (базовый + списки) ============
+    // ============ ТИП ПОЕЗДКИ ============
     function renderTypeGrid() {
         var grid = $('typeGrid'); if (!grid) return;
         grid.innerHTML = '';
@@ -1696,7 +1757,7 @@ function downloadErrorLog() {
             var item = document.createElement('div');
             item.className = 'list-picker-item' + (isSel ? ' selected' : '');
             item.innerHTML =
-                '<div class="lp-emoji">' + (t.emoji || '🎒') + '</div>' +
+                '<div class="lp-emoji">' + (t.emoji || '👕') + '</div>' +
                 '<div class="lp-body"><div class="lp-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lp-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div></div>' +
                 '<div class="lp-check">✓</div>';
             item.addEventListener('click', function() {
@@ -1726,26 +1787,18 @@ function downloadErrorLog() {
         openModal('typeModal');
     }
 
-    // Объединение вещей из базового типа + списков
     function buildCombinedItems() {
-        var allItems = [];
         var sources = [];
         if (selectedType) {
             var type = getType(selectedType);
-            if (type && type.items && type.items.length) {
-                sources.push({ id: selectedType, name: type.name, emoji: type.emoji, items: type.items });
-            }
+            if (type && type.items && type.items.length) sources.push({ id: selectedType, name: type.name, emoji: type.emoji, items: type.items });
         }
         selectedListIds.forEach(function(listId) {
             var t = customTypes[listId];
-            if (t && t.items && t.items.length) {
-                sources.push({ id: listId, name: t.name, emoji: t.emoji, items: t.items });
-            }
+            if (t && t.items && t.items.length) sources.push({ id: listId, name: t.name, emoji: t.emoji, items: t.items });
         });
 
-        // Схлопывание дубликатов по названию
-        var merged = {};
-        var order = [];
+        var merged = {}, order = [];
         sources.forEach(function(src) {
             src.items.forEach(function(raw) {
                 var it = normalizeItem(raw);
@@ -1756,30 +1809,20 @@ function downloadErrorLog() {
                         merged[key].from += (merged[key].from ? ', ' : '') + src.name;
                     }
                 } else {
-                    merged[key] = {
-                        text: it.text,
-                        qty: it.qty,
-                        note: it.note,
-                        category: it.category,
-                        from: src.name || '',
-                        done: false
-                    };
+                    merged[key] = { text: it.text, qty: it.qty, note: it.note, category: it.category, from: src.name || '', done: false };
                     order.push(key);
                 }
             });
         });
-
         return { items: order.map(function(k) { return merged[k]; }), sources: sources };
     }
 
     function createTrip() {
         if (activeTrips.length >= MAX_ACTIVE_TRIPS) return;
         if (!selectedType && !selectedListIds.length) { showToast('Выберите тип или список'); return; }
-
         var combined = buildCombinedItems();
         if (!combined.items.length) { showToast('В выбранных источниках нет вещей'); return; }
 
-        // Определяем визуал: базовый тип приоритетнее, иначе берём первый список
         var visual = { emoji: '🎒', c1: '#ffb347', c2: '#ff7e5f', ring: '#ff7e5f' };
         var defaultName = '';
         if (selectedType) {
@@ -1789,24 +1832,18 @@ function downloadErrorLog() {
         } else {
             var firstList = customTypes[selectedListIds[0]];
             if (firstList) {
-                visual = { emoji: firstList.emoji || '🎒', c1: firstList.c1 || '#ffb347', c2: firstList.c2 || '#ff7e5f', ring: firstList.ring || '#ff7e5f' };
+                visual = { emoji: firstList.emoji || '👕', c1: firstList.c1 || '#a8e6cf', c2: firstList.c2 || '#56c596', ring: firstList.ring || '#56c596' };
                 defaultName = firstList.name;
             }
         }
 
-        // Формируем имя: пользовательское, иначе комбинация
         var userInputName = (($('tripName') || {}).value || '').trim();
         var finalName = userInputName;
         if (!finalName) {
-            if (selectedListIds.length > 1) {
-                finalName = defaultName + ' +' + (selectedListIds.length - 1);
-            } else if (selectedType && selectedListIds.length === 1) {
-                finalName = defaultName + ' + ' + customTypes[selectedListIds[0]].name;
-            } else if (selectedListIds.length === 1 && !selectedType) {
-                finalName = customTypes[selectedListIds[0]].name;
-            } else {
-                finalName = defaultName || 'Поездка';
-            }
+            if (selectedListIds.length > 1) finalName = defaultName + ' +' + (selectedListIds.length - 1);
+            else if (selectedType && selectedListIds.length === 1) finalName = defaultName + ' + ' + customTypes[selectedListIds[0]].name;
+            else if (selectedListIds.length === 1 && !selectedType) finalName = customTypes[selectedListIds[0]].name;
+            else finalName = defaultName || 'Поездка';
         }
 
         var startDate = ($('tripStartDate') || {}).value || null;
@@ -1820,11 +1857,8 @@ function downloadErrorLog() {
         }
 
         activeTrips.push({
-            id: Date.now(),
-            type: selectedType || null,
-            listIds: selectedListIds.slice(),
-            name: finalName,
-            emoji: visual.emoji, c1: visual.c1, c2: visual.c2, ring: visual.ring,
+            id: Date.now(), type: selectedType || null, listIds: selectedListIds.slice(),
+            name: finalName, emoji: visual.emoji, c1: visual.c1, c2: visual.c2, ring: visual.ring,
             date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
             startDate: startDate, endDate: endDate, daysCount: daysCount,
             city: (($('tripCity') || {}).value || '').trim(),
@@ -1837,22 +1871,22 @@ function downloadErrorLog() {
         showToast('Поездка создана!');
     }
 
-    // ============ WIZARD ============
-    function pickWizEmoji(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji); updateWiz1Preview(); }
-    function pickWizColor(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor); updateWiz1Preview(); }
+    // ============ МАСТЕР СОЗДАНИЯ СПИСКА ============
+    function pickWizEmoji(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji); updateWiz1Preview(); }
+    function pickWizColor(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor); updateWiz1Preview(); }
     function startWizard() {
-        wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
+        wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };
         var ni = $('wiz1NameInput'); if (ni) ni.value = '';
         var nb = $('wiz1NextBtn'); if (nb) nb.disabled = true;
-        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji);
-        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor);
+        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji);
+        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor);
         updateWiz1Preview();
         openModal('wizardStep1');
     }
-    function renderEmojiPicker(pickerId, current, onSelect) {
+    function renderEmojiPicker(pickerId, current, choices, onSelect) {
         var p = $(pickerId); if (!p) return;
         p.innerHTML = '';
-        EMOJI_CHOICES.forEach(function(em) {
+        choices.forEach(function(em) {
             var d = document.createElement('div');
             d.className = 'emoji-choice' + (current === em ? ' selected' : '');
             d.textContent = em;
@@ -1860,10 +1894,10 @@ function downloadErrorLog() {
             p.appendChild(d);
         });
     }
-    function renderColorPicker(pickerId, currentIdx, onSelect) {
+    function renderColorPicker(pickerId, currentIdx, palettes, onSelect) {
         var p = $(pickerId); if (!p) return;
         p.innerHTML = '';
-        COLOR_PALETTES.forEach(function(c, i) {
+        palettes.forEach(function(c, i) {
             var d = document.createElement('div');
             d.className = 'color-choice' + (currentIdx === i ? ' selected' : '');
             d.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
@@ -1872,7 +1906,7 @@ function downloadErrorLog() {
         });
     }
     function updateWiz1Preview() {
-        var c = COLOR_PALETTES[wiz.colorIdx];
+        var c = LIST_COLOR_PALETTES[wiz.colorIdx];
         var name = (($('wiz1NameInput') || {}).value || '').trim() || 'Название списка';
         var pr = $('wiz1Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('wiz1Emoji'); if (e) e.textContent = wiz.emoji;
@@ -1887,7 +1921,7 @@ function downloadErrorLog() {
         openWiz2();
     }
     function openWiz2() {
-        var c = COLOR_PALETTES[wiz.colorIdx];
+        var c = LIST_COLOR_PALETTES[wiz.colorIdx];
         var pr = $('wiz2Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('wiz2Emoji'); if (e) e.textContent = wiz.emoji;
         var n = $('wiz2Name'); if (n) n.textContent = wiz.name;
@@ -1916,7 +1950,7 @@ function downloadErrorLog() {
     }
     function wiz2Save() {
         if (!wiz.items.length) { showToast('Добавьте хотя бы одну вещь'); return; }
-        var c = COLOR_PALETTES[wiz.colorIdx];
+        var c = LIST_COLOR_PALETTES[wiz.colorIdx];
         var id = 'custom_' + Date.now();
         customTypes[id] = { name: wiz.name, emoji: wiz.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: wiz.items.slice(), builtin: false };
         saveCustomTypes();
@@ -1959,10 +1993,7 @@ function downloadErrorLog() {
         var cs = document.createElement('select');
         cs.className = 'mini-field full';
         fillCategorySelect(cs, item.category);
-        cs.addEventListener('change', function() {
-            if (cs.value === '__new__') return;
-            item.category = cs.value;
-        });
+        cs.addEventListener('change', function() { if (cs.value !== '__new__') item.category = cs.value; });
         fields.appendChild(cs);
         var ni = document.createElement('input');
         ni.type = 'text'; ni.className = 'mini-field full'; ni.value = item.note || '';
@@ -1978,8 +2009,7 @@ function downloadErrorLog() {
         var all = getAllCategories();
         Object.keys(all).forEach(function(k) {
             var o = document.createElement('option');
-            o.value = k;
-            o.textContent = all[k].icon + ' ' + all[k].name;
+            o.value = k; o.textContent = all[k].icon + ' ' + all[k].name;
             if (k === selected) o.selected = true;
             selectEl.appendChild(o);
         });
@@ -2003,7 +2033,7 @@ function downloadErrorLog() {
             if (el) el.value = f === 'Qty' ? '1' : '';
         });
         var s = $(p + 'Cat');
-        if (s) { fillCategorySelect(s, 'other'); }
+        if (s) fillCategorySelect(s, 'other');
         if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
@@ -2022,8 +2052,8 @@ function downloadErrorLog() {
         openEditorById(editing.id);
     }
 
-    function pickEditorEmoji(em) { editing.emoji = em; renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji); updateEditorPreview(); }
-    function pickEditorColor(i) { editing.colorIdx = i; renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor); updateEditorPreview(); }
+    function pickEditorEmoji(em) { editing.emoji = em; renderEmojiPicker('emojiPicker', editing.emoji, LIST_EMOJI_CHOICES, pickEditorEmoji); updateEditorPreview(); }
+    function pickEditorColor(i) { editing.colorIdx = i; renderColorPicker('colorPicker', editing.colorIdx, LIST_COLOR_PALETTES, pickEditorColor); updateEditorPreview(); }
 
     function openEditor(id) {
         if (!customTypes[id]) return;
@@ -2031,7 +2061,9 @@ function downloadErrorLog() {
         editing.id = id; editing.name = t.name; editing.emoji = t.emoji;
         editing.items = t.items.map(normalizeItem);
         editing.colorIdx = 0;
-        for (var i = 0; i < COLOR_PALETTES.length; i++) if (COLOR_PALETTES[i].c1 === t.c1) { editing.colorIdx = i; break; }
+        for (var i = 0; i < LIST_COLOR_PALETTES.length; i++) {
+            if (LIST_COLOR_PALETTES[i].c1 === t.c1 && LIST_COLOR_PALETTES[i].c2 === t.c2) { editing.colorIdx = i; break; }
+        }
         openEditorById(id);
     }
     function openEditorById() {
@@ -2039,13 +2071,13 @@ function downloadErrorLog() {
         var ln = $('listName'); if (ln) ln.value = editing.name;
         var db = $('deleteListBtn'); if (db) db.style.display = 'block';
         var ni = $('newItemInput'); if (ni) ni.value = '';
-        renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji);
-        renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor);
+        renderEmojiPicker('emojiPicker', editing.emoji, LIST_EMOJI_CHOICES, pickEditorEmoji);
+        renderColorPicker('colorPicker', editing.colorIdx, LIST_COLOR_PALETTES, pickEditorColor);
         renderEditorItems(); updateEditorPreview();
         openModal('listEditorModal');
     }
     function updateEditorPreview() {
-        var c = COLOR_PALETTES[editing.colorIdx];
+        var c = LIST_COLOR_PALETTES[editing.colorIdx];
         var name = (($('listName') || {}).value || '').trim() || 'Название списка';
         var pr = $('previewCard'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('previewEmoji'); if (e) e.textContent = editing.emoji;
@@ -2076,7 +2108,7 @@ function downloadErrorLog() {
         var name = (($('listName') || {}).value || '').trim();
         if (!name) { showToast('Введите название'); return; }
         if (!editing.items.length) { showToast('Добавьте вещи'); return; }
-        var c = COLOR_PALETTES[editing.colorIdx];
+        var c = LIST_COLOR_PALETTES[editing.colorIdx];
         customTypes[editing.id] = { name: name, emoji: editing.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: editing.items.slice(), builtin: false };
         saveCustomTypes();
         closeModal('listEditorModal');
@@ -2103,11 +2135,9 @@ function downloadErrorLog() {
         if (!trip) return;
         var s = getTripStats(trip);
         history.unshift({
-            id: trip.id, type: trip.type,
-            name: trip.name, emoji: trip.emoji, date: trip.date,
+            id: trip.id, type: trip.type, name: trip.name, emoji: trip.emoji, date: trip.date,
             city: trip.city || '', startDate: trip.startDate || null,
-            total: s.total, done: s.done,
-            listIds: trip.listIds || [],
+            total: s.total, done: s.done, listIds: trip.listIds || [],
             fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, note: i.note, category: i.category }; })
         });
         activeTrips.splice(currentTripIndex, 1);
@@ -2119,7 +2149,7 @@ function downloadErrorLog() {
         saveHistory(); renderHome(); renderProfile();
     }
 
-    // ============ CHECKLIST ============
+    // ============ ЧЕК-ЛИСТ ============
     function openChecklistPage() {
         var trip = getCurrentTrip();
         if (!trip) return;
@@ -2207,7 +2237,6 @@ function downloadErrorLog() {
         var el = buildCheckItem(item, idx);
         wrap.appendChild(el);
         var sx = 0, cx = 0, sw = false, hz = false;
-        var TH = 70;
         el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; cx = 0; sw = true; hz = false; el.style.transition = 'none'; }, { passive: true });
         el.addEventListener('touchmove', function(e) {
             if (!sw) return;
@@ -2215,16 +2244,16 @@ function downloadErrorLog() {
             if (!hz && Math.abs(dx) > 8) hz = true;
             if (!hz) return;
             cx = dx;
-            if (dx > TH * 1.5) dx = TH * 1.5;
-            if (dx < -TH * 1.5) dx = -TH * 1.5;
+            if (dx > SWIPE_ITEM_THRESHOLD * 1.5) dx = SWIPE_ITEM_THRESHOLD * 1.5;
+            if (dx < -SWIPE_ITEM_THRESHOLD * 1.5) dx = -SWIPE_ITEM_THRESHOLD * 1.5;
             el.style.transform = 'translateX(' + dx + 'px)';
         }, { passive: true });
         el.addEventListener('touchend', function() {
             if (!sw) return;
             sw = false;
             el.style.transition = 'transform .25s cubic-bezier(.4,0,.2,1)';
-            if (cx > TH) { el.style.transform = 'translateX(0)'; toggleItem(idx); }
-            else if (cx < -TH) { el.style.transform = 'translateX(-100%)'; setTimeout(function() { deleteActiveItem(idx); }, 200); }
+            if (cx > SWIPE_ITEM_THRESHOLD) { el.style.transform = 'translateX(0)'; toggleItem(idx); }
+            else if (cx < -SWIPE_ITEM_THRESHOLD) { el.style.transform = 'translateX(-100%)'; setTimeout(function() { deleteActiveItem(idx); }, 200); }
             else el.style.transform = 'translateX(0)';
             cx = 0;
         }, { passive: true });
@@ -2244,8 +2273,7 @@ function downloadErrorLog() {
         var div = document.createElement('div');
         div.className = 'check-item' + (item.done ? ' checked' : '');
         var c = document.createElement('div');
-        c.className = 'check-circle';
-        c.textContent = '✓';
+        c.className = 'check-circle'; c.textContent = '✓';
         c.addEventListener('click', function(e) { e.stopPropagation(); toggleItem(idx); });
         var b = document.createElement('div');
         b.className = 'check-body';
@@ -2302,14 +2330,14 @@ function downloadErrorLog() {
         setTimeout(function() { el.remove(); }, 1100);
     }
 
-    // ============ WEATHER ============
+    // ============ ПОГОДА ============
     function loadWeather() {
         var card = $('weatherCard'); if (!card) return;
         var trip = getCurrentTrip();
         if (!trip || !trip.city) { card.classList.remove('show'); return; }
         var ck = 'weather_' + trip.city.toLowerCase();
         var cached = weatherCache[ck];
-        if (cached && Date.now() - cached.ts < 1800000) { renderWeather(cached.data); return; }
+        if (cached && Date.now() - cached.ts < WEATHER_CACHE_TTL) { renderWeather(cached.data); return; }
         card.classList.add('show');
         var ce = $('weatherCity'); if (ce) ce.textContent = trip.city;
         var de = $('weatherDesc'); if (de) de.textContent = 'Загрузка...';
@@ -2365,14 +2393,14 @@ function downloadErrorLog() {
         }
     }
 
-    // ============ ADD ITEM ============
+    // ============ ДОБАВЛЕНИЕ ВЕЩИ ============
     function openAddItemModal() {
         var trip = getCurrentTrip();
         if (!trip) { showToast('Нет активной поездки'); return; }
         ['Name','Note'].forEach(function(f) { var el = $('addItem' + f); if (el) el.value = ''; });
         var q = $('addItemQty'); if (q) q.value = '1';
         var s = $('addItemCat');
-        if (s) { fillCategorySelect(s, 'other'); }
+        if (s) fillCategorySelect(s, 'other');
         var overlay = $('addItemModal'); if (overlay) overlay.classList.add('above-checklist');
         openModal('addItemModal');
     }
@@ -2386,8 +2414,7 @@ function downloadErrorLog() {
                 text: n, done: false,
                 qty: parseInt($('addItemQty').value) || 1,
                 note: (($('addItemNote') || {}).value || '').trim(),
-                category: ($('addItemCat') || {}).value || 'other',
-                from: ''
+                category: ($('addItemCat') || {}).value || 'other', from: ''
             });
             saveActive();
             closeAddItemModal();
@@ -2400,7 +2427,7 @@ function downloadErrorLog() {
         var overlay = $('addItemModal'); if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    // ============ CONFETTI ============
+    // ============ КОНФЕТТИ ============
     function fireConfetti() {
         var colors = settings.dark ? ['#6b8cff','#a06bff','#3ddc84','#ff6bcb','#ffd166'] : ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
         for (var i = 0; i < 60; i++) {
@@ -2419,18 +2446,18 @@ function downloadErrorLog() {
         }
     }
 
-    // ============ PROFILE ============
+    // ============ ПРОФИЛЬ ============
     function calcStats() {
         var tt = history.length + activeTrips.length;
-        var ad = 0, at = 0, pt = 0, combined = 0;
-        history.forEach(function(h) { ad += h.done || 0; at += h.total || 0; if (h.total > 0 && h.done === h.total) pt++; if (h.listIds && h.listIds.length >= 2) combined++; });
+        var ad = 0, pt = 0, combined = 0;
+        history.forEach(function(h) { ad += h.done || 0; if (h.total > 0 && h.done === h.total) pt++; if (h.listIds && h.listIds.length >= 2) combined++; });
         activeTrips.forEach(function(t) {
             var s = getTripStats(t);
-            ad += s.done; at += s.total;
+            ad += s.done;
             if (s.total > 0 && s.done === s.total) pt++;
             if (t.listIds && t.listIds.length >= 2) combined++;
         });
-        return { totalTrips: tt, completedTrips: history.length, allDone: ad, allTotal: at, perfectTrips: pt, customCount: Object.keys(customTypes).length, combinedTrips: combined };
+        return { totalTrips: tt, completedTrips: history.length, allDone: ad, perfectTrips: pt, customCount: Object.keys(customTypes).length, combinedTrips: combined };
     }
 
     function renderProfile() {
@@ -2514,7 +2541,7 @@ function downloadErrorLog() {
         renderProfile();
     }
 
-    // ============ CATEGORIES ============
+    // ============ КАТЕГОРИИ ============
     function openCategoryModal(targetSelect, parentModalId) {
         pendingCategoryTarget = targetSelect || null;
         categoryParent = parentModalId || null;
@@ -2537,22 +2564,16 @@ function downloadErrorLog() {
             if (parent) { parent.classList.remove('active'); parent.style.display = 'none'; }
         }
         var cm = $('categoryModal');
-        if (cm) {
-            cm.classList.add('active');
-            cm.classList.add('on-top2');
-            cm.style.display = '';
-        }
+        if (cm) { cm.classList.add('active'); cm.classList.add('on-top2'); cm.style.display = ''; }
         resetUIBlocks();
     }
-
     function cancelCategoryCreation() {
         var cm = $('categoryModal');
         if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
         if (categoryParent) {
             var parent = $(categoryParent);
             if (parent) {
-                parent.classList.add('active');
-                parent.style.display = '';
+                parent.classList.add('active'); parent.style.display = '';
                 if (categoryParent === 'manageCategoriesModal') renderCatList();
             }
             categoryParent = null;
@@ -2560,7 +2581,6 @@ function downloadErrorLog() {
         pendingCategoryTarget = null;
         resetUIBlocks();
     }
-
     function saveNewCategory() {
         try {
             var name = (($('newCatName') || {}).value || '').trim();
@@ -2573,15 +2593,11 @@ function downloadErrorLog() {
             var cm = $('categoryModal');
             if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
             var target = pendingCategoryTarget;
-            if (target) {
-                fillCategorySelect(target, id);
-                target.value = id;
-            }
+            if (target) { fillCategorySelect(target, id); target.value = id; }
             if (categoryParent) {
                 var parent = $(categoryParent);
                 if (parent) {
-                    parent.classList.add('active');
-                    parent.style.display = '';
+                    parent.classList.add('active'); parent.style.display = '';
                     if (categoryParent === 'manageCategoriesModal') renderCatList();
                 }
                 categoryParent = null;
@@ -2591,11 +2607,7 @@ function downloadErrorLog() {
             showToast('Категория создана!');
         } catch (e) { bbLogError(8003, 'Ошибка сохранения категории', { stack: e.stack }); }
     }
-
-    function openManageCategories() {
-        renderCatList();
-        openModal('manageCategoriesModal');
-    }
+    function openManageCategories() { renderCatList(); openModal('manageCategoriesModal'); }
     function renderCatList() {
         var cont = $('catListContainer'); if (!cont) return;
         cont.innerHTML = '';
@@ -2618,8 +2630,7 @@ function downloadErrorLog() {
                 if (confirm('Удалить категорию "' + c.name + '"?')) {
                     delete customCategories[k];
                     saveCustomCategories();
-                    renderCatList();
-                    renderProfile();
+                    renderCatList(); renderProfile();
                     if ($('checklistPage') && $('checklistPage').classList.contains('active')) renderChecklistPage();
                     showToast('Удалено');
                 }
@@ -2629,7 +2640,7 @@ function downloadErrorLog() {
         });
     }
 
-    // ============ ERROR LOG ============
+    // ============ ЖУРНАЛ ОШИБОК ============
     function openErrorLog() {
         var cont = $('errorLogContainer'); if (!cont) return;
         cont.innerHTML = '';
@@ -2644,8 +2655,7 @@ function downloadErrorLog() {
         log.forEach(function(entry) {
             var item = document.createElement('div');
             item.style.cssText = 'padding:12px;background:var(--card);border:1px solid var(--border-soft);border-radius:12px;margin-bottom:8px;font-family:\'SF Mono\',Menlo,monospace;font-size:11px;line-height:1.5;word-break:break-word';
-            var date = new Date(entry.ts);
-            var dateStr = date.toLocaleString('ru-RU');
+            var dateStr = new Date(entry.ts).toLocaleString('ru-RU');
             item.innerHTML = '<div style="font-weight:800;color:var(--danger);margin-bottom:4px">BB-' + entry.code + ' · ' + escapeHtml(entry.name || '') + '</div>' +
                 '<div style="color:var(--text-2);margin-bottom:4px">' + dateStr + '</div>' +
                 '<div style="color:var(--text);margin-bottom:4px">' + escapeHtml(entry.message || '') + '</div>' +
@@ -2654,7 +2664,7 @@ function downloadErrorLog() {
         });
     }
 
-    // ============ ONBOARDING ============
+    // ============ ОНБОРДИНГ ============
     function showOnboarding() {
         currentOnbSlide = 0;
         var viewer = $('onboardingViewer'); if (!viewer) return;
@@ -2702,7 +2712,7 @@ function downloadErrorLog() {
         currentOnbSlide++; renderOnbSlide(); renderOnbDots();
     }
 
-    // ============ NAV ============
+    // ============ НАВИГАЦИЯ ============
     function switchPage(page) {
         document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.toggle('active', n.getAttribute('data-page') === page); });
         document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -2712,7 +2722,7 @@ function downloadErrorLog() {
         if (page === 'lists') renderListsPage();
     }
 
-    // ============ REMINDERS ============
+    // ============ НАПОМИНАНИЯ ============
     function checkReminders() {
         try {
             if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
@@ -2745,12 +2755,9 @@ function downloadErrorLog() {
         try { localStorage.setItem('bybag_notif_asked', '1'); } catch (e) {}
     }
 
-    function bind(id, ev, fn) {
-        var el = $(id);
-        if (el) { try { el.addEventListener(ev, fn); } catch (e) {} }
-    }
+    function bind(id, ev, fn) { var el = $(id); if (el) { try { el.addEventListener(ev, fn); } catch (e) {} } }
 
-    // ============ INIT ============
+    // ============ ИНИЦИАЛИЗАЦИЯ ============
     function init() {
         try {
             loadData();
@@ -2765,15 +2772,11 @@ function downloadErrorLog() {
             ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','manageCategoriesModal','errorLogModal'].forEach(function(id) {
                 var el = $(id);
                 if (el) el.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        if (id === 'addItemModal') closeAddItemModal(); else closeModal(id);
-                    }
+                    if (e.target === this) { if (id === 'addItemModal') closeAddItemModal(); else closeModal(id); }
                 });
             });
             var catOverlay = $('categoryModal');
-            if (catOverlay) catOverlay.addEventListener('click', function(e) {
-                if (e.target === this) cancelCategoryCreation();
-            });
+            if (catOverlay) catOverlay.addEventListener('click', function(e) { if (e.target === this) cancelCategoryCreation(); });
             bind('categoryCloseBtn', 'click', cancelCategoryCreation);
 
             document.querySelectorAll('.nav-item').forEach(function(n) {
@@ -2792,10 +2795,7 @@ function downloadErrorLog() {
                 clearTimeout(searchDebounceTimer);
                 searchDebounceTimer = setTimeout(function() { searchQuery = v; renderChecklistPage(); }, 150);
             });
-            bind('hideDoneToggle', 'click', function() {
-                settings.hideDone = !settings.hideDone;
-                saveSettings(); renderChecklistPage();
-            });
+            bind('hideDoneToggle', 'click', function() { settings.hideDone = !settings.hideDone; saveSettings(); renderChecklistPage(); });
             bind('wiz1NameInput', 'input', function() {
                 var nb = $('wiz1NextBtn'); if (nb) nb.disabled = !this.value.trim();
                 updateWiz1Preview();
@@ -2858,7 +2858,6 @@ function downloadErrorLog() {
                 handleCategoryChange(addCat, fallback, 'addItemModal');
             });
 
-            // Советы — свайп для переключения
             var tv = $('tipViewer');
             if (tv) {
                 var tStartX = 0, tStartY = 0, tDown = false;
@@ -2869,6 +2868,8 @@ function downloadErrorLog() {
                     var dx = e.changedTouches[0].clientX - tStartX;
                     var dy = e.changedTouches[0].clientY - tStartY;
                     if (Math.abs(dy) > 100 && Math.abs(dy) > Math.abs(dx)) { closeTipViewer(); return; }
+                    // Свайп только между советами (не от "Что нового")
+                    if (WHATS_NEW && !viewedWhatsNew) return;
                     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
                         if (dx < 0 && currentTipIdx < TIPS_CATEGORIES.length - 1) openTipViewer(currentTipIdx + 1);
                         else if (dx > 0 && currentTipIdx > 0) openTipViewer(currentTipIdx - 1);
