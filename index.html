@@ -6,13 +6,13 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.0.8</title>
+<title>byBag v1.1.0</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
-input,textarea,select{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text;-webkit-touch-callout:default}
+input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 html{overflow-x:hidden;width:100%}
 html,body{transition:background-color .35s ease,color .35s ease}
 :root{--bg:#faf6f0;--text:#2d2419;--text-2:#8a7d6d;--text-3:#a0917e;--card:rgba(255,255,255,.7);--card-solid:#fff;--border:rgba(255,255,255,.9);--border-soft:rgba(180,130,90,.15);--accent-1:#ff9a5a;--accent-2:#ff6b8a;--success:#2f9c53;--danger:#d6336c;--shadow:rgba(180,130,90,.15);--glow-1:rgba(255,180,120,.35);--glow-2:rgba(255,130,150,.28)}
@@ -21,9 +21,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
 body::before,body::after{content:'';position:fixed;width:80%;height:60%;border-radius:50%;pointer-events:none;z-index:-10;filter:blur(40px);transition:background .35s ease}
 body::before{top:-20%;left:-20%;background:radial-gradient(circle,var(--glow-1),transparent 65%)}
 body::after{bottom:-20%;right:-20%;background:radial-gradient(circle,var(--glow-2),transparent 65%)}
-.app-header{position:fixed;top:0;left:0;right:0;padding:14px 24px 10px;z-index:60;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:center;width:100%;transition:background .35s ease}
-.app-header .logo{font-size:26px;font-weight:800;letter-spacing:-.6px;display:inline-block;background:linear-gradient(135deg,#ff9a5a 0%,#ff6b8a 50%,#c084fc 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:background .35s ease}
-body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff 0%,#a06bff 50%,#ff6bcb 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.app-header{position:fixed;top:0;left:0;right:0;padding:14px 24px 10px;z-index:60;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:center;width:100%}
+.app-header .logo{font-size:26px;font-weight:800;letter-spacing:-.6px;display:inline-block;background:linear-gradient(135deg,#ff9a5a,#ff6b8a 50%,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50%,#ff6bcb);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .header-spacer{height:60px}
 .container{padding:0 20px;max-width:500px;margin:0 auto;position:relative;z-index:1;width:100%}
 
@@ -70,7 +70,7 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .story-tap-zone.next{right:0;width:50%}
 
 /* WIDGET */
-.main-widget{position:relative;border-radius:28px;overflow:hidden;margin-bottom:17px;margin-top:6px;cursor:pointer;background:var(--card-solid);box-shadow:0 18px 45px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease;transition:background .35s ease}
+.main-widget{position:relative;border-radius:28px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 18px 45px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
 .main-widget:active{transform:scale(.985)}
 @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .widget-hero{position:relative;padding:25px 23px 44px;overflow:hidden;background:linear-gradient(135deg,var(--c1,#ffb347),var(--c2,#ff7e5f))}
@@ -86,13 +86,13 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .hero-title .hero-date{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:rgba(255,255,255,.9);font-weight:600;flex-wrap:wrap}
 .hero-countdown,.hero-weight{display:inline-block;padding:2px 8px;background:rgba(255,255,255,.25);border-radius:100px;font-size:11px;color:#fff;font-weight:600}
 .complete-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,.9);border-radius:100px;font-size:10.5px;font-weight:700;color:var(--success);margin-bottom:10px;position:relative;z-index:2}
-.widget-body{background:var(--card-solid);margin-top:-27px;border-radius:28px;padding:24px 22px 22px;position:relative;z-index:3;display:flex;align-items:center;gap:18px;transition:background .35s ease}
+.widget-body{background:var(--card-solid);margin-top:-27px;border-radius:28px;padding:24px 22px 22px;position:relative;z-index:3;display:flex;align-items:center;gap:18px}
 .ring-wrap{position:relative;width:100px;height:100px;flex-shrink:0}
 .ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
-.ring-track{fill:none;stroke:var(--border-soft);stroke-width:9;transition:stroke .35s ease}
+.ring-track{fill:none;stroke:var(--border-soft);stroke-width:9}
 .ring-fill{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .4s ease}
 .ring-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.ring-percent{font-size:24px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px;transition:color .35s ease}
+.ring-percent{font-size:24px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px}
 .ring-percent .sign{font-size:13px;font-weight:700;color:var(--text-3)}
 .widget-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:9px}
 .meta-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-bottom:9px;border-bottom:1px solid var(--border-soft)}
@@ -101,17 +101,27 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .meta-row .meta-val{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.5px}
 .meta-row .meta-val.done{color:var(--success)}
 .meta-row .meta-val.left{color:var(--accent-2)}
-.widget-footer{padding:0 22px 20px;background:var(--card-solid);position:relative;z-index:3;transition:background .35s ease}
+.widget-footer{padding:0 22px 20px;background:var(--card-solid);position:relative;z-index:3}
 .mini-bar{height:6px;background:var(--border-soft);border-radius:10px;overflow:hidden;margin-bottom:12px}
 .mini-bar .fill{height:100%;border-radius:10px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 .tap-hint{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text-2);font-weight:600}
 .tap-hint .arrow{font-size:14px;color:var(--text-3)}
 
+/* CAROUSEL */
+.trips-carousel{position:relative;overflow:hidden;margin-bottom:8px;margin-top:6px;border-radius:28px}
+.trips-track{display:flex;transition:transform .35s cubic-bezier(.4,0,.2,1);will-change:transform}
+.trips-track .main-widget{flex:0 0 100%;margin:0;animation:none}
+.trips-dots{display:flex;justify-content:center;gap:6px;padding:14px 0 0}
+.trips-dots .tdot{width:8px;height:8px;border-radius:50%;background:var(--border-soft);transition:all .25s;cursor:pointer}
+.trips-dots .tdot.active{width:24px;border-radius:100px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
+.swipe-hint{text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:6px 0 0;opacity:.6;animation:swipeHintFade 4s ease forwards}
+@keyframes swipeHintFade{0%,70%{opacity:.6}100%{opacity:0}}
+
 .plus-one{position:fixed;font-size:22px;font-weight:800;color:var(--success);pointer-events:none;z-index:900;animation:plusOneFloat 1s ease-out forwards;text-shadow:0 2px 8px rgba(0,0,0,.2)}
 @keyframes plusOneFloat{0%{transform:translateY(0) scale(.6);opacity:0}15%{transform:translateY(-10px) scale(1.2);opacity:1}100%{transform:translateY(-70px) scale(.9);opacity:0}}
 
 /* EMPTY */
-.empty-hero{padding:40px 28px;margin:6px 0 17px;background:var(--card);border:1.5px dashed rgba(255,154,90,.4);border-radius:28px;text-align:center;cursor:pointer;animation:slideIn .5s ease;transition:background .35s ease,border-color .35s ease}
+.empty-hero{padding:40px 28px;margin:6px 0 17px;background:var(--card);border:1.5px dashed rgba(255,154,90,.4);border-radius:28px;text-align:center;cursor:pointer;animation:slideIn .5s ease}
 body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero .empty-icon{font-size:64px;margin-bottom:14px;display:inline-block;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -123,7 +133,7 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 /* SECTIONS */
 .stats-section{margin-bottom:20px}
 .stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;margin-bottom:12px;padding-left:4px}
-.history-item,.my-list-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px;transition:background .35s ease,border-color .35s ease}
+.history-item,.my-list-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px}
 .history-item .h-emoji,.my-list-item .ml-emoji{font-size:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--card-solid);border-radius:12px;flex-shrink:0}
 .history-item .h-body,.my-list-item .ml-body{flex:1;min-width:0}
 .history-item .h-body .h-name,.my-list-item .ml-body .ml-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -133,7 +143,7 @@ body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 .icon-btn{background:transparent;border:none;color:var(--text-3);width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;opacity:.5}
 
 /* PROFILE */
-.profile-hero{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:0 16px 40px var(--shadow);display:flex;align-items:center;gap:18px;margin-bottom:20px;margin-top:6px;position:relative;overflow:hidden;transition:background .35s ease,border-color .35s ease}
+.profile-hero{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:0 16px 40px var(--shadow);display:flex;align-items:center;gap:18px;margin-bottom:20px;margin-top:6px;position:relative;overflow:hidden}
 .profile-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--glow-1),transparent 70%);pointer-events:none}
 .profile-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;position:relative;z-index:1;color:#fff;font-weight:700;overflow:hidden;background-size:cover;background-position:center;cursor:pointer}
 .profile-avatar.has-photo{color:transparent}
@@ -144,11 +154,11 @@ body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 .profile-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border:1px solid rgba(255,154,90,.4);border-radius:100px;font-size:11px;font-weight:700;color:var(--danger)}
 body.dark .profile-badge{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));border-color:rgba(107,140,255,.5);color:#a9bdff}
 .profile-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
-.profile-stat-card{padding:18px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 6px 20px var(--shadow);transition:background .35s ease,border-color .35s ease}
+.profile-stat-card{padding:18px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 6px 20px var(--shadow)}
 .profile-stat-card .ps-icon{font-size:22px;margin-bottom:8px}
 .profile-stat-card .ps-num{font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px;letter-spacing:-.5px}
 .profile-stat-card .ps-label{font-size:12px;color:var(--text-3);font-weight:600}
-.profile-menu{background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 8px 32px var(--shadow);overflow:hidden;margin-bottom:20px;transition:background .35s ease,border-color .35s ease}
+.profile-menu{background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 8px 32px var(--shadow);overflow:hidden;margin-bottom:20px}
 .profile-item{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border-soft);cursor:pointer}
 .profile-item:last-child{border-bottom:none}
 .profile-item:active{background:rgba(255,154,90,.08)}
@@ -160,7 +170,7 @@ body.dark .profile-item .pi-icon{background:rgba(107,140,255,.15)}
 
 /* ACHIEVEMENTS */
 .achievements-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
-.achievement{padding:16px 14px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 20px var(--shadow);text-align:center;opacity:.4;filter:grayscale(1);transition:background .35s ease,border-color .35s ease}
+.achievement{padding:16px 14px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 20px var(--shadow);text-align:center;opacity:.4;filter:grayscale(1)}
 .achievement.unlocked{opacity:1;filter:grayscale(0);background:linear-gradient(135deg,rgba(255,154,90,.15),rgba(255,107,138,.15));border-color:rgba(255,154,90,.4)}
 body.dark .achievement.unlocked{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.4)}
 .achievement .ach-icon{font-size:28px;margin-bottom:6px}
@@ -168,7 +178,7 @@ body.dark .achievement.unlocked{background:linear-gradient(135deg,rgba(107,140,2
 .achievement .ach-desc{font-size:10.5px;color:var(--text-3);margin-top:4px;font-weight:500}
 
 /* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:16px;left:20px;right:20px;max-width:460px;margin:0 auto;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 12px 40px var(--shadow);display:flex;gap:6px;z-index:70;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);transition:background .35s ease,border-color .35s ease}
+.bottom-nav{position:fixed;bottom:16px;left:20px;right:20px;max-width:460px;margin:0 auto;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 12px 40px var(--shadow);display:flex;gap:6px;z-index:70;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
 .nav-item{flex:1;padding:11px 8px;border:none;background:transparent;border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit}
 .nav-item .nav-icon{font-size:20px;line-height:1;opacity:.55}
 .nav-item .nav-label{font-size:10.5px;font-weight:700;color:var(--text-3)}
@@ -178,10 +188,11 @@ body.dark .nav-item.active{background:linear-gradient(135deg,rgba(107,140,255,.2
 .nav-item.active .nav-label{color:var(--danger)}
 
 /* MODALS */
-.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(60,40,25,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;display:none;align-items:flex-end;justify-content:center;overflow:hidden}
+.modal-overlay{position:fixed;inset:0;background:rgba(60,40,25,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;display:none;align-items:flex-end;justify-content:center;overflow:hidden}
 body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-overlay.active{display:flex}
-.modal{width:100%;max-width:500px;max-height:88vh;overflow-y:auto;overflow-x:hidden;border-radius:32px 32px 0 0;padding:20px 20px 32px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 40px var(--shadow);position:relative;box-sizing:border-box;-webkit-overflow-scrolling:touch;transition:background .35s ease}
+.modal-overlay.above-checklist{z-index:170}
+.modal{width:100%;max-width:500px;max-height:88vh;overflow-y:auto;overflow-x:hidden;border-radius:32px 32px 0 0;padding:20px 20px 32px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 40px var(--shadow);position:relative;box-sizing:border-box;-webkit-overflow-scrolling:touch}
 .modal-handle{width:40px;height:4px;background:var(--border-soft);border-radius:10px;margin:0 auto 20px}
 .modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text-2);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:inherit;padding:0}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:20px;text-align:center;color:var(--text);padding:0 40px}
@@ -191,7 +202,7 @@ body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .step-dot.done{background:var(--accent-1)}
 
 .type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-.type-option{padding:12px 6px;border-radius:14px;background:var(--card);border:1.5px solid var(--border-soft);text-align:center;cursor:pointer;position:relative;transition:background .3s,border-color .3s}
+.type-option{padding:12px 6px;border-radius:14px;background:var(--card);border:1.5px solid var(--border-soft);text-align:center;cursor:pointer;position:relative}
 .type-option.selected{background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border-color:var(--accent-1)}
 body.dark .type-option.selected{background:linear-gradient(135deg,rgba(107,140,255,.25),rgba(160,107,255,.25))}
 .type-option .emoji{font-size:24px;display:block;margin-bottom:4px;line-height:1}
@@ -204,18 +215,18 @@ body.dark .type-option.create-new .name{color:#a06bff}
 .custom-type-badge{position:absolute;top:4px;right:4px;background:rgba(192,132,252,.9);color:#fff;font-size:7px;font-weight:700;padding:2px 4px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
 body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
 
-.input-field{width:100%;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--border-soft);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:16px;outline:none;-webkit-appearance:none;appearance:none;box-sizing:border-box;transition:background .35s ease,border-color .2s}
+.input-field{width:100%;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--border-soft);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:16px;outline:none;-webkit-appearance:none;appearance:none;box-sizing:border-box}
 .input-field::placeholder{color:var(--text-3);opacity:.7}
 .input-field:focus{border-color:var(--accent-1)}
 
-.btn-primary{width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .35s ease}
+.btn-primary{width:100%;padding:18px;border:none;border-radius:18px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer}
 .btn-primary:disabled{opacity:.4;cursor:not-allowed;background:var(--text-3)}
-.btn-secondary{width:100%;padding:16px;border:1.5px solid var(--border-soft);border-radius:18px;background:var(--card);color:var(--text);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:10px;transition:background .35s ease,border-color .35s ease}
+.btn-secondary{width:100%;padding:16px;border:1.5px solid var(--border-soft);border-radius:18px;background:var(--card);color:var(--text);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:10px}
 .btn-danger{width:100%;padding:16px;border:1.5px solid rgba(255,107,138,.3);border-radius:18px;background:rgba(255,107,138,.1);color:var(--danger);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:10px}
 
 .field-label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);font-weight:700;margin-bottom:8px;padding-left:4px;margin-top:4px}
 .emoji-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.emoji-choice{width:36px;height:36px;border-radius:9px;background:var(--card);border:1.5px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:background .35s ease,border-color .2s}
+.emoji-choice{width:36px;height:36px;border-radius:9px;background:var(--card);border:1.5px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
 .emoji-choice.selected{background:linear-gradient(135deg,rgba(255,154,90,.25),rgba(255,107,138,.25));border-color:var(--accent-1)}
 body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,255,.25),rgba(160,107,255,.25))}
 .color-picker{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:14px}
@@ -227,7 +238,7 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .preview-card .preview-name{flex:1;font-size:17px;font-weight:800;position:relative;z-index:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .preview-card .preview-count{font-size:12px;opacity:.9;font-weight:600;flex-shrink:0}
 
-.advanced-item-row{padding:14px;background:var(--card);border:1.5px solid var(--border-soft);border-radius:16px;margin-bottom:10px;transition:background .35s ease,border-color .35s ease}
+.advanced-item-row{padding:14px;background:var(--card);border:1.5px solid var(--border-soft);border-radius:16px;margin-bottom:10px}
 .advanced-item-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
 .advanced-item-head .item-text{flex:1;font-size:15px;font-weight:700;color:var(--text);word-break:break-word;padding-top:2px;min-width:0}
 .advanced-item-head .item-remove{background:rgba(255,107,138,.12);border:none;color:var(--accent-2);width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
@@ -239,19 +250,19 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .add-item-row .add-item-btn{width:50px;height:50px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 
 /* CHECKLIST PAGE */
-.checklist-page{position:fixed;inset:0;background:var(--bg);z-index:150;display:none;flex-direction:column;overflow:hidden;transition:background .35s ease}
+.checklist-page{position:fixed;inset:0;background:var(--bg);z-index:150;display:none;flex-direction:column;overflow:hidden}
 .checklist-page.active{display:flex}
 .checklist-page-header{display:flex;align-items:center;gap:12px;padding:14px 20px 12px;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-soft);flex-shrink:0;position:relative;z-index:10}
-.back-btn{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;transition:background .2s}
+.back-btn{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 .checklist-page-title{flex:1;min-width:0}
 .checklist-page-title h2{font-size:18px;font-weight:800;color:var(--text);margin:0;padding:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;letter-spacing:-.3px}
 .checklist-page-title .subtitle{font-size:12px;color:var(--text-3);font-weight:600;margin-top:2px}
 .checklist-page-actions{display:flex;gap:8px;flex-shrink:0}
-.page-action-btn{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;transition:background .2s}
+.page-action-btn{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 .checklist-page-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 20px 120px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .checklist-page-content::-webkit-scrollbar{display:none}
 .checklist-page-bottom{position:fixed;bottom:0;left:0;right:0;padding:12px 20px 24px;background:linear-gradient(to top,var(--bg) 60%,transparent);z-index:25;max-width:500px;margin:0 auto;pointer-events:none;display:flex;justify-content:center;box-sizing:border-box}
-.checklist-page-bottom .add-to-active{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);pointer-events:auto;width:100%;cursor:pointer;position:relative;z-index:1}
+.checklist-page-bottom .add-to-active{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);pointer-events:auto;width:100%;cursor:pointer}
 
 /* CHECKLIST */
 .checklist{margin-top:8px}
@@ -261,7 +272,7 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .cat-header .cat-count{font-size:11px;opacity:.6;margin-left:auto;font-weight:600}
 .checklist-toolbar{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .checklist-toolbar .input-field{flex:1;margin-bottom:0;padding:12px 14px;font-size:14.5px}
-.toolbar-toggle{background:var(--card);border:1.5px solid var(--border-soft);border-radius:12px;padding:12px 14px;font-family:inherit;font-size:13px;font-weight:700;color:var(--text-2);cursor:pointer;display:flex;align-items:center;gap:6px;flex-shrink:0;transition:all .25s}
+.toolbar-toggle{background:var(--card);border:1.5px solid var(--border-soft);border-radius:12px;padding:12px 14px;font-family:inherit;font-size:13px;font-weight:700;color:var(--text-2);cursor:pointer;display:flex;align-items:center;gap:6px;flex-shrink:0}
 .toolbar-toggle.active{background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border-color:var(--accent-1);color:var(--accent-2)}
 body.dark .toolbar-toggle.active{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2))}
 
@@ -269,7 +280,7 @@ body.dark .toolbar-toggle.active{background:linear-gradient(135deg,rgba(107,140,
 .check-item-actions{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding:0 20px;font-size:14px;font-weight:700;color:#fff;gap:6px;z-index:0}
 .check-item-actions.right{left:0;background:linear-gradient(135deg,#4ecb71,#38b2ac);justify-content:flex-start}
 .check-item-actions.left{right:0;background:linear-gradient(135deg,#ff6b8a,#d6336c);justify-content:flex-end}
-.check-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card-solid);border:1.5px solid var(--border-soft);border-radius:16px;cursor:pointer;user-select:none;position:relative;z-index:2;transition:transform .25s cubic-bezier(.4,0,.2,1),background .35s ease,border-color .35s ease;will-change:transform}
+.check-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card-solid);border:1.5px solid var(--border-soft);border-radius:16px;cursor:pointer;user-select:none;position:relative;z-index:2;transition:transform .25s cubic-bezier(.4,0,.2,1);will-change:transform}
 body:not(.dark) .check-item{background:#ffffff}
 body.dark .check-item{background:var(--card-solid)}
 .check-item.checked{background:#e8f8ee !important;border-color:rgba(78,203,113,.5) !important}
@@ -287,7 +298,7 @@ body.dark .check-item.checked{background:#1c2e26 !important;border-color:rgba(61
 body.dark .search-highlight{background:rgba(255,210,90,.4);color:#fff}
 .empty-search{text-align:center;padding:40px 20px;color:var(--text-3);font-size:14px;font-weight:500}
 
-.modal-progress{margin-bottom:16px;padding:14px 16px;background:var(--card);border-radius:16px;border:1.5px solid var(--border-soft);transition:background .35s ease}
+.modal-progress{margin-bottom:16px;padding:14px 16px;background:var(--card);border-radius:16px;border:1.5px solid var(--border-soft)}
 .modal-progress .progress-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--text-2);font-weight:600}
 .progress-bar{height:8px;background:var(--border-soft);border-radius:10px;overflow:hidden}
 .progress-fill{height:100%;border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
@@ -347,17 +358,7 @@ body.dark .toast{background:rgba(107,140,255,.95)}
 #errorScreen button{padding:14px 28px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:4px}
 #errorScreen .err-msg{font-family:monospace;font-size:11px;color:var(--text-3);background:var(--card);padding:12px;border-radius:12px;margin-top:20px;max-width:100%;word-break:break-all;text-align:left;-webkit-user-select:text;user-select:text}
 
-.notif-onboard{padding:8px 4px}
-.notif-onboard .no-icon{font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite}
-.notif-onboard h2{font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-bottom:10px;padding:0}
-.notif-onboard p{font-size:15px;color:var(--text-2);text-align:center;line-height:1.55;font-weight:500;margin-bottom:20px;padding:0 12px}
-.notif-onboard ul{list-style:none;margin-bottom:24px;padding:0 12px}
-.notif-onboard li{font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px}
-.notif-onboard li .li-icon{font-size:18px;width:28px;text-align:center}
-
-.version-badge{text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6}
-
-/* УМНЫЕ ПОДСКАЗКИ v2 */
+/* УМНЫЕ ПОДСКАЗКИ */
 .smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none;animation:slideIn .3s ease}
 body.dark .smart-hint{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.35)}
 .smart-hint.show{display:block}
@@ -376,7 +377,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 .smart-hint .sh-dismiss{background:transparent;border:none;color:var(--text-3);font-size:11.5px;font-weight:600;cursor:pointer;padding:6px;font-family:inherit;width:100%;margin-top:6px;text-align:center;opacity:.7}
 .smart-hint .sh-memory{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--accent-2);font-weight:700;background:rgba(255,107,138,.12);padding:3px 8px;border-radius:100px;margin-left:6px}
 
-/* ВВОДНАЯ ИСТОРИЯ */
+/* ОНБОРДИНГ */
 .onboarding-viewer{position:fixed;inset:0;z-index:250;display:none;flex-direction:column;background:var(--bg)}
 .onboarding-viewer.active{display:flex}
 .onb-slide{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;text-align:center;position:relative;overflow:hidden}
@@ -461,9 +462,9 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.0.8</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.1.0</div></div>
         </div>
-        <div class="version-badge">byBag v1.0.8</div>
+        <div class="version-badge" style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.1.0</div>
     </div>
 </div>
 
@@ -506,7 +507,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         </div>
         <div class="checklist-toolbar">
             <input type="text" class="input-field" id="searchInput" placeholder="🔍 Поиск по вещам...">
-            <button type="button" class="toolbar-toggle" id="hideDoneToggle" title="Скрыть собранное"><span>👁</span></button>
+            <button type="button" class="toolbar-toggle" id="hideDoneToggle"><span>👁</span></button>
         </div>
         <div class="checklist" id="checklistContainer"></div>
     </div>
@@ -593,6 +594,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <input type="number" class="input-field" id="advWeight" placeholder="0.2" step="0.1" min="0">
         <div class="field-label">Заметка</div>
         <input type="text" class="input-field" id="advNote" placeholder="Например: та, что с Type-C" maxlength="60">
+        <div class="smart-hint" id="smartHintAdv"></div>
         <button type="button" class="btn-primary" id="advConfirmBtn">Добавить</button>
     </div>
 </div>
@@ -641,6 +643,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <input type="number" class="input-field" id="adv2Weight" placeholder="0.2" step="0.1" min="0">
         <div class="field-label">Заметка</div>
         <input type="text" class="input-field" id="adv2Note" placeholder="Например: та, что с Type-C" maxlength="60">
+        <div class="smart-hint" id="smartHintAdv2"></div>
         <button type="button" class="btn-primary" id="adv2ConfirmBtn">Добавить</button>
     </div>
 </div>
@@ -686,14 +689,14 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div class="modal-overlay" id="notifOnboardModal">
     <div class="modal">
-        <div class="notif-onboard">
-            <div class="no-icon">🔔</div>
-            <h2>Включить напоминания?</h2>
-            <p>Чтобы вовремя собрать багаж и ничего не забыть, разрешите уведомления.</p>
-            <ul>
-                <li><span class="li-icon">📅</span> Напоминание за день до поездки</li>
-                <li><span class="li-icon">🧳</span> Напоминание в день отправления</li>
-                <li><span class="li-icon">✈️</span> Никакого спама — только по делу</li>
+        <div class="notif-onboard" style="padding:8px 4px">
+            <div class="no-icon" style="font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite">🔔</div>
+            <h2 style="font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-bottom:10px;padding:0">Включить напоминания?</h2>
+            <p style="font-size:15px;color:var(--text-2);text-align:center;line-height:1.55;font-weight:500;margin-bottom:20px;padding:0 12px">Чтобы вовремя собрать багаж и ничего не забыть, разрешите уведомления.</p>
+            <ul style="list-style:none;margin-bottom:24px;padding:0 12px">
+                <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">📅</span> Напоминание за день до поездки</li>
+                <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">🧳</span> Напоминание в день отправления</li>
+                <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">✈️</span> Никакого спама — только по делу</li>
             </ul>
             <button type="button" class="btn-primary" id="notifAllowBtn">Разрешить уведомления</button>
             <button type="button" class="btn-secondary" id="notifLaterBtn">Позже</button>
@@ -751,7 +754,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 (function() {
     'use strict';
 
-    var APP_VERSION = '1.0.8';
+    var APP_VERSION = '1.1.0';
+    var MAX_ACTIVE_TRIPS = 2;
 
     var CATEGORIES = {
         clothes: { name: 'Одежда', icon: '👕' },
@@ -807,7 +811,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         81:{icon:'🌧️',desc:'Сильный ливень'},82:{icon:'⛈️',desc:'Очень сильный ливень'},95:{icon:'⛈️',desc:'Гроза'},96:{icon:'⛈️',desc:'Гроза с градом'}
     };
 
-    // УМНЫЕ ПОДСКАЗКИ v2
     var SMART_HINTS = {
         'носок':{per:'day',extra:1,unit:'пар',cat:'clothes'},
         'трусы':{per:'day',extra:1,unit:'шт',cat:'clothes'},
@@ -871,14 +874,15 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     var ONBOARDING_SLIDES = [
         {icon:'🧳',bg:'🧳',title:'Добро пожаловать в byBag',text:'Ваш личный помощник для сбора багажа и планирования поездок. Никогда не забудьте важное.'},
-        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Выбирайте тип: отдых, деловая, поход, город — или создайте свой список вещей.'},
+        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Можно вести до 2 активных поездок одновременно и переключаться между ними свайпом.'},
         {icon:'👆',bg:'✅',title:'Собирайте багаж',text:'Отмечайте вещи одним касанием.',list:[{icon:'👈',text:'Свайп влево — удалить вещь'},{icon:'👉',text:'Свайп вправо — отметить или сбросить'},{icon:'🔍',text:'Поиск по списку вещей'}]},
         {icon:'📊',bg:'📊',title:'Умный помощник',text:'Приложение подскажет:',list:[{icon:'💡',text:'Сколько вещей взять'},{icon:'⚖️',text:'Вес багажа и лимиты'},{icon:'🌤️',text:'Погоду в городе'},{icon:'📅',text:'Обратный отсчёт'}]},
         {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды, следите за прогрессом и делайте каждую поездку лучше.',list:[{icon:'🏆',text:'Достижения за поездки'},{icon:'📊',text:'Личная статистика'},{icon:'🎨',text:'Свои списки и палитры'}]}
     ];
 
     var customTypes = {};
-    var activeTrip = null;
+    var activeTrips = [];
+    var currentTripIndex = 0;
     var history = [];
     var selectedType = null;
     var profile = { name: 'Эрик', avatar: null };
@@ -892,6 +896,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     var currentStoryIdx = 0;
     var weatherCache = {};
     var storyHandlersBound = false;
+    var carouselBound = false;
     var searchDebounceTimer = null;
     var currentOnbSlide = 0;
 
@@ -936,11 +941,22 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         try { document.body.style.overflow = ''; document.body.style.position = ''; document.body.style.top = ''; document.body.style.width = ''; } catch (e) {}
     }
     function closeAllModals() {
-        try { document.querySelectorAll('.modal-overlay').forEach(function(m) { m.classList.remove('active'); }); } catch (e) {}
+        try { document.querySelectorAll('.modal-overlay').forEach(function(m) { m.classList.remove('active'); m.classList.remove('above-checklist'); }); } catch (e) {}
+    }
+    function getCurrentTrip() {
+        if (!activeTrips || !activeTrips.length) return null;
+        if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
+        return activeTrips[currentTripIndex];
     }
 
     function loadData() {
-        activeTrip = loadJSON('bybag_active', null);
+        activeTrips = loadJSON('bybag_active_trips', []);
+        if (!Array.isArray(activeTrips)) activeTrips = [];
+        var oldActive = loadJSON('bybag_active', null);
+        if (oldActive && typeof oldActive === 'object' && activeTrips.length === 0) {
+            activeTrips = [oldActive];
+            try { localStorage.removeItem('bybag_active'); } catch (e) {}
+        }
         history = loadJSON('bybag_history', []);
         customTypes = loadJSON('bybag_custom_types', {});
         profile = loadJSON('bybag_profile', { name: 'Эрик', avatar: null });
@@ -955,11 +971,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (typeof achievementsState !== 'object' || achievementsState === null) achievementsState = {};
         if (typeof viewedStories !== 'object' || viewedStories === null) viewedStories = {};
 
-        if (activeTrip && typeof activeTrip === 'object') {
-            if (!Array.isArray(activeTrip.items)) activeTrip.items = [];
-            activeTrip.items = activeTrip.items.map(normalizeItem);
-            if (!activeTrip.daysCount) activeTrip.daysCount = 3;
-        } else activeTrip = null;
+        activeTrips = activeTrips.filter(function(t) { return t && typeof t === 'object'; });
+        activeTrips.forEach(function(t) {
+            if (!Array.isArray(t.items)) t.items = [];
+            t.items = t.items.map(normalizeItem);
+            if (!t.daysCount) t.daysCount = 3;
+        });
+        if (activeTrips.length > MAX_ACTIVE_TRIPS) activeTrips = activeTrips.slice(0, MAX_ACTIVE_TRIPS);
+        if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
 
         try {
             Object.keys(customTypes).forEach(function(k) {
@@ -980,8 +999,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function saveActive() {
-        if (activeTrip) saveJSON('bybag_active', activeTrip);
-        else try { localStorage.removeItem('bybag_active'); } catch (e) {}
+        try {
+            if (activeTrips && activeTrips.length > 0) saveJSON('bybag_active_trips', activeTrips);
+            else try { localStorage.removeItem('bybag_active_trips'); } catch (e) {}
+        } catch (e) {}
     }
     function saveHistory() { saveJSON('bybag_history', history); }
     function saveProfile() { saveJSON('bybag_profile', profile); }
@@ -1026,8 +1047,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var slot = $('storiesSlot'); if (!slot) return;
         slot.innerHTML = '';
         var trips = [];
-        if (activeTrip && activeTrip.city) trips.push({ type: 'weather', trip: activeTrip, isActive: true });
-        if (activeTrip) trips.push({ type: 'trip', trip: activeTrip, isActive: true });
+        activeTrips.forEach(function(t) { if (t.city) trips.push({ type: 'weather', trip: t, isActive: true }); });
+        activeTrips.forEach(function(t) { trips.push({ type: 'trip', trip: t, isActive: true }); });
         history.slice(0, 8).forEach(function(h) { trips.push({ type: 'trip', trip: h, isActive: false }); });
         if (trips.length === 0) return;
 
@@ -1233,8 +1254,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function buildTripsForStories() {
         var arr = [];
-        if (activeTrip && activeTrip.city) arr.push({ type: 'weather', trip: activeTrip, isActive: true });
-        if (activeTrip) arr.push({ type: 'trip', trip: activeTrip, isActive: true });
+        activeTrips.forEach(function(t) { if (t.city) arr.push({ type: 'weather', trip: t, isActive: true }); });
+        activeTrips.forEach(function(t) { arr.push({ type: 'trip', trip: t, isActive: true }); });
         history.slice(0, 8).forEach(function(h) { arr.push({ type: 'trip', trip: h, isActive: false }); });
         return arr;
     }
@@ -1252,7 +1273,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             buildStories();
             var ws = $('widgetSlot'); if (!ws) return;
             ws.innerHTML = '';
-            ws.appendChild(activeTrip ? buildWidget(activeTrip) : buildEmptyState());
+            if (activeTrips.length === 0) ws.appendChild(buildEmptyState());
+            else ws.appendChild(buildTripsCarousel());
             renderMyLists();
             renderHistory();
         } catch (e) { console.error('renderHome error', e); }
@@ -1264,6 +1286,96 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         div.innerHTML = '<div class="empty-icon">🧳</div><h2>Ещё нет поездок</h2><p>Создайте первую поездку и соберите багаж без хлопот</p><div class="empty-cta"><span class="plus">+</span> Создать поездку</div>';
         div.addEventListener('click', openTypeModal);
         return div;
+    }
+
+    function buildTripsCarousel() {
+        var wrap = document.createElement('div');
+        wrap.className = 'trips-carousel';
+
+        var track = document.createElement('div');
+        track.className = 'trips-track';
+        track.id = 'tripsTrack';
+
+        activeTrips.forEach(function(trip) {
+            var w = buildWidget(trip);
+            track.appendChild(w);
+        });
+        wrap.appendChild(track);
+
+        if (activeTrips.length > 1) {
+            var dots = document.createElement('div');
+            dots.className = 'trips-dots';
+            activeTrips.forEach(function(t, i) {
+                var d = document.createElement('div');
+                d.className = 'tdot' + (i === currentTripIndex ? ' active' : '');
+                d.addEventListener('click', function() { goToTrip(i); });
+                dots.appendChild(d);
+            });
+            wrap.appendChild(dots);
+
+            if (!localStorage.getItem('bybag_swipe_hint_shown')) {
+                var hint = document.createElement('div');
+                hint.className = 'swipe-hint';
+                hint.textContent = '👈 Свайп для переключения 👉';
+                wrap.appendChild(hint);
+                try { localStorage.setItem('bybag_swipe_hint_shown', '1'); } catch (e) {}
+            }
+        }
+
+        setTimeout(function() {
+            var tr = $('tripsTrack');
+            if (tr) tr.style.transform = 'translateX(-' + (currentTripIndex * 100) + '%)';
+        }, 0);
+
+        bindCarouselSwipe(wrap);
+        return wrap;
+    }
+
+    function goToTrip(idx) {
+        if (idx < 0 || idx >= activeTrips.length) return;
+        currentTripIndex = idx;
+        var tr = $('tripsTrack');
+        if (tr) tr.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        var dots = document.querySelectorAll('.trips-dots .tdot');
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+        vibrate();
+    }
+
+    function bindCarouselSwipe(el) {
+        if (activeTrips.length < 2) return;
+        var startX = 0, startY = 0, isDown = false, isHoriz = false;
+        var track = null;
+
+        el.addEventListener('touchstart', function(e) {
+            if (e.target.closest('.hero-close')) return;
+            startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+            isDown = true; isHoriz = false;
+            track = $('tripsTrack');
+            if (track) track.style.transition = 'none';
+        }, { passive: true });
+
+        el.addEventListener('touchmove', function(e) {
+            if (!isDown || !track) return;
+            var dx = e.touches[0].clientX - startX;
+            var dy = e.touches[0].clientY - startY;
+            if (!isHoriz && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) isHoriz = true;
+            if (!isHoriz) return;
+            var base = -currentTripIndex * 100;
+            track.style.transform = 'translateX(calc(' + base + '% + ' + dx + 'px))';
+        }, { passive: true });
+
+        el.addEventListener('touchend', function(e) {
+            if (!isDown || !track) return;
+            isDown = false;
+            var dx = e.changedTouches[0].clientX - startX;
+            var threshold = el.offsetWidth * 0.2;
+            track.style.transition = '';
+            if (isHoriz && Math.abs(dx) > threshold) {
+                if (dx < 0 && currentTripIndex < activeTrips.length - 1) goToTrip(currentTripIndex + 1);
+                else if (dx > 0 && currentTripIndex > 0) goToTrip(currentTripIndex - 1);
+                else goToTrip(currentTripIndex);
+            } else goToTrip(currentTripIndex);
+        }, { passive: true });
     }
 
     function getTripStats(trip) {
@@ -1294,7 +1406,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         widget.innerHTML =
             '<div class="widget-hero">' +
                 '<div class="bg-emoji">' + (trip.emoji || '🎒') + '</div>' +
-                '<div class="hero-top"><div class="hero-label"><span class="dot"></span>Активная поездка</div><button type="button" class="hero-close" id="closeTripBtn">✕</button></div>' +
+                '<div class="hero-top"><div class="hero-label"><span class="dot"></span>Активная поездка</div><button type="button" class="hero-close">✕</button></div>' +
                 '<div class="hero-title">' +
                     (complete ? '<div class="complete-badge">✓ Всё собрано</div>' : '') +
                     '<h2>' + escapeHtml(trip.name || 'Поездка') + '</h2>' +
@@ -1313,9 +1425,19 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 '<div class="mini-bar"><div class="fill" style="width:' + s.percent + '%;background:' + (complete ? 'linear-gradient(90deg,#4ecb71,#2f9c53)' : 'linear-gradient(90deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')') + '"></div></div>' +
                 '<div class="tap-hint"><span>' + (complete ? 'Готово к отправлению 🎉' : 'Открыть список вещей') + '</span><span class="arrow">→</span></div>' +
             '</div>';
-        widget.addEventListener('click', function(e) { if (e.target.closest('#closeTripBtn')) return; openChecklistPage(); });
-        var closeBtn = widget.querySelector('#closeTripBtn');
-        if (closeBtn) closeBtn.addEventListener('click', function(e) { e.stopPropagation(); if (confirm('Завершить поездку и перенести в статистику?')) completeActiveTrip(); });
+        widget.addEventListener('click', function(e) {
+            if (e.target.closest('.hero-close')) return;
+            var tripIdx = activeTrips.indexOf(trip);
+            if (tripIdx !== -1) currentTripIndex = tripIdx;
+            openChecklistPage();
+        });
+        var closeBtn = widget.querySelector('.hero-close');
+        if (closeBtn) closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            var tripIdx = activeTrips.indexOf(trip);
+            if (tripIdx !== -1) currentTripIndex = tripIdx;
+            if (confirm('Завершить поездку и перенести в статистику?')) completeActiveTrip();
+        });
         return widget;
     }
 
@@ -1391,17 +1513,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function shareActiveTrip() {
-        if (!activeTrip) return;
-        var s = getTripStats(activeTrip);
-        shareTrip({ name: activeTrip.name, date: activeTrip.date, total: s.total, done: s.done, fullItems: activeTrip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category, done: i.done }; }) });
+        var trip = getCurrentTrip();
+        if (!trip) return;
+        var s = getTripStats(trip);
+        shareTrip({ name: trip.name, date: trip.date, total: s.total, done: s.done, fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category, done: i.done }; }) });
     }
 
     function repeatTrip(h) {
-        if (activeTrip) { showToast('Сначала завершите текущую'); return; }
+        if (activeTrips.length >= MAX_ACTIVE_TRIPS) { showToast('Сначала завершите одну из поездок'); return; }
         var type = getType(h.type);
         var items = h.fullItems && h.fullItems.length ? h.fullItems : (type ? type.items : null);
         if (!items || !items.length) { showToast('Не удалось восстановить'); return; }
-        activeTrip = {
+        var newTrip = {
             id: Date.now(), type: h.type || 'rest', name: h.name || 'Поездка',
             emoji: h.emoji || (type ? type.emoji : '🎒'),
             c1: type ? type.c1 : '#ffb347', c2: type ? type.c2 : '#ff7e5f', ring: type ? type.ring : '#ff7e5f',
@@ -1409,7 +1532,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             startDate: null, endDate: null, daysCount: 3, city: '',
             items: items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
         };
-        saveActive(); renderHome(); vibrate(); showToast('Поездка создана заново!');
+        activeTrips.push(newTrip);
+        currentTripIndex = activeTrips.length - 1;
+        saveActive(); renderHome(); vibrate();
+        showToast('Поездка создана заново!');
     }
 
     function renderTypeGrid() {
@@ -1439,7 +1565,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function openTypeModal() {
-        if (activeTrip) return;
+        if (activeTrips.length >= MAX_ACTIVE_TRIPS) { showToast('Максимум ' + MAX_ACTIVE_TRIPS + ' активные поездки'); return; }
         selectedType = null;
         var tn = $('tripName'); if (tn) tn.value = '';
         var tsd = $('tripStartDate'); if (tsd) tsd.value = '';
@@ -1451,7 +1577,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function createTrip() {
-        if (!selectedType || activeTrip) return;
+        if (!selectedType || activeTrips.length >= MAX_ACTIVE_TRIPS) return;
         var type = getType(selectedType); if (!type) return;
         var startDate = ($('tripStartDate') ? $('tripStartDate').value : '') || null;
         var endDate = ($('tripEndDate') ? $('tripEndDate').value : '') || null;
@@ -1459,7 +1585,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (startDate && endDate) {
             try { var d1 = new Date(startDate), d2 = new Date(endDate); daysCount = Math.max(1, Math.round((d2 - d1) / 86400000) + 1); } catch (e) {}
         }
-        activeTrip = {
+        var newTrip = {
             id: Date.now(), type: selectedType,
             name: ($('tripName') ? $('tripName').value.trim() : '') || type.name,
             emoji: type.emoji, c1: type.c1, c2: type.c2, ring: type.ring,
@@ -1468,6 +1594,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             city: ($('tripCity') ? $('tripCity').value.trim() : ''),
             items: type.items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
         };
+        activeTrips.push(newTrip);
+        currentTripIndex = activeTrips.length - 1;
         saveActive(); closeModal('typeModal'); renderHome(); vibrate();
     }
 
@@ -1623,6 +1751,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 s.appendChild(o);
             });
         }
+        var hintId = target === 'wizard' ? 'smartHintAdv' : 'smartHintAdv2';
+        var hintEl = $(hintId);
+        if (hintEl) hintEl.classList.remove('show');
+        var nameInput = $(p + 'Name');
+        var qtyInput = $(p + 'Qty');
+        var handler = target === 'wizard' ? hintAdvHandler : hintAdv2Handler;
+        if (nameInput) { nameInput.removeEventListener('input', handler); nameInput.addEventListener('input', handler); }
+        if (qtyInput) { qtyInput.removeEventListener('input', handler); qtyInput.addEventListener('input', handler); }
         if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
@@ -1630,13 +1766,17 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var n = $('advName') ? $('advName').value.trim() : '';
         if (!n) { showToast('Введите название'); return; }
         wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, weight: parseFloat($('advWeight').value) || 0, note: ($('advNote') ? $('advNote').value.trim() : ''), category: ($('advCat') ? $('advCat').value : 'other') });
-        closeModal('advancedItemModal'); openWiz2();
+        closeModal('advancedItemModal');
+        var h = $('smartHintAdv'); if (h) h.classList.remove('show');
+        openWiz2();
     }
     function adv2Confirm() {
         var n = $('adv2Name') ? $('adv2Name').value.trim() : '';
         if (!n) { showToast('Введите название'); return; }
         editing.items.push({ text: n, qty: parseInt($('adv2Qty').value) || 1, weight: parseFloat($('adv2Weight').value) || 0, note: ($('adv2Note') ? $('adv2Note').value.trim() : ''), category: ($('adv2Cat') ? $('adv2Cat').value : 'other') });
-        closeModal('advancedItemModal2'); openEditorById(editing.id);
+        closeModal('advancedItemModal2');
+        var h = $('smartHintAdv2'); if (h) h.classList.remove('show');
+        openEditorById(editing.id);
     }
     function openEditor(id) {
         if (!customTypes[id]) return;
@@ -1729,16 +1869,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (confirm('Удалить этот список?')) { deleteCustomType(editing.id); closeModal('listEditorModal'); }
     }
     function completeActiveTrip() {
-        if (!activeTrip) return;
-        var s = getTripStats(activeTrip);
+        var trip = getCurrentTrip();
+        if (!trip) return;
+        var s = getTripStats(trip);
         history.unshift({
-            id: activeTrip.id, type: activeTrip.type,
-            name: activeTrip.name, emoji: activeTrip.emoji, date: activeTrip.date,
-            city: activeTrip.city || '', startDate: activeTrip.startDate || null,
+            id: trip.id, type: trip.type,
+            name: trip.name, emoji: trip.emoji, date: trip.date,
+            city: trip.city || '', startDate: trip.startDate || null,
             total: s.total, done: s.done,
-            fullItems: activeTrip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category }; })
+            fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category }; })
         });
-        activeTrip = null;
+        activeTrips.splice(currentTripIndex, 1);
+        if (currentTripIndex >= activeTrips.length) currentTripIndex = Math.max(0, activeTrips.length - 1);
         saveActive(); saveHistory(); renderHome(); renderProfile();
     }
     function deleteHistory(id) {
@@ -1748,7 +1890,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     // CHECKLIST PAGE
     function openChecklistPage() {
-        if (!activeTrip) return;
+        var trip = getCurrentTrip();
+        if (!trip) return;
         searchQuery = '';
         var si = $('searchInput'); if (si) si.value = '';
         var pg = $('checklistPage');
@@ -1764,9 +1907,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         renderHome();
     }
     function renderChecklistPage() {
-        if (!activeTrip) { closeChecklistPage(); return; }
-        var trip = activeTrip;
-        var tEl = $('checklistPageTitle'); if (tEl) tEl.textContent = (trip.emoji || '🎒') + ' ' + (trip.name || '');
+        var trip = getCurrentTrip();
+        if (!trip) { closeChecklistPage(); return; }
+        var tEl = $('checklistPageTitle');
+        if (tEl) tEl.textContent = (trip.emoji || '🎒') + ' ' + (trip.name || '');
         var sEl = $('checklistPageSubtitle');
         if (sEl) {
             var cd = trip.startDate ? countdown(trip.startDate) : '';
@@ -1867,8 +2011,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         return wrap;
     }
     function deleteActiveItem(idx) {
-        if (!activeTrip || !activeTrip.items[idx]) return;
-        activeTrip.items.splice(idx, 1);
+        var trip = getCurrentTrip();
+        if (!trip || !trip.items[idx]) return;
+        trip.items.splice(idx, 1);
         saveActive(); vibrate();
         renderChecklistPage(); renderHome(); renderProfile();
         showToast('Удалено');
@@ -1911,15 +2056,16 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         catch (e) { return esc; }
     }
     function toggleItem(idx) {
-        if (!activeTrip || !activeTrip.items[idx]) return;
-        var was = activeTrip.items[idx].done;
-        activeTrip.items[idx].done = !was;
+        var trip = getCurrentTrip();
+        if (!trip || !trip.items[idx]) return;
+        var was = trip.items[idx].done;
+        trip.items[idx].done = !was;
         if (!was) {
             vibrate();
             var r = document.querySelector('.ring-wrap');
             if (r) { var rc = r.getBoundingClientRect(); spawnPlusOne(rc.left + rc.width / 2, rc.top + rc.height / 2); }
         }
-        var all = activeTrip.items.every(function(i) { return i.done; });
+        var all = trip.items.every(function(i) { return i.done; });
         if (!was && all) { fireConfetti(); vibrateStrong(); }
         saveActive();
         renderChecklistPage(); renderHome(); renderProfile();
@@ -1935,8 +2081,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     function loadWeather() {
         var card = $('weatherCard'); if (!card) return;
-        if (!activeTrip || !activeTrip.city) { card.classList.remove('show'); return; }
-        var city = activeTrip.city;
+        var trip = getCurrentTrip();
+        if (!trip || !trip.city) { card.classList.remove('show'); return; }
+        var city = trip.city;
         var ck = 'weather_' + city.toLowerCase();
         var cached = weatherCache[ck];
         if (cached && Date.now() - cached.ts < 1800000) { renderWeather(cached.data); return; }
@@ -1968,7 +2115,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var cur = data.current || {};
         var code = cur.weather_code || 0;
         var w = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
-        var ce = $('weatherCity'); if (ce) ce.textContent = data._cityName || activeTrip.city || '';
+        var ce = $('weatherCity'); if (ce) ce.textContent = data._cityName || (getCurrentTrip() || {}).city || '';
         var te = $('weatherTemp'); if (te) te.textContent = Math.round(cur.temperature_2m) + '°';
         var ie = $('weatherIcon'); if (ie) ie.textContent = w.icon;
         var de = $('weatherDesc');
@@ -1999,9 +2146,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     // ADD ITEM
     function openAddItemModal() {
-        if (!activeTrip) { showToast('Нет активной поездки'); return; }
+        var trip = getCurrentTrip();
+        if (!trip) { showToast('Нет активной поездки'); return; }
         try {
-            var pg = $('checklistPage'); if (pg) pg.style.visibility = 'hidden';
             var n = $('addItemName'); if (n) n.value = '';
             var q = $('addItemQty'); if (q) q.value = '1';
             var w = $('addItemWeight'); if (w) w.value = '';
@@ -2016,18 +2163,21 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 });
             }
             var ai = $('addItemName');
-            if (ai) { ai.removeEventListener('input', showSmartHintInAddModal); ai.addEventListener('input', showSmartHintInAddModal); }
+            if (ai) { ai.removeEventListener('input', hintAddHandler); ai.addEventListener('input', hintAddHandler); }
             var aq = $('addItemQty');
-            if (aq) { aq.removeEventListener('input', showSmartHintInAddModal); aq.addEventListener('input', showSmartHintInAddModal); }
+            if (aq) { aq.removeEventListener('input', hintAddHandler); aq.addEventListener('input', hintAddHandler); }
             var sh = $('smartHintBox'); if (sh) sh.classList.remove('show');
+            var overlay = $('addItemModal');
+            if (overlay) overlay.classList.add('above-checklist');
             openModal('addItemModal');
         } catch (e) { console.error('openAddItemModal error:', e); showToast('Ошибка открытия'); }
     }
     function confirmAddItem() {
-        if (!activeTrip) return;
+        var trip = getCurrentTrip();
+        if (!trip) return;
         var n = $('addItemName') ? $('addItemName').value.trim() : '';
         if (!n) { showToast('Введите название'); return; }
-        activeTrip.items.push({
+        trip.items.push({
             text: n, done: false,
             qty: parseInt($('addItemQty').value) || 1,
             weight: parseFloat($('addItemWeight').value) || 0,
@@ -2036,16 +2186,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         });
         saveActive();
         closeModal('addItemModal');
-        var pg = $('checklistPage'); if (pg) pg.style.visibility = '';
+        var overlay = $('addItemModal');
+        if (overlay) overlay.classList.remove('above-checklist');
         renderChecklistPage(); renderHome(); vibrate();
         showToast('Вещь добавлена!');
     }
     function closeAddItemModal() {
         closeModal('addItemModal');
-        var pg = $('checklistPage'); if (pg) pg.style.visibility = '';
+        var overlay = $('addItemModal');
+        if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    // УМНЫЕ ПОДСКАЗКИ v2
+    // УМНЫЕ ПОДСКАЗКИ
     function getSeason(dateStr) {
         if (!dateStr) return 'summer';
         try {
@@ -2099,28 +2251,30 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 var personal = getPersonalQty(key);
                 var isPersonal = false;
                 if (personal) { qty = personal; isPersonal = true; }
-                results.push({
-                    key: key, qty: qty, unit: rule.unit, cat: rule.cat,
-                    icon: CATEGORIES[rule.cat] ? CATEGORIES[rule.cat].icon : '📦',
-                    isPersonal: isPersonal, rule: rule
-                });
+                results.push({ key: key, qty: qty, unit: rule.unit, cat: rule.cat, icon: CATEGORIES[rule.cat] ? CATEGORIES[rule.cat].icon : '📦', isPersonal: isPersonal, rule: rule });
                 if (results.length >= 2) break;
             }
         }
         return results;
     }
-    function showSmartHintInAddModal() {
-        var hint = $('smartHintBox'); if (!hint) return;
-        var name = $('addItemName') ? $('addItemName').value.trim() : '';
-        var currentQty = parseInt($('addItemQty') ? $('addItemQty').value : 1) || 1;
-        if (!settings.smartHints || !name || name.length < 3 || !activeTrip) { hint.classList.remove('show'); return; }
-        var hints = findSmartHints(name, activeTrip);
+    function showSmartHintFor(prefix) {
+        var hintId = prefix === 'adv' ? 'smartHintAdv' : (prefix === 'adv2' ? 'smartHintAdv2' : 'smartHintBox');
+        var hint = $(hintId);
+        if (!hint) return;
+        var nameInput = $(prefix + 'Name');
+        var qtyInput = $(prefix + 'Qty');
+        var name = nameInput ? nameInput.value.trim() : '';
+        var currentQty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
+        if (!settings.smartHints || !name || name.length < 3) { hint.classList.remove('show'); return; }
+        var trip = getCurrentTrip();
+        if (!trip) trip = { type: 'rest', daysCount: 3, city: '', startDate: null };
+        var hints = findSmartHints(name, trip);
         hints = hints.filter(function(h) { return h.qty !== currentQty; });
         if (!hints.length) { hint.classList.remove('show'); return; }
-        var days = activeTrip.daysCount || 3;
+        var days = trip.daysCount || 3;
         var contextParts = [days + ' ' + plural(days, 'день', 'дня', 'дней')];
-        if (activeTrip.city) contextParts.push('📍 ' + escapeHtml(activeTrip.city));
-        if (activeTrip.type && DEFAULT_TYPES[activeTrip.type]) contextParts.push(DEFAULT_TYPES[activeTrip.type].emoji + ' ' + DEFAULT_TYPES[activeTrip.type].name);
+        if (trip.city) contextParts.push('📍 ' + escapeHtml(trip.city));
+        if (trip.type && DEFAULT_TYPES[trip.type]) contextParts.push(DEFAULT_TYPES[trip.type].emoji + ' ' + DEFAULT_TYPES[trip.type].name);
         var contextText = contextParts.join(' · ');
         var html = '<div class="sh-head"><span class="sh-icon">💡</span><span class="sh-title">Умная подсказка</span></div>';
         html += '<div class="sh-context">' + contextText + '</div>';
@@ -2128,22 +2282,26 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             var memoryTag = h.isPersonal ? '<span class="sh-memory">📌 ваше</span>' : '';
             html += '<div class="sh-suggestion"><div class="sh-emoji">' + h.icon + '</div><div class="sh-text">Рекомендуем <strong>' + h.qty + ' ' + h.unit + '</strong> вместо ' + currentQty + memoryTag + '</div><button type="button" class="sh-apply-btn" data-apply-qty="' + h.qty + '" data-apply-key="' + h.key + '">Взять ' + h.qty + '</button></div>';
         });
-        html += '<button type="button" class="sh-dismiss" id="shDismissBtn">Оставить ' + currentQty + '</button>';
+        html += '<button type="button" class="sh-dismiss" data-dismiss="' + prefix + '">Оставить ' + currentQty + '</button>';
         hint.innerHTML = html;
         hint.classList.add('show');
         hint.querySelectorAll('[data-apply-qty]').forEach(function(btn) {
             btn.addEventListener('click', function() {
                 var q = parseInt(btn.getAttribute('data-apply-qty'));
                 var k = btn.getAttribute('data-apply-key');
-                var qi = $('addItemQty'); if (qi) qi.value = q;
+                if (qtyInput) qtyInput.value = q;
                 if (k) savePersonalQty(k, q);
                 hint.classList.remove('show');
                 showToast('Запомнили: ' + q + ' ' + (hints[0] ? hints[0].unit : 'шт'));
             });
         });
-        var db = $('shDismissBtn');
-        if (db) db.addEventListener('click', function() { hint.classList.remove('show'); });
+        hint.querySelectorAll('[data-dismiss]').forEach(function(btn) {
+            btn.addEventListener('click', function() { hint.classList.remove('show'); });
+        });
     }
+    function hintAddHandler() { showSmartHintFor('addItem'); }
+    function hintAdvHandler() { showSmartHintFor('adv'); }
+    function hintAdv2Handler() { showSmartHintFor('adv2'); }
 
     function fireConfetti() {
         var colors = ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
@@ -2165,14 +2323,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function calcStats() {
-        var tt = history.length + (activeTrip ? 1 : 0);
+        var tt = history.length + activeTrips.length;
         var ad = 0, at = 0, aw = 0, pt = 0;
         history.forEach(function(h) { ad += h.done || 0; at += h.total || 0; if (h.total > 0 && h.done === h.total) pt++; });
-        if (activeTrip) {
-            var s = getTripStats(activeTrip);
+        activeTrips.forEach(function(t) {
+            var s = getTripStats(t);
             ad += s.done; at += s.total; aw += s.doneWeight;
             if (s.total > 0 && s.done === s.total) pt++;
-        }
+        });
         return { totalTrips: tt, completedTrips: history.length, allDone: ad, allTotal: at, allWeight: aw, perfectTrips: pt, customCount: Object.keys(customTypes).length };
     }
 
@@ -2313,16 +2471,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function checkReminders() {
         try {
             if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
-            if (activeTrip && activeTrip.startDate) {
-                var d = countdown(activeTrip.startDate);
-                if (d === 'завтра' || d === 'сегодня') {
-                    var k = 'bybag_rem_' + activeTrip.id + '_' + d;
-                    if (!localStorage.getItem(k)) {
-                        new Notification('byBag', { body: 'Поездка ' + d + '! Проверь багаж 🧳' });
-                        localStorage.setItem(k, '1');
+            activeTrips.forEach(function(trip) {
+                if (trip.startDate) {
+                    var d = countdown(trip.startDate);
+                    if (d === 'завтра' || d === 'сегодня') {
+                        var k = 'bybag_rem_' + trip.id + '_' + d;
+                        if (!localStorage.getItem(k)) {
+                            new Notification('byBag', { body: trip.name + ': поездка ' + d + '! Проверь багаж 🧳' });
+                            localStorage.setItem(k, '1');
+                        }
                     }
                 }
-            }
+            });
         } catch (e) {}
     }
     function showNotifOnboarding() { openModal('notifOnboardModal'); }
