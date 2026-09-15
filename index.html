@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v2.0.2</title>
+<title>byBag v2.0.3</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -439,10 +439,10 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
         </div>
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">2.0.2</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">2.0.3</div></div>
             <div class="profile-item" id="viewErrorLogBtn"><div class="pi-icon">🐛</div><div class="pi-label">Журнал ошибок</div><div class="pi-value" id="errorCountLabel">0</div><div class="pi-arrow">›</div></div>
         </div>
-        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v2.0.2</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v2.0.3</div>
     </div>
 </div>
 
@@ -506,10 +506,12 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
     </div>
 </div>
 
+<!-- МАСТЕР СОЗДАНИЯ СПИСКА (пастельные иконки и цвета) -->
 <div class="modal-overlay" id="wizardStep1">
     <div class="modal">
         <button type="button" class="modal-close" data-close="wizardStep1">✕</button>
         <div class="modal-handle"></div>
+        <h2>Новый список</h2>
         <div class="preview-card" id="wiz1Preview" style="background:linear-gradient(135deg,#a8e6cf,#56c596)">
             <div class="preview-emoji" id="wiz1Emoji">👕</div>
             <div class="preview-name" id="wiz1Name">Название списка</div>
@@ -544,6 +546,48 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
         <button type="button" class="btn-secondary" id="wiz2AdvancedBtn">+ Вещь со всеми полями</button>
         <button type="button" class="btn-primary" id="wiz2SaveBtn" style="margin-top:14px">Сохранить список</button>
         <button type="button" class="btn-secondary" id="wiz2BackBtn">← Назад</button>
+    </div>
+</div>
+
+<!-- МАСТЕР СОЗДАНИЯ ТИПА ПОЕЗДКИ (яркие иконки и цвета) -->
+<div class="modal-overlay" id="tripWizardStep1">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="tripWizardStep1">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Новый тип поездки</h2>
+        <div class="preview-card" id="twiz1Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f)">
+            <div class="preview-emoji" id="twiz1Emoji">🏖️</div>
+            <div class="preview-name" id="twiz1Name">Название типа</div>
+            <div class="preview-count" id="twiz1Count">0 вещей</div>
+        </div>
+        <div class="field-label">Название типа поездки</div>
+        <input type="text" class="input-field" id="twiz1NameInput" placeholder="Например: Кемпинг" maxlength="30">
+        <div class="field-label">Иконка</div>
+        <div class="emoji-picker" id="twiz1EmojiPicker"></div>
+        <div class="field-label">Цветовая палитра</div>
+        <div class="color-picker" id="twiz1ColorPicker"></div>
+        <button type="button" class="btn-primary" id="twiz1NextBtn" disabled>Далее →</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="tripWizardStep2">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="tripWizardStep2">✕</button>
+        <div class="modal-handle"></div>
+        <div class="preview-card" id="twiz2Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f);margin-bottom:20px">
+            <div class="preview-emoji" id="twiz2Emoji">🏖️</div>
+            <div class="preview-name" id="twiz2Name">Название типа</div>
+            <div class="preview-count" id="twiz2Count">0 вещей</div>
+        </div>
+        <div class="field-label">Стартовый набор вещей <span class="hint">(необязательно)</span></div>
+        <div id="twiz2ItemsEditor"></div>
+        <div class="add-item-row">
+            <input type="text" class="input-field" id="twiz2NewItem" placeholder="Название вещи..." maxlength="60">
+            <button type="button" class="add-item-btn" id="twiz2AddBtn">+</button>
+        </div>
+        <button type="button" class="btn-secondary" id="twiz2AdvancedBtn">+ Вещь со всеми полями</button>
+        <button type="button" class="btn-primary" id="twiz2SaveBtn" style="margin-top:14px">Сохранить тип</button>
+        <button type="button" class="btn-secondary" id="twiz2BackBtn">← Назад</button>
     </div>
 </div>
 
@@ -728,9 +772,9 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
 
 <script>
 // ============================================================
-// СИСТЕМА ОБРАБОТКИ ОШИБОК v2.0.2
+// СИСТЕМА ОБРАБОТКИ ОШИБОК v2.0.3
 // ============================================================
-var BB_VERSION = '2.0.2';
+var BB_VERSION = '2.0.3';
 var BB_ERROR_LOG_KEY = 'bybag_error_log';
 var BB_MAX_LOG = 30;
 
@@ -777,6 +821,7 @@ function bbGetDataState() {
         try { st.trips = JSON.parse(localStorage.getItem('bybag_active_trips') || '[]').length; } catch (e) { st.trips = '?'; }
         try { st.history = JSON.parse(localStorage.getItem('bybag_history') || '[]').length; } catch (e) { st.history = '?'; }
         try { st.customTypes = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_types') || '{}')).length; } catch (e) { st.customTypes = '?'; }
+        try { st.customTripTypes = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_trip_types') || '{}')).length; } catch (e) { st.customTripTypes = '?'; }
         try { st.customCats = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_categories') || '{}')).length; } catch (e) { st.customCats = '?'; }
         try { st.lsTotal = (localStorage.length || 0); } catch (e) { st.lsTotal = '?'; }
         return st;
@@ -923,12 +968,11 @@ function downloadErrorLog() {
 }
 
 // ============================================================
-// ОСНОВНОЕ ПРИЛОЖЕНИЕ v2.0.2
+// ОСНОВНОЕ ПРИЛОЖЕНИЕ v2.0.3
 // ============================================================
 (function() {
     'use strict';
 
-    // ============ КОНСТАНТЫ ============
     var MAX_ACTIVE_TRIPS = 2;
     var SWIPE_THRESHOLD = 0.2;
     var SWIPE_ITEM_THRESHOLD = 70;
@@ -992,20 +1036,17 @@ function downloadErrorLog() {
         81:{icon:'🌧️',desc:'Сильный ливень'},82:{icon:'⛈️',desc:'Очень сильный ливень'},95:{icon:'⛈️',desc:'Гроза'},96:{icon:'⛈️',desc:'Гроза с градом'}
     };
 
-    // Что нового — объединённые v2.0.x
     var WHATS_NEW = {
         emoji: '✨',
         title: 'Что нового',
-        subtitle: 'Крупное обновление v2.0',
+        subtitle: 'Обновление v2.0.3',
         color1: '#ff9a5a', color2: '#ff6b8a',
         items: [
-            { icon: '📋', title: 'Объединение списков', desc: 'При создании поездки — базовый тип + любое количество своих списков' },
-            { icon: '🎨', title: 'Новые иконки для списков', desc: 'Одежда, техника, аптека, документы — вместо иконок поездок' },
-            { icon: '🌈', title: 'Пастельная палитра', desc: '12 сдержанных цветов: мятная, лавандовая, персиковая, небесная' },
-            { icon: '💡', title: 'Советы вместо историй', desc: '6 категорий: упаковка, документы, техника, одежда, безопасность, лайфхаки' },
-            { icon: '🆕', title: 'Бейдж «Что нового»', desc: 'Теперь вы не пропустите изменения при обновлениях' }
+            { icon: '✈️', title: 'Создание своего типа поездки', desc: 'Свои названия, яркие иконки и цвета — отдельно от списков' },
+            { icon: '📋', title: 'Списки и типы разделены', desc: 'Списки — во вкладке «Списки», типы — при создании поездки' },
+            { icon: '🎨', title: 'Разные иконки и цвета', desc: 'Типы — яркие, списки — пастельные. Не запутаешься' }
         ],
-        minor: 'Мелочи: пастельная миграция старых списков, улучшены миграции данных'
+        minor: 'Исправлен баг: раньше открывался мастер списка вместо типа'
     };
 
     var TIPS_CATEGORIES = [
@@ -1076,13 +1117,18 @@ function downloadErrorLog() {
     ];
 
     // ============ СОСТОЯНИЕ ============
-    var customTypes = {}, customCategories = {}, activeTrips = [], history = [];
+    var customTypes = {};       // Списки
+    var customTripTypes = {};   // Типы поездок
+    var customCategories = {};
+    var activeTrips = [], history = [];
     var currentTripIndex = 0, selectedType = null, selectedListIds = [];
     var profile = { name: 'Эрик', avatar: null };
     var settings = { dark: false, notif: true, vibrate: true, hideDone: false };
     var achievementsState = {}, viewedTips = {}, viewedWhatsNew = false;
-    var wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };
+    var wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };       // Мастер списка
+    var twiz = { name: '', emoji: '🏖️', colorIdx: 0, items: [] };      // Мастер типа
     var editing = { id: null, name: '', emoji: '👕', colorIdx: 0, items: [] };
+    var advTarget = 'wizard';
     var searchQuery = '', weatherCache = {}, searchDebounceTimer = null, currentOnbSlide = 0;
     var currentTipIdx = 0, pendingCategoryTarget = null, categoryParent = null;
 
@@ -1098,7 +1144,7 @@ function downloadErrorLog() {
         if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
         return many;
     }
-    function getType(id) { return DEFAULT_TYPES[id] || customTypes[id] || null; }
+    function getType(id) { return DEFAULT_TYPES[id] || customTripTypes[id] || null; }
     function getAllCategories() {
         var all = {};
         Object.keys(CATEGORIES).forEach(function(k) { all[k] = CATEGORIES[k]; });
@@ -1177,6 +1223,7 @@ function downloadErrorLog() {
         if (!Array.isArray(activeTrips)) activeTrips = [];
         history = loadJSON('bybag_history', []);
         customTypes = loadJSON('bybag_custom_types', {});
+        customTripTypes = loadJSON('bybag_custom_trip_types', {});
         customCategories = loadJSON('bybag_custom_categories', {});
         profile = loadJSON('bybag_profile', { name: 'Эрик', avatar: null });
         settings = loadJSON('bybag_settings', { dark: false, notif: true, vibrate: true, hideDone: false });
@@ -1186,6 +1233,7 @@ function downloadErrorLog() {
 
         if (!Array.isArray(history)) history = [];
         if (typeof customTypes !== 'object' || customTypes === null || Array.isArray(customTypes)) customTypes = {};
+        if (typeof customTripTypes !== 'object' || customTripTypes === null || Array.isArray(customTripTypes)) customTripTypes = {};
         if (typeof customCategories !== 'object' || customCategories === null || Array.isArray(customCategories)) customCategories = {};
         if (typeof profile !== 'object' || profile === null) profile = { name: 'Эрик', avatar: null };
         if (typeof settings !== 'object' || settings === null) settings = { dark: false, notif: true, vibrate: true, hideDone: false };
@@ -1201,6 +1249,7 @@ function downloadErrorLog() {
         if (activeTrips.length > MAX_ACTIVE_TRIPS) activeTrips = activeTrips.slice(0, MAX_ACTIVE_TRIPS);
         if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
 
+        // Списки (customTypes)
         Object.keys(customTypes).forEach(function(k) {
             var t = customTypes[k];
             if (!t || typeof t !== 'object') { delete customTypes[k]; return; }
@@ -1213,6 +1262,19 @@ function downloadErrorLog() {
             t.ring = t.ring || LIST_COLOR_PALETTES[0].ring;
         });
         migrateListColors();
+
+        // Типы поездок (customTripTypes)
+        Object.keys(customTripTypes).forEach(function(k) {
+            var t = customTripTypes[k];
+            if (!t || typeof t !== 'object') { delete customTripTypes[k]; return; }
+            if (!Array.isArray(t.items)) t.items = [];
+            t.items = t.items.map(normalizeItem);
+            t.name = t.name || 'Свой тип';
+            t.emoji = t.emoji || '🏖️';
+            t.c1 = t.c1 || '#ffb347';
+            t.c2 = t.c2 || '#ff7e5f';
+            t.ring = t.ring || '#ff7e5f';
+        });
 
         Object.keys(customCategories).forEach(function(k) {
             var c = customCategories[k];
@@ -1231,6 +1293,7 @@ function downloadErrorLog() {
     function saveHistory() { saveJSON('bybag_history', history); }
     function saveProfile() { saveJSON('bybag_profile', profile); }
     function saveCustomTypes() { saveJSON('bybag_custom_types', customTypes); }
+    function saveCustomTripTypes() { saveJSON('bybag_custom_trip_types', customTripTypes); }
     function saveCustomCategories() { saveJSON('bybag_custom_categories', customCategories); }
     function saveSettings() { saveJSON('bybag_settings', settings); }
     function saveAchievements() { saveJSON('bybag_achievements', achievementsState); }
@@ -1283,11 +1346,7 @@ function downloadErrorLog() {
             var row = document.createElement('div');
             row.className = 'tips-row';
 
-            // Карточка "Что нового" — первой, если не просмотрена
-            if (!viewedWhatsNew) {
-                var wnItem = buildWhatsNewTipItem();
-                row.appendChild(wnItem);
-            }
+            if (!viewedWhatsNew) row.appendChild(buildWhatsNewTipItem());
 
             TIPS_CATEGORIES.forEach(function(cat, idx) {
                 var item = document.createElement('div');
@@ -1308,11 +1367,7 @@ function downloadErrorLog() {
                 row.appendChild(item);
             });
 
-            // Если "Что нового" просмотрена — переносим её в конец
-            if (viewedWhatsNew) {
-                var wnItemEnd = buildWhatsNewTipItem();
-                row.appendChild(wnItemEnd);
-            }
+            if (viewedWhatsNew) row.appendChild(buildWhatsNewTipItem());
 
             wrap.appendChild(row);
             slot.appendChild(wrap);
@@ -1324,10 +1379,7 @@ function downloadErrorLog() {
         item.className = 'tip-item' + (!viewedWhatsNew ? ' whats-new-active' : '');
         var ring = document.createElement('div');
         ring.className = 'tip-ring' + (!viewedWhatsNew ? ' whats-new' : '');
-        if (!viewedWhatsNew) {
-            // Пульсирующий градиент с фирменными цветами + иконка приложения
-            ring.style.background = 'conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#ff9a5a)';
-        }
+        if (!viewedWhatsNew) ring.style.background = 'conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#ff9a5a)';
         var inner = document.createElement('div');
         inner.className = 'tip-inner';
         inner.style.background = 'linear-gradient(135deg,' + WHATS_NEW.color1 + ',' + WHATS_NEW.color2 + ')';
@@ -1358,10 +1410,7 @@ function downloadErrorLog() {
         var title = $('tipViewerTitle'); if (title) title.textContent = WHATS_NEW.title;
         var sub = $('tipViewerSub'); if (sub) sub.textContent = WHATS_NEW.subtitle;
         renderWhatsNewContent();
-        // После просмотра — помечаем как прочитанное
-        if (!viewedWhatsNew) {
-            saveViewedWhatsNew();
-        }
+        if (!viewedWhatsNew) saveViewedWhatsNew();
     }
 
     function renderWhatsNewContent() {
@@ -1726,8 +1775,9 @@ function downloadErrorLog() {
         function makeOption(key, t) {
             var div = document.createElement('div');
             div.className = 'type-option' + (selectedType === key ? ' selected' : '');
-            div.innerHTML = '<span class="checkmark">✓</span><span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
-            div.addEventListener('click', function() {
+            div.innerHTML = '<span class="checkmark">✓</span><span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Тип') + '</span>';
+            div.addEventListener('click', function(e) {
+                e.stopPropagation();
                 if (selectedType === key) { selectedType = null; }
                 else { selectedType = key; }
                 renderTypeGrid();
@@ -1736,10 +1786,11 @@ function downloadErrorLog() {
             grid.appendChild(div);
         }
         Object.keys(DEFAULT_TYPES).forEach(function(k) { makeOption(k, DEFAULT_TYPES[k]); });
+        Object.keys(customTripTypes).forEach(function(k) { makeOption(k, customTripTypes[k]); });
         var createDiv = document.createElement('div');
         createDiv.className = 'type-option create-new';
         createDiv.innerHTML = '<span class="emoji">➕</span><span class="name">Создать свой</span>';
-        createDiv.addEventListener('click', function() { closeModal('typeModal'); startWizard(); });
+        createDiv.addEventListener('click', function() { closeModal('typeModal'); startTripWizard(); });
         grid.appendChild(createDiv);
     }
 
@@ -1827,8 +1878,10 @@ function downloadErrorLog() {
         var defaultName = '';
         if (selectedType) {
             var t = getType(selectedType);
-            visual = { emoji: t.emoji, c1: t.c1, c2: t.c2, ring: t.ring };
-            defaultName = t.name;
+            if (t) {
+                visual = { emoji: t.emoji, c1: t.c1, c2: t.c2, ring: t.ring };
+                defaultName = t.name;
+            }
         } else {
             var firstList = customTypes[selectedListIds[0]];
             if (firstList) {
@@ -1871,18 +1924,7 @@ function downloadErrorLog() {
         showToast('Поездка создана!');
     }
 
-    // ============ МАСТЕР СОЗДАНИЯ СПИСКА ============
-    function pickWizEmoji(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji); updateWiz1Preview(); }
-    function pickWizColor(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor); updateWiz1Preview(); }
-    function startWizard() {
-        wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };
-        var ni = $('wiz1NameInput'); if (ni) ni.value = '';
-        var nb = $('wiz1NextBtn'); if (nb) nb.disabled = true;
-        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji);
-        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor);
-        updateWiz1Preview();
-        openModal('wizardStep1');
-    }
+    // ============ УТИЛИТЫ ПИКЕРОВ ============
     function renderEmojiPicker(pickerId, current, choices, onSelect) {
         var p = $(pickerId); if (!p) return;
         p.innerHTML = '';
@@ -1904,6 +1946,19 @@ function downloadErrorLog() {
             d.addEventListener('click', function() { onSelect(i); });
             p.appendChild(d);
         });
+    }
+
+    // ============ МАСТЕР СОЗДАНИЯ СПИСКА (пастельные) ============
+    function pickWizEmoji(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji); updateWiz1Preview(); }
+    function pickWizColor(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor); updateWiz1Preview(); }
+    function startWizard() {
+        wiz = { name: '', emoji: '👕', colorIdx: 0, items: [] };
+        var ni = $('wiz1NameInput'); if (ni) ni.value = '';
+        var nb = $('wiz1NextBtn'); if (nb) nb.disabled = true;
+        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, LIST_EMOJI_CHOICES, pickWizEmoji);
+        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, LIST_COLOR_PALETTES, pickWizColor);
+        updateWiz1Preview();
+        openModal('wizardStep1');
     }
     function updateWiz1Preview() {
         var c = LIST_COLOR_PALETTES[wiz.colorIdx];
@@ -1959,6 +2014,77 @@ function downloadErrorLog() {
         showToast('Список "' + wiz.name + '" создан!');
     }
 
+    // ============ МАСТЕР СОЗДАНИЯ ТИПА ПОЕЗДКИ (яркие) ============
+    function pickTwizEmoji(em) { twiz.emoji = em; renderEmojiPicker('twiz1EmojiPicker', twiz.emoji, EMOJI_CHOICES, pickTwizEmoji); updateTwiz1Preview(); }
+    function pickTwizColor(i) { twiz.colorIdx = i; renderColorPicker('twiz1ColorPicker', twiz.colorIdx, COLOR_PALETTES, pickTwizColor); updateTwiz1Preview(); }
+    function startTripWizard() {
+        twiz = { name: '', emoji: '🏖️', colorIdx: 0, items: [] };
+        var ni = $('twiz1NameInput'); if (ni) ni.value = '';
+        var nb = $('twiz1NextBtn'); if (nb) nb.disabled = true;
+        renderEmojiPicker('twiz1EmojiPicker', twiz.emoji, EMOJI_CHOICES, pickTwizEmoji);
+        renderColorPicker('twiz1ColorPicker', twiz.colorIdx, COLOR_PALETTES, pickTwizColor);
+        updateTwiz1Preview();
+        openModal('tripWizardStep1');
+    }
+    function updateTwiz1Preview() {
+        var c = COLOR_PALETTES[twiz.colorIdx];
+        var name = (($('twiz1NameInput') || {}).value || '').trim() || 'Название типа';
+        var pr = $('twiz1Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
+        var e = $('twiz1Emoji'); if (e) e.textContent = twiz.emoji;
+        var n = $('twiz1Name'); if (n) n.textContent = name;
+        var cn = $('twiz1Count'); if (cn) cn.textContent = twiz.items.length + ' ' + plural(twiz.items.length, 'вещь', 'вещи', 'вещей');
+    }
+    function twiz1Next() {
+        var name = (($('twiz1NameInput') || {}).value || '').trim();
+        if (!name) { showToast('Введите название'); return; }
+        twiz.name = name;
+        closeModal('tripWizardStep1');
+        openTwiz2();
+    }
+    function openTwiz2() {
+        var c = COLOR_PALETTES[twiz.colorIdx];
+        var pr = $('twiz2Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
+        var e = $('twiz2Emoji'); if (e) e.textContent = twiz.emoji;
+        var n = $('twiz2Name'); if (n) n.textContent = twiz.name;
+        var ni = $('twiz2NewItem'); if (ni) ni.value = '';
+        renderTwiz2Items();
+        openModal('tripWizardStep2');
+    }
+    function renderTwiz2Items() {
+        var ed = $('twiz2ItemsEditor'); if (!ed) return;
+        ed.innerHTML = '';
+        if (!twiz.items.length) {
+            var emp = document.createElement('div');
+            emp.style.cssText = 'text-align:center;padding:20px;color:var(--text-3);font-size:13.5px;font-weight:500';
+            emp.textContent = 'Можно оставить пустым — вещи добавите позже.';
+            ed.appendChild(emp);
+        } else twiz.items.forEach(function(it, i) { ed.appendChild(buildAdvancedRow(it, i, 'twiz')); });
+        var cn = $('twiz2Count'); if (cn) cn.textContent = twiz.items.length + ' ' + plural(twiz.items.length, 'вещь', 'вещи', 'вещей');
+    }
+    function twiz2AddQuick() {
+        var v = (($('twiz2NewItem') || {}).value || '').trim();
+        if (!v) return;
+        twiz.items.push({ text: v, qty: 1, note: '', category: 'other' });
+        $('twiz2NewItem').value = '';
+        renderTwiz2Items();
+        $('twiz2NewItem').focus();
+    }
+    function twiz2Save() {
+        if (!twiz.name) { showToast('Введите название'); return; }
+        var c = COLOR_PALETTES[twiz.colorIdx];
+        var id = 'trip_' + Date.now();
+        customTripTypes[id] = {
+            name: twiz.name, emoji: twiz.emoji,
+            c1: c.c1, c2: c.c2, ring: c.ring,
+            items: twiz.items.slice(), builtin: false
+        };
+        saveCustomTripTypes();
+        closeModal('tripWizardStep2');
+        renderHome(); renderProfile(); vibrate();
+        showToast('Тип «' + twiz.name + '» создан!');
+    }
+
+    // ============ ADVANCED ROW ============
     function buildAdvancedRow(item, idx, target) {
         var row = document.createElement('div');
         row.className = 'advanced-item-row';
@@ -1980,6 +2106,7 @@ function downloadErrorLog() {
         rm.type = 'button'; rm.className = 'item-remove'; rm.textContent = '✕';
         rm.addEventListener('click', function() {
             if (target === 'wizard') { wiz.items.splice(idx, 1); renderWiz2Items(); }
+            else if (target === 'twiz') { twiz.items.splice(idx, 1); renderTwiz2Items(); }
             else { editing.items.splice(idx, 1); renderEditorItems(); updateEditorPreview(); }
         });
         head.appendChild(rm); row.appendChild(head);
@@ -2027,7 +2154,8 @@ function downloadErrorLog() {
     }
 
     function openAdvanced(target) {
-        var p = target === 'wizard' ? 'adv' : 'adv2';
+        advTarget = target;
+        var p = (target === 'wizard' || target === 'twiz') ? 'adv' : 'adv2';
         ['Name','Qty','Note'].forEach(function(f) {
             var el = $(p + f);
             if (el) el.value = f === 'Qty' ? '1' : '';
@@ -2035,14 +2163,25 @@ function downloadErrorLog() {
         var s = $(p + 'Cat');
         if (s) fillCategorySelect(s, 'other');
         if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
+        else if (target === 'twiz') { closeModal('tripWizardStep2'); openModal('advancedItemModal'); }
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
     function advConfirm() {
         var n = (($('advName') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
-        wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, note: (($('advNote') || {}).value || '').trim(), category: ($('advCat') || {}).value || 'other' });
+        var newItem = {
+            text: n, qty: parseInt($('advQty').value) || 1,
+            note: (($('advNote') || {}).value || '').trim(),
+            category: ($('advCat') || {}).value || 'other'
+        };
         closeModal('advancedItemModal');
-        openWiz2();
+        if (advTarget === 'twiz') {
+            twiz.items.push(newItem);
+            openTwiz2();
+        } else {
+            wiz.items.push(newItem);
+            openWiz2();
+        }
     }
     function adv2Confirm() {
         var n = (($('adv2Name') || {}).value || '').trim();
@@ -2052,6 +2191,7 @@ function downloadErrorLog() {
         openEditorById(editing.id);
     }
 
+    // ============ РЕДАКТОР СПИСКА ============
     function pickEditorEmoji(em) { editing.emoji = em; renderEmojiPicker('emojiPicker', editing.emoji, LIST_EMOJI_CHOICES, pickEditorEmoji); updateEditorPreview(); }
     function pickEditorColor(i) { editing.colorIdx = i; renderColorPicker('colorPicker', editing.colorIdx, LIST_COLOR_PALETTES, pickEditorColor); updateEditorPreview(); }
 
@@ -2769,7 +2909,7 @@ function downloadErrorLog() {
                     if (id === 'addItemModal') closeAddItemModal(); else closeModal(id);
                 });
             });
-            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2','manageCategoriesModal','errorLogModal'].forEach(function(id) {
+            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','tripWizardStep1','tripWizardStep2','advancedItemModal','advancedItemModal2','manageCategoriesModal','errorLogModal'].forEach(function(id) {
                 var el = $(id);
                 if (el) el.addEventListener('click', function(e) {
                     if (e.target === this) { if (id === 'addItemModal') closeAddItemModal(); else closeModal(id); }
@@ -2796,6 +2936,8 @@ function downloadErrorLog() {
                 searchDebounceTimer = setTimeout(function() { searchQuery = v; renderChecklistPage(); }, 150);
             });
             bind('hideDoneToggle', 'click', function() { settings.hideDone = !settings.hideDone; saveSettings(); renderChecklistPage(); });
+
+            // Мастер списка
             bind('wiz1NameInput', 'input', function() {
                 var nb = $('wiz1NextBtn'); if (nb) nb.disabled = !this.value.trim();
                 updateWiz1Preview();
@@ -2806,6 +2948,19 @@ function downloadErrorLog() {
             bind('wiz2AdvancedBtn', 'click', function() { openAdvanced('wizard'); });
             bind('wiz2SaveBtn', 'click', wiz2Save);
             bind('wiz2BackBtn', 'click', function() { closeModal('wizardStep2'); openModal('wizardStep1'); });
+
+            // Мастер типа поездки
+            bind('twiz1NameInput', 'input', function() {
+                var nb = $('twiz1NextBtn'); if (nb) nb.disabled = !this.value.trim();
+                updateTwiz1Preview();
+            });
+            bind('twiz1NextBtn', 'click', twiz1Next);
+            bind('twiz2AddBtn', 'click', twiz2AddQuick);
+            bind('twiz2NewItem', 'keypress', function(e) { if (e.key === 'Enter') twiz2AddQuick(); });
+            bind('twiz2AdvancedBtn', 'click', function() { openAdvanced('twiz'); });
+            bind('twiz2SaveBtn', 'click', twiz2Save);
+            bind('twiz2BackBtn', 'click', function() { closeModal('tripWizardStep2'); openModal('tripWizardStep1'); });
+
             bind('advConfirmBtn', 'click', advConfirm);
             bind('adv2ConfirmBtn', 'click', adv2Confirm);
             bind('addItemBtn', 'click', editorAddQuick);
@@ -2868,8 +3023,7 @@ function downloadErrorLog() {
                     var dx = e.changedTouches[0].clientX - tStartX;
                     var dy = e.changedTouches[0].clientY - tStartY;
                     if (Math.abs(dy) > 100 && Math.abs(dy) > Math.abs(dx)) { closeTipViewer(); return; }
-                    // Свайп только между советами (не от "Что нового")
-                    if (WHATS_NEW && !viewedWhatsNew) return;
+                    if (!viewedWhatsNew) return; // не свайпаем если открыт "Что нового"
                     if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
                         if (dx < 0 && currentTipIdx < TIPS_CATEGORIES.length - 1) openTipViewer(currentTipIdx + 1);
                         else if (dx > 0 && currentTipIdx > 0) openTipViewer(currentTipIdx - 1);
