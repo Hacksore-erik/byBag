@@ -6,12 +6,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.1.0</title>
+<title>byBag v1.2.0</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-touch-callout:none}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 input,textarea,select{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
 html{overflow-x:hidden;width:100%}
 html,body{transition:background-color .35s ease,color .35s ease}
@@ -21,7 +21,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Ro
 body::before,body::after{content:'';position:fixed;width:80%;height:60%;border-radius:50%;pointer-events:none;z-index:-10;filter:blur(40px);transition:background .35s ease}
 body::before{top:-20%;left:-20%;background:radial-gradient(circle,var(--glow-1),transparent 65%)}
 body::after{bottom:-20%;right:-20%;background:radial-gradient(circle,var(--glow-2),transparent 65%)}
-.app-header{position:fixed;top:0;left:0;right:0;padding:14px 24px 10px;z-index:60;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:center;width:100%}
+.app-header{position:fixed;top:0;left:0;right:0;padding:14px 24px 10px;z-index:60;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);text-align:center}
 .app-header .logo{font-size:26px;font-weight:800;letter-spacing:-.6px;display:inline-block;background:linear-gradient(135deg,#ff9a5a,#ff6b8a 50%,#c084fc);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50%,#ff6bcb);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .header-spacer{height:60px}
@@ -29,41 +29,43 @@ body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50
 
 /* STORIES */
 .stories-wrap{margin:6px 0 20px}
-.stories-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;margin-bottom:10px;padding-left:4px}
-.stories-row{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.stories-title,.stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px}
+.stories-title{margin-bottom:10px}
+.stats-title{margin-bottom:12px}
+.stories-row{display:flex;gap:14px;overflow-x:auto;padding:4px 4px 10px;scrollbar-width:none}
 .stories-row::-webkit-scrollbar{display:none}
 .story-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;width:74px}
-.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);position:relative;transition:transform .25s}
+.story-ring{width:68px;height:68px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s}
 body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6bcb,#3ddc84,#6b8cff)}
 .story-item:active .story-ring{transform:scale(.94)}
 .story-ring.viewed{background:var(--border-soft)}
 .story-inner{width:100%;height:100%;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;border:2px solid var(--bg);position:relative}
-.story-inner .story-badge{position:absolute;bottom:2px;right:2px;font-size:14px;width:22px;height:22px;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);line-height:1}
+.story-inner .story-badge{position:absolute;bottom:2px;right:2px;font-size:14px;width:22px;height:22px;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg)}
 .story-item .story-label{font-size:10.5px;font-weight:600;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:74px;line-height:1.2}
 .story-viewer{position:fixed;inset:0;background:#000;z-index:200;display:none;flex-direction:column}
 .story-viewer.active{display:flex}
 .story-progress-row{position:absolute;top:14px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
 .story-progress-bar{flex:1;height:3px;background:rgba(255,255,255,.3);border-radius:3px;overflow:hidden}
-.story-progress-fill{height:100%;background:#fff;width:0%;transition:width .05s linear}
+.story-progress-fill{height:100%;background:#fff;width:0%}
 .story-progress-bar.done .story-progress-fill{width:100%}
 .story-header{position:absolute;top:28px;left:16px;right:16px;display:flex;align-items:center;gap:12px;z-index:10;color:#fff}
 .story-avatar-sm{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:2px solid rgba(255,255,255,.5)}
 .story-name-block{flex:1;min-width:0}
 .story-name-block .s-title{font-size:15px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .story-name-block .s-time{font-size:12px;opacity:.8;font-weight:500}
-.story-close-btn{background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0}
-.story-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 30px 140px;text-align:center;position:relative;overflow-y:auto}
+.story-close-btn{background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0}
+.story-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 30px 140px;text-align:center;overflow-y:auto}
 .story-big-emoji{font-size:120px;margin-bottom:24px;line-height:1;animation:storyZoom .6s cubic-bezier(.34,1.56,.64,1)}
 @keyframes storyZoom{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
-.story-content h2{color:#fff;font-size:26px;font-weight:800;margin-bottom:8px;letter-spacing:-.5px;text-shadow:0 2px 12px rgba(0,0,0,.4);animation:storyFade .8s .2s both}
-.story-content p{color:rgba(255,255,255,.85);font-size:15px;line-height:1.5;margin-bottom:6px;max-width:320px;animation:storyFade .8s .35s both}
+.story-content h2{color:#fff;font-size:26px;font-weight:800;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.4);animation:storyFade .8s .2s both}
+.story-content p{color:rgba(255,255,255,.85);font-size:15px;line-height:1.5;max-width:320px;animation:storyFade .8s .35s both}
 @keyframes storyFade{from{transform:translateY(15px);opacity:0}to{transform:translateY(0);opacity:1}}
 .story-stats{display:flex;gap:24px;margin-top:30px;animation:storyFade .8s .5s both}
 .story-stat{text-align:center}
-.story-stat .s-val{color:#fff;font-size:32px;font-weight:800;line-height:1;margin-bottom:6px;letter-spacing:-.5px}
+.story-stat .s-val{color:#fff;font-size:32px;font-weight:800;line-height:1;margin-bottom:6px}
 .story-stat .s-lbl{color:rgba(255,255,255,.7);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
 .story-bg{position:absolute;inset:0;z-index:0;opacity:.4}
-.story-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,.15) 30%,rgba(0,0,0,.7) 100%)}
+.story-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.15) 30%,rgba(0,0,0,.7))}
 .story-emoji-deco{position:absolute;font-size:300px;line-height:1;opacity:.08;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%)}
 .story-tap-zone{position:absolute;top:60px;bottom:0;width:30%;z-index:5;cursor:pointer}
 .story-tap-zone.prev{left:0}
@@ -74,8 +76,8 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .main-widget:active{transform:scale(.985)}
 @keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .widget-hero{position:relative;padding:25px 23px 44px;overflow:hidden;background:linear-gradient(135deg,var(--c1,#ffb347),var(--c2,#ff7e5f))}
-.widget-hero .bg-emoji{position:absolute;right:-17px;bottom:-36px;font-size:162px;line-height:1;opacity:.22;pointer-events:none;transform:rotate(-12deg);user-select:none}
-.widget-hero::before{content:'';position:absolute;top:-54px;left:-54px;width:162px;height:162px;border-radius:50%;background:rgba(255,255,255,.15);pointer-events:none}
+.widget-hero .bg-emoji{position:absolute;right:-17px;bottom:-36px;font-size:162px;line-height:1;opacity:.22;pointer-events:none;transform:rotate(-12deg)}
+.widget-hero::before{content:'';position:absolute;top:-54px;left:-54px;width:162px;height:162px;border-radius:50%;background:rgba(255,255,255,.15)}
 .hero-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;margin-bottom:21px}
 .hero-label{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.35);border-radius:100px;font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:#fff}
 .hero-label .dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 2s infinite}
@@ -92,13 +94,13 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .ring-track{fill:none;stroke:var(--border-soft);stroke-width:9}
 .ring-fill{fill:none;stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .8s cubic-bezier(.4,0,.2,1),stroke .4s ease}
 .ring-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.ring-percent{font-size:24px;font-weight:800;color:var(--text);line-height:1;letter-spacing:-1px}
+.ring-percent{font-size:24px;font-weight:800;color:var(--text);line-height:1}
 .ring-percent .sign{font-size:13px;font-weight:700;color:var(--text-3)}
 .widget-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:9px}
 .meta-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-bottom:9px;border-bottom:1px solid var(--border-soft)}
 .meta-row:last-child{border-bottom:none;padding-bottom:0}
 .meta-row .meta-key{font-size:11.5px;color:var(--text-3);font-weight:600}
-.meta-row .meta-val{font-size:17px;font-weight:800;color:var(--text);letter-spacing:-.5px}
+.meta-row .meta-val{font-size:17px;font-weight:800;color:var(--text)}
 .meta-row .meta-val.done{color:var(--success)}
 .meta-row .meta-val.left{color:var(--accent-2)}
 .widget-footer{padding:0 22px 20px;background:var(--card-solid);position:relative;z-index:3}
@@ -116,6 +118,11 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .trips-dots .tdot.active{width:24px;border-radius:100px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
 .swipe-hint{text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:6px 0 0;opacity:.6;animation:swipeHintFade 4s ease forwards}
 @keyframes swipeHintFade{0%,70%{opacity:.6}100%{opacity:0}}
+.add-trip-slide{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;cursor:pointer;background:var(--card-solid);min-height:280px;border:2px dashed var(--border-soft);box-shadow:0 18px 45px var(--shadow)}
+.add-trip-slide:active{transform:scale(.985)}
+.add-trip-circle{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:44px;color:#fff;font-weight:300;line-height:1;box-shadow:0 12px 32px rgba(255,107,138,.35);padding-bottom:6px}
+.add-trip-title{font-size:17px;font-weight:800;color:var(--text)}
+.add-trip-desc{font-size:12.5px;color:var(--text-3);font-weight:600;padding:0 24px;text-align:center}
 
 .plus-one{position:fixed;font-size:22px;font-weight:800;color:var(--success);pointer-events:none;z-index:900;animation:plusOneFloat 1s ease-out forwards;text-shadow:0 2px 8px rgba(0,0,0,.2)}
 @keyframes plusOneFloat{0%{transform:translateY(0) scale(.6);opacity:0}15%{transform:translateY(-10px) scale(1.2);opacity:1}100%{transform:translateY(-70px) scale(.9);opacity:0}}
@@ -128,11 +135,10 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero h2{font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px}
 .empty-hero p{font-size:14px;color:var(--text-2);line-height:1.5;margin-bottom:18px;font-weight:500}
 .empty-hero .empty-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:14.5px;font-weight:700;border-radius:100px}
-.empty-hero .empty-cta .plus{font-size:18px;line-height:1;font-weight:300}
+.empty-hero .empty-cta .plus{font-size:18px;font-weight:300}
 
 /* SECTIONS */
 .stats-section{margin-bottom:20px}
-.stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;margin-bottom:12px;padding-left:4px}
 .history-item,.my-list-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px}
 .history-item .h-emoji,.my-list-item .ml-emoji{font-size:20px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:var(--card-solid);border-radius:12px;flex-shrink:0}
 .history-item .h-body,.my-list-item .ml-body{flex:1;min-width:0}
@@ -141,6 +147,26 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .history-item .h-badge{font-size:11px;font-weight:700;padding:5px 10px;border-radius:10px;background:rgba(78,203,113,.15);color:var(--success);flex-shrink:0}
 body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 .icon-btn{background:transparent;border:none;color:var(--text-3);width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;opacity:.5}
+
+/* LISTS PAGE */
+.lists-page-header{display:flex;align-items:baseline;justify-content:space-between;padding:6px 4px 16px}
+.lists-page-header .lph-title{font-size:24px;font-weight:800;color:var(--text);letter-spacing:-.6px}
+.lists-page-header .lph-count{font-size:12.5px;color:var(--text-3);font-weight:700}
+.lists-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:20px}
+.list-card{background:var(--card-solid);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px var(--shadow);cursor:pointer;border:1px solid var(--border);transition:transform .2s}
+.list-card:active{transform:scale(.98)}
+.list-card-head{position:relative;height:110px;display:flex;align-items:center;padding:0 20px;overflow:hidden}
+.list-card-head .lch-emoji{font-size:52px;position:relative;z-index:2;line-height:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.15))}
+.list-card-head .lch-deco{position:absolute;right:-20px;bottom:-30px;font-size:130px;opacity:.18;line-height:1;transform:rotate(-12deg);pointer-events:none}
+.list-card-body{padding:16px 18px 12px}
+.list-card-body .lcb-name{font-size:17px;font-weight:800;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.3px}
+.list-card-body .lcb-meta{font-size:12.5px;color:var(--text-3);font-weight:600}
+.list-card-actions{display:flex;gap:8px;padding:0 14px 14px}
+.list-card-actions .lca-btn{flex:1;padding:11px;border-radius:12px;border:none;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.list-card-actions .lca-btn.edit{background:linear-gradient(135deg,rgba(255,154,90,.18),rgba(255,107,138,.18));color:var(--accent-2)}
+body.dark .list-card-actions .lca-btn.edit{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));color:#a9bdff}
+.list-card-actions .lca-btn.del{background:rgba(214,51,108,.1);color:var(--danger)}
+body.dark .list-card-actions .lca-btn.del{background:rgba(255,94,138,.12)}
 
 /* PROFILE */
 .profile-hero{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:0 16px 40px var(--shadow);display:flex;align-items:center;gap:18px;margin-bottom:20px;margin-top:6px;position:relative;overflow:hidden}
@@ -156,7 +182,7 @@ body.dark .profile-badge{background:linear-gradient(135deg,rgba(107,140,255,.2),
 .profile-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
 .profile-stat-card{padding:18px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 6px 20px var(--shadow)}
 .profile-stat-card .ps-icon{font-size:22px;margin-bottom:8px}
-.profile-stat-card .ps-num{font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px;letter-spacing:-.5px}
+.profile-stat-card .ps-num{font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
 .profile-stat-card .ps-label{font-size:12px;color:var(--text-3);font-weight:600}
 .profile-menu{background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 8px 32px var(--shadow);overflow:hidden;margin-bottom:20px}
 .profile-item{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border-soft);cursor:pointer}
@@ -192,7 +218,8 @@ body.dark .nav-item.active{background:linear-gradient(135deg,rgba(107,140,255,.2
 body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-overlay.active{display:flex}
 .modal-overlay.above-checklist{z-index:170}
-.modal{width:100%;max-width:500px;max-height:88vh;overflow-y:auto;overflow-x:hidden;border-radius:32px 32px 0 0;padding:20px 20px 32px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 40px var(--shadow);position:relative;box-sizing:border-box;-webkit-overflow-scrolling:touch}
+.modal{width:100%;max-width:500px;max-height:88vh;overflow-y:auto;overflow-x:hidden;border-radius:32px 32px 0 0;padding:20px 20px 32px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 40px var(--shadow);position:relative;box-sizing:border-box;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.modal::-webkit-scrollbar{display:none}
 .modal-handle{width:40px;height:4px;background:var(--border-soft);border-radius:10px;margin:0 auto 20px}
 .modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text-2);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:inherit;padding:0}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:20px;text-align:center;color:var(--text);padding:0 40px}
@@ -215,7 +242,7 @@ body.dark .type-option.create-new .name{color:#a06bff}
 .custom-type-badge{position:absolute;top:4px;right:4px;background:rgba(192,132,252,.9);color:#fff;font-size:7px;font-weight:700;padding:2px 4px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
 body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
 
-.input-field{width:100%;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--border-soft);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:16px;outline:none;-webkit-appearance:none;appearance:none;box-sizing:border-box}
+.input-field{width:100%;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--border-soft);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:16px;outline:none;-webkit-appearance:none;appearance:none}
 .input-field::placeholder{color:var(--text-3);opacity:.7}
 .input-field:focus{border-color:var(--accent-1)}
 
@@ -243,7 +270,7 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .advanced-item-head .item-text{flex:1;font-size:15px;font-weight:700;color:var(--text);word-break:break-word;padding-top:2px;min-width:0}
 .advanced-item-head .item-remove{background:rgba(255,107,138,.12);border:none;color:var(--accent-2);width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 .advanced-item-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.advanced-item-fields .mini-field{padding:8px 10px;border-radius:10px;background:var(--card-solid);border:1px solid var(--border-soft);font-family:inherit;font-size:13px;color:var(--text);outline:none;width:100%;-webkit-appearance:none;appearance:none;box-sizing:border-box}
+.advanced-item-fields .mini-field{padding:8px 10px;border-radius:10px;background:var(--card-solid);border:1px solid var(--border-soft);font-family:inherit;font-size:13px;color:var(--text);outline:none;width:100%;-webkit-appearance:none;appearance:none}
 .advanced-item-fields .mini-field.full{grid-column:1/-1}
 .add-item-row{display:flex;gap:8px;margin-bottom:18px}
 .add-item-row .input-field{flex:1;margin-bottom:0;padding:14px;font-size:15px}
@@ -261,7 +288,7 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .page-action-btn{width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 .checklist-page-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px 20px 120px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .checklist-page-content::-webkit-scrollbar{display:none}
-.checklist-page-bottom{position:fixed;bottom:0;left:0;right:0;padding:12px 20px 24px;background:linear-gradient(to top,var(--bg) 60%,transparent);z-index:25;max-width:500px;margin:0 auto;pointer-events:none;display:flex;justify-content:center;box-sizing:border-box}
+.checklist-page-bottom{position:fixed;bottom:0;left:0;right:0;padding:12px 20px 24px;background:linear-gradient(to top,var(--bg) 60%,transparent);z-index:25;max-width:500px;margin:0 auto;pointer-events:none;display:flex;justify-content:center}
 .checklist-page-bottom .add-to-active{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);pointer-events:auto;width:100%;cursor:pointer}
 
 /* CHECKLIST */
@@ -280,9 +307,8 @@ body.dark .toolbar-toggle.active{background:linear-gradient(135deg,rgba(107,140,
 .check-item-actions{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding:0 20px;font-size:14px;font-weight:700;color:#fff;gap:6px;z-index:0}
 .check-item-actions.right{left:0;background:linear-gradient(135deg,#4ecb71,#38b2ac);justify-content:flex-start}
 .check-item-actions.left{right:0;background:linear-gradient(135deg,#ff6b8a,#d6336c);justify-content:flex-end}
-.check-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card-solid);border:1.5px solid var(--border-soft);border-radius:16px;cursor:pointer;user-select:none;position:relative;z-index:2;transition:transform .25s cubic-bezier(.4,0,.2,1);will-change:transform}
-body:not(.dark) .check-item{background:#ffffff}
-body.dark .check-item{background:var(--card-solid)}
+.check-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:var(--card-solid);border:1.5px solid var(--border-soft);border-radius:16px;cursor:pointer;position:relative;z-index:2;transition:transform .25s cubic-bezier(.4,0,.2,1);will-change:transform}
+body:not(.dark) .check-item{background:#fff}
 .check-item.checked{background:#e8f8ee !important;border-color:rgba(78,203,113,.5) !important}
 body.dark .check-item.checked{background:#1c2e26 !important;border-color:rgba(61,220,132,.4) !important}
 .check-circle{width:26px;height:26px;border-radius:50%;border:2px solid var(--border-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:transparent;background:var(--card-solid)}
@@ -307,7 +333,7 @@ body.dark .search-highlight{background:rgba(255,210,90,.4);color:#fff}
 .weight-info .weight-val{color:var(--accent-2);font-weight:800}
 .weight-limits{margin-top:10px}
 .weight-track{position:relative;height:14px;background:var(--border-soft);border-radius:10px;overflow:hidden;display:flex;margin-bottom:6px}
-.weight-segment{height:100%;position:relative}
+.weight-segment{height:100%}
 .weight-segment.hand{flex:8;background:linear-gradient(90deg,rgba(78,203,113,.25),rgba(78,203,113,.4))}
 .weight-segment.bag{flex:15;background:linear-gradient(90deg,rgba(255,209,102,.4),rgba(255,154,90,.5))}
 .weight-segment.over{flex:5;background:linear-gradient(90deg,rgba(255,107,138,.5),rgba(214,51,108,.6))}
@@ -340,8 +366,6 @@ body.dark .toast{background:rgba(107,140,255,.95)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .confetti{position:fixed;width:10px;height:10px;top:-10px;z-index:999;pointer-events:none;animation:confettiFall 3s linear forwards}
 @keyframes confettiFall{to{transform:translateY(100vh) rotate(720deg);opacity:0}}
-.modal::-webkit-scrollbar{display:none}
-.modal{-ms-overflow-style:none;scrollbar-width:none}
 .page{display:none}
 .page.active{display:block}
 
@@ -358,7 +382,7 @@ body.dark .toast{background:rgba(107,140,255,.95)}
 #errorScreen button{padding:14px 28px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:4px}
 #errorScreen .err-msg{font-family:monospace;font-size:11px;color:var(--text-3);background:var(--card);padding:12px;border-radius:12px;margin-top:20px;max-width:100%;word-break:break-all;text-align:left;-webkit-user-select:text;user-select:text}
 
-/* УМНЫЕ ПОДСКАЗКИ */
+/* SMART HINTS */
 .smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none;animation:slideIn .3s ease}
 body.dark .smart-hint{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.35)}
 .smart-hint.show{display:block}
@@ -377,11 +401,11 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 .smart-hint .sh-dismiss{background:transparent;border:none;color:var(--text-3);font-size:11.5px;font-weight:600;cursor:pointer;padding:6px;font-family:inherit;width:100%;margin-top:6px;text-align:center;opacity:.7}
 .smart-hint .sh-memory{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--accent-2);font-weight:700;background:rgba(255,107,138,.12);padding:3px 8px;border-radius:100px;margin-left:6px}
 
-/* ОНБОРДИНГ */
+/* ONBOARDING */
 .onboarding-viewer{position:fixed;inset:0;z-index:250;display:none;flex-direction:column;background:var(--bg)}
 .onboarding-viewer.active{display:flex}
 .onb-slide{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;text-align:center;position:relative;overflow:hidden}
-.onb-slide .onb-bg-emoji{position:absolute;font-size:340px;line-height:1;opacity:.06;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);user-select:none;z-index:0}
+.onb-slide .onb-bg-emoji{position:absolute;font-size:340px;line-height:1;opacity:.06;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg)}
 .onb-slide .onb-content{position:relative;z-index:1;max-width:400px;animation:onbSlideIn .5s cubic-bezier(.34,1.36,.64,1)}
 @keyframes onbSlideIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .onb-slide .onb-icon{font-size:100px;margin-bottom:24px;line-height:1;display:inline-block;animation:onbFloat 3s ease-in-out infinite}
@@ -420,8 +444,15 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     <div class="container">
         <div id="storiesSlot"></div>
         <div id="widgetSlot"></div>
-        <div id="myListsSlot"></div>
         <div id="historySlot"></div>
+    </div>
+</div>
+
+<div class="page" id="page-lists">
+    <div class="container">
+        <div style="height:14px"></div>
+        <div id="listsPageContent"></div>
+        <button type="button" class="btn-primary" id="createNewListBtn" style="margin-top:8px">+ Создать новый список</button>
     </div>
 </div>
 
@@ -462,14 +493,15 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.1.0</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.2.0</div></div>
         </div>
-        <div class="version-badge" style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.1.0</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.2.0</div>
     </div>
 </div>
 
 <div class="bottom-nav">
     <button type="button" class="nav-item active" data-page="home"><span class="nav-icon">🏠</span><span class="nav-label">Главная</span></button>
+    <button type="button" class="nav-item" data-page="lists"><span class="nav-icon">📋</span><span class="nav-label">Списки</span></button>
     <button type="button" class="nav-item" data-page="profile"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></button>
 </div>
 
@@ -499,8 +531,8 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <div class="weather-card" id="weatherCard">
             <div class="weather-header">
                 <div class="w-icon" id="weatherIcon">☀️</div>
-                <div class="w-city" id="weatherCity">—</div>
-                <div class="w-temp" id="weatherTemp">—</div>
+                <div class="w-city" id="weatherCity">--</div>
+                <div class="w-temp" id="weatherTemp">--</div>
             </div>
             <div class="weather-desc" id="weatherDesc">Загрузка...</div>
             <div class="weather-forecast" id="weatherForecast"></div>
@@ -689,14 +721,14 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div class="modal-overlay" id="notifOnboardModal">
     <div class="modal">
-        <div class="notif-onboard" style="padding:8px 4px">
-            <div class="no-icon" style="font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite">🔔</div>
+        <div style="padding:8px 4px">
+            <div style="font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite">🔔</div>
             <h2 style="font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-bottom:10px;padding:0">Включить напоминания?</h2>
             <p style="font-size:15px;color:var(--text-2);text-align:center;line-height:1.55;font-weight:500;margin-bottom:20px;padding:0 12px">Чтобы вовремя собрать багаж и ничего не забыть, разрешите уведомления.</p>
             <ul style="list-style:none;margin-bottom:24px;padding:0 12px">
                 <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">📅</span> Напоминание за день до поездки</li>
                 <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">🧳</span> Напоминание в день отправления</li>
-                <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">✈️</span> Никакого спама — только по делу</li>
+                <li style="font-size:14px;color:var(--text);font-weight:600;padding:8px 0;display:flex;align-items:center;gap:10px"><span style="font-size:18px;width:28px;text-align:center">✈️</span> Никакого спама -- только по делу</li>
             </ul>
             <button type="button" class="btn-primary" id="notifAllowBtn">Разрешить уведомления</button>
             <button type="button" class="btn-secondary" id="notifLaterBtn">Позже</button>
@@ -739,10 +771,9 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <script>
 window.addEventListener('error', function(e) {
-    console.error('byBag global error:', e.error || e.message);
+    console.error('byBag error:', e.error || e.message);
     try {
-        var es = document.getElementById('errorScreen');
-        var em = document.getElementById('errMsg');
+        var es = document.getElementById('errorScreen'), em = document.getElementById('errMsg');
         if (es && em) {
             em.textContent = (e.error && e.error.stack) ? e.error.stack : (e.message || 'Неизвестная ошибка');
             es.classList.add('show');
@@ -754,7 +785,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 (function() {
     'use strict';
 
-    var APP_VERSION = '1.1.0';
+    var APP_VERSION = '1.2.0';
     var MAX_ACTIVE_TRIPS = 2;
 
     var CATEGORIES = {
@@ -875,34 +906,24 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     var ONBOARDING_SLIDES = [
         {icon:'🧳',bg:'🧳',title:'Добро пожаловать в byBag',text:'Ваш личный помощник для сбора багажа и планирования поездок. Никогда не забудьте важное.'},
         {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Можно вести до 2 активных поездок одновременно и переключаться между ними свайпом.'},
-        {icon:'👆',bg:'✅',title:'Собирайте багаж',text:'Отмечайте вещи одним касанием.',list:[{icon:'👈',text:'Свайп влево — удалить вещь'},{icon:'👉',text:'Свайп вправо — отметить или сбросить'},{icon:'🔍',text:'Поиск по списку вещей'}]},
+        {icon:'👆',bg:'✅',title:'Собирайте багаж',text:'Отмечайте вещи одним касанием.',list:[{icon:'👈',text:'Свайп влево -- удалить вещь'},{icon:'👉',text:'Свайп вправо -- отметить или сбросить'},{icon:'🔍',text:'Поиск по списку вещей'}]},
         {icon:'📊',bg:'📊',title:'Умный помощник',text:'Приложение подскажет:',list:[{icon:'💡',text:'Сколько вещей взять'},{icon:'⚖️',text:'Вес багажа и лимиты'},{icon:'🌤️',text:'Погоду в городе'},{icon:'📅',text:'Обратный отсчёт'}]},
         {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды, следите за прогрессом и делайте каждую поездку лучше.',list:[{icon:'🏆',text:'Достижения за поездки'},{icon:'📊',text:'Личная статистика'},{icon:'🎨',text:'Свои списки и палитры'}]}
     ];
 
-    var customTypes = {};
-    var activeTrips = [];
-    var currentTripIndex = 0;
-    var history = [];
-    var selectedType = null;
+    var customTypes = {}, activeTrips = [], history = [];
+    var currentTripIndex = 0, selectedType = null;
     var profile = { name: 'Эрик', avatar: null };
     var settings = { dark: false, notif: true, vibrate: true, hideDone: false, smartHints: true };
-    var achievementsState = {};
-    var viewedStories = {};
+    var achievementsState = {}, viewedStories = {};
     var wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
     var editing = { id: null, name: '', emoji: '🎒', colorIdx: 0, items: [] };
-    var searchQuery = '';
-    var storyTimer = null;
-    var currentStoryIdx = 0;
-    var weatherCache = {};
-    var storyHandlersBound = false;
-    var carouselBound = false;
-    var searchDebounceTimer = null;
-    var currentOnbSlide = 0;
+    var searchQuery = '', storyTimer = null, currentStoryIdx = 0;
+    var weatherCache = {}, storyHandlersBound = false, searchDebounceTimer = null, currentOnbSlide = 0;
 
     function $(id) { try { return document.getElementById(id); } catch (e) { return null; } }
-    function escapeHtml(str) {
-        try { return String(str).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+    function escapeHtml(s) {
+        try { return String(s).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
         catch (e) { return ''; }
     }
     function plural(n, one, few, many) {
@@ -945,15 +966,19 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function getCurrentTrip() {
         if (!activeTrips || !activeTrips.length) return null;
-        if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
+        if (currentTripIndex >= activeTrips.length) return null;
         return activeTrips[currentTripIndex];
+    }
+    function getFallbackTrip() {
+        var t = activeTrips[currentTripIndex] || activeTrips[0];
+        return t || { type: 'rest', daysCount: 3, city: '', startDate: null };
     }
 
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
         if (!Array.isArray(activeTrips)) activeTrips = [];
         var oldActive = loadJSON('bybag_active', null);
-        if (oldActive && typeof oldActive === 'object' && activeTrips.length === 0) {
+        if (oldActive && typeof oldActive === 'object' && !activeTrips.length) {
             activeTrips = [oldActive];
             try { localStorage.removeItem('bybag_active'); } catch (e) {}
         }
@@ -980,29 +1005,25 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (activeTrips.length > MAX_ACTIVE_TRIPS) activeTrips = activeTrips.slice(0, MAX_ACTIVE_TRIPS);
         if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
 
-        try {
-            Object.keys(customTypes).forEach(function(k) {
-                var t = customTypes[k];
-                if (!t || typeof t !== 'object') { delete customTypes[k]; return; }
-                if (!Array.isArray(t.items)) t.items = [];
-                t.items = t.items.map(normalizeItem);
-                if (!t.name) t.name = 'Свой список';
-                if (!t.emoji) t.emoji = '🎒';
-                if (!t.c1) t.c1 = '#ffb347';
-                if (!t.c2) t.c2 = '#ff7e5f';
-                if (!t.ring) t.ring = '#ff7e5f';
-            });
-        } catch (e) { customTypes = {}; }
+        Object.keys(customTypes).forEach(function(k) {
+            var t = customTypes[k];
+            if (!t || typeof t !== 'object') { delete customTypes[k]; return; }
+            if (!Array.isArray(t.items)) t.items = [];
+            t.items = t.items.map(normalizeItem);
+            t.name = t.name || 'Свой список';
+            t.emoji = t.emoji || '🎒';
+            t.c1 = t.c1 || '#ffb347';
+            t.c2 = t.c2 || '#ff7e5f';
+            t.ring = t.ring || '#ff7e5f';
+        });
 
         history = history.filter(function(h) { return h && typeof h === 'object'; });
         history.forEach(function(h) { if (h.fullItems && Array.isArray(h.fullItems)) h.fullItems = h.fullItems.map(normalizeItem); });
     }
 
     function saveActive() {
-        try {
-            if (activeTrips && activeTrips.length > 0) saveJSON('bybag_active_trips', activeTrips);
-            else try { localStorage.removeItem('bybag_active_trips'); } catch (e) {}
-        } catch (e) {}
+        if (activeTrips && activeTrips.length > 0) saveJSON('bybag_active_trips', activeTrips);
+        else try { localStorage.removeItem('bybag_active_trips'); } catch (e) {}
     }
     function saveHistory() { saveJSON('bybag_history', history); }
     function saveProfile() { saveJSON('bybag_profile', profile); }
@@ -1018,11 +1039,12 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         try {
             document.documentElement.style.backgroundColor = settings.dark ? '#0d1220' : '#faf6f0';
             document.body.classList.toggle('dark', !!settings.dark);
-            var d = $('darkToggle'); if (d) d.classList.toggle('on', !!settings.dark);
-            var n = $('notifToggle'); if (n) n.classList.toggle('on', !!settings.notif);
-            var v = $('vibrateToggle'); if (v) v.classList.toggle('on', !!settings.vibrate);
+            ['darkToggle','notifToggle','vibrateToggle'].forEach(function(id) {
+                var el = $(id);
+                if (el) el.classList.toggle('on', !!(id === 'darkToggle' ? settings.dark : id === 'notifToggle' ? settings.notif : settings.vibrate));
+            });
             var sh = $('smartHintsToggle'); if (sh) sh.classList.toggle('on', !!settings.smartHints);
-        } catch (e) { console.error('applyTheme error:', e); }
+        } catch (e) {}
     }
     function formatTripDate(trip) {
         if (!trip.startDate) return trip.date || '';
@@ -1041,35 +1063,43 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             return Math.abs(diff) + ' ' + plural(Math.abs(diff), 'день', 'дня', 'дней') + ' назад';
         } catch (e) { return ''; }
     }
+    function getTripStats(trip) {
+        var done = 0, dw = 0, tw = 0;
+        var items = (trip && trip.items) ? trip.items : [];
+        items.forEach(function(i) {
+            var w = (i.weight || 0) * (i.qty || 1);
+            tw += w;
+            if (i.done) { done++; dw += w; }
+        });
+        return { done: done, total: items.length, percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0, doneWeight: dw, totalWeight: tw };
+    }
+    function buildTripsForStories() {
+        var arr = [];
+        activeTrips.forEach(function(t) { if (t.city) arr.push({ type: 'weather', trip: t, isActive: true }); });
+        activeTrips.forEach(function(t) { arr.push({ type: 'trip', trip: t, isActive: true }); });
+        history.slice(0, 8).forEach(function(h) { arr.push({ type: 'trip', trip: h, isActive: false }); });
+        return arr;
+    }
 
     // STORIES
     function buildStories() {
         var slot = $('storiesSlot'); if (!slot) return;
         slot.innerHTML = '';
-        var trips = [];
-        activeTrips.forEach(function(t) { if (t.city) trips.push({ type: 'weather', trip: t, isActive: true }); });
-        activeTrips.forEach(function(t) { trips.push({ type: 'trip', trip: t, isActive: true }); });
-        history.slice(0, 8).forEach(function(h) { trips.push({ type: 'trip', trip: h, isActive: false }); });
-        if (trips.length === 0) return;
+        var trips = buildTripsForStories();
+        if (!trips.length) return;
 
         var wrap = document.createElement('div');
         wrap.className = 'stories-wrap';
-        var title = document.createElement('div');
-        title.className = 'stories-title';
-        title.textContent = 'Истории';
-        wrap.appendChild(title);
+        wrap.innerHTML = '<div class="stories-title">Истории</div>';
         var row = document.createElement('div');
         row.className = 'stories-row';
         trips.forEach(function(item, idx) {
-            var trip = item.trip;
-            var isActive = item.isActive;
-            var isWeather = item.type === 'weather';
-            var storyId = (isWeather ? 'weather_' : (isActive ? 'active_' : 'hist_')) + trip.id;
-            var viewed = !!viewedStories[storyId];
+            var trip = item.trip, isWeather = item.type === 'weather';
+            var storyId = (isWeather ? 'weather_' : (item.isActive ? 'active_' : 'hist_')) + trip.id;
             var el = document.createElement('div');
             el.className = 'story-item';
             var ring = document.createElement('div');
-            ring.className = 'story-ring' + (viewed ? ' viewed' : '');
+            ring.className = 'story-ring' + (viewedStories[storyId] ? ' viewed' : '');
             var inner = document.createElement('div');
             inner.className = 'story-inner';
             if (isWeather) inner.textContent = '🌤️';
@@ -1125,15 +1155,11 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     function showStorySlide(trips, idx) {
         if (idx < 0 || idx >= trips.length) { closeStoryViewer(); return; }
-        var item = trips[idx];
-        var trip = item.trip;
-        var isActive = item.isActive;
-        var isWeather = item.type === 'weather';
-        var storyId = (isWeather ? 'weather_' : (isActive ? 'active_' : 'hist_')) + trip.id;
+        var item = trips[idx], trip = item.trip, isWeather = item.type === 'weather';
+        var storyId = (isWeather ? 'weather_' : (item.isActive ? 'active_' : 'hist_')) + trip.id;
         viewedStories[storyId] = Date.now();
         saveViewedStories();
-        var bars = document.querySelectorAll('.story-progress-bar');
-        bars.forEach(function(bar, i) {
+        document.querySelectorAll('.story-progress-bar').forEach(function(bar, i) {
             bar.classList.toggle('done', i < idx);
             var fill = bar.querySelector('.story-progress-fill');
             if (fill) fill.style.width = i < idx ? '100%' : '0%';
@@ -1145,7 +1171,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var timeEl = $('storyTime');
         if (timeEl) {
             if (isWeather) timeEl.textContent = 'прогноз на поездку';
-            else if (isActive) { var cd = trip.startDate ? countdown(trip.startDate) : ''; timeEl.textContent = cd ? cd : 'активная поездка'; }
+            else if (item.isActive) { var cd = trip.startDate ? countdown(trip.startDate) : ''; timeEl.textContent = cd ? cd : 'активная поездка'; }
             else timeEl.textContent = trip.date || 'завершена';
         }
         var content = $('storyContent'); if (!content) return;
@@ -1153,13 +1179,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             content.innerHTML = '<div class="story-big-emoji">🌤️</div><h2>' + escapeHtml(trip.city || 'Погода') + '</h2><p>Загрузка прогноза...</p><div class="story-stats" id="storyWeatherStats"></div>';
             loadWeatherForStory(trip);
         } else {
-            var s = isActive ? getTripStats(trip) : { done: trip.done || 0, total: trip.total || 0, percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0, doneWeight: 0, totalWeight: 0 };
-            var subText = '';
-            if (isActive) {
-                if (s.percent === 100) subText = 'Всё собрано! Можно отправляться 🎉';
-                else if (s.percent === 0) subText = 'Ещё ничего не собрано. Начни сейчас!';
-                else subText = 'Собрано ' + s.done + ' из ' + s.total + ' вещей';
-            } else subText = 'Завершена ' + (trip.date || '') + ' · собрано ' + s.done + ' из ' + s.total;
+            var s = item.isActive ? getTripStats(trip) : { done: trip.done || 0, total: trip.total || 0, percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0, totalWeight: 0 };
+            var subText = item.isActive
+                ? (s.percent === 100 ? 'Всё собрано! Можно отправляться 🎉' : s.percent === 0 ? 'Ещё ничего не собрано. Начни сейчас!' : 'Собрано ' + s.done + ' из ' + s.total + ' вещей')
+                : 'Завершена ' + (trip.date || '') + ' · собрано ' + s.done + ' из ' + s.total;
             content.innerHTML = '<div class="story-big-emoji">' + (trip.emoji || '🎒') + '</div><h2>' + escapeHtml(trip.name || 'Поездка') + '</h2><p>' + escapeHtml(subText) + '</p><div class="story-stats">' +
                 '<div class="story-stat"><div class="s-val">' + s.percent + '%</div><div class="s-lbl">собрано</div></div>' +
                 '<div class="story-stat"><div class="s-val">' + s.done + '/' + s.total + '</div><div class="s-lbl">вещей</div></div>' +
@@ -1169,48 +1192,45 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
 
     function loadWeatherForStory(trip) {
-        var city = trip.city; if (!city) return;
-        var cacheKey = 'weather_' + city.toLowerCase();
-        var cached = weatherCache[cacheKey];
+        if (!trip.city) return;
+        var ck = 'weather_' + trip.city.toLowerCase();
+        var cached = weatherCache[ck];
         if (cached && Date.now() - cached.ts < 1800000) { renderWeatherStory(cached.data); return; }
-        try {
-            fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(city) + '&count=1&language=ru&format=json')
-                .then(function(r) { return r.json(); })
-                .then(function(geo) {
-                    if (!geo.results || !geo.results.length) throw new Error('nf');
-                    var lat = geo.results[0].latitude, lon = geo.results[0].longitude, name = geo.results[0].name;
-                    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
-                        .then(function(r) { return r.json(); })
-                        .then(function(data) { data._cityName = name; weatherCache[cacheKey] = { ts: Date.now(), data: data }; renderWeatherStory(data); });
-                })
-                .catch(function() {
-                    var st = $('storyWeatherStats');
-                    if (st) st.innerHTML = '<div style="color:#fff;opacity:.7;font-size:14px">Не удалось загрузить</div>';
-                });
-        } catch (e) {}
+        fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(trip.city) + '&count=1&language=ru&format=json')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) {
+                if (!geo.results || !geo.results.length) throw new Error('nf');
+                var g = geo.results[0];
+                return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + g.latitude + '&longitude=' + g.longitude + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { d._cityName = g.name; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeatherStory(d); });
+            })
+            .catch(function() {
+                var st = $('storyWeatherStats');
+                if (st) st.innerHTML = '<div style="color:#fff;opacity:.7;font-size:14px">Не удалось загрузить</div>';
+            });
     }
 
     function renderWeatherStory(data) {
         var content = $('storyContent'); if (!content) return;
-        var current = data.current || {};
-        var code = current.weather_code || 0;
+        var cur = data.current || {}, code = cur.weather_code || 0;
         var w = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
-        var temp = current.temperature_2m !== undefined ? Math.round(current.temperature_2m) : '—';
+        var temp = cur.temperature_2m !== undefined ? Math.round(cur.temperature_2m) : '--';
         var hint = w.desc;
-        if (current.temperature_2m !== undefined) {
-            if (current.temperature_2m < 0) hint += ' · Возьми тёплые вещи';
-            else if (current.temperature_2m < 10) hint += ' · Нужна куртка';
-            else if (current.temperature_2m > 28) hint += ' · Очень жарко';
+        if (cur.temperature_2m !== undefined) {
+            if (cur.temperature_2m < 0) hint += ' · Возьми тёплые вещи';
+            else if (cur.temperature_2m < 10) hint += ' · Нужна куртка';
+            else if (cur.temperature_2m > 28) hint += ' · Очень жарко';
         }
         if (code >= 51 && code <= 82) hint += ' · Не забудь зонт';
         var daily = data.daily || {};
         var days = daily.time || [], codes = daily.weather_code || [], maxT = daily.temperature_2m_max || [];
-        var dayNames = ['вс','пн','вт','ср','чт','пт','сб'];
+        var dn = ['вс','пн','вт','ср','чт','пт','сб'];
         var forecastHtml = '';
         for (var i = 0; i < Math.min(5, days.length); i++) {
             var d = new Date(days[i]);
             var ww = WEATHER_CODES[codes[i]] || { icon: '🌡️' };
-            forecastHtml += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;min-width:50px"><div style="font-size:11px;opacity:.7;font-weight:700;text-transform:uppercase">' + dayNames[d.getDay()] + '</div><div style="font-size:22px">' + ww.icon + '</div><div style="font-size:12px;font-weight:700">' + Math.round(maxT[i]) + '°</div></div>';
+            forecastHtml += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;min-width:50px"><div style="font-size:11px;opacity:.7;font-weight:700;text-transform:uppercase">' + dn[d.getDay()] + '</div><div style="font-size:22px">' + ww.icon + '</div><div style="font-size:12px;font-weight:700">' + Math.round(maxT[i]) + '°</div></div>';
         }
         content.innerHTML = '<div class="story-big-emoji">' + w.icon + '</div><h2>' + temp + '°</h2><p>' + escapeHtml(hint) + '</p><div style="display:flex;gap:14px;justify-content:center;margin-top:20px;animation:storyFade .8s .5s both">' + forecastHtml + '</div>';
     }
@@ -1218,14 +1238,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function startStoryProgress(trips, idx) {
         stopStoryProgress();
         var bars = document.querySelectorAll('.story-progress-bar');
-        var currentBar = bars[idx]; if (!currentBar) return;
-        var fill = currentBar.querySelector('.story-progress-fill'); if (!fill) return;
+        var cb = bars[idx]; if (!cb) return;
+        var fill = cb.querySelector('.story-progress-fill'); if (!fill) return;
         fill.style.width = '0%';
         var duration = 6000, start = Date.now();
         storyTimer = setInterval(function() {
-            var percent = Math.min(100, ((Date.now() - start) / duration) * 100);
-            fill.style.width = percent + '%';
-            if (percent >= 100) { stopStoryProgress(); nextStorySlide(); }
+            var p = Math.min(100, ((Date.now() - start) / duration) * 100);
+            fill.style.width = p + '%';
+            if (p >= 100) { stopStoryProgress(); nextStorySlide(); }
         }, 50);
     }
     function stopStoryProgress() { if (storyTimer) { clearInterval(storyTimer); storyTimer = null; } }
@@ -1252,17 +1272,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (currentStoryIdx - 1 < 0) { currentStoryIdx = 0; showStorySlide(trips, 0); return; }
         currentStoryIdx--; showStorySlide(trips, currentStoryIdx);
     }
-    function buildTripsForStories() {
-        var arr = [];
-        activeTrips.forEach(function(t) { if (t.city) arr.push({ type: 'weather', trip: t, isActive: true }); });
-        activeTrips.forEach(function(t) { arr.push({ type: 'trip', trip: t, isActive: true }); });
-        history.slice(0, 8).forEach(function(h) { arr.push({ type: 'trip', trip: h, isActive: false }); });
-        return arr;
-    }
     function closeStoryViewer() {
         stopStoryProgress();
-        var viewer = $('storyViewer');
-        if (viewer) viewer.classList.remove('active');
+        var viewer = $('storyViewer'); if (viewer) viewer.classList.remove('active');
         resetUIBlocks();
         buildStories();
     }
@@ -1275,7 +1287,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             ws.innerHTML = '';
             if (activeTrips.length === 0) ws.appendChild(buildEmptyState());
             else ws.appendChild(buildTripsCarousel());
-            renderMyLists();
             renderHistory();
         } catch (e) { console.error('renderHome error', e); }
     }
@@ -1291,28 +1302,35 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function buildTripsCarousel() {
         var wrap = document.createElement('div');
         wrap.className = 'trips-carousel';
-
         var track = document.createElement('div');
         track.className = 'trips-track';
         track.id = 'tripsTrack';
 
-        activeTrips.forEach(function(trip) {
-            var w = buildWidget(trip);
-            track.appendChild(w);
-        });
+        activeTrips.forEach(function(trip) { track.appendChild(buildWidget(trip)); });
+
+        var canAdd = activeTrips.length < MAX_ACTIVE_TRIPS;
+        if (canAdd) {
+            var addSlide = document.createElement('div');
+            addSlide.className = 'main-widget add-trip-slide';
+            addSlide.innerHTML = '<div class="add-trip-circle">+</div><div class="add-trip-title">Добавить поездку</div><div class="add-trip-desc">Можно вести до ' + MAX_ACTIVE_TRIPS + ' поездок</div>';
+            addSlide.addEventListener('click', function() { openTypeModal(); });
+            track.appendChild(addSlide);
+        }
         wrap.appendChild(track);
 
-        if (activeTrips.length > 1) {
+        var totalSlides = activeTrips.length + (canAdd ? 1 : 0);
+        if (totalSlides > 1) {
             var dots = document.createElement('div');
             dots.className = 'trips-dots';
-            activeTrips.forEach(function(t, i) {
-                var d = document.createElement('div');
-                d.className = 'tdot' + (i === currentTripIndex ? ' active' : '');
-                d.addEventListener('click', function() { goToTrip(i); });
-                dots.appendChild(d);
-            });
+            for (var i = 0; i < totalSlides; i++) {
+                (function(i) {
+                    var d = document.createElement('div');
+                    d.className = 'tdot' + (i === currentTripIndex ? ' active' : '');
+                    d.addEventListener('click', function() { goToTrip(i); });
+                    dots.appendChild(d);
+                })(i);
+            }
             wrap.appendChild(dots);
-
             if (!localStorage.getItem('bybag_swipe_hint_shown')) {
                 var hint = document.createElement('div');
                 hint.className = 'swipe-hint';
@@ -1326,26 +1344,26 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             var tr = $('tripsTrack');
             if (tr) tr.style.transform = 'translateX(-' + (currentTripIndex * 100) + '%)';
         }, 0);
-
         bindCarouselSwipe(wrap);
         return wrap;
     }
 
     function goToTrip(idx) {
-        if (idx < 0 || idx >= activeTrips.length) return;
+        var canAdd = activeTrips.length < MAX_ACTIVE_TRIPS;
+        var total = activeTrips.length + (canAdd ? 1 : 0);
+        if (idx < 0 || idx >= total) return;
         currentTripIndex = idx;
         var tr = $('tripsTrack');
         if (tr) tr.style.transform = 'translateX(-' + (idx * 100) + '%)';
-        var dots = document.querySelectorAll('.trips-dots .tdot');
-        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+        document.querySelectorAll('.trips-dots .tdot').forEach(function(d, i) { d.classList.toggle('active', i === idx); });
         vibrate();
     }
 
     function bindCarouselSwipe(el) {
-        if (activeTrips.length < 2) return;
-        var startX = 0, startY = 0, isDown = false, isHoriz = false;
-        var track = null;
-
+        var canAdd = activeTrips.length < MAX_ACTIVE_TRIPS;
+        var total = activeTrips.length + (canAdd ? 1 : 0);
+        if (total < 2) return;
+        var startX = 0, startY = 0, isDown = false, isHoriz = false, track = null;
         el.addEventListener('touchstart', function(e) {
             if (e.target.closest('.hero-close')) return;
             startX = e.touches[0].clientX; startY = e.touches[0].clientY;
@@ -1353,17 +1371,13 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             track = $('tripsTrack');
             if (track) track.style.transition = 'none';
         }, { passive: true });
-
         el.addEventListener('touchmove', function(e) {
             if (!isDown || !track) return;
-            var dx = e.touches[0].clientX - startX;
-            var dy = e.touches[0].clientY - startY;
+            var dx = e.touches[0].clientX - startX, dy = e.touches[0].clientY - startY;
             if (!isHoriz && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) isHoriz = true;
             if (!isHoriz) return;
-            var base = -currentTripIndex * 100;
-            track.style.transform = 'translateX(calc(' + base + '% + ' + dx + 'px))';
+            track.style.transform = 'translateX(calc(' + (-currentTripIndex * 100) + '% + ' + dx + 'px))';
         }, { passive: true });
-
         el.addEventListener('touchend', function(e) {
             if (!isDown || !track) return;
             isDown = false;
@@ -1371,30 +1385,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             var threshold = el.offsetWidth * 0.2;
             track.style.transition = '';
             if (isHoriz && Math.abs(dx) > threshold) {
-                if (dx < 0 && currentTripIndex < activeTrips.length - 1) goToTrip(currentTripIndex + 1);
+                if (dx < 0 && currentTripIndex < total - 1) goToTrip(currentTripIndex + 1);
                 else if (dx > 0 && currentTripIndex > 0) goToTrip(currentTripIndex - 1);
                 else goToTrip(currentTripIndex);
             } else goToTrip(currentTripIndex);
         }, { passive: true });
     }
 
-    function getTripStats(trip) {
-        var done = 0, dw = 0, tw = 0;
-        var items = (trip && trip.items) ? trip.items : [];
-        items.forEach(function(i) {
-            var w = (i.weight || 0) * (i.qty || 1);
-            tw += w;
-            if (i.done) { done++; dw += w; }
-        });
-        return { done: done, total: items.length, percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0, doneWeight: dw, totalWeight: tw };
-    }
-
     function buildWidget(trip) {
         var s = getTripStats(trip);
         var remaining = s.total - s.done;
         var complete = s.percent === 100 && s.total > 0;
-        var radius = 44;
-        var circ = 2 * Math.PI * radius;
+        var radius = 44, circ = 2 * Math.PI * radius;
         var offset = circ - (s.percent / 100) * circ;
         var ringColor = complete ? '#2f9c53' : (trip.ring || '#ff7e5f');
         var cdText = trip.startDate ? countdown(trip.startDate) : '';
@@ -1427,42 +1429,86 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             '</div>';
         widget.addEventListener('click', function(e) {
             if (e.target.closest('.hero-close')) return;
-            var tripIdx = activeTrips.indexOf(trip);
-            if (tripIdx !== -1) currentTripIndex = tripIdx;
+            var i = activeTrips.indexOf(trip);
+            if (i !== -1) currentTripIndex = i;
             openChecklistPage();
         });
         var closeBtn = widget.querySelector('.hero-close');
         if (closeBtn) closeBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            var tripIdx = activeTrips.indexOf(trip);
-            if (tripIdx !== -1) currentTripIndex = tripIdx;
+            var i = activeTrips.indexOf(trip);
+            if (i !== -1) currentTripIndex = i;
             if (confirm('Завершить поездку и перенести в статистику?')) completeActiveTrip();
         });
         return widget;
     }
 
-    function renderMyLists() {
-        var slot = $('myListsSlot'); if (!slot) return;
-        slot.innerHTML = '';
-        var keys = Object.keys(customTypes); if (!keys.length) return;
-        var section = document.createElement('div');
-        section.className = 'stats-section';
-        section.innerHTML = '<div class="stats-title">Мои списки</div>';
+    // LISTS PAGE
+    function renderListsPage() {
+        var cont = $('listsPageContent');
+        if (!cont) return;
+        cont.innerHTML = '';
+        var keys = Object.keys(customTypes);
+
+        var header = document.createElement('div');
+        header.className = 'lists-page-header';
+        header.innerHTML = '<div class="lph-title">Все списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
+        cont.appendChild(header);
+
+        if (!keys.length) {
+            var empty = document.createElement('div');
+            empty.className = 'empty-hero';
+            empty.style.marginTop = '0';
+            empty.innerHTML = '<div class="empty-icon">📋</div><h2>Пока нет списков</h2><p>Создайте свой список вещей для быстрого добавления в поездки</p><div class="empty-cta"><span class="plus">+</span> Создать список</div>';
+            empty.addEventListener('click', function() { startWizard(); });
+            cont.appendChild(empty);
+            return;
+        }
+
+        var grid = document.createElement('div');
+        grid.className = 'lists-grid';
+
         keys.forEach(function(key) {
             var t = customTypes[key];
-            var item = document.createElement('div');
-            item.className = 'my-list-item';
-            item.innerHTML = '<div class="ml-emoji">' + (t.emoji || '🎒') + '</div><div class="ml-body"><div class="ml-name">' + escapeHtml(t.name || 'Список') + '</div><div class="ml-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div></div>';
+            var card = document.createElement('div');
+            card.className = 'list-card';
+
+            var head = document.createElement('div');
+            head.className = 'list-card-head';
+            head.style.background = 'linear-gradient(135deg,' + (t.c1 || '#ffb347') + ',' + (t.c2 || '#ff7e5f') + ')';
+            head.innerHTML = '<div class="lch-emoji">' + (t.emoji || '🎒') + '</div><div class="lch-deco">' + (t.emoji || '🎒') + '</div>';
+
+            var body = document.createElement('div');
+            body.className = 'list-card-body';
+            body.innerHTML = '<div class="lcb-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lcb-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div>';
+
+            var actions = document.createElement('div');
+            actions.className = 'list-card-actions';
+
             var editBtn = document.createElement('button');
-            editBtn.type = 'button'; editBtn.className = 'icon-btn'; editBtn.textContent = '✎';
+            editBtn.type = 'button';
+            editBtn.className = 'lca-btn edit';
+            editBtn.innerHTML = '<span>✎</span> Изменить';
             editBtn.addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
+
             var delBtn = document.createElement('button');
-            delBtn.type = 'button'; delBtn.className = 'icon-btn'; delBtn.textContent = '✕';
-            delBtn.addEventListener('click', function(e) { e.stopPropagation(); if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key); });
-            item.appendChild(editBtn); item.appendChild(delBtn);
-            section.appendChild(item);
+            delBtn.type = 'button';
+            delBtn.className = 'lca-btn del';
+            delBtn.innerHTML = '<span>🗑</span> Удалить';
+            delBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
+            });
+
+            actions.appendChild(editBtn);
+            actions.appendChild(delBtn);
+            card.appendChild(head);
+            card.appendChild(body);
+            card.appendChild(actions);
+            card.addEventListener('click', function() { openEditor(key); });
+            grid.appendChild(card);
         });
-        slot.appendChild(section);
+        cont.appendChild(grid);
     }
 
     function renderHistory() {
@@ -1478,16 +1524,12 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             var item = document.createElement('div');
             item.className = 'history-item';
             item.innerHTML = '<div class="h-emoji">' + (h.emoji || '🎒') + '</div><div class="h-body"><div class="h-name">' + escapeHtml(h.name || 'Поездка') + '</div><div class="h-meta">' + (h.date || '') + ' · ' + (h.done || 0) + ' из ' + (h.total || 0) + ' вещей</div></div><div class="h-badge">' + percent + '%</div>';
-            var shareBtn = document.createElement('button');
-            shareBtn.type = 'button'; shareBtn.className = 'icon-btn'; shareBtn.textContent = '📤';
-            shareBtn.addEventListener('click', function(e) { e.stopPropagation(); shareTrip(h); });
-            var repeatBtn = document.createElement('button');
-            repeatBtn.type = 'button'; repeatBtn.className = 'icon-btn'; repeatBtn.textContent = '↻';
-            repeatBtn.addEventListener('click', function(e) { e.stopPropagation(); repeatTrip(h); });
-            var del = document.createElement('button');
-            del.type = 'button'; del.className = 'icon-btn'; del.textContent = '✕';
-            del.addEventListener('click', function(e) { e.stopPropagation(); deleteHistory(h.id); });
-            item.appendChild(shareBtn); item.appendChild(repeatBtn); item.appendChild(del);
+            [['📤', function() { shareTrip(h); }], ['↻', function() { repeatTrip(h); }], ['✕', function() { deleteHistory(h.id); }]].forEach(function(pair) {
+                var b = document.createElement('button');
+                b.type = 'button'; b.className = 'icon-btn'; b.textContent = pair[0];
+                b.addEventListener('click', function(e) { e.stopPropagation(); pair[1](); });
+                item.appendChild(b);
+            });
             section.appendChild(item);
         });
         slot.appendChild(section);
@@ -1507,8 +1549,12 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var text = lines.join('\n');
         if (navigator.share) navigator.share({ title: trip.name || 'byBag', text: text }).catch(function() {});
         else {
-            try { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('Скопировано'); }
-            catch (e) { showToast('Не удалось'); }
+            try {
+                var ta = document.createElement('textarea');
+                ta.value = text; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta);
+                showToast('Скопировано');
+            } catch (e) { showToast('Не удалось'); }
         }
     }
 
@@ -1522,17 +1568,16 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function repeatTrip(h) {
         if (activeTrips.length >= MAX_ACTIVE_TRIPS) { showToast('Сначала завершите одну из поездок'); return; }
         var type = getType(h.type);
-        var items = h.fullItems && h.fullItems.length ? h.fullItems : (type ? type.items : null);
+        var items = (h.fullItems && h.fullItems.length) ? h.fullItems : (type ? type.items : null);
         if (!items || !items.length) { showToast('Не удалось восстановить'); return; }
-        var newTrip = {
+        activeTrips.push({
             id: Date.now(), type: h.type || 'rest', name: h.name || 'Поездка',
             emoji: h.emoji || (type ? type.emoji : '🎒'),
             c1: type ? type.c1 : '#ffb347', c2: type ? type.c2 : '#ff7e5f', ring: type ? type.ring : '#ff7e5f',
             date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
             startDate: null, endDate: null, daysCount: 3, city: '',
             items: items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
-        };
-        activeTrips.push(newTrip);
+        });
         currentTripIndex = activeTrips.length - 1;
         saveActive(); renderHome(); vibrate();
         showToast('Поездка создана заново!');
@@ -1541,22 +1586,19 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function renderTypeGrid() {
         var grid = $('typeGrid'); if (!grid) return;
         grid.innerHTML = '';
-        Object.keys(DEFAULT_TYPES).forEach(function(key) {
-            var t = DEFAULT_TYPES[key];
+        function makeOption(key, t, isCustom) {
             var div = document.createElement('div');
             div.className = 'type-option' + (selectedType === key ? ' selected' : '');
-            div.innerHTML = '<span class="emoji">' + t.emoji + '</span><span class="name">' + t.name + '</span>';
-            div.addEventListener('click', function() { selectedType = key; var cb = $('createBtn'); if (cb) cb.disabled = false; renderTypeGrid(); });
+            div.innerHTML = (isCustom ? '<span class="custom-type-badge">свой</span>' : '') + '<span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
+            div.addEventListener('click', function() {
+                selectedType = key;
+                var cb = $('createBtn'); if (cb) cb.disabled = false;
+                renderTypeGrid();
+            });
             grid.appendChild(div);
-        });
-        Object.keys(customTypes).forEach(function(key) {
-            var t = customTypes[key];
-            var div = document.createElement('div');
-            div.className = 'type-option' + (selectedType === key ? ' selected' : '');
-            div.innerHTML = '<span class="custom-type-badge">свой</span><span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
-            div.addEventListener('click', function() { selectedType = key; var cb = $('createBtn'); if (cb) cb.disabled = false; renderTypeGrid(); });
-            grid.appendChild(div);
-        });
+        }
+        Object.keys(DEFAULT_TYPES).forEach(function(k) { makeOption(k, DEFAULT_TYPES[k], false); });
+        Object.keys(customTypes).forEach(function(k) { makeOption(k, customTypes[k], true); });
         var createDiv = document.createElement('div');
         createDiv.className = 'type-option create-new';
         createDiv.innerHTML = '<span class="emoji">➕</span><span class="name">Создать свой</span>';
@@ -1567,10 +1609,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function openTypeModal() {
         if (activeTrips.length >= MAX_ACTIVE_TRIPS) { showToast('Максимум ' + MAX_ACTIVE_TRIPS + ' активные поездки'); return; }
         selectedType = null;
-        var tn = $('tripName'); if (tn) tn.value = '';
-        var tsd = $('tripStartDate'); if (tsd) tsd.value = '';
-        var ted = $('tripEndDate'); if (ted) ted.value = '';
-        var tc = $('tripCity'); if (tc) tc.value = '';
+        ['tripName','tripStartDate','tripEndDate','tripCity'].forEach(function(id) { var el = $(id); if (el) el.value = ''; });
         var cb = $('createBtn'); if (cb) cb.disabled = true;
         renderTypeGrid();
         openModal('typeModal');
@@ -1579,24 +1618,30 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function createTrip() {
         if (!selectedType || activeTrips.length >= MAX_ACTIVE_TRIPS) return;
         var type = getType(selectedType); if (!type) return;
-        var startDate = ($('tripStartDate') ? $('tripStartDate').value : '') || null;
-        var endDate = ($('tripEndDate') ? $('tripEndDate').value : '') || null;
+        var startDate = ($('tripStartDate') || {}).value || null;
+        var endDate = ($('tripEndDate') || {}).value || null;
         var daysCount = 3;
         if (startDate && endDate) {
-            try { var d1 = new Date(startDate), d2 = new Date(endDate); daysCount = Math.max(1, Math.round((d2 - d1) / 86400000) + 1); } catch (e) {}
+            try {
+                var d1 = new Date(startDate), d2 = new Date(endDate);
+                daysCount = Math.max(1, Math.round((d2 - d1) / 86400000) + 1);
+            } catch (e) {}
         }
-        var newTrip = {
+        activeTrips.push({
             id: Date.now(), type: selectedType,
-            name: ($('tripName') ? $('tripName').value.trim() : '') || type.name,
+            name: (($('tripName') || {}).value || '').trim() || type.name,
             emoji: type.emoji, c1: type.c1, c2: type.c2, ring: type.ring,
             date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
             startDate: startDate, endDate: endDate, daysCount: daysCount,
-            city: ($('tripCity') ? $('tripCity').value.trim() : ''),
+            city: (($('tripCity') || {}).value || '').trim(),
             items: type.items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
-        };
-        activeTrips.push(newTrip);
+        });
         currentTripIndex = activeTrips.length - 1;
-        saveActive(); closeModal('typeModal'); renderHome(); vibrate();
+        saveActive();
+        closeModal('typeModal');
+        renderHome();
+        vibrate();
+        showToast('Поездка создана!');
     }
 
     function startWizard() {
@@ -1630,16 +1675,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function updateWiz1Preview() {
         var c = COLOR_PALETTES[wiz.colorIdx];
-        var name = ($('wiz1NameInput') ? $('wiz1NameInput').value.trim() : '') || 'Название типа';
+        var name = (($('wiz1NameInput') || {}).value || '').trim() || 'Название типа';
         var pr = $('wiz1Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('wiz1Emoji'); if (e) e.textContent = wiz.emoji;
         var n = $('wiz1Name'); if (n) n.textContent = name;
         var cn = $('wiz1Count'); if (cn) cn.textContent = wiz.items.length + ' ' + plural(wiz.items.length, 'вещь', 'вещи', 'вещей');
     }
     function wiz1Next() {
-        var name = $('wiz1NameInput') ? $('wiz1NameInput').value.trim() : '';
+        var name = (($('wiz1NameInput') || {}).value || '').trim();
         if (!name) { showToast('Введите название'); return; }
-        wiz.name = name; closeModal('wizardStep1'); openWiz2();
+        wiz.name = name;
+        closeModal('wizardStep1');
+        openWiz2();
     }
     function openWiz2() {
         var c = COLOR_PALETTES[wiz.colorIdx];
@@ -1659,9 +1706,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             emp.textContent = 'Пока пусто. Добавьте вещи ниже.';
             ed.appendChild(emp);
         } else wiz.items.forEach(function(it, i) { ed.appendChild(buildAdvancedRow(it, i, 'wizard')); });
-        var c = COLOR_PALETTES[wiz.colorIdx];
         var cn = $('wiz2Count'); if (cn) cn.textContent = wiz.items.length + ' ' + plural(wiz.items.length, 'вещь', 'вещи', 'вещей');
-        var pr = $('wiz2Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
     }
     function buildAdvancedRow(item, idx, target) {
         var row = document.createElement('div');
@@ -1719,7 +1764,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         return row;
     }
     function wiz2AddQuick() {
-        var v = $('wiz2NewItem') ? $('wiz2NewItem').value.trim() : '';
+        var v = (($('wiz2NewItem') || {}).value || '').trim();
         if (!v) return;
         wiz.items.push({ text: v, qty: 1, weight: 0, note: '', category: 'other' });
         $('wiz2NewItem').value = '';
@@ -1733,15 +1778,15 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         customTypes[id] = { name: wiz.name, emoji: wiz.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: wiz.items.slice(), builtin: false };
         saveCustomTypes();
         closeModal('wizardStep2');
-        renderHome(); renderProfile(); vibrate();
+        renderHome(); renderProfile(); renderListsPage(); vibrate();
         showToast('Список "' + wiz.name + '" создан!');
     }
     function openAdvanced(target) {
         var p = target === 'wizard' ? 'adv' : 'adv2';
-        var n = $(p + 'Name'); if (n) n.value = '';
-        var q = $(p + 'Qty'); if (q) q.value = '1';
-        var w = $(p + 'Weight'); if (w) w.value = '';
-        var no = $(p + 'Note'); if (no) no.value = '';
+        ['Name','Qty','Weight','Note'].forEach(function(f) {
+            var el = $(p + f);
+            if (el) el.value = f === 'Qty' ? '1' : '';
+        });
         var s = $(p + 'Cat');
         if (s) {
             s.innerHTML = '';
@@ -1752,8 +1797,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             });
         }
         var hintId = target === 'wizard' ? 'smartHintAdv' : 'smartHintAdv2';
-        var hintEl = $(hintId);
-        if (hintEl) hintEl.classList.remove('show');
+        var hintEl = $(hintId); if (hintEl) hintEl.classList.remove('show');
         var nameInput = $(p + 'Name');
         var qtyInput = $(p + 'Qty');
         var handler = target === 'wizard' ? hintAdvHandler : hintAdv2Handler;
@@ -1763,17 +1807,17 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
     function advConfirm() {
-        var n = $('advName') ? $('advName').value.trim() : '';
+        var n = (($('advName') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
-        wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, weight: parseFloat($('advWeight').value) || 0, note: ($('advNote') ? $('advNote').value.trim() : ''), category: ($('advCat') ? $('advCat').value : 'other') });
+        wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, weight: parseFloat($('advWeight').value) || 0, note: (($('advNote') || {}).value || '').trim(), category: ($('advCat') || {}).value || 'other' });
         closeModal('advancedItemModal');
         var h = $('smartHintAdv'); if (h) h.classList.remove('show');
         openWiz2();
     }
     function adv2Confirm() {
-        var n = $('adv2Name') ? $('adv2Name').value.trim() : '';
+        var n = (($('adv2Name') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
-        editing.items.push({ text: n, qty: parseInt($('adv2Qty').value) || 1, weight: parseFloat($('adv2Weight').value) || 0, note: ($('adv2Note') ? $('adv2Note').value.trim() : ''), category: ($('adv2Cat') ? $('adv2Cat').value : 'other') });
+        editing.items.push({ text: n, qty: parseInt($('adv2Qty').value) || 1, weight: parseFloat($('adv2Weight').value) || 0, note: (($('adv2Note') || {}).value || '').trim(), category: ($('adv2Cat') || {}).value || 'other' });
         closeModal('advancedItemModal2');
         var h = $('smartHintAdv2'); if (h) h.classList.remove('show');
         openEditorById(editing.id);
@@ -1819,7 +1863,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function updateEditorPreview() {
         var c = COLOR_PALETTES[editing.colorIdx];
-        var name = ($('listName') ? $('listName').value.trim() : '') || 'Название списка';
+        var name = (($('listName') || {}).value || '').trim() || 'Название списка';
         var pr = $('previewCard'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('previewEmoji'); if (e) e.textContent = editing.emoji;
         var n = $('previewName'); if (n) n.textContent = name;
@@ -1838,7 +1882,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         editing.items.forEach(function(it, i) { ed.appendChild(buildAdvancedRow(it, i, 'editor')); });
     }
     function editorAddQuick() {
-        var v = $('newItemInput') ? $('newItemInput').value.trim() : '';
+        var v = (($('newItemInput') || {}).value || '').trim();
         if (!v) return;
         editing.items.push({ text: v, qty: 1, weight: 0, note: '', category: 'other' });
         $('newItemInput').value = '';
@@ -1846,19 +1890,21 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         $('newItemInput').focus();
     }
     function saveEditor() {
-        var name = $('listName') ? $('listName').value.trim() : '';
+        var name = (($('listName') || {}).value || '').trim();
         if (!name) { showToast('Введите название'); return; }
         if (!editing.items.length) { showToast('Добавьте вещи'); return; }
         var c = COLOR_PALETTES[editing.colorIdx];
         customTypes[editing.id] = { name: name, emoji: editing.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: editing.items.slice(), builtin: false };
         saveCustomTypes();
         closeModal('listEditorModal');
-        renderHome(); vibrate(); showToast('Сохранено!');
+        renderHome(); renderListsPage(); vibrate();
+        showToast('Сохранено!');
     }
     function deleteCustomType(id) {
         if (!customTypes[id]) return;
         delete customTypes[id];
-        saveCustomTypes(); renderHome(); renderProfile();
+        saveCustomTypes();
+        renderHome(); renderProfile(); renderListsPage();
         if ($('typeModal') && $('typeModal').classList.contains('active')) {
             if (selectedType === id) { selectedType = null; if ($('createBtn')) $('createBtn').disabled = true; }
             renderTypeGrid();
@@ -1888,7 +1934,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         saveHistory(); renderHome(); renderProfile();
     }
 
-    // CHECKLIST PAGE
+    // CHECKLIST
     function openChecklistPage() {
         var trip = getCurrentTrip();
         if (!trip) return;
@@ -1946,7 +1992,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             return;
         }
         var groups = {};
-        vis.forEach(function(v) { var c = v.item.category || 'other'; if (!groups[c]) groups[c] = []; groups[c].push(v); });
+        vis.forEach(function(v) { var c = v.item.category || 'other'; (groups[c] = groups[c] || []).push(v); });
         ['clothes','documents','tech','hygiene','meds','other'].forEach(function(k) {
             if (!groups[k] || !groups[k].length) return;
             var cat = CATEGORIES[k];
@@ -1986,13 +2032,13 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         wrap.appendChild(ra); wrap.appendChild(la);
         var el = buildCheckItem(item, idx);
         wrap.appendChild(el);
-        var sx = 0, sy = 0, cx = 0, sw = false, hz = false;
+        var sx = 0, cx = 0, sw = false, hz = false;
         var TH = 70;
-        el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; cx = 0; sw = true; hz = false; el.style.transition = 'none'; }, { passive: true });
+        el.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; cx = 0; sw = true; hz = false; el.style.transition = 'none'; }, { passive: true });
         el.addEventListener('touchmove', function(e) {
             if (!sw) return;
-            var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
-            if (!hz && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) hz = true;
+            var dx = e.touches[0].clientX - sx;
+            if (!hz && Math.abs(dx) > 8) hz = true;
             if (!hz) return;
             cx = dx;
             if (dx > TH * 1.5) dx = TH * 1.5;
@@ -2027,9 +2073,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         c.addEventListener('click', function(e) { e.stopPropagation(); toggleItem(idx); });
         var b = document.createElement('div');
         b.className = 'check-body';
-        var html = '<div class="check-text">' + highlight(item.text) + '</div>';
-        if (item.note) html += '<div class="check-note">' + escapeHtml(item.note) + '</div>';
-        b.innerHTML = html;
+        b.innerHTML = '<div class="check-text">' + highlight(item.text) + '</div>' + (item.note ? '<div class="check-note">' + escapeHtml(item.note) + '</div>' : '');
         b.addEventListener('click', function() { toggleItem(idx); });
         div.appendChild(c); div.appendChild(b);
         if (item.qty && item.qty > 1) {
@@ -2083,37 +2127,33 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var card = $('weatherCard'); if (!card) return;
         var trip = getCurrentTrip();
         if (!trip || !trip.city) { card.classList.remove('show'); return; }
-        var city = trip.city;
-        var ck = 'weather_' + city.toLowerCase();
+        var ck = 'weather_' + trip.city.toLowerCase();
         var cached = weatherCache[ck];
         if (cached && Date.now() - cached.ts < 1800000) { renderWeather(cached.data); return; }
         card.classList.add('show');
-        var ce = $('weatherCity'); if (ce) ce.textContent = city;
+        var ce = $('weatherCity'); if (ce) ce.textContent = trip.city;
         var de = $('weatherDesc'); if (de) de.textContent = 'Загрузка...';
         var ie = $('weatherIcon'); if (ie) ie.textContent = '🌍';
-        var te = $('weatherTemp'); if (te) te.textContent = '—';
+        var te = $('weatherTemp'); if (te) te.textContent = '--';
         var fe = $('weatherForecast'); if (fe) fe.innerHTML = '';
-        try {
-            fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(city) + '&count=1&language=ru&format=json')
-                .then(function(r) { return r.json(); })
-                .then(function(g) {
-                    if (!g.results || !g.results.length) throw new Error('nf');
-                    var lat = g.results[0].latitude, lon = g.results[0].longitude, nm = g.results[0].name;
-                    return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
-                        .then(function(r) { return r.json(); })
-                        .then(function(d) { d._cityName = nm; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeather(d); });
-                })
-                .catch(function() {
-                    var de = $('weatherDesc'); if (de) de.textContent = 'Не удалось загрузить погоду';
-                    var ie = $('weatherIcon'); if (ie) ie.textContent = '❓';
-                });
-        } catch (e) {}
+        fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(trip.city) + '&count=1&language=ru&format=json')
+            .then(function(r) { return r.json(); })
+            .then(function(g) {
+                if (!g.results || !g.results.length) throw new Error('nf');
+                var loc = g.results[0];
+                return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + loc.latitude + '&longitude=' + loc.longitude + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+                    .then(function(r) { return r.json(); })
+                    .then(function(d) { d._cityName = loc.name; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeather(d); });
+            })
+            .catch(function() {
+                var de = $('weatherDesc'); if (de) de.textContent = 'Не удалось загрузить погоду';
+                var ie = $('weatherIcon'); if (ie) ie.textContent = '❓';
+            });
     }
     function renderWeather(data) {
         var card = $('weatherCard'); if (!card) return;
         card.classList.add('show');
-        var cur = data.current || {};
-        var code = cur.weather_code || 0;
+        var cur = data.current || {}, code = cur.weather_code || 0;
         var w = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
         var ce = $('weatherCity'); if (ce) ce.textContent = data._cityName || (getCurrentTrip() || {}).city || '';
         var te = $('weatherTemp'); if (te) te.textContent = Math.round(cur.temperature_2m) + '°';
@@ -2144,60 +2184,51 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
     }
 
-    // ADD ITEM
     function openAddItemModal() {
         var trip = getCurrentTrip();
         if (!trip) { showToast('Нет активной поездки'); return; }
-        try {
-            var n = $('addItemName'); if (n) n.value = '';
-            var q = $('addItemQty'); if (q) q.value = '1';
-            var w = $('addItemWeight'); if (w) w.value = '';
-            var no = $('addItemNote'); if (no) no.value = '';
-            var s = $('addItemCat');
-            if (s) {
-                s.innerHTML = '';
-                Object.keys(CATEGORIES).forEach(function(k) {
-                    var o = document.createElement('option');
-                    o.value = k; o.textContent = CATEGORIES[k].icon + ' ' + CATEGORIES[k].name;
-                    s.appendChild(o);
-                });
-            }
-            var ai = $('addItemName');
-            if (ai) { ai.removeEventListener('input', hintAddHandler); ai.addEventListener('input', hintAddHandler); }
-            var aq = $('addItemQty');
-            if (aq) { aq.removeEventListener('input', hintAddHandler); aq.addEventListener('input', hintAddHandler); }
-            var sh = $('smartHintBox'); if (sh) sh.classList.remove('show');
-            var overlay = $('addItemModal');
-            if (overlay) overlay.classList.add('above-checklist');
-            openModal('addItemModal');
-        } catch (e) { console.error('openAddItemModal error:', e); showToast('Ошибка открытия'); }
+        ['Name','Weight','Note'].forEach(function(f) { var el = $('addItem' + f); if (el) el.value = ''; });
+        var q = $('addItemQty'); if (q) q.value = '1';
+        var s = $('addItemCat');
+        if (s) {
+            s.innerHTML = '';
+            Object.keys(CATEGORIES).forEach(function(k) {
+                var o = document.createElement('option');
+                o.value = k; o.textContent = CATEGORIES[k].icon + ' ' + CATEGORIES[k].name;
+                s.appendChild(o);
+            });
+        }
+        var ai = $('addItemName');
+        if (ai) { ai.removeEventListener('input', hintAddHandler); ai.addEventListener('input', hintAddHandler); }
+        var aq = $('addItemQty');
+        if (aq) { aq.removeEventListener('input', hintAddHandler); aq.addEventListener('input', hintAddHandler); }
+        var sh = $('smartHintBox'); if (sh) sh.classList.remove('show');
+        var overlay = $('addItemModal'); if (overlay) overlay.classList.add('above-checklist');
+        openModal('addItemModal');
     }
     function confirmAddItem() {
         var trip = getCurrentTrip();
         if (!trip) return;
-        var n = $('addItemName') ? $('addItemName').value.trim() : '';
+        var n = (($('addItemName') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
         trip.items.push({
             text: n, done: false,
             qty: parseInt($('addItemQty').value) || 1,
             weight: parseFloat($('addItemWeight').value) || 0,
-            note: ($('addItemNote') ? $('addItemNote').value.trim() : ''),
-            category: ($('addItemCat') ? $('addItemCat').value : 'other')
+            note: (($('addItemNote') || {}).value || '').trim(),
+            category: ($('addItemCat') || {}).value || 'other'
         });
         saveActive();
-        closeModal('addItemModal');
-        var overlay = $('addItemModal');
-        if (overlay) overlay.classList.remove('above-checklist');
+        closeAddItemModal();
         renderChecklistPage(); renderHome(); vibrate();
         showToast('Вещь добавлена!');
     }
     function closeAddItemModal() {
         closeModal('addItemModal');
-        var overlay = $('addItemModal');
-        if (overlay) overlay.classList.remove('above-checklist');
+        var overlay = $('addItemModal'); if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    // УМНЫЕ ПОДСКАЗКИ
+    // SMART HINTS
     function getSeason(dateStr) {
         if (!dateStr) return 'summer';
         try {
@@ -2225,7 +2256,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function findSmartHints(itemText, trip) {
         var lower = itemText.toLowerCase().trim();
         if (lower.length < 3) return [];
-        var days = trip ? (trip.daysCount || 3) : 3;
+        var days = (trip && trip.daysCount) || 3;
         var tripType = trip ? trip.type : null;
         var season = trip && trip.startDate ? getSeason(trip.startDate) : 'summer';
         var direction = trip && trip.city ? getDirection(trip.city) : 'neutral';
@@ -2233,27 +2264,26 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var keys = Object.keys(SMART_HINTS);
         for (var i = 0; i < keys.length; i++) {
             var key = keys[i];
-            if (lower.indexOf(key) !== -1) {
-                var rule = SMART_HINTS[key];
-                var qty = rule.base || 0;
-                if (rule.per === 'day') qty = days + (rule.extra || 0);
-                else if (rule.per === 'days2') qty = Math.max(1, Math.ceil(days / 2) + (rule.extra || 0));
-                else if (rule.per === 'days3') qty = Math.max(1, Math.ceil(days / 3) + (rule.extra || 0));
-                else qty = rule.base + (rule.extra || 0);
-                if (tripType === 'business' && rule.business === 'per_day') qty = days + 1;
-                if (tripType === 'business' && key === 'футболк') qty = Math.max(1, Math.ceil(days / 3));
-                if (tripType === 'business' && key === 'шорт') qty = 0;
-                if (tripType === 'rest' && (key === 'купальник' || key === 'плавк')) qty = 2;
-                if (season === 'winter' && (key === 'шорт' || key === 'сандал' || key === 'шлёпк')) qty = 0;
-                if (season === 'winter' && key === 'футболк') qty = Math.max(1, Math.floor(qty / 2));
-                if (direction === 'north' && (key === 'шорт' || key === 'сандал' || key === 'купальник')) qty = 0;
-                if (qty <= 0) continue;
-                var personal = getPersonalQty(key);
-                var isPersonal = false;
-                if (personal) { qty = personal; isPersonal = true; }
-                results.push({ key: key, qty: qty, unit: rule.unit, cat: rule.cat, icon: CATEGORIES[rule.cat] ? CATEGORIES[rule.cat].icon : '📦', isPersonal: isPersonal, rule: rule });
-                if (results.length >= 2) break;
-            }
+            if (lower.indexOf(key) === -1) continue;
+            var rule = SMART_HINTS[key];
+            var qty = rule.base || 0;
+            if (rule.per === 'day') qty = days + (rule.extra || 0);
+            else if (rule.per === 'days2') qty = Math.max(1, Math.ceil(days / 2) + (rule.extra || 0));
+            else if (rule.per === 'days3') qty = Math.max(1, Math.ceil(days / 3) + (rule.extra || 0));
+            else qty = rule.base + (rule.extra || 0);
+            if (tripType === 'business' && rule.business === 'per_day') qty = days + 1;
+            if (tripType === 'business' && key === 'футболк') qty = Math.max(1, Math.ceil(days / 3));
+            if (tripType === 'business' && key === 'шорт') qty = 0;
+            if (tripType === 'rest' && (key === 'купальник' || key === 'плавк')) qty = 2;
+            if (season === 'winter' && (key === 'шорт' || key === 'сандал' || key === 'шлёпк')) qty = 0;
+            if (season === 'winter' && key === 'футболк') qty = Math.max(1, Math.floor(qty / 2));
+            if (direction === 'north' && (key === 'шорт' || key === 'сандал' || key === 'купальник')) qty = 0;
+            if (qty <= 0) continue;
+            var personal = getPersonalQty(key);
+            var isPersonal = false;
+            if (personal) { qty = personal; isPersonal = true; }
+            results.push({ key: key, qty: qty, unit: rule.unit, cat: rule.cat, icon: CATEGORIES[rule.cat] ? CATEGORIES[rule.cat].icon : '📦', isPersonal: isPersonal });
+            if (results.length >= 2) break;
         }
         return results;
     }
@@ -2266,23 +2296,20 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var name = nameInput ? nameInput.value.trim() : '';
         var currentQty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
         if (!settings.smartHints || !name || name.length < 3) { hint.classList.remove('show'); return; }
-        var trip = getCurrentTrip();
-        if (!trip) trip = { type: 'rest', daysCount: 3, city: '', startDate: null };
-        var hints = findSmartHints(name, trip);
-        hints = hints.filter(function(h) { return h.qty !== currentQty; });
+        var trip = getFallbackTrip();
+        var hints = findSmartHints(name, trip).filter(function(h) { return h.qty !== currentQty; });
         if (!hints.length) { hint.classList.remove('show'); return; }
         var days = trip.daysCount || 3;
         var contextParts = [days + ' ' + plural(days, 'день', 'дня', 'дней')];
         if (trip.city) contextParts.push('📍 ' + escapeHtml(trip.city));
         if (trip.type && DEFAULT_TYPES[trip.type]) contextParts.push(DEFAULT_TYPES[trip.type].emoji + ' ' + DEFAULT_TYPES[trip.type].name);
-        var contextText = contextParts.join(' · ');
         var html = '<div class="sh-head"><span class="sh-icon">💡</span><span class="sh-title">Умная подсказка</span></div>';
-        html += '<div class="sh-context">' + contextText + '</div>';
+        html += '<div class="sh-context">' + contextParts.join(' · ') + '</div>';
         hints.forEach(function(h) {
             var memoryTag = h.isPersonal ? '<span class="sh-memory">📌 ваше</span>' : '';
             html += '<div class="sh-suggestion"><div class="sh-emoji">' + h.icon + '</div><div class="sh-text">Рекомендуем <strong>' + h.qty + ' ' + h.unit + '</strong> вместо ' + currentQty + memoryTag + '</div><button type="button" class="sh-apply-btn" data-apply-qty="' + h.qty + '" data-apply-key="' + h.key + '">Взять ' + h.qty + '</button></div>';
         });
-        html += '<button type="button" class="sh-dismiss" data-dismiss="' + prefix + '">Оставить ' + currentQty + '</button>';
+        html += '<button type="button" class="sh-dismiss">Оставить ' + currentQty + '</button>';
         hint.innerHTML = html;
         hint.classList.add('show');
         hint.querySelectorAll('[data-apply-qty]').forEach(function(btn) {
@@ -2295,7 +2322,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 showToast('Запомнили: ' + q + ' ' + (hints[0] ? hints[0].unit : 'шт'));
             });
         });
-        hint.querySelectorAll('[data-dismiss]').forEach(function(btn) {
+        hint.querySelectorAll('.sh-dismiss').forEach(function(btn) {
             btn.addEventListener('click', function() { hint.classList.remove('show'); });
         });
     }
@@ -2304,8 +2331,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function hintAdv2Handler() { showSmartHintFor('adv2'); }
 
     function fireConfetti() {
-        var colors = ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
-        if (settings.dark) colors = ['#6b8cff','#a06bff','#3ddc84','#ff6bcb','#ffd166'];
+        var colors = settings.dark ? ['#6b8cff','#a06bff','#3ddc84','#ff6bcb','#ffd166'] : ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
         for (var i = 0; i < 60; i++) {
             (function() {
                 var c = document.createElement('div');
@@ -2349,7 +2375,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 else { av.style.backgroundImage = ''; av.classList.remove('has-photo'); lt.textContent = (profile.name || 'Э').charAt(0).toUpperCase(); }
             }
             renderAchievements(s);
-        } catch (e) { console.error('profile', e); }
+        } catch (e) {}
     }
 
     function renderAchievements(s) {
@@ -2379,7 +2405,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         openModal('editProfileModal');
     }
     function saveProfileChanges() {
-        profile.name = ($('editName') ? $('editName').value.trim() : '') || 'Эрик';
+        profile.name = (($('editName') || {}).value || '').trim() || 'Эрик';
         saveProfile(); closeModal('editProfileModal'); renderProfile();
     }
     function handleAvatarUpload(e) {
@@ -2407,11 +2433,11 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         profile.avatar = null;
         saveProfile();
         var ea = $('editAvatar'); if (ea) ea.style.backgroundImage = '';
-        var el = $('editAvatarLetter'); if (el) el.textContent = (($('editName') ? $('editName').value : '') || 'Э').charAt(0).toUpperCase();
+        var el = $('editAvatarLetter'); if (el) el.textContent = ((($('editName') || {}).value || '') || 'Э').charAt(0).toUpperCase();
         renderProfile();
     }
 
-    // ОНБОРДИНГ
+    // ONBOARDING
     function showOnboarding() {
         currentOnbSlide = 0;
         var viewer = $('onboardingViewer'); if (!viewer) return;
@@ -2466,20 +2492,20 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var t = $('page-' + page); if (t) t.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (page === 'profile') renderProfile();
+        if (page === 'lists') renderListsPage();
     }
 
     function checkReminders() {
         try {
             if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
             activeTrips.forEach(function(trip) {
-                if (trip.startDate) {
-                    var d = countdown(trip.startDate);
-                    if (d === 'завтра' || d === 'сегодня') {
-                        var k = 'bybag_rem_' + trip.id + '_' + d;
-                        if (!localStorage.getItem(k)) {
-                            new Notification('byBag', { body: trip.name + ': поездка ' + d + '! Проверь багаж 🧳' });
-                            localStorage.setItem(k, '1');
-                        }
+                if (!trip.startDate) return;
+                var d = countdown(trip.startDate);
+                if (d === 'завтра' || d === 'сегодня') {
+                    var k = 'bybag_rem_' + trip.id + '_' + d;
+                    if (!localStorage.getItem(k)) {
+                        new Notification('byBag', { body: trip.name + ': поездка ' + d + '! Проверь багаж 🧳' });
+                        localStorage.setItem(k, '1');
                     }
                 }
             });
@@ -2488,7 +2514,11 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function showNotifOnboarding() { openModal('notifOnboardModal'); }
     function handleNotifAllow() {
         closeModal('notifOnboardModal');
-        try { if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission().then(function(p) { if (p === 'granted') showToast('Уведомления включены ✅'); }); } catch (e) {}
+        try {
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission().then(function(p) { if (p === 'granted') showToast('Уведомления включены ✅'); });
+            }
+        } catch (e) {}
         settings.notif = true; saveSettings(); applyTheme();
         try { localStorage.setItem('bybag_notif_asked', '1'); } catch (e) {}
     }
@@ -2499,12 +2529,11 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
     function bind(id, ev, fn) {
         var el = $(id);
-        if (el) { try { el.addEventListener(ev, fn); } catch (e) { console.error('bind error for ' + id, e); } }
+        if (el) { try { el.addEventListener(ev, fn); } catch (e) {} }
     }
 
     function init() {
         try {
-            console.log('byBag v' + APP_VERSION + ' init...');
             loadData();
             applyTheme();
 
@@ -2523,7 +2552,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 });
             });
             document.querySelectorAll('.nav-item').forEach(function(n) {
-                n.addEventListener('click', function() { try { switchPage(n.getAttribute('data-page')); } catch (e) {} });
+                n.addEventListener('click', function() { switchPage(n.getAttribute('data-page')); });
             });
 
             bind('createBtn', 'click', createTrip);
@@ -2531,6 +2560,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             bind('checklistShareBtn', 'click', shareActiveTrip);
             bind('addToActiveBtn', 'click', openAddItemModal);
             bind('confirmAddItemBtn', 'click', confirmAddItem);
+            bind('createNewListBtn', 'click', startWizard);
 
             bind('searchInput', 'input', function() {
                 var v = this.value;
@@ -2595,15 +2625,13 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
             renderHome();
             renderProfile();
+            renderListsPage();
 
-            try {
-                if (!localStorage.getItem('bybag_onboarding_done')) setTimeout(showOnboarding, 800);
-                else if (!localStorage.getItem('bybag_notif_asked')) setTimeout(showNotifOnboarding, 1200);
-            } catch (e) {}
+            if (!localStorage.getItem('bybag_onboarding_done')) setTimeout(showOnboarding, 800);
+            else if (!localStorage.getItem('bybag_notif_asked')) setTimeout(showNotifOnboarding, 1200);
 
             setTimeout(checkReminders, 3000);
             setInterval(checkReminders, 3600000);
-            console.log('byBag v' + APP_VERSION + ' ready ✅');
         } catch (e) {
             console.error('init error:', e);
             try {
