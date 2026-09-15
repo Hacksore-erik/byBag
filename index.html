@@ -1,0 +1,3476 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>byBag</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { overflow-x: hidden; width: 100%; }
+html, body { transition: background-color 0.35s ease, color 0.35s ease; }
+
+:root {
+    --bg: #faf6f0; --text: #2d2419; --text-2: #8a7d6d; --text-3: #a0917e;
+    --card: rgba(255,255,255,0.7); --card-solid: #fff;
+    --border: rgba(255,255,255,0.9); --border-soft: rgba(180,130,90,0.15);
+    --accent-1: #ff9a5a; --accent-2: #ff6b8a;
+    --success: #2f9c53; --danger: #d6336c;
+    --shadow: rgba(180,130,90,0.15);
+    --glow-1: rgba(255,180,120,0.35); --glow-2: rgba(255,130,150,0.28);
+}
+body.dark {
+    --bg: #0d1220; --text: #e8ecf5; --text-2: #8891a8; --text-3: #6a7391;
+    --card: rgba(30,38,60,0.65); --card-solid: #1a2138;
+    --border: rgba(120,150,220,0.15); --border-soft: rgba(120,150,220,0.12);
+    --accent-1: #6b8cff; --accent-2: #a06bff;
+    --success: #3ddc84; --danger: #ff5e8a;
+    --shadow: rgba(0,0,0,0.5);
+    --glow-1: rgba(80,100,220,0.35); --glow-2: rgba(140,80,220,0.25);
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg); min-height: 100vh; color: var(--text);
+    overflow-x: hidden; width: 100%; padding-bottom: 140px;
+    position: relative;
+}
+body::before, body::after {
+    content: ''; position: fixed; width: 80%; height: 60%;
+    border-radius: 50%; pointer-events: none; z-index: -10;
+    filter: blur(40px); transition: background 0.35s ease;
+}
+body::before { top: -20%; left: -20%; background: radial-gradient(circle, var(--glow-1), transparent 65%); }
+body::after { bottom: -20%; right: -20%; background: radial-gradient(circle, var(--glow-2), transparent 65%); }
+
+.app-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 14px 24px 10px; z-index: 60;
+    background: linear-gradient(to bottom, var(--bg) 70%, transparent);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    text-align: center; width: 100%; transition: background 0.35s ease;
+}
+.app-header .logo {
+    font-size: 26px; font-weight: 800; letter-spacing: -0.6px; display: inline-block;
+    background: linear-gradient(135deg, #ff9a5a 0%, #ff6b8a 50%, #c084fc 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    transition: background 0.35s ease;
+}
+body.dark .app-header .logo {
+    background: linear-gradient(135deg, #6b8cff 0%, #a06bff 50%, #ff6bcb 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.header-spacer { height: 60px; }
+
+.container { padding: 0 20px; max-width: 500px; margin: 0 auto; position: relative; z-index: 1; width: 100%; }
+
+/* ============ STORIES ============ */
+.stories-wrap { margin: 6px 0 20px; }
+.stories-title {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-3); font-weight: 700; margin-bottom: 10px; padding-left: 4px;
+}
+.stories-row {
+    display: flex; gap: 14px; overflow-x: auto; padding: 4px 4px 10px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.stories-row::-webkit-scrollbar { display: none; }
+
+.story-item { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; cursor: pointer; width: 74px; }
+
+.story-ring {
+    width: 68px; height: 68px; border-radius: 50%; padding: 3px;
+    background: conic-gradient(from 180deg, #ff9a5a, #ff6b8a, #c084fc, #5ec7ff, #ff9a5a);
+    position: relative; transition: transform 0.25s;
+}
+body.dark .story-ring {
+    background: conic-gradient(from 180deg, #6b8cff, #a06bff, #ff6bcb, #3ddc84, #6b8cff);
+}
+.story-item:active .story-ring { transform: scale(0.94); }
+.story-ring.viewed { background: var(--border-soft); }
+
+.story-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: var(--card-solid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; overflow: hidden; border: 2px solid var(--bg);
+    position: relative;
+}
+.story-inner .story-badge {
+    position: absolute; bottom: 2px; right: 2px;
+    font-size: 14px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--card-solid);
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid var(--bg);
+    line-height: 1;
+}
+
+.story-item .story-label {
+    font-size: 10.5px; font-weight: 600; color: var(--text-2);
+    text-align: center; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; max-width: 74px; line-height: 1.2;
+}
+
+/* Story viewer */
+.story-viewer {
+    position: fixed; inset: 0; background: #000; z-index: 200;
+    display: none; flex-direction: column;
+}
+.story-viewer.active { display: flex; }
+
+.story-progress-row {
+    position: absolute; top: 14px; left: 12px; right: 12px;
+    display: flex; gap: 4px; z-index: 10;
+}
+.story-progress-bar {
+    flex: 1; height: 3px; background: rgba(255,255,255,0.3);
+    border-radius: 3px; overflow: hidden;
+}
+.story-progress-fill {
+    height: 100%; background: #fff; width: 0%;
+    transition: width 0.05s linear;
+}
+.story-progress-bar.done .story-progress-fill { width: 100%; }
+
+.story-header {
+    position: absolute; top: 28px; left: 16px; right: 16px;
+    display: flex; align-items: center; gap: 12px; z-index: 10; color: #fff;
+}
+.story-avatar-sm {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.5);
+}
+.story-name-block { flex: 1; min-width: 0; }
+.story-name-block .s-title { font-size: 15px; font-weight: 700; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+.story-name-block .s-time { font-size: 12px; opacity: 0.8; font-weight: 500; }
+
+.story-close-btn {
+    background: rgba(255,255,255,0.2); border: none; color: #fff;
+    width: 34px; height: 34px; border-radius: 50%; font-size: 16px;
+    font-weight: 700; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; font-family: inherit;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
+
+.story-content {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 100px 30px 140px; text-align: center;
+    position: relative; overflow-y: auto;
+}
+
+.story-big-emoji {
+    font-size: 120px; margin-bottom: 24px; line-height: 1;
+    animation: storyZoom 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes storyZoom {
+    from { transform: scale(0.3); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.story-content h2 {
+    color: #fff; font-size: 26px; font-weight: 800;
+    margin-bottom: 8px; letter-spacing: -0.5px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    animation: storyFade 0.8s 0.2s both;
+}
+.story-content p {
+    color: rgba(255,255,255,0.85); font-size: 15px;
+    line-height: 1.5; margin-bottom: 6px; max-width: 320px;
+    animation: storyFade 0.8s 0.35s both;
+}
+@keyframes storyFade {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.story-stats {
+    display: flex; gap: 24px; margin-top: 30px;
+    animation: storyFade 0.8s 0.5s both;
+}
+.story-stat { text-align: center; }
+.story-stat .s-val {
+    color: #fff; font-size: 32px; font-weight: 800;
+    line-height: 1; margin-bottom: 6px; letter-spacing: -0.5px;
+}
+.story-stat .s-lbl {
+    color: rgba(255,255,255,0.7); font-size: 11.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px;
+}
+.story-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.4; }
+.story-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.7) 100%);
+}
+.story-emoji-deco {
+    position: absolute; font-size: 300px; line-height: 1;
+    opacity: 0.08; pointer-events: none;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+.story-tap-zone {
+    position: absolute; top: 60px; bottom: 0; width: 30%; z-index: 5; cursor: pointer;
+}
+.story-tap-zone.prev { left: 0; }
+.story-tap-zone.next { right: 0; width: 50%; }
+
+/* ============ ВИДЖЕТ ============ */
+.main-widget {
+    position: relative; border-radius: 28px; overflow: hidden;
+    margin-bottom: 17px; margin-top: 6px; cursor: pointer;
+    background: var(--card-solid); box-shadow: 0 18px 45px var(--shadow);
+    display: flex; flex-direction: column; width: 100%;
+    animation: slideIn 0.5s ease; transition: background 0.35s ease;
+}
+.main-widget:active { transform: scale(0.985); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.widget-hero {
+    position: relative; padding: 25px 23px 44px; overflow: hidden;
+    background: linear-gradient(135deg, var(--c1, #ffb347), var(--c2, #ff7e5f));
+}
+.widget-hero .bg-emoji {
+    position: absolute; right: -17px; bottom: -36px;
+    font-size: 162px; line-height: 1; opacity: 0.22;
+    pointer-events: none; transform: rotate(-12deg); user-select: none;
+}
+.widget-hero::before {
+    content: ''; position: absolute; top: -54px; left: -54px;
+    width: 162px; height: 162px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); pointer-events: none;
+}
+.hero-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    position: relative; z-index: 2; margin-bottom: 21px;
+}
+.hero-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 11px; background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.35); border-radius: 100px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1.3px;
+    text-transform: uppercase; color: #fff;
+}
+.hero-label .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #fff; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+.hero-close {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff; width: 32px; height: 32px; border-radius: 50%;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-family: inherit; padding: 0;
+}
+.hero-title { position: relative; z-index: 2; }
+.hero-title h2 {
+    font-size: 28px; font-weight: 800; color: #fff;
+    letter-spacing: -0.7px; line-height: 1.1; margin-bottom: 7px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15); word-break: break-word;
+}
+.hero-title .hero-date {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: rgba(255,255,255,0.9);
+    font-weight: 600; flex-wrap: wrap;
+}
+.hero-countdown, .hero-weight {
+    display: inline-block; padding: 2px 8px;
+    background: rgba(255,255,255,0.25); border-radius: 100px;
+    font-size: 11px; color: #fff; font-weight: 600;
+}
+.complete-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px; background: rgba(255,255,255,0.9);
+    border-radius: 100px; font-size: 10.5px; font-weight: 700;
+    color: var(--success); margin-bottom: 10px; position: relative; z-index: 2;
+}
+.widget-body {
+    background: var(--card-solid); margin-top: -27px; border-radius: 28px;
+    padding: 24px 22px 22px; position: relative; z-index: 3;
+    display: flex; align-items: center; gap: 18px;
+    transition: background 0.35s ease;
+}
+.ring-wrap { position: relative; width: 100px; height: 100px; flex-shrink: 0; }
+.ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring-track { fill: none; stroke: var(--border-soft); stroke-width: 9; transition: stroke 0.35s ease; }
+.ring-fill {
+    fill: none; stroke-width: 9; stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.4s ease;
+}
+.ring-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.ring-percent {
+    font-size: 24px; font-weight: 800; color: var(--text);
+    line-height: 1; letter-spacing: -1px; transition: color 0.35s ease;
+}
+.ring-percent .sign { font-size: 13px; font-weight: 700; color: var(--text-3); }
+.widget-meta { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+.meta-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 8px; padding-bottom: 9px; border-bottom: 1px solid var(--border-soft);
+}
+.meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.meta-row .meta-key { font-size: 11.5px; color: var(--text-3); font-weight: 600; }
+.meta-row .meta-val { font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
+.meta-row .meta-val.done { color: var(--success); }
+.meta-row .meta-val.left { color: var(--accent-2); }
+.widget-footer {
+    padding: 0 22px 20px; background: var(--card-solid);
+    position: relative; z-index: 3; transition: background 0.35s ease;
+}
+.mini-bar {
+    height: 6px; background: var(--border-soft); border-radius: 10px;
+    overflow: hidden; margin-bottom: 12px;
+}
+.mini-bar .fill {
+    height: 100%; border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tap-hint {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-2); font-weight: 600;
+}
+.tap-hint .arrow { font-size: 14px; color: var(--text-3); }
+
+.plus-one {
+    position: fixed; font-size: 22px; font-weight: 800;
+    color: var(--success); pointer-events: none; z-index: 900;
+    animation: plusOneFloat 1s ease-out forwards;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+@keyframes plusOneFloat {
+    0% { transform: translateY(0) scale(0.6); opacity: 0; }
+    15% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+    100% { transform: translateY(-70px) scale(0.9); opacity: 0; }
+}
+
+/* ПУСТОЕ */
+.empty-hero {
+    padding: 40px 28px; margin: 6px 0 17px; background: var(--card);
+    border: 1.5px dashed rgba(255,154,90,0.4); border-radius: 28px;
+    text-align: center; cursor: pointer; animation: slideIn 0.5s ease;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+body.dark .empty-hero { border-color: rgba(107,140,255,0.4); }
+.empty-hero .empty-icon {
+    font-size: 64px; margin-bottom: 14px; display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+.empty-hero h2 { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+.empty-hero p { font-size: 14px; color: var(--text-2); line-height: 1.5; margin-bottom: 18px; font-weight: 500; }
+.empty-hero .empty-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    color: #fff; font-size: 14.5px; font-weight: 700; border-radius: 100px;
+}
+.empty-hero .empty-cta .plus { font-size: 18px; line-height: 1; font-weight: 300; }
+
+/* СЕКЦИИ */
+.stats-section { margin-bottom: 20px; }
+.stats-title {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-3); font-weight: 700; margin-bottom: 12px; padding-left: 4px;
+}
+.history-item, .my-list-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 16px;
+    box-shadow: 0 4px 14px var(--shadow); margin-bottom: 8px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.history-item .h-emoji, .my-list-item .ml-emoji {
+    font-size: 20px; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card-solid); border-radius: 12px; flex-shrink: 0;
+}
+.history-item .h-body, .my-list-item .ml-body { flex: 1; min-width: 0; }
+.history-item .h-body .h-name, .my-list-item .ml-body .ml-name {
+    font-size: 14px; font-weight: 700; color: var(--text);
+    margin-bottom: 2px; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis;
+}
+.history-item .h-body .h-meta, .my-list-item .ml-body .ml-meta {
+    font-size: 11.5px; color: var(--text-3); font-weight: 500;
+}
+.history-item .h-badge {
+    font-size: 11px; font-weight: 700; padding: 5px 10px;
+    border-radius: 10px; background: rgba(78,203,113,0.15);
+    color: var(--success); flex-shrink: 0;
+}
+body.dark .history-item .h-badge { background: rgba(61,220,132,0.15); }
+.icon-btn {
+    background: transparent; border: none; color: var(--text-3);
+    width: 26px; height: 26px; border-radius: 50%; font-size: 13px;
+    font-weight: 700; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    font-family: inherit; padding: 0; opacity: 0.5;
+}
+
+/* ПРОФИЛЬ */
+.profile-hero {
+    padding: 24px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 28px; box-shadow: 0 16px 40px var(--shadow);
+    display: flex; align-items: center; gap: 18px; margin-bottom: 20px;
+    margin-top: 6px; position: relative; overflow: hidden;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.profile-hero::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle, var(--glow-1), transparent 70%);
+    pointer-events: none;
+}
+.profile-avatar {
+    width: 76px; height: 76px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; flex-shrink: 0; position: relative; z-index: 1;
+    color: #fff; font-weight: 700; overflow: hidden;
+    background-size: cover; background-position: center; cursor: pointer;
+}
+.profile-avatar.has-photo { color: transparent; }
+.profile-avatar .avatar-edit {
+    position: absolute; bottom: 0; right: 0; width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; border: 2.5px solid var(--bg);
+}
+.profile-avatar .avatar-edit svg { width: 13px; height: 13px; fill: #fff; }
+.profile-info { flex: 1; min-width: 0; position: relative; z-index: 1; }
+.profile-info h2 {
+    font-size: 21px; font-weight: 800; color: var(--text);
+    margin-bottom: 8px; white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis;
+}
+.profile-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 4px 10px;
+    background: linear-gradient(135deg, rgba(255,154,90,0.2), rgba(255,107,138,0.2));
+    border: 1px solid rgba(255,154,90,0.4); border-radius: 100px;
+    font-size: 11px; font-weight: 700; color: var(--danger);
+}
+body.dark .profile-badge {
+    background: linear-gradient(135deg, rgba(107,140,255,0.2), rgba(160,107,255,0.2));
+    border-color: rgba(107,140,255,0.5); color: #a9bdff;
+}
+.profile-stats {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px; margin-bottom: 22px;
+}
+.profile-stat-card {
+    padding: 18px 16px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; box-shadow: 0 6px 20px var(--shadow);
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.profile-stat-card .ps-icon { font-size: 22px; margin-bottom: 8px; }
+.profile-stat-card .ps-num {
+    font-size: 26px; font-weight: 800; color: var(--text);
+    line-height: 1; margin-bottom: 4px; letter-spacing: -0.5px;
+}
+.profile-stat-card .ps-label { font-size: 12px; color: var(--text-3); font-weight: 600; }
+.profile-menu {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; box-shadow: 0 8px 32px var(--shadow);
+    overflow: hidden; margin-bottom: 20px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.profile-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 20px; border-bottom: 1px solid var(--border-soft); cursor: pointer;
+}
+.profile-item:last-child { border-bottom: none; }
+.profile-item:active { background: rgba(255,154,90,0.08); }
+.profile-item .pi-icon {
+    font-size: 20px; width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,154,90,0.13); border-radius: 12px; flex-shrink: 0;
+}
+body.dark .profile-item .pi-icon { background: rgba(107,140,255,0.15); }
+.profile-item .pi-label { flex: 1; font-size: 15px; font-weight: 600; color: var(--text); }
+.profile-item .pi-value { font-size: 14px; color: var(--text-3); font-weight: 600; }
+.profile-item .pi-arrow { color: var(--text-3); font-size: 16px; font-weight: 700; opacity: 0.5; }
+
+/* ДОСТИЖЕНИЯ */
+.achievements-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px; margin-bottom: 22px;
+}
+.achievement {
+    padding: 16px 14px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 18px;
+    box-shadow: 0 6px 20px var(--shadow); text-align: center;
+    opacity: 0.4; filter: grayscale(1);
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.achievement.unlocked {
+    opacity: 1; filter: grayscale(0);
+    background: linear-gradient(135deg, rgba(255,154,90,0.15), rgba(255,107,138,0.15));
+    border-color: rgba(255,154,90,0.4);
+}
+body.dark .achievement.unlocked {
+    background: linear-gradient(135deg, rgba(107,140,255,0.15), rgba(160,107,255,0.15));
+    border-color: rgba(107,140,255,0.4);
+}
+.achievement .ach-icon { font-size: 28px; margin-bottom: 6px; }
+.achievement .ach-name { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.achievement .ach-desc { font-size: 10.5px; color: var(--text-3); margin-top: 4px; font-weight: 500; }
+
+/* НИЖНЕЕ МЕНЮ */
+.bottom-nav {
+    position: fixed; bottom: 16px; left: 20px; right: 20px;
+    max-width: 460px; margin: 0 auto; padding: 10px 12px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 24px; box-shadow: 0 12px 40px var(--shadow);
+    display: flex; gap: 6px; z-index: 70;
+    backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.nav-item {
+    flex: 1; padding: 11px 8px; border: none; background: transparent;
+    border-radius: 16px; cursor: pointer; display: flex;
+    flex-direction: column; align-items: center; gap: 4px; font-family: inherit;
+}
+.nav-item .nav-icon { font-size: 20px; line-height: 1; opacity: 0.55; }
+.nav-item .nav-label { font-size: 10.5px; font-weight: 700; color: var(--text-3); }
+.nav-item.active { background: linear-gradient(135deg, rgba(255,154,90,0.2), rgba(255,107,138,0.2)); }
+body.dark .nav-item.active { background: linear-gradient(135deg, rgba(107,140,255,0.25), rgba(160,107,255,0.25)); }
+.nav-item.active .nav-icon { opacity: 1; transform: scale(1.1); }
+.nav-item.active .nav-label { color: var(--danger); }
+
+/* ============ МОДАЛКИ ============ */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(60, 40, 25, 0.35);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    z-index: 100; display: none; align-items: flex-end;
+    justify-content: center; overflow: hidden;
+}
+body.dark .modal-overlay { background: rgba(0, 0, 0, 0.55); }
+.modal-overlay.active { display: flex; }
+.modal {
+    width: 100%; max-width: 500px; max-height: 88vh;
+    overflow-y: auto; overflow-x: hidden;
+    border-radius: 32px 32px 0 0; padding: 20px 20px 32px;
+    background: var(--bg); border-top: 1px solid var(--border);
+    box-shadow: 0 -8px 40px var(--shadow); position: relative;
+    box-sizing: border-box; -webkit-overflow-scrolling: touch;
+    transition: background 0.35s ease;
+}
+.modal-handle {
+    width: 40px; height: 4px; background: var(--border-soft);
+    border-radius: 10px; margin: 0 auto 20px;
+}
+.modal-close {
+    position: absolute; top: 18px; right: 18px;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--text-2); font-size: 16px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; z-index: 10; font-family: inherit; padding: 0;
+}
+.modal h2 {
+    font-size: 22px; font-weight: 700; margin-bottom: 20px;
+    text-align: center; color: var(--text); padding: 0 40px;
+}
+.step-indicator { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+.step-dot { width: 32px; height: 4px; border-radius: 4px; background: var(--border-soft); }
+.step-dot.active { background: linear-gradient(90deg, var(--accent-1), var(--accent-2)); width: 48px; }
+.step-dot.done { background: var(--accent-1); }
+
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.type-option {
+    padding: 20px 12px; border-radius: 20px; background: var(--card);
+    border: 1.5px solid var(--border-soft); text-align: center;
+    cursor: pointer; position: relative;
+    transition: background 0.3s, border-color 0.3s;
+}
+.type-option.selected {
+    background: linear-gradient(135deg, rgba(255,154,90,0.2), rgba(255,107,138,0.2));
+    border-color: var(--accent-1);
+}
+body.dark .type-option.selected {
+    background: linear-gradient(135deg, rgba(107,140,255,0.25), rgba(160,107,255,0.25));
+}
+.type-option .emoji { font-size: 36px; display: block; margin-bottom: 8px; }
+.type-option .name { font-size: 14px; font-weight: 600; color: var(--text); }
+.type-option.create-new {
+    background: linear-gradient(135deg, rgba(192,132,252,0.15), rgba(255,107,138,0.15));
+    border: 1.5px dashed rgba(192,132,252,0.5);
+}
+body.dark .type-option.create-new {
+    background: linear-gradient(135deg, rgba(160,107,255,0.15), rgba(107,140,255,0.15));
+    border-color: rgba(160,107,255,0.5);
+}
+.type-option.create-new .name { color: #7e5bef; }
+body.dark .type-option.create-new .name { color: #a06bff; }
+.custom-type-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(192,132,252,0.9); color: #fff;
+    font-size: 8px; font-weight: 700; padding: 3px 6px;
+    border-radius: 6px; text-transform: uppercase;
+}
+body.dark .custom-type-badge { background: rgba(160,107,255,0.9); }
+
+.input-field {
+    width: 100%; padding: 16px; border-radius: 16px;
+    background: var(--card); border: 1.5px solid var(--border-soft);
+    color: var(--text); font-size: 16px; font-family: inherit;
+    margin-bottom: 16px; outline: none; -webkit-appearance: none;
+    appearance: none; box-sizing: border-box;
+    transition: background 0.35s ease, border-color 0.2s;
+}
+.input-field::placeholder { color: var(--text-3); opacity: 0.7; }
+.input-field:focus { border-color: var(--accent-1); }
+
+.btn-primary {
+    width: 100%; padding: 18px; border: none; border-radius: 18px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    color: #fff; font-size: 17px; font-weight: 600;
+    font-family: inherit; cursor: pointer; transition: background 0.35s ease;
+}
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; background: var(--text-3); }
+.btn-secondary {
+    width: 100%; padding: 16px; border: 1.5px solid var(--border-soft);
+    border-radius: 18px; background: var(--card); color: var(--text);
+    font-size: 16px; font-weight: 600; font-family: inherit;
+    cursor: pointer; margin-top: 10px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.btn-danger {
+    width: 100%; padding: 16px;
+    border: 1.5px solid rgba(255,107,138,0.3);
+    border-radius: 18px; background: rgba(255,107,138,0.1);
+    color: var(--danger); font-size: 16px; font-weight: 600;
+    font-family: inherit; cursor: pointer; margin-top: 10px;
+}
+.field-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--text-3); font-weight: 700; margin-bottom: 8px;
+    padding-left: 4px; margin-top: 4px;
+}
+.emoji-picker { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.emoji-choice {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: var(--card); border: 1.5px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; cursor: pointer;
+    transition: background 0.35s ease, border-color 0.2s;
+}
+.emoji-choice.selected {
+    background: linear-gradient(135deg, rgba(255,154,90,0.25), rgba(255,107,138,0.25));
+    border-color: var(--accent-1);
+}
+body.dark .emoji-choice.selected {
+    background: linear-gradient(135deg, rgba(107,140,255,0.25), rgba(160,107,255,0.25));
+}
+.color-picker { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.color-choice {
+    aspect-ratio: 1; border-radius: 16px; cursor: pointer;
+    position: relative; border: 3px solid transparent;
+}
+.color-choice.selected { border-color: var(--text); transform: scale(1.05); }
+.color-choice.selected::after {
+    content: '✓'; position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; font-weight: 800;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+.preview-card {
+    padding: 16px 18px; border-radius: 20px; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 14px;
+    color: #fff; position: relative; overflow: hidden;
+}
+.preview-card .preview-emoji { font-size: 32px; position: relative; z-index: 1; }
+.preview-card .preview-name {
+    flex: 1; font-size: 17px; font-weight: 800;
+    position: relative; z-index: 1; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; min-width: 0;
+}
+.preview-card .preview-count { font-size: 12px; opacity: 0.9; font-weight: 600; flex-shrink: 0; }
+
+.advanced-item-row {
+    padding: 14px; background: var(--card);
+    border: 1.5px solid var(--border-soft); border-radius: 16px;
+    margin-bottom: 10px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+}
+.advanced-item-head { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.advanced-item-head .item-text {
+    flex: 1; font-size: 15px; font-weight: 700; color: var(--text);
+    word-break: break-word; padding-top: 2px; min-width: 0;
+}
+.advanced-item-head .item-remove {
+    background: rgba(255,107,138,0.12); border: none;
+    color: var(--accent-2); width: 26px; height: 26px;
+    border-radius: 50%; font-size: 12px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-family: inherit; padding: 0;
+}
+.advanced-item-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.advanced-item-fields .mini-field {
+    padding: 8px 10px; border-radius: 10px;
+    background: var(--card-solid); border: 1px solid var(--border-soft);
+    font-family: inherit; font-size: 13px; color: var(--text);
+    outline: none; width: 100%; -webkit-appearance: none;
+    appearance: none; box-sizing: border-box;
+}
+.advanced-item-fields .mini-field.full { grid-column: 1 / -1; }
+.add-item-row { display: flex; gap: 8px; margin-bottom: 18px; }
+.add-item-row .input-field { flex: 1; margin-bottom: 0; padding: 14px; font-size: 15px; }
+.add-item-row .add-item-btn {
+    width: 50px; height: 50px; border: none; border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    color: #fff; font-size: 24px; font-weight: 300;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-family: inherit; padding: 0;
+}
+
+/* ============ ЧЕКЛИСТ ============ */
+.checklist { margin-top: 8px; }
+.cat-section { margin-bottom: 18px; }
+.cat-header {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 4px; margin-bottom: 8px;
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 1.2px; color: var(--text-3); font-weight: 700;
+}
+.cat-header .cat-icon { font-size: 16px; }
+.cat-header .cat-count {
+    font-size: 11px; opacity: 0.6; margin-left: auto; font-weight: 600;
+}
+.checklist-toolbar {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.checklist-toolbar .input-field {
+    flex: 1; margin-bottom: 0; padding: 12px 14px; font-size: 14.5px;
+}
+.toolbar-toggle {
+    background: var(--card); border: 1.5px solid var(--border-soft);
+    border-radius: 12px; padding: 12px 14px;
+    font-family: inherit; font-size: 13px; font-weight: 700;
+    color: var(--text-2); cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    flex-shrink: 0; transition: all 0.25s;
+}
+.toolbar-toggle.active {
+    background: linear-gradient(135deg, rgba(255,154,90,0.2), rgba(255,107,138,0.2));
+    border-color: var(--accent-1);
+    color: var(--accent-2);
+}
+body.dark .toolbar-toggle.active {
+    background: linear-gradient(135deg, rgba(107,140,255,0.2), rgba(160,107,255,0.2));
+}
+
+/* Swipeable check item -- БЕЗ ПРОЗРАЧНОСТИ */
+.check-item-wrap {
+    position: relative; margin-bottom: 8px;
+    border-radius: 16px; overflow: hidden;
+    background: var(--card-solid);
+}
+
+.check-item-actions {
+    position: absolute; top: 0; bottom: 0;
+    display: flex; align-items: center;
+    padding: 0 20px; font-size: 14px; font-weight: 700;
+    color: #fff; gap: 6px;
+}
+.check-item-actions.right {
+    left: 0;
+    background: linear-gradient(135deg, #4ecb71, #38b2ac);
+    justify-content: flex-start;
+}
+.check-item-actions.left {
+    right: 0;
+    background: linear-gradient(135deg, #ff6b8a, #d6336c);
+    justify-content: flex-end;
+}
+
+.check-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; background: var(--card-solid);
+    border: 1.5px solid var(--border-soft);
+    border-radius: 16px; cursor: pointer; user-select: none;
+    position: relative; z-index: 2;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease, border-color 0.35s ease;
+    will-change: transform;
+}
+body:not(.dark) .check-item {
+    background: #ffffff;
+}
+.check-item.checked {
+    background: rgba(78,203,113,0.12);
+    border-color: rgba(78,203,113,0.35);
+}
+body.dark .check-item.checked {
+    background: rgba(61,220,132,0.1);
+    border-color: rgba(61,220,132,0.3);
+}
+.check-circle {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 14px; color: transparent;
+    background: var(--card-solid);
+}
+.check-item.checked .check-circle {
+    background: linear-gradient(135deg, #4ecb71, #38b2ac);
+    border-color: transparent; color: #fff; font-weight: bold;
+}
+.check-item .check-body { flex: 1; min-width: 0; }
+.check-item.checked .check-text { text-decoration: line-through; color: var(--text-3); }
+.check-text { font-size: 15px; color: var(--text); font-weight: 500; word-break: break-word; }
+.check-note {
+    font-size: 11.5px; color: var(--text-3); margin-top: 2px;
+    font-style: italic; font-weight: 500;
+}
+.qty-stepper { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.qty-btn {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1.5px solid var(--border-soft);
+    background: var(--card-solid); color: var(--text);
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: inherit; line-height: 1; padding: 0;
+}
+.qty-val {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    min-width: 16px; text-align: center;
+}
+.search-highlight {
+    background: rgba(255,210,90,0.6); border-radius: 3px; padding: 0 2px;
+}
+body.dark .search-highlight { background: rgba(255,210,90,0.4); color: #fff; }
+.empty-search {
+    text-align: center; padding: 40px 20px;
+    color: var(--text-3); font-size: 14px; font-weight: 500;
+}
+
+.modal-progress {
+    margin-bottom: 16px; padding: 14px 16px;
+    background: var(--card); border-radius: 16px;
+    border: 1.5px solid var(--border-soft);
+    transition: background 0.35s ease;
+}
+.modal-progress .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: 13px; margin-bottom: 8px;
+    color: var(--text-2); font-weight: 600;
+}
+.progress-bar {
+    height: 8px; background: var(--border-soft);
+    border-radius: 10px; overflow: hidden;
+}
+.progress-fill {
+    height: 100%; border-radius: 10px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+}
+.progress-fill.complete { background: linear-gradient(90deg, #4ecb71, #38b2ac); }
+.weight-info {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed var(--border-soft);
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-weight: 600; color: var(--text-3);
+}
+.weight-info .weight-val { color: var(--accent-2); font-weight: 800; }
+
+.weight-limits { margin-top: 10px; }
+.weight-track {
+    position: relative; height: 14px;
+    background: var(--border-soft); border-radius: 10px;
+    overflow: hidden; display: flex; margin-bottom: 6px;
+}
+.weight-segment { height: 100%; position: relative; }
+.weight-segment.hand {
+    flex: 8; background: linear-gradient(90deg, rgba(78,203,113,0.25), rgba(78,203,113,0.4));
+}
+.weight-segment.bag {
+    flex: 15; background: linear-gradient(90deg, rgba(255,209,102,0.4), rgba(255,154,90,0.5));
+}
+.weight-segment.over {
+    flex: 5; background: linear-gradient(90deg, rgba(255,107,138,0.5), rgba(214,51,108,0.6));
+}
+.weight-marker {
+    position: absolute; top: -3px; width: 4px; height: 20px;
+    background: var(--text); border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1); z-index: 2;
+}
+.weight-marker::after {
+    content: ''; position: absolute; top: -3px; left: 50%;
+    transform: translateX(-50%); width: 10px; height: 10px;
+    border-radius: 50%; background: var(--text);
+}
+.weight-labels {
+    display: flex; justify-content: space-between;
+    font-size: 10px; font-weight: 700; color: var(--text-3);
+    text-transform: uppercase; letter-spacing: 0.5px;
+}
+.weight-status {
+    text-align: center; font-size: 12px; font-weight: 700;
+    margin-top: 8px; padding: 6px 12px;
+    border-radius: 100px; display: inline-block; width: 100%;
+}
+.weight-status.hand { background: rgba(78,203,113,0.15); color: #2f9c53; }
+.weight-status.bag {
+    background: rgba(255,209,102,0.2); color: #b8770f;
+}
+body.dark .weight-status.bag { color: #ffd166; background: rgba(255,209,102,0.15); }
+.weight-status.over { background: rgba(255,107,138,0.15); color: var(--danger); }
+
+.weather-card {
+    margin-bottom: 16px; padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(94,199,255,0.15), rgba(58,134,255,0.15));
+    border: 1.5px solid rgba(94,199,255,0.3);
+    border-radius: 16px; display: none;
+}
+.weather-card.show { display: block; }
+.weather-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.weather-header .w-icon { font-size: 26px; }
+.weather-header .w-city {
+    flex: 1; font-size: 14px; font-weight: 700; color: var(--text);
+}
+.weather-header .w-temp {
+    font-size: 22px; font-weight: 800; color: var(--text);
+}
+.weather-desc {
+    font-size: 12px; color: var(--text-2);
+    font-weight: 600; margin-bottom: 4px;
+}
+.weather-forecast {
+    display: flex; gap: 10px; overflow-x: auto;
+    margin-top: 8px; padding-bottom: 4px; scrollbar-width: none;
+}
+.weather-forecast::-webkit-scrollbar { display: none; }
+.forecast-day {
+    flex-shrink: 0; text-align: center;
+    padding: 8px 10px; background: var(--card);
+    border-radius: 12px; min-width: 60px;
+}
+.forecast-day .fd-name {
+    font-size: 10px; font-weight: 700; color: var(--text-3);
+    text-transform: uppercase; margin-bottom: 4px;
+}
+.forecast-day .fd-icon { font-size: 20px; margin-bottom: 4px; }
+.forecast-day .fd-temp {
+    font-size: 12px; font-weight: 700; color: var(--text);
+}
+
+.add-to-active {
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; margin-top: 12px; padding: 14px;
+    border: 1.5px dashed var(--border-soft);
+    border-radius: 16px; background: transparent;
+    color: var(--text-2); font-size: 14.5px; font-weight: 700;
+    font-family: inherit; cursor: pointer; width: 100%;
+}
+.toast {
+    position: fixed; bottom: 100px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 12px 20px; background: rgba(45,36,25,0.95);
+    color: #fff; border-radius: 100px;
+    font-size: 13.5px; font-weight: 600; z-index: 999;
+    opacity: 0; transition: all 0.3s; pointer-events: none;
+    max-width: 90%; text-align: center;
+}
+body.dark .toast { background: rgba(107,140,255,0.95); }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.confetti {
+    position: fixed; width: 10px; height: 10px; top: -10px;
+    z-index: 999; pointer-events: none;
+    animation: confettiFall 3s linear forwards;
+}
+@keyframes confettiFall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.modal::-webkit-scrollbar { display: none; }
+.modal { -ms-overflow-style: none; scrollbar-width: none; }
+.page { display: none; }
+.page.active { display: block; }
+
+.toggle {
+    width: 44px; height: 26px; background: var(--border-soft);
+    border-radius: 100px; position: relative;
+    cursor: pointer; flex-shrink: 0;
+    transition: background 0.35s ease;
+}
+.toggle.on { background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); }
+.toggle::after {
+    content: ''; position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px; background: #fff;
+    border-radius: 50%; transition: transform 0.3s;
+}
+.toggle.on::after { transform: translateX(18px); }
+
+#errorScreen {
+    position: fixed; inset: 0; background: var(--bg);
+    z-index: 9999; display: none; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 40px 24px; text-align: center;
+}
+#errorScreen.show { display: flex; }
+#errorScreen .err-icon { font-size: 60px; margin-bottom: 16px; }
+#errorScreen h2 { font-size: 20px; margin-bottom: 10px; color: var(--text); }
+#errorScreen p { font-size: 14px; color: var(--text-2); margin-bottom: 20px; line-height: 1.5; }
+#errorScreen button {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    color: #fff; border: none; border-radius: 100px;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: inherit; margin: 4px;
+}
+#errorScreen .err-msg {
+    font-family: monospace; font-size: 11px;
+    color: var(--text-3); background: var(--card);
+    padding: 12px; border-radius: 12px;
+    margin-top: 20px; max-width: 100%;
+    word-break: break-all; text-align: left;
+}
+
+/* ============ СТРАНИЦА ЧЕКЛИСТА ============ */
+.checklist-page {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 150;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background 0.35s ease;
+}
+.checklist-page.active { display: flex; }
+
+.checklist-page-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px 12px;
+    background: linear-gradient(to bottom, var(--bg) 70%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+}
+
+.back-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: inherit;
+    padding: 0;
+    transition: background 0.2s;
+}
+.back-btn:active { background: var(--border-soft); }
+
+.checklist-page-title {
+    flex: 1;
+    min-width: 0;
+}
+.checklist-page-title h2 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    letter-spacing: -0.3px;
+}
+.checklist-page-title .subtitle {
+    font-size: 12px;
+    color: var(--text-3);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.checklist-page-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.page-action-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: inherit;
+    padding: 0;
+    transition: background 0.2s;
+}
+.page-action-btn:active { background: var(--border-soft); }
+
+.checklist-page-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 20px 120px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.checklist-page-content::-webkit-scrollbar { display: none; }
+
+.checklist-page-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 20px 24px;
+    background: linear-gradient(to top, var(--bg) 60%, transparent);
+    z-index: 20;
+    max-width: 500px;
+    margin: 0 auto;
+    pointer-events: none;
+}
+.checklist-page-bottom .add-to-active {
+    pointer-events: auto;
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+</style>
+</head>
+<body>
+
+<div id="errorScreen">
+    <div class="err-icon">😕</div>
+    <h2>Что-то пошло не так</h2>
+    <p>Не удалось загрузить приложение.<br>Попробуйте сбросить данные.</p>
+    <div>
+        <button onclick="hardReset()">Сбросить данные</button>
+        <button onclick="location.reload()" style="background: var(--card); color: var(--text);">Обновить</button>
+    </div>
+    <div class="err-msg" id="errMsg"></div>
+</div>
+
+<div class="app-header">
+    <div class="logo">byBag</div>
+</div>
+<div class="header-spacer"></div>
+
+<div class="page active" id="page-home">
+    <div class="container">
+        <div id="storiesSlot"></div>
+        <div id="widgetSlot"></div>
+        <div id="myListsSlot"></div>
+        <div id="historySlot"></div>
+    </div>
+</div>
+
+<div class="page" id="page-profile">
+    <div class="container">
+        <div class="profile-hero">
+            <div class="profile-avatar" id="profileAvatar">
+                <span id="profileAvatarLetter">Э</span>
+                <span class="avatar-edit">
+                    <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                </span>
+            </div>
+            <div class="profile-info">
+                <h2 id="profileName">Эрик</h2>
+                <div class="profile-badge">⭐ Premium</div>
+            </div>
+        </div>
+
+        <div class="stats-title">Моя статистика</div>
+        <div class="profile-stats">
+            <div class="profile-stat-card">
+                <div class="ps-icon">🧳</div>
+                <div class="ps-num" id="profileTotalTrips">0</div>
+                <div class="ps-label">Всего поездок</div>
+            </div>
+            <div class="profile-stat-card">
+                <div class="ps-icon">✅</div>
+                <div class="ps-num" id="profileCompletedTrips">0</div>
+                <div class="ps-label">Завершено</div>
+            </div>
+            <div class="profile-stat-card">
+                <div class="ps-icon">📦</div>
+                <div class="ps-num" id="profileItemsPacked">0</div>
+                <div class="ps-label">Вещей собрано</div>
+            </div>
+            <div class="profile-stat-card">
+                <div class="ps-icon">⚖️</div>
+                <div class="ps-num" id="profileTotalWeight">0</div>
+                <div class="ps-label">Кг собрано</div>
+            </div>
+        </div>
+
+        <div class="stats-title">Достижения</div>
+        <div class="achievements-grid" id="achievementsGrid"></div>
+
+        <div class="stats-title">Настройки</div>
+        <div class="profile-menu">
+            <div class="profile-item" id="editProfileBtn">
+                <div class="pi-icon">✏️</div>
+                <div class="pi-label">Редактировать профиль</div>
+                <div class="pi-arrow">›</div>
+            </div>
+            <div class="profile-item" id="darkModeToggleItem">
+                <div class="pi-icon">🌙</div>
+                <div class="pi-label">Тёмная тема</div>
+                <div class="toggle" id="darkToggle"></div>
+            </div>
+            <div class="profile-item" id="notifToggleItem">
+                <div class="pi-icon">🔔</div>
+                <div class="pi-label">Напоминания</div>
+                <div class="toggle" id="notifToggle"></div>
+            </div>
+            <div class="profile-item" id="vibrateToggleItem">
+                <div class="pi-icon">📳</div>
+                <div class="pi-label">Вибрация</div>
+                <div class="toggle" id="vibrateToggle"></div>
+            </div>
+        </div>
+
+        <div class="stats-title">О приложении</div>
+        <div class="profile-menu">
+            <div class="profile-item">
+                <div class="pi-icon">ℹ️</div>
+                <div class="pi-label">Версия</div>
+                <div class="pi-value">2.6.0</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-nav">
+    <button type="button" class="nav-item active" data-page="home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Главная</span>
+    </button>
+    <button type="button" class="nav-item" data-page="profile">
+        <span class="nav-icon">👤</span>
+        <span class="nav-label">Профиль</span>
+    </button>
+</div>
+
+<!-- ============ СТРАНИЦА ЧЕКЛИСТА ============ -->
+<div class="checklist-page" id="checklistPage">
+    <div class="checklist-page-header">
+        <button type="button" class="back-btn" id="checklistBackBtn">←</button>
+        <div class="checklist-page-title">
+            <h2 id="checklistPageTitle">Сбор багажа</h2>
+            <div class="subtitle" id="checklistPageSubtitle"></div>
+        </div>
+        <div class="checklist-page-actions">
+            <button type="button" class="page-action-btn" id="checklistShareBtn" title="Поделиться">📤</button>
+        </div>
+    </div>
+
+    <div class="checklist-page-content">
+        <div class="modal-progress">
+            <div class="progress-label">
+                <span>Собрано вещей</span>
+                <span id="tripProgressText">0 / 0</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="tripProgressFill" style="width: 0%"></div>
+            </div>
+            <div class="weight-info">
+                <span>⚖️ Вес собранного</span>
+                <span class="weight-val" id="tripWeight">0 кг</span>
+            </div>
+            <div class="weight-limits" id="weightLimits" style="display:none;">
+                <div class="weight-track">
+                    <div class="weight-segment hand"></div>
+                    <div class="weight-segment bag"></div>
+                    <div class="weight-segment over"></div>
+                    <div class="weight-marker" id="weightMarker" style="left: 0%"></div>
+                </div>
+                <div class="weight-labels">
+                    <span>0</span>
+                    <span>8 кг</span>
+                    <span>23 кг</span>
+                    <span>28+</span>
+                </div>
+                <div class="weight-status" id="weightStatus"></div>
+            </div>
+        </div>
+        <div class="weather-card" id="weatherCard">
+            <div class="weather-header">
+                <div class="w-icon" id="weatherIcon">☀️</div>
+                <div class="w-city" id="weatherCity">--</div>
+                <div class="w-temp" id="weatherTemp">--</div>
+            </div>
+            <div class="weather-desc" id="weatherDesc">Загрузка...</div>
+            <div class="weather-forecast" id="weatherForecast"></div>
+        </div>
+        <div class="checklist-toolbar">
+            <input type="text" class="input-field" id="searchInput" placeholder="🔍 Поиск по вещам...">
+            <button type="button" class="toolbar-toggle" id="hideDoneToggle" title="Скрыть собранное">
+                <span>👁</span>
+            </button>
+        </div>
+        <div class="checklist" id="checklistContainer"></div>
+    </div>
+
+    <div class="checklist-page-bottom">
+        <button type="button" class="add-to-active" id="addToActiveBtn">+ Добавить вещь в поездку</button>
+    </div>
+</div>
+
+<!-- Modal: выбор типа -->
+<div class="modal-overlay" id="typeModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="typeModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Выберите тип поездки</h2>
+        <div class="type-grid" id="typeGrid"></div>
+        <input type="text" class="input-field" id="tripName" placeholder="Название поездки (необязательно)">
+        <div class="field-label">Дата начала (необязательно)</div>
+        <input type="date" class="input-field" id="tripStartDate">
+        <div class="field-label">Город (для погоды, необязательно)</div>
+        <input type="text" class="input-field" id="tripCity" placeholder="Например: Москва">
+        <button type="button" class="btn-primary" id="createBtn" disabled>Создать поездку</button>
+    </div>
+</div>
+
+<!-- Modal: мастер шаг 1 -->
+<div class="modal-overlay" id="wizardStep1">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="wizardStep1">✕</button>
+        <div class="modal-handle"></div>
+        <div class="step-indicator">
+            <div class="step-dot active"></div>
+            <div class="step-dot"></div>
+        </div>
+        <h2>Настройка типа</h2>
+        <div class="field-label">Превью</div>
+        <div class="preview-card" id="wiz1Preview" style="background: linear-gradient(135deg, #ffb347, #ff7e5f);">
+            <div class="preview-emoji" id="wiz1Emoji">🎒</div>
+            <div class="preview-name" id="wiz1Name">Название типа</div>
+            <div class="preview-count" id="wiz1Count">0 вещей</div>
+        </div>
+        <div class="field-label">Название типа</div>
+        <input type="text" class="input-field" id="wiz1NameInput" placeholder="Например: Кемпинг" maxlength="30">
+        <div class="field-label">Иконка</div>
+        <div class="emoji-picker" id="wiz1EmojiPicker"></div>
+        <div class="field-label">Цветовая палитра</div>
+        <div class="color-picker" id="wiz1ColorPicker"></div>
+        <button type="button" class="btn-primary" id="wiz1NextBtn" disabled>Далее →</button>
+    </div>
+</div>
+
+<!-- Modal: мастер шаг 2 -->
+<div class="modal-overlay" id="wizardStep2">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="wizardStep2">✕</button>
+        <div class="modal-handle"></div>
+        <div class="step-indicator">
+            <div class="step-dot done"></div>
+            <div class="step-dot active"></div>
+        </div>
+        <h2>Список вещей</h2>
+        <div class="preview-card" id="wiz2Preview" style="background: linear-gradient(135deg, #ffb347, #ff7e5f); margin-bottom: 20px;">
+            <div class="preview-emoji" id="wiz2Emoji">🎒</div>
+            <div class="preview-name" id="wiz2Name">Название типа</div>
+            <div class="preview-count" id="wiz2Count">0 вещей</div>
+        </div>
+        <div class="field-label">Вещи в списке</div>
+        <div id="wiz2ItemsEditor"></div>
+        <div class="field-label">Быстрое добавление</div>
+        <div class="add-item-row">
+            <input type="text" class="input-field" id="wiz2NewItem" placeholder="Название вещи..." maxlength="60">
+            <button type="button" class="add-item-btn" id="wiz2AddBtn">+</button>
+        </div>
+        <button type="button" class="btn-secondary" id="wiz2AdvancedBtn">+ Вещь со всеми полями</button>
+        <button type="button" class="btn-primary" id="wiz2SaveBtn" style="margin-top: 14px;">Сохранить список</button>
+        <button type="button" class="btn-secondary" id="wiz2BackBtn">← Назад</button>
+    </div>
+</div>
+
+<!-- Modal: подробная вещь в мастере -->
+<div class="modal-overlay" id="advancedItemModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="advancedItemModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Подробно о вещи</h2>
+        <div class="field-label">Название</div>
+        <input type="text" class="input-field" id="advName" placeholder="Например: Зубная щётка" maxlength="60">
+        <div class="field-label">Категория</div>
+        <select class="input-field" id="advCat"></select>
+        <div class="field-label">Количество</div>
+        <input type="number" class="input-field" id="advQty" value="1" min="1" max="99">
+        <div class="field-label">Вес 1 шт. (кг)</div>
+        <input type="number" class="input-field" id="advWeight" placeholder="0.2" step="0.1" min="0">
+        <div class="field-label">Заметка</div>
+        <input type="text" class="input-field" id="advNote" placeholder="Например: та, что с Type-C" maxlength="60">
+        <button type="button" class="btn-primary" id="advConfirmBtn">Добавить</button>
+    </div>
+</div>
+
+<!-- Modal: редактор списка -->
+<div class="modal-overlay" id="listEditorModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="listEditorModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2 id="listEditorTitle">Редактировать список</h2>
+        <div class="field-label">Превью</div>
+        <div class="preview-card" id="previewCard">
+            <div class="preview-emoji" id="previewEmoji">🎒</div>
+            <div class="preview-name" id="previewName">Название списка</div>
+            <div class="preview-count" id="previewCount">0 вещей</div>
+        </div>
+        <div class="field-label">Название</div>
+        <input type="text" class="input-field" id="listName" placeholder="Название" maxlength="30">
+        <div class="field-label">Иконка</div>
+        <div class="emoji-picker" id="emojiPicker"></div>
+        <div class="field-label">Цветовая палитра</div>
+        <div class="color-picker" id="colorPicker"></div>
+        <div class="field-label">Вещи в списке</div>
+        <div id="itemsEditor"></div>
+        <div class="add-item-row">
+            <input type="text" class="input-field" id="newItemInput" placeholder="Добавить вещь..." maxlength="60">
+            <button type="button" class="add-item-btn" id="addItemBtn">+</button>
+        </div>
+        <button type="button" class="btn-secondary" id="listAdvancedBtn">+ Вещь со всеми полями</button>
+        <button type="button" class="btn-primary" id="saveListBtn" style="margin-top: 14px;">Сохранить</button>
+        <button type="button" class="btn-danger" id="deleteListBtn" style="display:none;">Удалить список</button>
+    </div>
+</div>
+
+<!-- Modal: подробная вещь в редакторе -->
+<div class="modal-overlay" id="advancedItemModal2">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="advancedItemModal2">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Подробно о вещи</h2>
+        <div class="field-label">Название</div>
+        <input type="text" class="input-field" id="adv2Name" placeholder="Например: Зубная щётка" maxlength="60">
+        <div class="field-label">Категория</div>
+        <select class="input-field" id="adv2Cat"></select>
+        <div class="field-label">Количество</div>
+        <input type="number" class="input-field" id="adv2Qty" value="1" min="1" max="99">
+        <div class="field-label">Вес 1 шт. (кг)</div>
+        <input type="number" class="input-field" id="adv2Weight" placeholder="0.2" step="0.1" min="0">
+        <div class="field-label">Заметка</div>
+        <input type="text" class="input-field" id="adv2Note" placeholder="Например: та, что с Type-C" maxlength="60">
+        <button type="button" class="btn-primary" id="adv2ConfirmBtn">Добавить</button>
+    </div>
+</div>
+
+<!-- Modal: добавить вещь в активную -->
+<div class="modal-overlay" id="addItemModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="addItemModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Новая вещь</h2>
+        <div class="field-label">Название</div>
+        <input type="text" class="input-field" id="addItemName" placeholder="Например: Зубная щётка" maxlength="60">
+        <div class="field-label">Категория</div>
+        <select class="input-field" id="addItemCat"></select>
+        <div class="field-label">Количество</div>
+        <input type="number" class="input-field" id="addItemQty" value="1" min="1" max="99">
+        <div class="field-label">Вес (кг)</div>
+        <input type="number" class="input-field" id="addItemWeight" placeholder="0.2" step="0.1" min="0">
+        <div class="field-label">Заметка</div>
+        <input type="text" class="input-field" id="addItemNote" placeholder="Например: та, что с Type-C" maxlength="60">
+        <button type="button" class="btn-primary" id="confirmAddItemBtn">Добавить</button>
+    </div>
+</div>
+
+<!-- Modal: профиль -->
+<div class="modal-overlay" id="editProfileModal">
+    <div class="modal">
+        <button type="button" class="modal-close" data-close="editProfileModal">✕</button>
+        <div class="modal-handle"></div>
+        <h2>Редактировать профиль</h2>
+        <div style="display:flex;justify-content:center;margin-bottom:22px;">
+            <div class="profile-avatar" id="editAvatar" style="width:110px;height:110px;font-size:44px;">
+                <span id="editAvatarLetter">Э</span>
+                <span class="avatar-edit" style="width:34px;height:34px;">
+                    <svg viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                </span>
+            </div>
+        </div>
+        <input type="file" id="avatarInput" accept="image/*" style="display:none;">
+        <div class="field-label">Имя</div>
+        <input type="text" class="input-field" id="editName" placeholder="Ваше имя" maxlength="30">
+        <button type="button" class="btn-primary" id="saveProfileBtn">Сохранить</button>
+        <button type="button" class="btn-secondary" id="resetAvatarBtn">Удалить фото</button>
+    </div>
+</div>
+
+<!-- Story Viewer -->
+<div class="story-viewer" id="storyViewer">
+    <div class="story-bg" id="storyBg"></div>
+    <div class="story-emoji-deco" id="storyDeco">🎒</div>
+    <div class="story-progress-row" id="storyProgressRow"></div>
+    <div class="story-header">
+        <div class="story-avatar-sm" id="storyAvatar">🧳</div>
+        <div class="story-name-block">
+            <div class="s-title" id="storyTitle">Поездка</div>
+            <div class="s-time" id="storyTime">сейчас</div>
+        </div>
+        <button type="button" class="story-close-btn" id="storyCloseBtn">✕</button>
+    </div>
+    <div class="story-tap-zone prev" id="storyTapPrev"></div>
+    <div class="story-tap-zone next" id="storyTapNext"></div>
+    <div class="story-content" id="storyContent"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+window.addEventListener('error', function(e) {
+    console.error('byBag error:', e.error || e.message);
+    var errScreen = document.getElementById('errorScreen');
+    var errMsg = document.getElementById('errMsg');
+    if (errScreen && errMsg) {
+        errMsg.textContent = (e.error && e.error.stack) ? e.error.stack : (e.message || 'Неизвестная ошибка');
+        errScreen.classList.add('show');
+    }
+});
+
+function hardReset() {
+    try { localStorage.clear(); } catch (e) {}
+    location.reload();
+}
+
+(function() {
+    'use strict';
+
+    var CATEGORIES = {
+        clothes: { name: 'Одежда', icon: '👕' },
+        documents: { name: 'Документы', icon: '📄' },
+        tech: { name: 'Техника', icon: '📱' },
+        hygiene: { name: 'Гигиена', icon: '🧴' },
+        meds: { name: 'Аптека', icon: '💊' },
+        other: { name: 'Прочее', icon: '📦' }
+    };
+
+    var ACHIEVEMENTS = [
+        { id: 'first_trip', icon: '🏆', name: 'Первая поездка', desc: 'Создана поездка', check: function(s) { return s.totalTrips >= 1; } },
+        { id: 'perfect', icon: '🎯', name: 'Идеальный сбор', desc: 'Собрано 100%', check: function(s) { return s.perfectTrips >= 1; } },
+        { id: 'five_trips', icon: '🔥', name: 'Опытный', desc: '5 поездок', check: function(s) { return s.totalTrips >= 5; } },
+        { id: 'hundred_items', icon: '📦', name: 'Сто вещей', desc: '100 вещей собрано', check: function(s) { return s.allDone >= 100; } },
+        { id: 'custom_list', icon: '🎨', name: 'Дизайнер', desc: 'Свой список', check: function(s) { return s.customCount >= 1; } },
+        { id: 'three_perfect', icon: '⭐', name: 'Перфекционист', desc: '3 идеальных', check: function(s) { return s.perfectTrips >= 3; } }
+    ];
+
+    var DEFAULT_TYPES = {
+        rest: { name: 'Отдых', emoji: '🏖️', c1: '#ffb347', c2: '#ff7e5f', ring: '#ff7e5f',
+            items: ['Купальник / плавки','Солнцезащитный крем','Солнечные очки','Пляжное полотенце','Шлёпки / сандалии','Панама / кепка','Аптечка','Powerbank','Наушники','Худи на вечер'] },
+        business: { name: 'Деловая', emoji: '💼', c1: '#c084fc', c2: '#7e5bef', ring: '#7e5bef',
+            items: ['Деловой костюм','Рубашки (2 шт.)','Ноутбук + зарядка','Визитки','Документы / паспорт','Блокнот и ручка','Туфли','Ремень','Презентация на флешке','Гель для бритья'] },
+        camping: { name: 'Поход', emoji: '🏕️', c1: '#4ecb71', c2: '#2f9c53', ring: '#2f9c53',
+            items: ['Палатка','Спальный мешок','Коврик (пенка)','Фонарик','Спички / зажигалка','Термос','Нож','Репеллент от насекомых','Дождевик','Треккинговые ботинки','Аптечка','Запас еды'] },
+        city: { name: 'Город', emoji: '🌆', c1: '#ff6b8a', c2: '#d6336c', ring: '#d6336c',
+            items: ['Удобная обувь','Рюкзак / сумка','Карта / навигатор','Powerbank','Зарядка для телефона','Дождевик / зонт','Бутылка для воды','Наушники','Аптечка','Документы'] }
+    };
+
+    var COLOR_PALETTES = [
+        { c1: '#ffb347', c2: '#ff7e5f', ring: '#ff7e5f' },
+        { c1: '#c084fc', c2: '#7e5bef', ring: '#7e5bef' },
+        { c1: '#4ecb71', c2: '#2f9c53', ring: '#2f9c53' },
+        { c1: '#ff6b8a', c2: '#d6336c', ring: '#d6336c' },
+        { c1: '#5ec7ff', c2: '#3a86ff', ring: '#3a86ff' },
+        { c1: '#ffd166', c2: '#f4a261', ring: '#f4a261' },
+        { c1: '#a0e7e5', c2: '#3aafa9', ring: '#3aafa9' },
+        { c1: '#ff8fab', c2: '#c94c7a', ring: '#c94c7a' },
+        { c1: '#f4a261', c2: '#8b5e3c', ring: '#8b5e3c' },
+        { c1: '#b4a0e5', c2: '#6a4c93', ring: '#6a4c93' },
+        { c1: '#ff9e7d', c2: '#e63946', ring: '#e63946' },
+        { c1: '#7ee8fa', c2: '#2c73d2', ring: '#2c73d2' }
+    ];
+
+    var EMOJI_CHOICES = ['🎒','🧳','✈️','🚗','🏔️','🌊','🎿','🚴','🎣','🍕','🎉','💼','🏖️','🏕️','🌆','🚢','🐕','🎨','📚','🎵'];
+
+    var WEATHER_CODES = {
+        0: { icon: '☀️', desc: 'Ясно' }, 1: { icon: '🌤️', desc: 'Преим. ясно' },
+        2: { icon: '⛅', desc: 'Переменная облачность' }, 3: { icon: '☁️', desc: 'Пасмурно' },
+        45: { icon: '🌫️', desc: 'Туман' }, 48: { icon: '🌫️', desc: 'Туман с инеем' },
+        51: { icon: '🌦️', desc: 'Слабая морось' }, 53: { icon: '🌦️', desc: 'Морось' },
+        55: { icon: '🌧️', desc: 'Сильная морось' }, 61: { icon: '🌧️', desc: 'Небольшой дождь' },
+        63: { icon: '🌧️', desc: 'Дождь' }, 65: { icon: '🌧️', desc: 'Сильный дождь' },
+        71: { icon: '🌨️', desc: 'Небольшой снег' }, 73: { icon: '🌨️', desc: 'Снег' },
+        75: { icon: '❄️', desc: 'Сильный снег' }, 80: { icon: '🌦️', desc: 'Ливень' },
+        81: { icon: '🌧️', desc: 'Сильный ливень' }, 82: { icon: '⛈️', desc: 'Очень сильный ливень' },
+        95: { icon: '⛈️', desc: 'Гроза' }, 96: { icon: '⛈️', desc: 'Гроза с градом' }
+    };
+
+    var customTypes = {};
+    var activeTrip = null;
+    var history = [];
+    var selectedType = null;
+    var profile = { name: 'Эрик', avatar: null };
+    var settings = { dark: false, notif: true, vibrate: true, hideDone: false };
+    var achievementsState = {};
+    var viewedStories = {};
+    var wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
+    var editing = { id: null, name: '', emoji: '🎒', colorIdx: 0, items: [] };
+
+    var searchQuery = '';
+    var storyTimer = null;
+    var currentStoryIdx = 0;
+    var weatherCache = {};
+
+    // Флаги для предотвращения дублирования обработчиков
+    var storyHandlersBound = false;
+    var checklistHandlersBound = false;
+
+    function $(id) { return document.getElementById(id); }
+
+    function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, function(m) {
+            return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m];
+        });
+    }
+    function plural(n, one, few, many) {
+        var m10 = n % 10, m100 = n % 100;
+        if (m10 === 1 && m100 !== 11) return one;
+        if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return few;
+        return many;
+    }
+    function getType(id) { return DEFAULT_TYPES[id] || customTypes[id] || null; }
+    function normalizeItem(i) {
+        if (!i) return { text: 'Без названия', qty: 1, weight: 0, note: '', category: 'other' };
+        if (typeof i === 'string') return { text: i, qty: 1, weight: 0, note: '', category: 'other' };
+        if (typeof i !== 'object') return { text: String(i), qty: 1, weight: 0, note: '', category: 'other' };
+        return {
+            text: typeof i.text === 'string' ? i.text : String(i.text || 'Без названия'),
+            qty: typeof i.qty === 'number' && i.qty > 0 ? i.qty : 1,
+            weight: typeof i.weight === 'number' && i.weight >= 0 ? i.weight : 0,
+            note: typeof i.note === 'string' ? i.note : '',
+            category: CATEGORIES[i.category] ? i.category : 'other'
+        };
+    }
+    function vibrate() {
+        try { if (settings.vibrate && navigator.vibrate) navigator.vibrate(8); } catch (e) {}
+    }
+    function vibrateStrong() {
+        try { if (settings.vibrate && navigator.vibrate) navigator.vibrate([10, 40, 10]); } catch (e) {}
+    }
+    function showToast(text) {
+        var t = $('toast');
+        if (!t) return;
+        t.textContent = text;
+        t.classList.add('show');
+        clearTimeout(t._timer);
+        t._timer = setTimeout(function() { t.classList.remove('show'); }, 2200);
+    }
+    function loadJSON(key, def) {
+        try {
+            var v = localStorage.getItem(key);
+            if (!v) return def;
+            var parsed = JSON.parse(v);
+            return parsed === null ? def : parsed;
+        } catch (e) {
+            try { localStorage.removeItem(key); } catch (e2) {}
+            return def;
+        }
+    }
+    function saveJSON(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {}
+    }
+
+    function loadData() {
+        activeTrip = loadJSON('bybag_active', null);
+        history = loadJSON('bybag_history', []);
+        customTypes = loadJSON('bybag_custom_types', {});
+        profile = loadJSON('bybag_profile', { name: 'Эрик', avatar: null });
+        settings = loadJSON('bybag_settings', { dark: false, notif: true, vibrate: true, hideDone: false });
+        achievementsState = loadJSON('bybag_achievements', {});
+        viewedStories = loadJSON('bybag_viewed_stories', {});
+
+        if (!Array.isArray(history)) history = [];
+        if (typeof customTypes !== 'object' || customTypes === null || Array.isArray(customTypes)) customTypes = {};
+        if (typeof profile !== 'object' || profile === null) profile = { name: 'Эрик', avatar: null };
+        if (typeof settings !== 'object' || settings === null) settings = { dark: false, notif: true, vibrate: true, hideDone: false };
+        if (typeof achievementsState !== 'object' || achievementsState === null) achievementsState = {};
+        if (typeof viewedStories !== 'object' || viewedStories === null) viewedStories = {};
+
+        if (activeTrip && typeof activeTrip === 'object') {
+            if (!Array.isArray(activeTrip.items)) activeTrip.items = [];
+            activeTrip.items = activeTrip.items.map(normalizeItem);
+        } else { activeTrip = null; }
+
+        Object.keys(customTypes).forEach(function(k) {
+            var t = customTypes[k];
+            if (!t || typeof t !== 'object') { delete customTypes[k]; return; }
+            if (!Array.isArray(t.items)) t.items = [];
+            t.items = t.items.map(normalizeItem);
+            if (!t.name) t.name = 'Свой список';
+            if (!t.emoji) t.emoji = '🎒';
+            if (!t.c1) t.c1 = '#ffb347';
+            if (!t.c2) t.c2 = '#ff7e5f';
+            if (!t.ring) t.ring = '#ff7e5f';
+        });
+
+        history = history.filter(function(h) { return h && typeof h === 'object'; });
+        history.forEach(function(h) {
+            if (h.fullItems && Array.isArray(h.fullItems)) h.fullItems = h.fullItems.map(normalizeItem);
+        });
+    }
+
+    function saveActive() {
+        if (activeTrip) saveJSON('bybag_active', activeTrip);
+        else try { localStorage.removeItem('bybag_active'); } catch (e) {}
+    }
+    function saveHistory() { saveJSON('bybag_history', history); }
+    function saveProfile() { saveJSON('bybag_profile', profile); }
+    function saveCustomTypes() { saveJSON('bybag_custom_types', customTypes); }
+    function saveSettings() { saveJSON('bybag_settings', settings); }
+    function saveAchievements() { saveJSON('bybag_achievements', achievementsState); }
+    function saveViewedStories() { saveJSON('bybag_viewed_stories', viewedStories); }
+
+    function openModal(id) { var el = $(id); if (el) el.classList.add('active'); }
+    function closeModal(id) { var el = $(id); if (el) el.classList.remove('active'); }
+
+    function applyTheme() {
+        document.documentElement.style.backgroundColor = settings.dark ? '#0d1220' : '#faf6f0';
+        document.body.classList.toggle('dark', !!settings.dark);
+        var d = $('darkToggle'); if (d) d.classList.toggle('on', !!settings.dark);
+        var n = $('notifToggle'); if (n) n.classList.toggle('on', !!settings.notif);
+        var v = $('vibrateToggle'); if (v) v.classList.toggle('on', !!settings.vibrate);
+    }
+
+    function formatTripDate(trip) {
+        if (!trip.startDate) return trip.date || '';
+        try { return new Date(trip.startDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }); }
+        catch (e) { return trip.date || ''; }
+    }
+    function countdown(startDate) {
+        if (!startDate) return '';
+        try {
+            var now = new Date(); now.setHours(0,0,0,0);
+            var t = new Date(startDate); t.setHours(0,0,0,0);
+            var diff = Math.round((t - now) / (1000 * 60 * 60 * 24));
+            if (diff === 0) return 'сегодня';
+            if (diff === 1) return 'завтра';
+            if (diff === -1) return 'вчера';
+            if (diff > 1) return 'через ' + diff + ' ' + plural(diff, 'день', 'дня', 'дней');
+            return Math.abs(diff) + ' ' + plural(Math.abs(diff), 'день', 'дня', 'дней') + ' назад';
+        } catch (e) { return ''; }
+    }
+
+    // ============ STORIES ============
+    function buildStories() {
+        var slot = $('storiesSlot');
+        if (!slot) return;
+        slot.innerHTML = '';
+
+        var trips = [];
+        if (activeTrip) trips.push({ type: 'trip', trip: activeTrip, isActive: true });
+        history.slice(0, 8).forEach(function(h) { trips.push({ type: 'trip', trip: h, isActive: false }); });
+
+        // Погода -- если есть активная поездка с городом
+        if (activeTrip && activeTrip.city) {
+            trips.unshift({ type: 'weather', trip: activeTrip, isActive: true });
+        }
+
+        if (trips.length === 0) return;
+
+        var wrap = document.createElement('div');
+        wrap.className = 'stories-wrap';
+
+        var title = document.createElement('div');
+        title.className = 'stories-title';
+        title.textContent = 'Истории';
+        wrap.appendChild(title);
+
+        var row = document.createElement('div');
+        row.className = 'stories-row';
+
+        trips.forEach(function(item, idx) {
+            var trip = item.trip;
+            var isActive = item.isActive;
+            var isWeather = item.type === 'weather';
+
+            var storyId = (isWeather ? 'weather_' : (isActive ? 'active_' : 'hist_')) + trip.id;
+            var viewed = !!viewedStories[storyId];
+
+            var el = document.createElement('div');
+            el.className = 'story-item';
+
+            var ring = document.createElement('div');
+            ring.className = 'story-ring' + (viewed ? ' viewed' : '');
+
+            var inner = document.createElement('div');
+            inner.className = 'story-inner';
+            inner.textContent = isWeather ? '🌤️' : (trip.emoji || '🎒');
+
+            // Бейдж поверх
+            if (!isWeather) {
+                var badge = document.createElement('div');
+                badge.className = 'story-badge';
+                badge.textContent = trip.emoji || '🎒';
+                inner.textContent = '';
+                inner.style.background = 'linear-gradient(135deg, ' + (trip.c1 || '#ffb347') + ', ' + (trip.c2 || '#ff7e5f') + ')';
+                inner.appendChild(badge);
+            }
+
+            ring.appendChild(inner);
+
+            var label = document.createElement('div');
+            label.className = 'story-label';
+            label.textContent = isWeather ? 'Погода' : (trip.name || 'Поездка');
+
+            el.appendChild(ring);
+            el.appendChild(label);
+
+            el.addEventListener('click', function() { openStoryViewer(trips, idx); });
+
+            row.appendChild(el);
+        });
+
+        wrap.appendChild(row);
+        slot.appendChild(wrap);
+    }
+
+    function openStoryViewer(trips, idx) {
+        currentStoryIdx = idx;
+        var viewer = $('storyViewer');
+        if (!viewer) return;
+        viewer.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        var progressRow = $('storyProgressRow');
+        progressRow.innerHTML = '';
+        trips.forEach(function(t, i) {
+            var bar = document.createElement('div');
+            bar.className = 'story-progress-bar' + (i < idx ? ' done' : '');
+            bar.innerHTML = '<div class="story-progress-fill"></div>';
+            progressRow.appendChild(bar);
+        });
+
+        showStorySlide(trips, idx);
+
+        // Свайпы -- привязываем 1 раз
+        if (!storyHandlersBound) {
+            storyHandlersBound = true;
+            var startX = 0, startY = 0, isDown = false;
+            viewer.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isDown = true;
+                stopStoryProgress();
+            }, { passive: true });
+            viewer.addEventListener('touchend', function(e) {
+                if (!isDown) return;
+                isDown = false;
+                var dx = e.changedTouches[0].clientX - startX;
+                var dy = e.changedTouches[0].clientY - startY;
+                if (Math.abs(dy) > 80 && Math.abs(dy) > Math.abs(dx)) { closeStoryViewer(); return; }
+                if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+                    if (dx < 0) nextStorySlide(); else prevStorySlide();
+                } else { resumeStory(); }
+            }, { passive: true });
+        }
+    }
+
+    function showStorySlide(trips, idx) {
+        if (idx < 0 || idx >= trips.length) { closeStoryViewer(); return; }
+        var item = trips[idx];
+        var trip = item.trip;
+        var isActive = item.isActive;
+        var isWeather = item.type === 'weather';
+
+        var storyId = (isWeather ? 'weather_' : (isActive ? 'active_' : 'hist_')) + trip.id;
+        viewedStories[storyId] = Date.now();
+        saveViewedStories();
+
+        var bars = document.querySelectorAll('.story-progress-bar');
+        bars.forEach(function(bar, i) {
+            bar.classList.toggle('done', i < idx);
+            var fill = bar.querySelector('.story-progress-fill');
+            if (fill) fill.style.width = i < idx ? '100%' : '0%';
+        });
+
+        var bg = $('storyBg');
+        bg.style.background = 'linear-gradient(135deg, ' + (trip.c1 || '#5ec7ff') + ', ' + (trip.c2 || '#3a86ff') + ')';
+
+        var deco = $('storyDeco');
+        deco.textContent = isWeather ? '☁️' : (trip.emoji || '🎒');
+
+        var avatar = $('storyAvatar');
+        avatar.textContent = isWeather ? '🌤️' : (trip.emoji || '🎒');
+
+        var titleEl = $('storyTitle');
+        titleEl.textContent = isWeather ? ('Погода · ' + (trip.city || 'Город')) : (trip.name || 'Поездка');
+
+        var timeEl = $('storyTime');
+        if (isWeather) timeEl.textContent = 'прогноз на поездку';
+        else if (isActive) {
+            var cd = trip.startDate ? countdown(trip.startDate) : '';
+            timeEl.textContent = cd ? cd : 'активная поездка';
+        } else timeEl.textContent = trip.date || 'завершена';
+
+        var content = $('storyContent');
+
+        if (isWeather) {
+            content.innerHTML =
+                '<div class="story-big-emoji">🌤️</div>' +
+                '<h2>' + escapeHtml(trip.city || 'Погода') + '</h2>' +
+                '<p>Загрузка прогноза...</p>' +
+                '<div class="story-stats" id="storyWeatherStats"></div>';
+            loadWeatherForStory(trip);
+        } else {
+            var s = isActive ? getTripStats(trip) : {
+                done: trip.done || 0, total: trip.total || 0,
+                percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0,
+                doneWeight: 0, totalWeight: 0
+            };
+
+            var subText = '';
+            if (isActive) {
+                if (s.percent === 100) subText = 'Всё собрано! Можно отправляться 🎉';
+                else if (s.percent === 0) subText = 'Ещё ничего не собрано. Начни сейчас!';
+                else subText = 'Собрано ' + s.done + ' из ' + s.total + ' вещей';
+            } else {
+                subText = 'Завершена ' + (trip.date || '') + ' · собрано ' + s.done + ' из ' + s.total;
+            }
+
+            content.innerHTML =
+                '<div class="story-big-emoji">' + (trip.emoji || '🎒') + '</div>' +
+                '<h2>' + escapeHtml(trip.name || 'Поездка') + '</h2>' +
+                '<p>' + escapeHtml(subText) + '</p>' +
+                '<div class="story-stats">' +
+                    '<div class="story-stat"><div class="s-val">' + s.percent + '%</div><div class="s-lbl">собрано</div></div>' +
+                    '<div class="story-stat"><div class="s-val">' + s.done + '/' + s.total + '</div><div class="s-lbl">вещей</div></div>' +
+                    (s.totalWeight > 0 ? '<div class="story-stat"><div class="s-val">' + s.totalWeight.toFixed(1) + '</div><div class="s-lbl">кг</div></div>' : '') +
+                '</div>';
+        }
+
+        startStoryProgress(trips, idx);
+    }
+
+    function loadWeatherForStory(trip) {
+        var city = trip.city;
+        if (!city) return;
+        var cacheKey = 'weather_' + city.toLowerCase();
+        var cached = weatherCache[cacheKey];
+        if (cached && Date.now() - cached.ts < 30 * 60 * 1000) {
+            renderWeatherStory(cached.data);
+            return;
+        }
+        fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(city) + '&count=1&language=ru&format=json')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) {
+                if (!geo.results || geo.results.length === 0) throw new Error('Город не найден');
+                var lat = geo.results[0].latitude, lon = geo.results[0].longitude, name = geo.results[0].name;
+                return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        data._cityName = name;
+                        weatherCache[cacheKey] = { ts: Date.now(), data: data };
+                        renderWeatherStory(data);
+                    });
+            })
+            .catch(function() {
+                var stats = $('storyWeatherStats');
+                if (stats) stats.innerHTML = '<div style="color:#fff;opacity:0.7;">Не удалось загрузить</div>';
+            });
+    }
+
+    function renderWeatherStory(data) {
+        var content = $('storyContent');
+        if (!content) return;
+        var current = data.current || {};
+        var code = current.weather_code || 0;
+        var w = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
+        var temp = current.temperature_2m !== undefined ? Math.round(current.temperature_2m) : '--';
+
+        var hint = w.desc;
+        if (current.temperature_2m !== undefined) {
+            if (current.temperature_2m < 0) hint += ' · Возьми тёплые вещи';
+            else if (current.temperature_2m < 10) hint += ' · Нужна куртка';
+            else if (current.temperature_2m > 28) hint += ' · Очень жарко';
+        }
+        if (code >= 51 && code <= 82) hint += ' · Не забудь зонт';
+
+        // Прогноз в виде HTML строки
+        var daily = data.daily || {};
+        var days = daily.time || [];
+        var codes = daily.weather_code || [];
+        var maxT = daily.temperature_2m_max || [];
+        var minT = daily.temperature_2m_min || [];
+        var dayNames = ['вс','пн','вт','ср','чт','пт','сб'];
+        var forecastHtml = '';
+        for (var i = 0; i < Math.min(5, days.length); i++) {
+            var d = new Date(days[i]);
+            var ww = WEATHER_CODES[codes[i]] || { icon: '🌡️' };
+            forecastHtml +=
+                '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;min-width:50px;">' +
+                    '<div style="font-size:11px;opacity:0.7;font-weight:700;text-transform:uppercase;">' + dayNames[d.getDay()] + '</div>' +
+                    '<div style="font-size:22px;">' + ww.icon + '</div>' +
+                    '<div style="font-size:12px;font-weight:700;">' + Math.round(maxT[i]) + '°</div>' +
+                '</div>';
+        }
+
+        content.innerHTML =
+            '<div class="story-big-emoji">' + w.icon + '</div>' +
+            '<h2>' + temp + '°</h2>' +
+            '<p>' + escapeHtml(hint) + '</p>' +
+            '<div style="display:flex;gap:14px;justify-content:center;margin-top:20px;animation:storyFade 0.8s 0.5s both;">' + forecastHtml + '</div>';
+    }
+
+    function startStoryProgress(trips, idx) {
+        stopStoryProgress();
+        var bars = document.querySelectorAll('.story-progress-bar');
+        var currentBar = bars[idx];
+        if (!currentBar) return;
+        var fill = currentBar.querySelector('.story-progress-fill');
+        if (!fill) return;
+        fill.style.width = '0%';
+
+        var duration = 6000;
+        var start = Date.now();
+
+        storyTimer = setInterval(function() {
+            var elapsed = Date.now() - start;
+            var percent = Math.min(100, (elapsed / duration) * 100);
+            fill.style.width = percent + '%';
+            if (percent >= 100) {
+                stopStoryProgress();
+                nextStorySlide();
+            }
+        }, 50);
+    }
+    function stopStoryProgress() {
+        if (storyTimer) { clearInterval(storyTimer); storyTimer = null; }
+    }
+    function resumeStory() {
+        var bars = document.querySelectorAll('.story-progress-bar');
+        var currentBar = bars[currentStoryIdx];
+        if (!currentBar) return;
+        var fill = currentBar.querySelector('.story-progress-fill');
+        if (!fill) return;
+        var currentPercent = parseFloat(fill.style.width) || 0;
+        var remaining = (100 - currentPercent) / 100 * 6000;
+        var start = Date.now();
+        storyTimer = setInterval(function() {
+            var elapsed = Date.now() - start;
+            var add = Math.min(100 - currentPercent, (elapsed / remaining) * (100 - currentPercent));
+            fill.style.width = (currentPercent + add) + '%';
+            if (currentPercent + add >= 100) {
+                stopStoryProgress();
+                nextStorySlide();
+            }
+        }, 50);
+    }
+    function nextStorySlide() {
+        var trips = buildTripsForStories();
+        if (currentStoryIdx + 1 >= trips.length) { closeStoryViewer(); return; }
+        currentStoryIdx++;
+        showStorySlide(trips, currentStoryIdx);
+    }
+    function prevStorySlide() {
+        var trips = buildTripsForStories();
+        if (currentStoryIdx - 1 < 0) { currentStoryIdx = 0; showStorySlide(trips, 0); return; }
+        currentStoryIdx--;
+        showStorySlide(trips, currentStoryIdx);
+    }
+    function buildTripsForStories() {
+        var arr = [];
+        if (activeTrip && activeTrip.city) arr.push({ type: 'weather', trip: activeTrip, isActive: true });
+        if (activeTrip) arr.push({ type: 'trip', trip: activeTrip, isActive: true });
+        history.slice(0, 8).forEach(function(h) { arr.push({ type: 'trip', trip: h, isActive: false }); });
+        return arr;
+    }
+    function closeStoryViewer() {
+        stopStoryProgress();
+        var viewer = $('storyViewer');
+        if (viewer) viewer.classList.remove('active');
+        // ВАЖНО: всегда сбрасываем overflow
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        // Пересобираем истории
+        buildStories();
+    }
+
+    // ============ ГЛАВНАЯ ============
+    function renderHome() {
+        try {
+            buildStories();
+            var widgetSlot = $('widgetSlot');
+            if (!widgetSlot) return;
+            widgetSlot.innerHTML = '';
+            widgetSlot.appendChild(activeTrip ? buildWidget(activeTrip) : buildEmptyState());
+            renderMyLists();
+            renderHistory();
+        } catch (e) { console.error('renderHome error:', e); }
+    }
+
+    function buildEmptyState() {
+        var div = document.createElement('div');
+        div.className = 'empty-hero';
+        div.innerHTML =
+            '<div class="empty-icon">🧳</div>' +
+            '<h2>Ещё нет поездок</h2>' +
+            '<p>Создайте первую поездку и соберите багаж без хлопот</p>' +
+            '<div class="empty-cta"><span class="plus">+</span> Создать поездку</div>';
+        div.addEventListener('click', openTypeModal);
+        return div;
+    }
+
+    function getTripStats(trip) {
+        var done = 0, doneWeight = 0, totalWeight = 0;
+        var items = trip.items || [];
+        items.forEach(function(i) {
+            var w = (i.weight || 0) * (i.qty || 1);
+            totalWeight += w;
+            if (i.done) { done++; doneWeight += w; }
+        });
+        return {
+            done: done, total: items.length,
+            percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0,
+            doneWeight: doneWeight, totalWeight: totalWeight
+        };
+    }
+
+    function buildWidget(trip) {
+        var s = getTripStats(trip);
+        var remaining = s.total - s.done;
+        var complete = s.percent === 100 && s.total > 0;
+        var radius = 44;
+        var circumference = 2 * Math.PI * radius;
+        var offset = circumference - (s.percent / 100) * circumference;
+        var ringColor = complete ? '#2f9c53' : (trip.ring || '#ff7e5f');
+        var countdownText = trip.startDate ? countdown(trip.startDate) : '';
+        var weightText = s.totalWeight > 0 ? '⚖️ ' + s.doneWeight.toFixed(1) + '/' + s.totalWeight.toFixed(1) + ' кг' : '';
+
+        var widget = document.createElement('div');
+        widget.className = 'main-widget';
+        widget.style.setProperty('--c1', trip.c1 || '#ffb347');
+        widget.style.setProperty('--c2', trip.c2 || '#ff7e5f');
+
+        widget.innerHTML =
+            '<div class="widget-hero">' +
+                '<div class="bg-emoji">' + (trip.emoji || '🎒') + '</div>' +
+                '<div class="hero-top">' +
+                    '<div class="hero-label"><span class="dot"></span>Активная поездка</div>' +
+                    '<button type="button" class="hero-close" id="closeTripBtn">✕</button>' +
+                '</div>' +
+                '<div class="hero-title">' +
+                    (complete ? '<div class="complete-badge">✓ Всё собрано</div>' : '') +
+                    '<h2>' + escapeHtml(trip.name || 'Поездка') + '</h2>' +
+                    '<div class="hero-date">📅 ' + formatTripDate(trip) +
+                        (countdownText ? '<span class="hero-countdown">' + countdownText + '</span>' : '') +
+                        (weightText ? '<span class="hero-weight">' + weightText + '</span>' : '') +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="widget-body">' +
+                '<div class="ring-wrap">' +
+                    '<svg viewBox="0 0 110 110">' +
+                        '<circle class="ring-track" cx="55" cy="55" r="' + radius + '"></circle>' +
+                        '<circle class="ring-fill" cx="55" cy="55" r="' + radius + '" stroke="' + ringColor + '" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"></circle>' +
+                    '</svg>' +
+                    '<div class="ring-center">' +
+                        '<div class="ring-percent">' + s.percent + '<span class="sign">%</span></div>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="widget-meta">' +
+                    '<div class="meta-row">' +
+                        '<span class="meta-key">Собрано</span>' +
+                        '<span class="meta-val done">' + s.done + ' / ' + s.total + '</span>' +
+                    '</div>' +
+                    '<div class="meta-row">' +
+                        '<span class="meta-key">Осталось</span>' +
+                        '<span class="meta-val left">' + remaining + '</span>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="widget-footer">' +
+                '<div class="mini-bar">' +
+                    '<div class="fill" style="width: ' + s.percent + '%; background: ' + (complete ? 'linear-gradient(90deg,#4ecb71,#2f9c53)' : 'linear-gradient(90deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')') + '"></div>' +
+                '</div>' +
+                '<div class="tap-hint">' +
+                    '<span>' + (complete ? 'Готово к отправлению 🎉' : 'Открыть список вещей') + '</span>' +
+                    '<span class="arrow">→</span>' +
+                '</div>' +
+            '</div>';
+
+        widget.addEventListener('click', function(e) {
+            if (e.target.closest('#closeTripBtn')) return;
+            openChecklistPage();
+        });
+
+        var closeBtn = widget.querySelector('#closeTripBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Завершить поездку и перенести в статистику?')) completeActiveTrip();
+            });
+        }
+        return widget;
+    }
+
+    function renderMyLists() {
+        var slot = $('myListsSlot');
+        if (!slot) return;
+        slot.innerHTML = '';
+        var keys = Object.keys(customTypes);
+        if (keys.length === 0) return;
+        var section = document.createElement('div');
+        section.className = 'stats-section';
+        section.innerHTML = '<div class="stats-title">Мои списки</div>';
+        keys.forEach(function(key) {
+            var t = customTypes[key];
+            var item = document.createElement('div');
+            item.className = 'my-list-item';
+            item.innerHTML =
+                '<div class="ml-emoji">' + (t.emoji || '🎒') + '</div>' +
+                '<div class="ml-body">' +
+                    '<div class="ml-name">' + escapeHtml(t.name || 'Список') + '</div>' +
+                    '<div class="ml-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div>' +
+                '</div>';
+            var editBtn = document.createElement('button');
+            editBtn.type = 'button';
+            editBtn.className = 'icon-btn';
+            editBtn.textContent = '✎';
+            editBtn.addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
+            var delBtn = document.createElement('button');
+            delBtn.type = 'button';
+            delBtn.className = 'icon-btn';
+            delBtn.textContent = '✕';
+            delBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
+            });
+            item.appendChild(editBtn);
+            item.appendChild(delBtn);
+            section.appendChild(item);
+        });
+        slot.appendChild(section);
+    }
+
+    function renderHistory() {
+        var slot = $('historySlot');
+        if (!slot) return;
+        slot.innerHTML = '';
+        if (history.length === 0) return;
+        var section = document.createElement('div');
+        section.className = 'stats-section';
+        section.innerHTML = '<div class="stats-title">История поездок</div>';
+        history.forEach(function(h) {
+            if (!h) return;
+            var percent = h.total > 0 ? Math.round((h.done / h.total) * 100) : 0;
+            var item = document.createElement('div');
+            item.className = 'history-item';
+            item.innerHTML =
+                '<div class="h-emoji">' + (h.emoji || '🎒') + '</div>' +
+                '<div class="h-body">' +
+                    '<div class="h-name">' + escapeHtml(h.name || 'Поездка') + '</div>' +
+                    '<div class="h-meta">' + (h.date || '') + ' · ' + (h.done || 0) + ' из ' + (h.total || 0) + ' вещей</div>' +
+                '</div>' +
+                '<div class="h-badge">' + percent + '%</div>';
+            var shareBtn = document.createElement('button');
+            shareBtn.type = 'button';
+            shareBtn.className = 'icon-btn';
+            shareBtn.textContent = '📤';
+            shareBtn.addEventListener('click', function(e) { e.stopPropagation(); shareTrip(h); });
+            var repeatBtn = document.createElement('button');
+            repeatBtn.type = 'button';
+            repeatBtn.className = 'icon-btn';
+            repeatBtn.textContent = '↻';
+            repeatBtn.addEventListener('click', function(e) { e.stopPropagation(); repeatTrip(h); });
+            var del = document.createElement('button');
+            del.type = 'button';
+            del.className = 'icon-btn';
+            del.textContent = '✕';
+            del.addEventListener('click', function(e) { e.stopPropagation(); deleteHistory(h.id); });
+            item.appendChild(shareBtn);
+            item.appendChild(repeatBtn);
+            item.appendChild(del);
+            section.appendChild(item);
+        });
+        slot.appendChild(section);
+    }
+
+    function shareTrip(trip) {
+        var lines = ['🧳 ' + (trip.name || 'Поездка')];
+        if (trip.date) lines.push('📅 ' + trip.date);
+        lines.push('');
+        var items = trip.fullItems || [];
+        if (items.length === 0) lines.push('(нет списка вещей)');
+        else {
+            items.forEach(function(i) {
+                var n = normalizeItem(i);
+                var mark = n.done ? '✅' : '☐';
+                var qty = n.qty > 1 ? ' ×' + n.qty : '';
+                lines.push(mark + ' ' + n.text + qty);
+            });
+            var doneCount = items.filter(function(i) { return normalizeItem(i).done; }).length;
+            lines.push('');
+            lines.push('Собрано: ' + doneCount + ' из ' + items.length);
+        }
+        var text = lines.join('\n');
+        if (navigator.share) {
+            navigator.share({ title: trip.name || 'byBag', text: text }).catch(function() {});
+        } else {
+            try {
+                var ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Скопировано в буфер');
+            } catch (e) { showToast('Не удалось поделиться'); }
+        }
+    }
+
+    function shareActiveTrip() {
+        if (!activeTrip) return;
+        var s = getTripStats(activeTrip);
+        shareTrip({
+            name: activeTrip.name, date: activeTrip.date,
+            total: s.total, done: s.done,
+            fullItems: activeTrip.items.map(function(i) {
+                return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category, done: i.done };
+            })
+        });
+    }
+
+    function repeatTrip(h) {
+        if (activeTrip) { showToast('Сначала завершите текущую поездку'); return; }
+        var type = getType(h.type);
+        var items = h.fullItems && h.fullItems.length ? h.fullItems : (type ? type.items : null);
+        if (!items || !items.length) { showToast('Не удалось восстановить список'); return; }
+        var emoji = h.emoji || (type ? type.emoji : '🎒') || '🎒';
+        var c1 = type ? type.c1 : '#ffb347', c2 = type ? type.c2 : '#ff7e5f', ring = type ? type.ring : '#ff7e5f';
+        activeTrip = {
+            id: Date.now(), type: h.type || 'rest', name: h.name || 'Поездка', emoji: emoji,
+            c1: c1, c2: c2, ring: ring,
+            date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
+            startDate: null, city: '',
+            items: items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
+        };
+        saveActive();
+        renderHome();
+        vibrate();
+        showToast('Поездка создана заново!');
+    }
+
+    function renderTypeGrid() {
+        var grid = $('typeGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        Object.keys(DEFAULT_TYPES).forEach(function(key) {
+            var t = DEFAULT_TYPES[key];
+            var div = document.createElement('div');
+            div.className = 'type-option' + (selectedType === key ? ' selected' : '');
+            div.innerHTML = '<span class="emoji">' + t.emoji + '</span><span class="name">' + t.name + '</span>';
+            div.addEventListener('click', function() {
+                selectedType = key;
+                var cb = $('createBtn'); if (cb) cb.disabled = false;
+                renderTypeGrid();
+            });
+            grid.appendChild(div);
+        });
+        Object.keys(customTypes).forEach(function(key) {
+            var t = customTypes[key];
+            var div = document.createElement('div');
+            div.className = 'type-option' + (selectedType === key ? ' selected' : '');
+            div.innerHTML =
+                '<span class="custom-type-badge">свой</span>' +
+                '<span class="emoji">' + (t.emoji || '🎒') + '</span>' +
+                '<span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
+            div.addEventListener('click', function() {
+                selectedType = key;
+                var cb = $('createBtn'); if (cb) cb.disabled = false;
+                renderTypeGrid();
+            });
+            grid.appendChild(div);
+        });
+        var createDiv = document.createElement('div');
+        createDiv.className = 'type-option create-new';
+        createDiv.innerHTML = '<span class="emoji">➕</span><span class="name">Создать свой</span>';
+        createDiv.addEventListener('click', function() { closeModal('typeModal'); startWizard(); });
+        grid.appendChild(createDiv);
+    }
+
+    function openTypeModal() {
+        if (activeTrip) return;
+        selectedType = null;
+        var tn = $('tripName'); if (tn) tn.value = '';
+        var tsd = $('tripStartDate'); if (tsd) tsd.value = '';
+        var tc = $('tripCity'); if (tc) tc.value = '';
+        var cb = $('createBtn'); if (cb) cb.disabled = true;
+        renderTypeGrid();
+        openModal('typeModal');
+    }
+
+    function createTrip() {
+        if (!selectedType || activeTrip) return;
+        var type = getType(selectedType);
+        if (!type) return;
+        var nameInput = ($('tripName') ? $('tripName').value.trim() : '');
+        var startDate = ($('tripStartDate') ? $('tripStartDate').value : '') || null;
+        var city = ($('tripCity') ? $('tripCity').value.trim() : '');
+        activeTrip = {
+            id: Date.now(), type: selectedType, name: nameInput || type.name, emoji: type.emoji,
+            c1: type.c1, c2: type.c2, ring: type.ring,
+            date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
+            startDate: startDate, city: city,
+            items: type.items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
+        };
+        saveActive();
+        closeModal('typeModal');
+        renderHome();
+        vibrate();
+    }
+
+    // Мастер
+    function startWizard() {
+        wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
+        var ni = $('wiz1NameInput'); if (ni) ni.value = '';
+        var nb = $('wiz1NextBtn'); if (nb) nb.disabled = true;
+        renderWiz1Emoji();
+        renderWiz1Color();
+        updateWiz1Preview();
+        openModal('wizardStep1');
+    }
+    function renderWiz1Emoji() {
+        var picker = $('wiz1EmojiPicker'); if (!picker) return;
+        picker.innerHTML = '';
+        EMOJI_CHOICES.forEach(function(em) {
+            var div = document.createElement('div');
+            div.className = 'emoji-choice' + (wiz.emoji === em ? ' selected' : '');
+            div.textContent = em;
+            div.addEventListener('click', function() { wiz.emoji = em; renderWiz1Emoji(); updateWiz1Preview(); });
+            picker.appendChild(div);
+        });
+    }
+    function renderWiz1Color() {
+        var picker = $('wiz1ColorPicker'); if (!picker) return;
+        picker.innerHTML = '';
+        COLOR_PALETTES.forEach(function(p, idx) {
+            var div = document.createElement('div');
+            div.className = 'color-choice' + (wiz.colorIdx === idx ? ' selected' : '');
+            div.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+            div.addEventListener('click', function() { wiz.colorIdx = idx; renderWiz1Color(); updateWiz1Preview(); });
+            picker.appendChild(div);
+        });
+    }
+    function updateWiz1Preview() {
+        var p = COLOR_PALETTES[wiz.colorIdx];
+        var name = ($('wiz1NameInput') ? $('wiz1NameInput').value.trim() : '') || 'Название типа';
+        var prev = $('wiz1Preview'); if (prev) prev.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+        var e = $('wiz1Emoji'); if (e) e.textContent = wiz.emoji;
+        var n = $('wiz1Name'); if (n) n.textContent = name;
+        var c = $('wiz1Count'); if (c) c.textContent = wiz.items.length + ' ' + plural(wiz.items.length, 'вещь', 'вещи', 'вещей');
+    }
+    function wiz1Next() {
+        var name = $('wiz1NameInput') ? $('wiz1NameInput').value.trim() : '';
+        if (!name) { showToast('Введите название'); return; }
+        wiz.name = name;
+        closeModal('wizardStep1');
+        openWiz2();
+    }
+    function openWiz2() {
+        var p = COLOR_PALETTES[wiz.colorIdx];
+        var prev = $('wiz2Preview'); if (prev) prev.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+        var e = $('wiz2Emoji'); if (e) e.textContent = wiz.emoji;
+        var n = $('wiz2Name'); if (n) n.textContent = wiz.name;
+        var ni = $('wiz2NewItem'); if (ni) ni.value = '';
+        renderWiz2Items();
+        openModal('wizardStep2');
+    }
+    function renderWiz2Items() {
+        var editor = $('wiz2ItemsEditor'); if (!editor) return;
+        editor.innerHTML = '';
+        if (wiz.items.length === 0) {
+            var empty = document.createElement('div');
+            empty.style.cssText = 'text-align:center;padding:20px;color:var(--text-3);font-size:13.5px;font-weight:500;';
+            empty.textContent = 'Пока пусто. Добавьте вещи ниже.';
+            editor.appendChild(empty);
+        } else {
+            wiz.items.forEach(function(item, idx) {
+                editor.appendChild(buildAdvancedItemRow(item, idx, 'wizard'));
+            });
+        }
+        var p = COLOR_PALETTES[wiz.colorIdx];
+        var c = $('wiz2Count'); if (c) c.textContent = wiz.items.length + ' ' + plural(wiz.items.length, 'вещь', 'вещи', 'вещей');
+        var prev = $('wiz2Preview'); if (prev) prev.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+    }
+    function buildAdvancedItemRow(item, idx, target) {
+        var row = document.createElement('div');
+        row.className = 'advanced-item-row';
+        var cat = CATEGORIES[item.category] || CATEGORIES.other;
+        var meta = [];
+        if (item.qty && item.qty > 1) meta.push('×' + item.qty);
+        if (item.weight) meta.push((item.weight * (item.qty || 1)).toFixed(1) + ' кг');
+        var head = document.createElement('div');
+        head.className = 'advanced-item-head';
+        var textDiv = document.createElement('div');
+        textDiv.className = 'item-text';
+        textDiv.innerHTML = cat.icon + ' ' + escapeHtml(item.text) +
+            (meta.length ? ' <span style="font-size:11.5px;color:var(--text-3);font-weight:600;">· ' + meta.join(' · ') + '</span>' : '');
+        if (item.note) {
+            var noteDiv = document.createElement('div');
+            noteDiv.style.cssText = 'font-size:11.5px;color:var(--text-3);font-style:italic;margin-top:2px;font-weight:500;';
+            noteDiv.textContent = item.note;
+            textDiv.appendChild(noteDiv);
+        }
+        head.appendChild(textDiv);
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'item-remove';
+        removeBtn.textContent = '✕';
+        removeBtn.addEventListener('click', function() {
+            if (target === 'wizard') { wiz.items.splice(idx, 1); renderWiz2Items(); }
+            else { editing.items.splice(idx, 1); renderEditorItems(); updateEditorPreview(); }
+        });
+        head.appendChild(removeBtn);
+        row.appendChild(head);
+        var fields = document.createElement('div');
+        fields.className = 'advanced-item-fields';
+        var qtyInput = document.createElement('input');
+        qtyInput.type = 'number'; qtyInput.className = 'mini-field';
+        qtyInput.value = item.qty || 1; qtyInput.min = '1'; qtyInput.max = '99';
+        qtyInput.placeholder = 'Кол-во';
+        qtyInput.addEventListener('input', function() { item.qty = parseInt(qtyInput.value) || 1; updateAdvancedRowMeta(textDiv, item); });
+        var weightInput = document.createElement('input');
+        weightInput.type = 'number'; weightInput.className = 'mini-field';
+        weightInput.value = item.weight || ''; weightInput.step = '0.1'; weightInput.min = '0';
+        weightInput.placeholder = 'Вес, кг';
+        weightInput.addEventListener('input', function() { item.weight = parseFloat(weightInput.value) || 0; updateAdvancedRowMeta(textDiv, item); });
+        fields.appendChild(qtyInput);
+        fields.appendChild(weightInput);
+        var catSel = document.createElement('select');
+        catSel.className = 'mini-field full';
+        Object.keys(CATEGORIES).forEach(function(k) {
+            var opt = document.createElement('option');
+            opt.value = k; opt.textContent = CATEGORIES[k].icon + ' ' + CATEGORIES[k].name;
+            if (k === item.category) opt.selected = true;
+            catSel.appendChild(opt);
+        });
+        catSel.addEventListener('change', function() { item.category = catSel.value; updateAdvancedRowMeta(textDiv, item); });
+        fields.appendChild(catSel);
+        var noteInput = document.createElement('input');
+        noteInput.type = 'text'; noteInput.className = 'mini-field full';
+        noteInput.value = item.note || ''; noteInput.placeholder = 'Заметка'; noteInput.maxLength = 60;
+        noteInput.addEventListener('input', function() { item.note = noteInput.value; });
+        fields.appendChild(noteInput);
+        row.appendChild(fields);
+        return row;
+    }
+    function updateAdvancedRowMeta(textDiv, item) {
+        var cat = CATEGORIES[item.category] || CATEGORIES.other;
+        var meta = [];
+        if (item.qty && item.qty > 1) meta.push('×' + item.qty);
+        if (item.weight) meta.push((item.weight * (item.qty || 1)).toFixed(1) + ' кг');
+        var noteHtml = item.note ? '<div style="font-size:11.5px;color:var(--text-3);font-style:italic;margin-top:2px;font-weight:500;">' + escapeHtml(item.note) + '</div>' : '';
+        textDiv.innerHTML = cat.icon + ' ' + escapeHtml(item.text) +
+            (meta.length ? ' <span style="font-size:11.5px;color:var(--text-3);font-weight:600;">· ' + meta.join(' · ') + '</span>' : '') + noteHtml;
+    }
+    function wiz2AddQuick() {
+        var val = $('wiz2NewItem') ? $('wiz2NewItem').value.trim() : '';
+        if (!val) return;
+        wiz.items.push({ text: val, qty: 1, weight: 0, note: '', category: 'other' });
+        $('wiz2NewItem').value = '';
+        renderWiz2Items();
+        $('wiz2NewItem').focus();
+    }
+    function wiz2Save() {
+        if (wiz.items.length === 0) { showToast('Добавьте хотя бы одну вещь'); return; }
+        var p = COLOR_PALETTES[wiz.colorIdx];
+        var newId = 'custom_' + Date.now();
+        customTypes[newId] = {
+            name: wiz.name, emoji: wiz.emoji,
+            c1: p.c1, c2: p.c2, ring: p.ring,
+            items: wiz.items.slice(), builtin: false
+        };
+        saveCustomTypes();
+        closeModal('wizardStep2');
+        renderHome();
+        renderProfile();
+        vibrate();
+        showToast('Список "' + wiz.name + '" создан!');
+    }
+    function openAdvanced(target) {
+        var prefix = target === 'wizard' ? 'adv' : 'adv2';
+        var n = $(prefix + 'Name'); if (n) n.value = '';
+        var q = $(prefix + 'Qty'); if (q) q.value = '1';
+        var w = $(prefix + 'Weight'); if (w) w.value = '';
+        var no = $(prefix + 'Note'); if (no) no.value = '';
+        var sel = $(prefix + 'Cat');
+        if (sel) {
+            sel.innerHTML = '';
+            Object.keys(CATEGORIES).forEach(function(k) {
+                var opt = document.createElement('option');
+                opt.value = k; opt.textContent = CATEGORIES[k].icon + ' ' + CATEGORIES[k].name;
+                sel.appendChild(opt);
+            });
+        }
+        if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
+        else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
+    }
+    function advConfirm() {
+        var name = $('advName') ? $('advName').value.trim() : '';
+        if (!name) { showToast('Введите название'); return; }
+        wiz.items.push({
+            text: name, qty: parseInt($('advQty').value) || 1,
+            weight: parseFloat($('advWeight').value) || 0,
+            note: ($('advNote') ? $('advNote').value.trim() : ''),
+            category: ($('advCat') ? $('advCat').value : 'other')
+        });
+        closeModal('advancedItemModal');
+        openWiz2();
+    }
+    function adv2Confirm() {
+        var name = $('adv2Name') ? $('adv2Name').value.trim() : '';
+        if (!name) { showToast('Введите название'); return; }
+        editing.items.push({
+            text: name, qty: parseInt($('adv2Qty').value) || 1,
+            weight: parseFloat($('adv2Weight').value) || 0,
+            note: ($('adv2Note') ? $('adv2Note').value.trim() : ''),
+            category: ($('adv2Cat') ? $('adv2Cat').value : 'other')
+        });
+        closeModal('advancedItemModal2');
+        openEditorById(editing.id);
+    }
+    function openEditor(typeId) {
+        if (!customTypes[typeId]) return;
+        var t = customTypes[typeId];
+        editing.id = typeId;
+        editing.name = t.name;
+        editing.emoji = t.emoji;
+        editing.items = t.items.map(function(i) { return normalizeItem(i); });
+        editing.colorIdx = 0;
+        for (var i = 0; i < COLOR_PALETTES.length; i++) {
+            if (COLOR_PALETTES[i].c1 === t.c1) { editing.colorIdx = i; break; }
+        }
+        openEditorById(typeId);
+    }
+    function openEditorById(typeId) {
+        var title = $('listEditorTitle'); if (title) title.textContent = 'Редактировать список';
+        var ln = $('listName'); if (ln) ln.value = editing.name;
+        var db = $('deleteListBtn'); if (db) db.style.display = 'block';
+        var ni = $('newItemInput'); if (ni) ni.value = '';
+        renderEditorEmoji();
+        renderEditorColor();
+        renderEditorItems();
+        updateEditorPreview();
+        openModal('listEditorModal');
+    }
+    function renderEditorEmoji() {
+        var picker = $('emojiPicker'); if (!picker) return;
+        picker.innerHTML = '';
+        EMOJI_CHOICES.forEach(function(em) {
+            var div = document.createElement('div');
+            div.className = 'emoji-choice' + (editing.emoji === em ? ' selected' : '');
+            div.textContent = em;
+            div.addEventListener('click', function() { editing.emoji = em; renderEditorEmoji(); updateEditorPreview(); });
+            picker.appendChild(div);
+        });
+    }
+    function renderEditorColor() {
+        var picker = $('colorPicker'); if (!picker) return;
+        picker.innerHTML = '';
+        COLOR_PALETTES.forEach(function(p, idx) {
+            var div = document.createElement('div');
+            div.className = 'color-choice' + (editing.colorIdx === idx ? ' selected' : '');
+            div.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+            div.addEventListener('click', function() { editing.colorIdx = idx; renderEditorColor(); updateEditorPreview(); });
+            picker.appendChild(div);
+        });
+    }
+    function updateEditorPreview() {
+        var p = COLOR_PALETTES[editing.colorIdx];
+        var name = ($('listName') ? $('listName').value.trim() : '') || 'Название списка';
+        var prev = $('previewCard'); if (prev) prev.style.background = 'linear-gradient(135deg, ' + p.c1 + ', ' + p.c2 + ')';
+        var e = $('previewEmoji'); if (e) e.textContent = editing.emoji;
+        var n = $('previewName'); if (n) n.textContent = name;
+        var c = $('previewCount'); if (c) c.textContent = editing.items.length + ' ' + plural(editing.items.length, 'вещь', 'вещи', 'вещей');
+    }
+    function renderEditorItems() {
+        var editor = $('itemsEditor'); if (!editor) return;
+        editor.innerHTML = '';
+        if (editing.items.length === 0) {
+            var empty = document.createElement('div');
+            empty.style.cssText = 'text-align:center;padding:20px;color:var(--text-3);font-size:13.5px;font-weight:500;';
+            empty.textContent = 'Пока пусто. Добавьте первую вещь ниже.';
+            editor.appendChild(empty);
+            return;
+        }
+        editing.items.forEach(function(item, idx) {
+            editor.appendChild(buildAdvancedItemRow(item, idx, 'editor'));
+        });
+    }
+    function editorAddQuick() {
+        var val = $('newItemInput') ? $('newItemInput').value.trim() : '';
+        if (!val) return;
+        editing.items.push({ text: val, qty: 1, weight: 0, note: '', category: 'other' });
+        $('newItemInput').value = '';
+        renderEditorItems();
+        updateEditorPreview();
+        $('newItemInput').focus();
+    }
+    function saveEditor() {
+        var name = $('listName') ? $('listName').value.trim() : '';
+        if (!name) { showToast('Введите название'); return; }
+        if (editing.items.length === 0) { showToast('Добавьте вещи'); return; }
+        var p = COLOR_PALETTES[editing.colorIdx];
+        customTypes[editing.id] = {
+            name: name, emoji: editing.emoji,
+            c1: p.c1, c2: p.c2, ring: p.ring,
+            items: editing.items.slice(), builtin: false
+        };
+        saveCustomTypes();
+        closeModal('listEditorModal');
+        renderHome();
+        vibrate();
+        showToast('Сохранено!');
+    }
+    function deleteCustomType(id) {
+        if (!customTypes[id]) return;
+        delete customTypes[id];
+        saveCustomTypes();
+        renderHome();
+        renderProfile();
+        if ($('typeModal') && $('typeModal').classList.contains('active')) {
+            if (selectedType === id) { selectedType = null; if ($('createBtn')) $('createBtn').disabled = true; }
+            renderTypeGrid();
+        }
+    }
+    function deleteEditingList() {
+        if (!editing.id) return;
+        if (confirm('Удалить этот список?')) {
+            deleteCustomType(editing.id);
+            closeModal('listEditorModal');
+        }
+    }
+    function completeActiveTrip() {
+        if (!activeTrip) return;
+        var s = getTripStats(activeTrip);
+        history.unshift({
+            id: activeTrip.id, type: activeTrip.type,
+            name: activeTrip.name, emoji: activeTrip.emoji,
+            date: activeTrip.date,
+            total: s.total, done: s.done,
+            fullItems: activeTrip.items.map(function(i) {
+                return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category };
+            })
+        });
+        activeTrip = null;
+        saveActive();
+        saveHistory();
+        renderHome();
+        renderProfile();
+    }
+    function deleteHistory(id) {
+        history = history.filter(function(h) { return h.id !== id; });
+        saveHistory();
+        renderHome();
+        renderProfile();
+    }
+
+    // ============ ЧЕКЛИСТ КАК ОТДЕЛЬНАЯ СТРАНИЦА ============
+    function openChecklistPage() {
+        if (!activeTrip) return;
+        searchQuery = '';
+        var si = $('searchInput'); if (si) si.value = '';
+        var page = $('checklistPage');
+        if (page) page.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        renderChecklistPage();
+        loadWeather();
+    }
+
+    function closeChecklistPage() {
+        var page = $('checklistPage');
+        if (page) page.classList.remove('active');
+        document.body.style.overflow = '';
+        renderHome();
+    }
+
+    function renderChecklistPage() {
+        if (!activeTrip) { closeChecklistPage(); return; }
+        var trip = activeTrip;
+
+        var titleEl = $('checklistPageTitle');
+        if (titleEl) titleEl.textContent = (trip.emoji || '🎒') + ' ' + (trip.name || '');
+        var subEl = $('checklistPageSubtitle');
+        if (subEl) {
+            var countdownText = trip.startDate ? countdown(trip.startDate) : '';
+            var subParts = [];
+            if (trip.date) subParts.push(formatTripDate(trip));
+            if (countdownText) subParts.push(countdownText);
+            if (trip.city) subParts.push('📍 ' + trip.city);
+            subEl.textContent = subParts.join(' · ');
+        }
+
+        var s = getTripStats(trip);
+        var pt = $('tripProgressText'); if (pt) pt.textContent = s.done + ' / ' + s.total;
+        var fill = $('tripProgressFill');
+        if (fill) {
+            fill.style.width = s.percent + '%';
+            fill.classList.toggle('complete', s.percent === 100 && s.total > 0);
+        }
+        var tw = $('tripWeight'); if (tw) tw.textContent = s.doneWeight.toFixed(1) + ' / ' + s.totalWeight.toFixed(1) + ' кг';
+
+        renderWeightLimits(s.totalWeight);
+
+        var toggle = $('hideDoneToggle');
+        if (toggle) toggle.classList.toggle('active', !!settings.hideDone);
+
+        var container = $('checklistContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        var query = searchQuery.toLowerCase().trim();
+        var visibleItems = [];
+        trip.items.forEach(function(item, idx) {
+            if (settings.hideDone && item.done) return;
+            if (query && item.text.toLowerCase().indexOf(query) === -1) return;
+            visibleItems.push({ item: item, idx: idx });
+        });
+
+        if (visibleItems.length === 0) {
+            var emptyMsg = document.createElement('div');
+            emptyMsg.className = 'empty-search';
+            if (query) emptyMsg.textContent = 'Ничего не найдено по запросу "' + searchQuery + '"';
+            else if (settings.hideDone && s.done === s.total && s.total > 0) emptyMsg.textContent = '🎉 Всё собрано!';
+            else emptyMsg.textContent = 'Пока пусто';
+            container.appendChild(emptyMsg);
+            return;
+        }
+
+        var groups = {};
+        visibleItems.forEach(function(v) {
+            var cat = v.item.category || 'other';
+            if (!groups[cat]) groups[cat] = [];
+            groups[cat].push(v);
+        });
+
+        ['clothes', 'documents', 'tech', 'hygiene', 'meds', 'other'].forEach(function(catKey) {
+            if (!groups[catKey] || groups[catKey].length === 0) return;
+            var cat = CATEGORIES[catKey];
+            var section = document.createElement('div');
+            section.className = 'cat-section';
+
+            var allInCat = trip.items.filter(function(i) { return (i.category || 'other') === catKey; });
+            var doneInCat = allInCat.filter(function(i) { return i.done; }).length;
+
+            var header = document.createElement('div');
+            header.className = 'cat-header';
+            header.innerHTML = '<span class="cat-icon">' + cat.icon + '</span>' +
+                '<span>' + cat.name + '</span>' +
+                '<span class="cat-count">' + doneInCat + '/' + allInCat.length + '</span>';
+            section.appendChild(header);
+
+            groups[catKey].forEach(function(v) {
+                section.appendChild(buildSwipeableCheckItem(v.item, v.idx));
+            });
+            container.appendChild(section);
+        });
+    }
+
+    function renderWeightLimits(totalWeight) {
+        var wrap = $('weightLimits');
+        if (!wrap) return;
+        if (totalWeight <= 0) { wrap.style.display = 'none'; return; }
+        wrap.style.display = 'block';
+        var percent = Math.min(100, (totalWeight / 28) * 100);
+        var marker = $('weightMarker');
+        if (marker) marker.style.left = 'calc(' + percent + '% - 2px)';
+        var status = $('weightStatus');
+        if (!status) return;
+        status.className = 'weight-status';
+        if (totalWeight <= 8) {
+            status.classList.add('hand');
+            status.textContent = '✅ Ручная кладь (' + totalWeight.toFixed(1) + ' кг)';
+        } else if (totalWeight <= 23) {
+            status.classList.add('bag');
+            status.textContent = '⚠️ Багаж (' + totalWeight.toFixed(1) + ' кг)';
+        } else {
+            status.classList.add('over');
+            status.textContent = '❌ Перевес (' + totalWeight.toFixed(1) + ' кг)';
+        }
+    }
+
+    function buildSwipeableCheckItem(item, idx) {
+        var wrap = document.createElement('div');
+        wrap.className = 'check-item-wrap';
+
+        var rightAction = document.createElement('div');
+        rightAction.className = 'check-item-actions right';
+        rightAction.innerHTML = '<span>' + (item.done ? '↺' : '✓') + '</span><span>' + (item.done ? 'Сбросить' : 'Готово') + '</span>';
+
+        var leftAction = document.createElement('div');
+        leftAction.className = 'check-item-actions left';
+        leftAction.innerHTML = '<span>Удалить</span><span>🗑</span>';
+
+        wrap.appendChild(rightAction);
+        wrap.appendChild(leftAction);
+
+        var itemEl = buildCheckItem(item, idx);
+        wrap.appendChild(itemEl);
+
+        var startX = 0, startY = 0, curX = 0, isSwiping = false, isHoriz = false;
+        var threshold = 70;
+
+        itemEl.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            curX = 0; isSwiping = true; isHoriz = false;
+            itemEl.style.transition = 'none';
+        }, { passive: true });
+
+        itemEl.addEventListener('touchmove', function(e) {
+            if (!isSwiping) return;
+            var dx = e.touches[0].clientX - startX;
+            var dy = e.touches[0].clientY - startY;
+            if (!isHoriz && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) isHoriz = true;
+            if (!isHoriz) return;
+            curX = dx;
+            if (dx > threshold * 1.5) dx = threshold * 1.5;
+            if (dx < -threshold * 1.5) dx = -threshold * 1.5;
+            itemEl.style.transform = 'translateX(' + dx + 'px)';
+        }, { passive: true });
+
+        itemEl.addEventListener('touchend', function() {
+            if (!isSwiping) return;
+            isSwiping = false;
+            itemEl.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+            if (curX > threshold) {
+                itemEl.style.transform = 'translateX(0)';
+                toggleItem(idx, true);
+            } else if (curX < -threshold) {
+                itemEl.style.transform = 'translateX(-100%)';
+                setTimeout(function() { deleteItemFromActive(idx); }, 200);
+            } else {
+                itemEl.style.transform = 'translateX(0)';
+            }
+            curX = 0;
+        }, { passive: true });
+
+        return wrap;
+    }
+
+    function deleteItemFromActive(idx) {
+        if (!activeTrip || !activeTrip.items[idx]) return;
+        activeTrip.items.splice(idx, 1);
+        saveActive();
+        vibrate();
+        renderChecklistPage();
+        renderHome();
+        renderProfile();
+        showToast('Удалено');
+    }
+
+    function buildCheckItem(item, idx) {
+        var div = document.createElement('div');
+        div.className = 'check-item' + (item.done ? ' checked' : '');
+        var circle = document.createElement('div');
+        circle.className = 'check-circle';
+        circle.textContent = '✓';
+        circle.addEventListener('click', function(e) { e.stopPropagation(); toggleItem(idx, false); });
+        var body = document.createElement('div');
+        body.className = 'check-body';
+        var html = '<div class="check-text">' + highlightText(item.text) + '</div>';
+        if (item.note) html += '<div class="check-note">' + escapeHtml(item.note) + '</div>';
+        body.innerHTML = html;
+        body.addEventListener('click', function() { toggleItem(idx, false); });
+        div.appendChild(circle);
+        div.appendChild(body);
+        if (item.qty && item.qty > 1) {
+            var stepper = document.createElement('div');
+            stepper.className = 'qty-stepper';
+            var minus = document.createElement('button');
+            minus.type = 'button';
+            minus.className = 'qty-btn';
+            minus.textContent = '−';
+            minus.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (item.qty > 1) { item.qty--; saveActive(); renderChecklistPage(); renderHome(); }
+            });
+            var val = document.createElement('div');
+            val.className = 'qty-val';
+            val.textContent = item.qty;
+            var plus = document.createElement('button');
+            plus.type = 'button';
+            plus.className = 'qty-btn';
+            plus.textContent = '+';
+            plus.addEventListener('click', function(e) {
+                e.stopPropagation();
+                item.qty++;
+                saveActive();
+                renderChecklistPage();
+                renderHome();
+            });
+            stepper.appendChild(minus);
+            stepper.appendChild(val);
+            stepper.appendChild(plus);
+            div.appendChild(stepper);
+        }
+        return div;
+    }
+
+    function highlightText(text) {
+        if (!searchQuery) return escapeHtml(text);
+        var escaped = escapeHtml(text);
+        var q = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        try {
+            var re = new RegExp('(' + q + ')', 'gi');
+            return escaped.replace(re, '<span class="search-highlight">$1</span>');
+        } catch (e) { return escaped; }
+    }
+
+    function toggleItem(idx, fromSwipe) {
+        if (!activeTrip || !activeTrip.items[idx]) return;
+        var wasDone = activeTrip.items[idx].done;
+        activeTrip.items[idx].done = !wasDone;
+        if (!wasDone) {
+            vibrate();
+            var ring = document.querySelector('.ring-wrap');
+            if (ring) {
+                var rect = ring.getBoundingClientRect();
+                spawnPlusOne(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            }
+        }
+        var allDone = activeTrip.items.every(function(i) { return i.done; });
+        if (!wasDone && allDone) { fireConfetti(); vibrateStrong(); }
+        saveActive();
+        renderChecklistPage();
+        renderHome();
+        renderProfile();
+    }
+
+    function spawnPlusOne(x, y) {
+        var el = document.createElement('div');
+        el.className = 'plus-one';
+        el.textContent = '+1';
+        el.style.left = (x - 15) + 'px';
+        el.style.top = (y - 10) + 'px';
+        document.body.appendChild(el);
+        setTimeout(function() { el.remove(); }, 1100);
+    }
+
+    // ============ WEATHER ============
+    function loadWeather() {
+        var card = $('weatherCard');
+        if (!card) return;
+        if (!activeTrip || !activeTrip.city) { card.classList.remove('show'); return; }
+        var city = activeTrip.city;
+        var cacheKey = 'weather_' + city.toLowerCase();
+        var cached = weatherCache[cacheKey];
+        if (cached && Date.now() - cached.ts < 30 * 60 * 1000) { renderWeather(cached.data); return; }
+        card.classList.add('show');
+        var cityEl = $('weatherCity'); if (cityEl) cityEl.textContent = city;
+        var descEl = $('weatherDesc'); if (descEl) descEl.textContent = 'Загрузка...';
+        var iconEl = $('weatherIcon'); if (iconEl) iconEl.textContent = '🌍';
+        var tempEl = $('weatherTemp'); if (tempEl) tempEl.textContent = '--';
+        var fcEl = $('weatherForecast'); if (fcEl) fcEl.innerHTML = '';
+
+        fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(city) + '&count=1&language=ru&format=json')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) {
+                if (!geo.results || geo.results.length === 0) throw new Error('Город не найден');
+                var lat = geo.results[0].latitude, lon = geo.results[0].longitude, name = geo.results[0].name;
+                return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        data._cityName = name;
+                        weatherCache[cacheKey] = { ts: Date.now(), data: data };
+                        renderWeather(data);
+                    });
+            })
+            .catch(function() {
+                var descEl = $('weatherDesc'); if (descEl) descEl.textContent = 'Не удалось загрузить погоду';
+                var iconEl = $('weatherIcon'); if (iconEl) iconEl.textContent = '❓';
+            });
+    }
+
+    function renderWeather(data) {
+        var card = $('weatherCard'); if (!card) return;
+        card.classList.add('show');
+        var current = data.current || {};
+        var code = current.weather_code || 0;
+        var weather = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
+        var cityEl = $('weatherCity'); if (cityEl) cityEl.textContent = data._cityName || activeTrip.city || '';
+        var tempEl = $('weatherTemp'); if (tempEl) tempEl.textContent = Math.round(current.temperature_2m) + '°';
+        var iconEl = $('weatherIcon'); if (iconEl) iconEl.textContent = weather.icon;
+        var descEl = $('weatherDesc');
+        var hint = weather.desc;
+        if (current.temperature_2m !== undefined) {
+            if (current.temperature_2m < 0) hint += ' · Возьми тёплые вещи 🧥';
+            else if (current.temperature_2m < 10) hint += ' · Нужна куртка';
+            else if (current.temperature_2m < 18) hint += ' · Лёгкая кофта';
+            else if (current.temperature_2m > 28) hint += ' · Очень жарко 🥵';
+        }
+        if (code >= 51 && code <= 82) hint += ' · Не забудь зонт ☔';
+        if (code >= 71 && code <= 75) hint += ' · Снег ❄️';
+        if (descEl) descEl.textContent = hint;
+        var fcEl = $('weatherForecast'); if (!fcEl) return;
+        fcEl.innerHTML = '';
+        var daily = data.daily || {};
+        var days = daily.time || [];
+        var codes = daily.weather_code || [];
+        var maxT = daily.temperature_2m_max || [];
+        var minT = daily.temperature_2m_min || [];
+        var dayNames = ['вс','пн','вт','ср','чт','пт','сб'];
+        for (var i = 0; i < Math.min(5, days.length); i++) {
+            var d = new Date(days[i]);
+            var w = WEATHER_CODES[codes[i]] || { icon: '🌡️' };
+            var dayEl = document.createElement('div');
+            dayEl.className = 'forecast-day';
+            dayEl.innerHTML =
+                '<div class="fd-name">' + dayNames[d.getDay()] + '</div>' +
+                '<div class="fd-icon">' + w.icon + '</div>' +
+                '<div class="fd-temp">' + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</div>';
+            fcEl.appendChild(dayEl);
+        }
+    }
+
+    // ============ ДОБАВИТЬ ВЕЩЬ ============
+    function openAddItemModal() {
+        if (!activeTrip) return;
+        var n = $('addItemName'); if (n) n.value = '';
+        var q = $('addItemQty'); if (q) q.value = '1';
+        var w = $('addItemWeight'); if (w) w.value = '';
+        var no = $('addItemNote'); if (no) no.value = '';
+        var sel = $('addItemCat');
+        if (sel) {
+            sel.innerHTML = '';
+            Object.keys(CATEGORIES).forEach(function(k) {
+                var opt = document.createElement('option');
+                opt.value = k; opt.textContent = CATEGORIES[k].icon + ' ' + CATEGORIES[k].name;
+                sel.appendChild(opt);
+            });
+        }
+        openModal('addItemModal');
+    }
+    function confirmAddItem() {
+        if (!activeTrip) return;
+        var name = $('addItemName') ? $('addItemName').value.trim() : '';
+        if (!name) { showToast('Введите название'); return; }
+        activeTrip.items.push({
+            text: name, done: false,
+            qty: parseInt($('addItemQty').value) || 1,
+            weight: parseFloat($('addItemWeight').value) || 0,
+            note: ($('addItemNote') ? $('addItemNote').value.trim() : ''),
+            category: ($('addItemCat') ? $('addItemCat').value : 'other')
+        });
+        saveActive();
+        closeModal('addItemModal');
+        renderChecklistPage();
+        renderHome();
+        vibrate();
+        showToast('Вещь добавлена!');
+    }
+
+    function fireConfetti() {
+        var colors = ['#ff9a5a', '#ff6b8a', '#4ecb71', '#c084fc', '#ffd166'];
+        if (settings.dark) colors = ['#6b8cff', '#a06bff', '#3ddc84', '#ff6bcb', '#ffd166'];
+        for (var i = 0; i < 60; i++) {
+            (function() {
+                var c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.background = colors[Math.floor(Math.random() * colors.length)];
+                c.style.animationDelay = (Math.random() * 0.5) + 's';
+                var size = Math.random() * 8 + 6;
+                c.style.width = size + 'px';
+                c.style.height = size + 'px';
+                c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                document.body.appendChild(c);
+                setTimeout(function() { c.remove(); }, 3500);
+            })();
+        }
+    }
+
+    function calcStats() {
+        var totalTrips = history.length + (activeTrip ? 1 : 0);
+        var allDone = 0, allTotal = 0, allWeight = 0, perfectTrips = 0;
+        history.forEach(function(h) {
+            allDone += h.done || 0;
+            allTotal += h.total || 0;
+            if (h.total > 0 && h.done === h.total) perfectTrips++;
+        });
+        if (activeTrip) {
+            var s = getTripStats(activeTrip);
+            allDone += s.done; allTotal += s.total; allWeight += s.doneWeight;
+            if (s.total > 0 && s.done === s.total) perfectTrips++;
+        }
+        return {
+            totalTrips: totalTrips, completedTrips: history.length,
+            allDone: allDone, allTotal: allTotal, allWeight: allWeight,
+            perfectTrips: perfectTrips, customCount: Object.keys(customTypes).length
+        };
+    }
+
+    function renderProfile() {
+        try {
+            var s = calcStats();
+            var t1 = $('profileTotalTrips'); if (t1) t1.textContent = s.totalTrips;
+            var t2 = $('profileCompletedTrips'); if (t2) t2.textContent = s.completedTrips;
+            var t3 = $('profileItemsPacked'); if (t3) t3.textContent = s.allDone;
+            var t4 = $('profileTotalWeight'); if (t4) t4.textContent = s.allWeight.toFixed(1);
+            var pn = $('profileName'); if (pn) pn.textContent = profile.name || 'Эрик';
+            var avatarEl = $('profileAvatar');
+            var letterEl = $('profileAvatarLetter');
+            if (avatarEl && letterEl) {
+                if (profile.avatar) {
+                    avatarEl.style.backgroundImage = 'url(' + profile.avatar + ')';
+                    avatarEl.classList.add('has-photo');
+                    letterEl.textContent = '';
+                } else {
+                    avatarEl.style.backgroundImage = '';
+                    avatarEl.classList.remove('has-photo');
+                    letterEl.textContent = (profile.name || 'Э').charAt(0).toUpperCase();
+                }
+            }
+            renderAchievements(s);
+        } catch (e) { console.error('renderProfile error:', e); }
+    }
+
+    function renderAchievements(s) {
+        var grid = $('achievementsGrid'); if (!grid) return;
+        grid.innerHTML = '';
+        var unlocked = [];
+        ACHIEVEMENTS.forEach(function(a) {
+            var isUnlocked = false;
+            try { isUnlocked = a.check(s); } catch (e) {}
+            if (isUnlocked && !achievementsState[a.id]) {
+                achievementsState[a.id] = Date.now();
+                unlocked.push(a);
+            }
+            var div = document.createElement('div');
+            div.className = 'achievement' + (isUnlocked ? ' unlocked' : '');
+            div.innerHTML =
+                '<div class="ach-icon">' + a.icon + '</div>' +
+                '<div class="ach-name">' + a.name + '</div>' +
+                '<div class="ach-desc">' + a.desc + '</div>';
+            grid.appendChild(div);
+        });
+        saveAchievements();
+        if (unlocked.length > 0) setTimeout(function() { showToast('🏆 ' + unlocked[0].name); }, 500);
+    }
+
+    function openEditProfile() {
+        var n = $('editName'); if (n) n.value = profile.name || '';
+        var editAvatar = $('editAvatar');
+        var editLetter = $('editAvatarLetter');
+        if (editAvatar && editLetter) {
+            if (profile.avatar) {
+                editAvatar.style.backgroundImage = 'url(' + profile.avatar + ')';
+                editLetter.textContent = '';
+            } else {
+                editAvatar.style.backgroundImage = '';
+                editLetter.textContent = (profile.name || 'Э').charAt(0).toUpperCase();
+            }
+        }
+        openModal('editProfileModal');
+    }
+    function saveProfileChanges() {
+        profile.name = ($('editName') ? $('editName').value.trim() : '') || 'Эрик';
+        saveProfile();
+        closeModal('editProfileModal');
+        renderProfile();
+    }
+    function handleAvatarUpload(e) {
+        var file = e.target.files && e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function(ev) {
+            var img = new Image();
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                var size = 200;
+                canvas.width = size; canvas.height = size;
+                var ctx = canvas.getContext('2d');
+                var minSide = Math.min(img.width, img.height);
+                ctx.drawImage(img, (img.width - minSide) / 2, (img.height - minSide) / 2, minSide, minSide, 0, 0, size, size);
+                var dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                profile.avatar = dataUrl;
+                var editAvatar = $('editAvatar');
+                var editLetter = $('editAvatarLetter');
+                if (editAvatar) editAvatar.style.backgroundImage = 'url(' + dataUrl + ')';
+                if (editLetter) editLetter.textContent = '';
+                saveProfile();
+                renderProfile();
+            };
+            img.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    function resetAvatar() {
+        profile.avatar = null;
+        saveProfile();
+        var editAvatar = $('editAvatar');
+        var editLetter = $('editAvatarLetter');
+        if (editAvatar) editAvatar.style.backgroundImage = '';
+        if (editLetter) editLetter.textContent = (($('editName') ? $('editName').value : '') || 'Э').charAt(0).toUpperCase();
+        renderProfile();
+    }
+
+    function switchPage(page) {
+        document.querySelectorAll('.nav-item').forEach(function(n) {
+            n.classList.toggle('active', n.getAttribute('data-page') === page);
+        });
+        document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+        var target = $('page-' + page);
+        if (target) target.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (page === 'profile') renderProfile();
+    }
+
+    function checkReminders() {
+        try {
+            if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
+            if (activeTrip && activeTrip.startDate) {
+                var d = countdown(activeTrip.startDate);
+                if (d === 'завтра' || d === 'сегодня') {
+                    var key = 'bybag_rem_' + activeTrip.id + '_' + d;
+                    if (!localStorage.getItem(key)) {
+                        new Notification('byBag', { body: 'Поездка ' + d + '! Проверь багаж 🧳' });
+                        localStorage.setItem(key, '1');
+                    }
+                }
+            }
+        } catch (e) {}
+    }
+
+    function bind(id, event, handler) {
+        var el = $(id);
+        if (el) el.addEventListener(event, handler);
+    }
+
+    function init() {
+        try {
+            loadData();
+            applyTheme();
+
+            bind('createBtn', 'click', createTrip);
+
+            document.querySelectorAll('[data-close]').forEach(function(btn) {
+                btn.addEventListener('click', function() { closeModal(btn.getAttribute('data-close')); });
+            });
+
+            ['typeModal','editProfileModal','listEditorModal','addItemModal','wizardStep1','wizardStep2','advancedItemModal','advancedItemModal2'].forEach(function(id) {
+                var el = $(id);
+                if (el) el.addEventListener('click', function(e) { if (e.target === this) closeModal(id); });
+            });
+
+            document.querySelectorAll('.nav-item').forEach(function(item) {
+                item.addEventListener('click', function() { switchPage(item.getAttribute('data-page')); });
+            });
+
+            // Чеклист как страница
+            bind('checklistBackBtn', 'click', closeChecklistPage);
+            bind('checklistShareBtn', 'click', shareActiveTrip);
+            bind('addToActiveBtn', 'click', openAddItemModal);
+            bind('confirmAddItemBtn', 'click', confirmAddItem);
+
+            // Поиск и фильтр
+            bind('searchInput', 'input', function() { searchQuery = this.value; renderChecklistPage(); });
+            bind('hideDoneToggle', 'click', function() {
+                settings.hideDone = !settings.hideDone;
+                saveSettings();
+                renderChecklistPage();
+            });
+
+            // Мастер
+            bind('wiz1NameInput', 'input', function() {
+                var nb = $('wiz1NextBtn');
+                if (nb) nb.disabled = !this.value.trim();
+                updateWiz1Preview();
+            });
+            bind('wiz1NextBtn', 'click', wiz1Next);
+            bind('wiz2AddBtn', 'click', wiz2AddQuick);
+            bind('wiz2NewItem', 'keypress', function(e) { if (e.key === 'Enter') wiz2AddQuick(); });
+            bind('wiz2AdvancedBtn', 'click', function() { openAdvanced('wizard'); });
+            bind('wiz2SaveBtn', 'click', wiz2Save);
+            bind('wiz2BackBtn', 'click', function() { closeModal('wizardStep2'); openModal('wizardStep1'); });
+            bind('advConfirmBtn', 'click', advConfirm);
+            bind('adv2ConfirmBtn', 'click', adv2Confirm);
+
+            // Редактор
+            bind('addItemBtn', 'click', editorAddQuick);
+            bind('newItemInput', 'keypress', function(e) { if (e.key === 'Enter') editorAddQuick(); });
+            bind('listName', 'input', updateEditorPreview);
+            bind('saveListBtn', 'click', saveEditor);
+            bind('deleteListBtn', 'click', deleteEditingList);
+            bind('listAdvancedBtn', 'click', function() { openAdvanced('editor'); });
+
+            // Профиль
+            bind('editProfileBtn', 'click', openEditProfile);
+            bind('profileAvatar', 'click', openEditProfile);
+            bind('saveProfileBtn', 'click', saveProfileChanges);
+            bind('avatarInput', 'change', handleAvatarUpload);
+            bind('editAvatar', 'click', function() { var ai = $('avatarInput'); if (ai) ai.click(); });
+            bind('resetAvatarBtn', 'click', resetAvatar);
+
+            // Настройки
+            bind('darkModeToggleItem', 'click', function() {
+                settings.dark = !settings.dark;
+                saveSettings();
+                applyTheme();
+            });
+            bind('notifToggleItem', 'click', function() {
+                settings.notif = !settings.notif; saveSettings(); applyTheme();
+                if (settings.notif && 'Notification' in window && Notification.permission === 'default') {
+                    Notification.requestPermission();
+                }
+            });
+            bind('vibrateToggleItem', 'click', function() {
+                settings.vibrate = !settings.vibrate; saveSettings(); applyTheme(); vibrate();
+            });
+
+            // Story viewer
+            bind('storyCloseBtn', 'click', closeStoryViewer);
+            bind('storyTapPrev', 'click', prevStorySlide);
+            bind('storyTapNext', 'click', nextStorySlide);
+
+            renderHome();
+            renderProfile();
+            setTimeout(checkReminders, 3000);
+            setInterval(checkReminders, 3600000);
+        } catch (e) {
+            console.error('init error:', e);
+            var errScreen = $('errorScreen');
+            var errMsg = $('errMsg');
+            if (errScreen && errMsg) {
+                errMsg.textContent = (e.stack || e.message || 'Неизвестная ошибка');
+                errScreen.classList.add('show');
+            }
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
