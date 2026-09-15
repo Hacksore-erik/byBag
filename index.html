@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.1.0</title>
+<title>byBag v1.2.0</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -70,9 +70,8 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 .story-tap-zone.next{right:0;width:50%}
 
 /* WIDGET */
-.main-widget{position:relative;border-radius:28px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 18px 45px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
+.main-widget{position:relative;border-radius:28px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 18px 45px var(--shadow);display:flex;flex-direction:column;width:100%}
 .main-widget:active{transform:scale(.985)}
-@keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .widget-hero{position:relative;padding:25px 23px 44px;overflow:hidden;background:linear-gradient(135deg,var(--c1,#ffb347),var(--c2,#ff7e5f))}
 .widget-hero .bg-emoji{position:absolute;right:-17px;bottom:-36px;font-size:162px;line-height:1;opacity:.22;pointer-events:none;transform:rotate(-12deg);user-select:none}
 .widget-hero::before{content:'';position:absolute;top:-54px;left:-54px;width:162px;height:162px;border-radius:50%;background:rgba(255,255,255,.15);pointer-events:none}
@@ -110,18 +109,21 @@ body.dark .story-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6
 /* CAROUSEL */
 .trips-carousel{position:relative;overflow:hidden;margin-bottom:8px;margin-top:6px;border-radius:28px}
 .trips-track{display:flex;transition:transform .35s cubic-bezier(.4,0,.2,1);will-change:transform}
-.trips-track .main-widget{flex:0 0 100%;margin:0;animation:none}
+.trips-track .main-widget{flex:0 0 100%;margin:0}
 .trips-dots{display:flex;justify-content:center;gap:6px;padding:14px 0 0}
 .trips-dots .tdot{width:8px;height:8px;border-radius:50%;background:var(--border-soft);transition:all .25s;cursor:pointer}
 .trips-dots .tdot.active{width:24px;border-radius:100px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
 .swipe-hint{text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:6px 0 0;opacity:.6;animation:swipeHintFade 4s ease forwards}
 @keyframes swipeHintFade{0%,70%{opacity:.6}100%{opacity:0}}
 
-.plus-one{position:fixed;font-size:22px;font-weight:800;color:var(--success);pointer-events:none;z-index:900;animation:plusOneFloat 1s ease-out forwards;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.add-trip-btn{width:100%;padding:18px;border:none;border-radius:22px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:17px;font-weight:600;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 30px rgba(255,107,138,.4),inset 0 1px 0 rgba(255,255,255,.4);margin-bottom:20px;margin-top:8px}
+.add-trip-btn:active{transform:scale(.97)}
+.add-trip-btn .plus{font-size:22px;line-height:1;font-weight:300}
+
+.plus-one{position:fixed;font-size:22px;font-weight:800;color:var(--success);pointer-events:none;z-index:900;animation:plusOneFloat 1s ease-out forwards}
 @keyframes plusOneFloat{0%{transform:translateY(0) scale(.6);opacity:0}15%{transform:translateY(-10px) scale(1.2);opacity:1}100%{transform:translateY(-70px) scale(.9);opacity:0}}
 
-/* EMPTY */
-.empty-hero{padding:40px 28px;margin:6px 0 17px;background:var(--card);border:1.5px dashed rgba(255,154,90,.4);border-radius:28px;text-align:center;cursor:pointer;animation:slideIn .5s ease}
+.empty-hero{padding:40px 28px;margin:6px 0 17px;background:var(--card);border:1.5px dashed rgba(255,154,90,.4);border-radius:28px;text-align:center;cursor:pointer}
 body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero .empty-icon{font-size:64px;margin-bottom:14px;display:inline-block;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -130,7 +132,6 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 .empty-hero .empty-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:14.5px;font-weight:700;border-radius:100px}
 .empty-hero .empty-cta .plus{font-size:18px;line-height:1;font-weight:300}
 
-/* SECTIONS */
 .stats-section{margin-bottom:20px}
 .stats-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;margin-bottom:12px;padding-left:4px}
 .history-item,.my-list-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px}
@@ -142,7 +143,6 @@ body.dark .empty-hero{border-color:rgba(107,140,255,.4)}
 body.dark .history-item .h-badge{background:rgba(61,220,132,.15)}
 .icon-btn{background:transparent;border:none;color:var(--text-3);width:26px;height:26px;border-radius:50%;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0;opacity:.5}
 
-/* PROFILE */
 .profile-hero{padding:24px;background:var(--card);border:1px solid var(--border);border-radius:28px;box-shadow:0 16px 40px var(--shadow);display:flex;align-items:center;gap:18px;margin-bottom:20px;margin-top:6px;position:relative;overflow:hidden}
 .profile-hero::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--glow-1),transparent 70%);pointer-events:none}
 .profile-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;position:relative;z-index:1;color:#fff;font-weight:700;overflow:hidden;background-size:cover;background-position:center;cursor:pointer}
@@ -168,7 +168,6 @@ body.dark .profile-item .pi-icon{background:rgba(107,140,255,.15)}
 .profile-item .pi-value{font-size:14px;color:var(--text-3);font-weight:600}
 .profile-item .pi-arrow{color:var(--text-3);font-size:16px;font-weight:700;opacity:.5}
 
-/* ACHIEVEMENTS */
 .achievements-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
 .achievement{padding:16px 14px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 20px var(--shadow);text-align:center;opacity:.4;filter:grayscale(1)}
 .achievement.unlocked{opacity:1;filter:grayscale(0);background:linear-gradient(135deg,rgba(255,154,90,.15),rgba(255,107,138,.15));border-color:rgba(255,154,90,.4)}
@@ -177,9 +176,8 @@ body.dark .achievement.unlocked{background:linear-gradient(135deg,rgba(107,140,2
 .achievement .ach-name{font-size:12px;font-weight:700;color:var(--text);line-height:1.3}
 .achievement .ach-desc{font-size:10.5px;color:var(--text-3);margin-top:4px;font-weight:500}
 
-/* BOTTOM NAV */
 .bottom-nav{position:fixed;bottom:16px;left:20px;right:20px;max-width:460px;margin:0 auto;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 12px 40px var(--shadow);display:flex;gap:6px;z-index:70;backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px)}
-.nav-item{flex:1;padding:11px 8px;border:none;background:transparent;border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit}
+.nav-item{flex:1;padding:11px 6px;border:none;background:transparent;border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit}
 .nav-item .nav-icon{font-size:20px;line-height:1;opacity:.55}
 .nav-item .nav-label{font-size:10.5px;font-weight:700;color:var(--text-3)}
 .nav-item.active{background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2))}
@@ -187,7 +185,6 @@ body.dark .nav-item.active{background:linear-gradient(135deg,rgba(107,140,255,.2
 .nav-item.active .nav-icon{opacity:1;transform:scale(1.1)}
 .nav-item.active .nav-label{color:var(--danger)}
 
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(60,40,25,.35);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;display:none;align-items:flex-end;justify-content:center;overflow:hidden}
 body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-overlay.active{display:flex}
@@ -230,7 +227,7 @@ body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
 .emoji-choice.selected{background:linear-gradient(135deg,rgba(255,154,90,.25),rgba(255,107,138,.25));border-color:var(--accent-1)}
 body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,255,.25),rgba(160,107,255,.25))}
 .color-picker{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:14px}
-.color-choice{aspect-ratio:1;border-radius:10px;cursor:pointer;position:relative;border:2px solid transparent;transition:transform .15s}
+.color-choice{aspect-ratio:1;border-radius:10px;cursor:pointer;position:relative;border:2px solid transparent}
 .color-choice.selected{border-color:var(--text);transform:scale(1.08)}
 .color-choice.selected::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .preview-card{padding:16px 18px;border-radius:20px;margin-bottom:18px;display:flex;align-items:center;gap:14px;color:#fff;position:relative;overflow:hidden}
@@ -249,7 +246,6 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .add-item-row .input-field{flex:1;margin-bottom:0;padding:14px;font-size:15px}
 .add-item-row .add-item-btn{width:50px;height:50px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:24px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
 
-/* CHECKLIST PAGE */
 .checklist-page{position:fixed;inset:0;background:var(--bg);z-index:150;display:none;flex-direction:column;overflow:hidden}
 .checklist-page.active{display:flex}
 .checklist-page-header{display:flex;align-items:center;gap:12px;padding:14px 20px 12px;background:linear-gradient(to bottom,var(--bg) 70%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-soft);flex-shrink:0;position:relative;z-index:10}
@@ -264,7 +260,6 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .checklist-page-bottom{position:fixed;bottom:0;left:0;right:0;padding:12px 20px 24px;background:linear-gradient(to top,var(--bg) 60%,transparent);z-index:25;max-width:500px;margin:0 auto;pointer-events:none;display:flex;justify-content:center;box-sizing:border-box}
 .checklist-page-bottom .add-to-active{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);pointer-events:auto;width:100%;cursor:pointer}
 
-/* CHECKLIST */
 .checklist{margin-top:8px}
 .cat-section{margin-bottom:18px}
 .cat-header{display:flex;align-items:center;gap:8px;padding:8px 4px;margin-bottom:8px;font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--text-3);font-weight:700}
@@ -358,10 +353,9 @@ body.dark .toast{background:rgba(107,140,255,.95)}
 #errorScreen button{padding:14px 28px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:4px}
 #errorScreen .err-msg{font-family:monospace;font-size:11px;color:var(--text-3);background:var(--card);padding:12px;border-radius:12px;margin-top:20px;max-width:100%;word-break:break-all;text-align:left;-webkit-user-select:text;user-select:text}
 
-/* УМНЫЕ ПОДСКАЗКИ */
-.smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none;animation:slideIn .3s ease}
+.smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none}
 body.dark .smart-hint{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.35)}
-.smart-hint.show{display:block}
+.smart-hint.show{display:block;animation:slideIn .3s ease}
 .smart-hint .sh-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .smart-hint .sh-icon{font-size:20px}
 .smart-hint .sh-title{flex:1;font-size:13.5px;font-weight:800;color:var(--text);letter-spacing:-.2px}
@@ -377,7 +371,6 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 .smart-hint .sh-dismiss{background:transparent;border:none;color:var(--text-3);font-size:11.5px;font-weight:600;cursor:pointer;padding:6px;font-family:inherit;width:100%;margin-top:6px;text-align:center;opacity:.7}
 .smart-hint .sh-memory{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--accent-2);font-weight:700;background:rgba(255,107,138,.12);padding:3px 8px;border-radius:100px;margin-left:6px}
 
-/* ОНБОРДИНГ */
 .onboarding-viewer{position:fixed;inset:0;z-index:250;display:none;flex-direction:column;background:var(--bg)}
 .onboarding-viewer.active{display:flex}
 .onb-slide{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;text-align:center;position:relative;overflow:hidden}
@@ -398,6 +391,84 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 .onb-buttons{display:flex;gap:10px}
 .onb-buttons .onb-skip{flex:0 0 auto;padding:18px 20px;border:1.5px solid var(--border-soft);border-radius:18px;background:var(--card);color:var(--text-2);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer}
 .onb-buttons .onb-next{flex:1;padding:18px;border:none;border-radius:18px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 24px rgba(255,107,138,.35)}
+
+/* СПИСКИ */
+.lists-hero{padding:24px;background:linear-gradient(135deg,rgba(94,199,255,.15),rgba(192,132,252,.15));border:1px solid var(--border);border-radius:28px;margin-bottom:20px;margin-top:6px;text-align:center;position:relative;overflow:hidden}
+.lists-hero::before{content:'📋';position:absolute;right:-30px;bottom:-40px;font-size:140px;opacity:.08;transform:rotate(-15deg);pointer-events:none}
+.lists-hero .hero-icon{font-size:48px;margin-bottom:10px}
+.lists-hero h2{font-size:22px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.4px}
+.lists-hero p{font-size:13.5px;color:var(--text-2);line-height:1.5;font-weight:500}
+.lists-actions{margin-bottom:20px}
+.lists-create-btn{width:100%;padding:18px;border:none;border-radius:22px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 10px 30px rgba(255,107,138,.35),inset 0 1px 0 rgba(255,255,255,.4)}
+.lists-create-btn:active{transform:scale(.97)}
+.lists-create-btn .plus{font-size:22px;line-height:1;font-weight:300}
+.list-card{padding:20px;background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:0 8px 24px var(--shadow);margin-bottom:14px;position:relative;overflow:hidden}
+.list-card .lc-glow{position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;opacity:.15;filter:blur(40px);pointer-events:none}
+.list-card .lc-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;position:relative;z-index:1}
+.list-card .lc-emoji{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;flex-shrink:0;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.list-card .lc-info{flex:1;min-width:0}
+.list-card .lc-info h3{font-size:17px;font-weight:800;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:-.3px}
+.list-card .lc-info .lc-meta{font-size:12px;color:var(--text-3);font-weight:600}
+.list-card .lc-preview{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;position:relative;z-index:1}
+.list-card .lc-preview .lc-tag{font-size:11.5px;font-weight:600;padding:5px 10px;border-radius:100px;background:rgba(255,255,255,.55);border:1px solid var(--border-soft);color:var(--text-2);white-space:nowrap;max-width:140px;overflow:hidden;text-overflow:ellipsis}
+body.dark .list-card .lc-preview .lc-tag{background:rgba(0,0,0,.2)}
+.list-card .lc-preview .lc-tag.more{background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border-color:rgba(255,154,90,.4);color:var(--accent-2);font-weight:800}
+.list-card .lc-actions{display:flex;gap:8px;position:relative;z-index:1}
+.list-card .lc-actions button{flex:1;padding:12px;border-radius:14px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.list-card .lc-actions button:active{transform:scale(.96)}
+.list-card .lc-edit{background:linear-gradient(135deg,rgba(255,154,90,.15),rgba(255,107,138,.15));border:1.5px solid rgba(255,154,90,.4);color:var(--accent-2)}
+body.dark .list-card .lc-edit{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));border-color:rgba(107,140,255,.5);color:#a9bdff}
+.list-card .lc-duplicate{background:var(--card-solid);border:1.5px solid var(--border-soft);color:var(--text-2);flex:0 0 auto;padding:12px 14px}
+.list-card .lc-delete{background:rgba(255,107,138,.1);border:1.5px solid rgba(255,107,138,.25);color:var(--danger);flex:0 0 auto;padding:12px 14px}
+.lists-empty{padding:50px 24px;text-align:center;color:var(--text-3)}
+.lists-empty .le-icon{font-size:64px;margin-bottom:14px;opacity:.6}
+.lists-empty h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:8px}
+.lists-empty p{font-size:13.5px;line-height:1.5;font-weight:500;color:var(--text-2)}
+
+/* КАРТА */
+.map-hero{padding:28px 24px;background:linear-gradient(135deg,rgba(94,199,255,.2),rgba(192,132,252,.2));border:1px solid var(--border);border-radius:28px;margin-bottom:20px;margin-top:6px;text-align:center;position:relative;overflow:hidden}
+.map-hero::before{content:'✈️';position:absolute;right:-40px;bottom:-50px;font-size:180px;opacity:.08;transform:rotate(-15deg);pointer-events:none}
+.map-hero .mh-icon{font-size:56px;margin-bottom:12px;display:inline-block;animation:float 3s ease-in-out infinite}
+.map-hero h2{font-size:24px;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.5px}
+.map-hero p{font-size:13.5px;color:var(--text-2);line-height:1.5;font-weight:500}
+.map-distances{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px}
+.dist-card{padding:20px 16px;background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:0 8px 24px var(--shadow);text-align:center;position:relative;overflow:hidden}
+.dist-card .dc-glow{position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;filter:blur(40px);opacity:.3;pointer-events:none}
+.dist-card .dc-icon{font-size:28px;margin-bottom:8px;position:relative;z-index:1}
+.dist-card .dc-value{font-size:28px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px;letter-spacing:-1px;position:relative;z-index:1}
+.dist-card .dc-unit{font-size:13px;font-weight:700;color:var(--text-3);margin-left:2px}
+.dist-card .dc-label{font-size:11.5px;color:var(--text-3);font-weight:600;position:relative;z-index:1}
+.earth-card{padding:24px;background:linear-gradient(135deg,rgba(94,199,255,.25),rgba(58,134,255,.25));border:1px solid rgba(94,199,255,.3);border-radius:24px;margin-bottom:22px;position:relative;overflow:hidden;text-align:center}
+.earth-card::before{content:'🌍';position:absolute;right:-30px;top:-30px;font-size:140px;opacity:.15;pointer-events:none}
+.earth-card .ec-text{font-size:13px;color:var(--text-2);font-weight:600;margin-bottom:8px;position:relative;z-index:1}
+.earth-card .ec-value{font-size:36px;font-weight:800;color:#3a86ff;line-height:1;letter-spacing:-1px;margin-bottom:6px;position:relative;z-index:1}
+body.dark .earth-card .ec-value{color:#5ec7ff}
+.earth-card .ec-label{font-size:12.5px;color:var(--text-3);font-weight:600;position:relative;z-index:1}
+.top-cities{margin-bottom:22px}
+.top-city-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 4px 14px var(--shadow);margin-bottom:8px}
+.top-city-item .tc-rank{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.top-city-item .tc-rank.gold{background:linear-gradient(135deg,#ffd700,#ff9a00)}
+.top-city-item .tc-rank.silver{background:linear-gradient(135deg,#c0c0c0,#808080)}
+.top-city-item .tc-rank.bronze{background:linear-gradient(135deg,#cd7f32,#8b4513)}
+.top-city-item .tc-flag{font-size:26px;flex-shrink:0}
+.top-city-item .tc-body{flex:1;min-width:0}
+.top-city-item .tc-body .tc-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-city-item .tc-body .tc-count{font-size:11.5px;color:var(--text-3);font-weight:500}
+.top-city-item .tc-times{font-size:13px;font-weight:800;color:var(--accent-2);flex-shrink:0}
+.countries-section{margin-bottom:22px}
+.countries-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.country-tile{aspect-ratio:1;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--card);border:1.5px solid var(--border-soft);cursor:pointer;position:relative;overflow:hidden}
+.country-tile.visited{background:linear-gradient(135deg,rgba(255,154,90,.15),rgba(255,107,138,.15));border-color:rgba(255,154,90,.4);box-shadow:0 4px 12px rgba(255,154,90,.15)}
+body.dark .country-tile.visited{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));border-color:rgba(107,140,255,.5)}
+.country-tile.not-visited{opacity:.35;filter:grayscale(1)}
+.country-tile:active{transform:scale(.9)}
+.country-tile .ct-count{position:absolute;bottom:3px;right:3px;font-size:9px;font-weight:800;background:var(--accent-2);color:#fff;padding:2px 5px;border-radius:100px;line-height:1;min-width:14px;text-align:center}
+.map-empty{padding:60px 24px;text-align:center;color:var(--text-3)}
+.map-empty .me-icon{font-size:72px;margin-bottom:16px;opacity:.6;display:inline-block;animation:float 3s ease-in-out infinite}
+.map-empty h3{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+.map-empty p{font-size:13.5px;line-height:1.5;font-weight:500;color:var(--text-2)}
+
+.version-badge{text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6}
 </style>
 </head>
 <body>
@@ -420,8 +491,22 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     <div class="container">
         <div id="storiesSlot"></div>
         <div id="widgetSlot"></div>
+        <div id="addTripBtnWrap"></div>
         <div id="myListsSlot"></div>
         <div id="historySlot"></div>
+    </div>
+</div>
+
+<div class="page" id="page-map"><div class="container"><div id="mapPageSlot"></div></div></div>
+
+<div class="page" id="page-lists">
+    <div class="container">
+        <div class="lists-hero">
+            <div class="hero-icon">📋</div>
+            <h2>Мои списки</h2>
+            <p>Готовые шаблоны вещей для разных типов поездок</p>
+        </div>
+        <div id="listsPageSlot"></div>
     </div>
 </div>
 
@@ -462,14 +547,16 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.1.0</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.2.0</div></div>
         </div>
-        <div class="version-badge" style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.1.0</div>
+        <div class="version-badge">byBag v1.2.0</div>
     </div>
 </div>
 
 <div class="bottom-nav">
     <button type="button" class="nav-item active" data-page="home"><span class="nav-icon">🏠</span><span class="nav-label">Главная</span></button>
+    <button type="button" class="nav-item" data-page="map"><span class="nav-icon">🌍</span><span class="nav-label">Карта</span></button>
+    <button type="button" class="nav-item" data-page="lists"><span class="nav-icon">📋</span><span class="nav-label">Списки</span></button>
     <button type="button" class="nav-item" data-page="profile"><span class="nav-icon">👤</span><span class="nav-label">Профиль</span></button>
 </div>
 
@@ -689,8 +776,8 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div class="modal-overlay" id="notifOnboardModal">
     <div class="modal">
-        <div class="notif-onboard" style="padding:8px 4px">
-            <div class="no-icon" style="font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite">🔔</div>
+        <div style="padding:8px 4px">
+            <div style="font-size:72px;text-align:center;margin-bottom:16px;animation:float 3s ease-in-out infinite">🔔</div>
             <h2 style="font-size:22px;font-weight:800;color:var(--text);text-align:center;margin-bottom:10px;padding:0">Включить напоминания?</h2>
             <p style="font-size:15px;color:var(--text-2);text-align:center;line-height:1.55;font-weight:500;margin-bottom:20px;padding:0 12px">Чтобы вовремя собрать багаж и ничего не забыть, разрешите уведомления.</p>
             <ul style="list-style:none;margin-bottom:24px;padding:0 12px">
@@ -754,7 +841,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 (function() {
     'use strict';
 
-    var APP_VERSION = '1.1.0';
+    var APP_VERSION = '1.2.0';
     var MAX_ACTIVE_TRIPS = 2;
 
     var CATEGORIES = {
@@ -872,12 +959,100 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     var SOUTH_CITIES = ['анталья','турция','египет','таиланд','бали','дубай','гоа','мальдивы','канкун','пхукет'];
     var NORTH_CITIES = ['мурманск','норвегия','финляндия','исландия','швеция','осло','хельсинки'];
 
+    // Координаты городов для карты
+    var CITY_COORDS = {
+        'москва':{lat:55.7558,lon:37.6173,country:'Россия',flag:'🇷🇺',continent:'Европа'},
+        'санкт-петербург':{lat:59.9311,lon:30.3609,country:'Россия',flag:'🇷🇺',continent:'Европа'},
+        'питер':{lat:59.9311,lon:30.3609,country:'Россия',flag:'🇷🇺',continent:'Европа'},
+        'казань':{lat:55.7963,lon:49.1088,country:'Россия',flag:'🇷🇺',continent:'Европа'},
+        'сочи':{lat:43.6028,lon:39.7342,country:'Россия',flag:'🇷🇺',continent:'Европа'},
+        'стамбул':{lat:41.0082,lon:28.9784,country:'Турция',flag:'🇹🇷',continent:'Европа/Азия'},
+        'анталья':{lat:36.8969,lon:30.7133,country:'Турция',flag:'🇹🇷',continent:'Азия'},
+        'дубай':{lat:25.2048,lon:55.2708,country:'ОАЭ',flag:'🇦🇪',continent:'Азия'},
+        'абу-даби':{lat:24.4539,lon:54.3773,country:'ОАЭ',flag:'🇦🇪',continent:'Азия'},
+        'париж':{lat:48.8566,lon:2.3522,country:'Франция',flag:'🇫🇷',continent:'Европа'},
+        'рим':{lat:41.9028,lon:12.4964,country:'Италия',flag:'🇮🇹',continent:'Европа'},
+        'милан':{lat:45.4642,lon:9.1900,country:'Италия',flag:'🇮🇹',continent:'Европа'},
+        'венеция':{lat:45.4408,lon:12.3155,country:'Италия',flag:'🇮🇹',continent:'Европа'},
+        'барселона':{lat:41.3851,lon:2.1734,country:'Испания',flag:'🇪🇸',continent:'Европа'},
+        'мадрид':{lat:40.4168,lon:-3.7038,country:'Испания',flag:'🇪🇸',continent:'Европа'},
+        'лондон':{lat:51.5074,lon:-0.1278,country:'Великобритания',flag:'🇬🇧',continent:'Европа'},
+        'берлин':{lat:52.5200,lon:13.4050,country:'Германия',flag:'🇩🇪',continent:'Европа'},
+        'мюнхен':{lat:48.1351,lon:11.5820,country:'Германия',flag:'🇩🇪',continent:'Европа'},
+        'амстердам':{lat:52.3676,lon:4.9041,country:'Нидерланды',flag:'🇳🇱',continent:'Европа'},
+        'вена':{lat:48.2082,lon:16.3738,country:'Австрия',flag:'🇦🇹',continent:'Европа'},
+        'прага':{lat:50.0755,lon:14.4378,country:'Чехия',flag:'🇨🇿',continent:'Европа'},
+        'афины':{lat:37.9838,lon:23.7275,country:'Греция',flag:'🇬🇷',continent:'Европа'},
+        'санторини':{lat:36.3932,lon:25.4615,country:'Греция',flag:'🇬🇷',continent:'Европа'},
+        'лиссабон':{lat:38.7223,lon:-9.1393,country:'Португалия',flag:'🇵🇹',continent:'Европа'},
+        'цюрих':{lat:47.3769,lon:8.5417,country:'Швейцария',flag:'🇨🇭',continent:'Европа'},
+        'стокгольм':{lat:59.3293,lon:18.0686,country:'Швеция',flag:'🇸🇪',continent:'Европа'},
+        'хельсинки':{lat:60.1699,lon:24.9384,country:'Финляндия',flag:'🇫🇮',continent:'Европа'},
+        'осло':{lat:59.9139,lon:10.7522,country:'Норвегия',flag:'🇳🇴',continent:'Европа'},
+        'копенгаген':{lat:55.6761,lon:12.5683,country:'Дания',flag:'🇩🇰',continent:'Европа'},
+        'бали':{lat:-8.4095,lon:115.1889,country:'Индонезия',flag:'🇮🇩',continent:'Азия'},
+        'бангкок':{lat:13.7563,lon:100.5018,country:'Таиланд',flag:'🇹🇭',continent:'Азия'},
+        'пхукет':{lat:7.8804,lon:98.3923,country:'Таиланд',flag:'🇹🇭',continent:'Азия'},
+        'токио':{lat:35.6762,lon:139.6503,country:'Япония',flag:'🇯🇵',continent:'Азия'},
+        'киото':{lat:35.0116,lon:135.7681,country:'Япония',flag:'🇯🇵',continent:'Азия'},
+        'сеул':{lat:37.5665,lon:126.9780,country:'Ю. Корея',flag:'🇰🇷',continent:'Азия'},
+        'пекин':{lat:39.9042,lon:116.4074,country:'Китай',flag:'🇨🇳',continent:'Азия'},
+        'шанхай':{lat:31.2304,lon:121.4737,country:'Китай',flag:'🇨🇳',continent:'Азия'},
+        'гоа':{lat:15.2993,lon:74.1240,country:'Индия',flag:'🇮🇳',continent:'Азия'},
+        'дели':{lat:28.6139,lon:77.2090,country:'Индия',flag:'🇮🇳',continent:'Азия'},
+        'мальдивы':{lat:3.2028,lon:73.2207,country:'Мальдивы',flag:'🇲🇻',continent:'Азия'},
+        'мале':{lat:4.1755,lon:73.5093,country:'Мальдивы',flag:'🇲🇻',continent:'Азия'},
+        'нью-йорк':{lat:40.7128,lon:-74.0060,country:'США',flag:'🇺🇸',continent:'Сев. Америка'},
+        'лос-анджелес':{lat:34.0522,lon:-118.2437,country:'США',flag:'🇺🇸',continent:'Сев. Америка'},
+        'сан-франциско':{lat:37.7749,lon:-122.4194,country:'США',flag:'🇺🇸',continent:'Сев. Америка'},
+        'майами':{lat:25.7617,lon:-80.1918,country:'США',flag:'🇺🇸',continent:'Сев. Америка'},
+        'торонто':{lat:43.6532,lon:-79.3832,country:'Канада',flag:'🇨🇦',continent:'Сев. Америка'},
+        'ванкувер':{lat:49.2827,lon:-123.1207,country:'Канада',flag:'🇨🇦',continent:'Сев. Америка'},
+        'мехико':{lat:19.4326,lon:-99.1332,country:'Мексика',flag:'🇲🇽',continent:'Сев. Америка'},
+        'канкун':{lat:21.1619,lon:-86.8515,country:'Мексика',flag:'🇲🇽',continent:'Сев. Америка'},
+        'гавана':{lat:23.1136,lon:-82.3666,country:'Куба',flag:'🇨🇺',continent:'Сев. Америка'},
+        'рио-де-жанейро':{lat:-22.9068,lon:-43.1729,country:'Бразилия',flag:'🇧🇷',continent:'Юж. Америка'},
+        'буэнос-айрес':{lat:-34.6037,lon:-58.3816,country:'Аргентина',flag:'🇦🇷',continent:'Юж. Америка'},
+        'сидней':{lat:-33.8688,lon:151.2093,country:'Австралия',flag:'🇦🇺',continent:'Австралия'},
+        'мельбурн':{lat:-37.8136,lon:144.9631,country:'Австралия',flag:'🇦🇺',continent:'Австралия'},
+        'оукленд':{lat:-36.8485,lon:174.7633,country:'Новая Зеландия',flag:'🇳🇿',continent:'Океания'},
+        'каир':{lat:30.0444,lon:31.2357,country:'Египет',flag:'🇪🇬',continent:'Африка'},
+        'хугарда':{lat:27.2579,lon:33.8116,country:'Египет',flag:'🇪🇬',continent:'Африка'},
+        'шарм-эль-шейх':{lat:27.9158,lon:34.3300,country:'Египет',flag:'🇪🇬',continent:'Африка'},
+        'кейптаун':{lat:-33.9249,lon:18.4241,country:'ЮАР',flag:'🇿🇦',continent:'Африка'},
+        'марракеш':{lat:31.6295,lon:-7.9811,country:'Марокко',flag:'🇲🇦',continent:'Африка'},
+        'тбилиси':{lat:41.7151,lon:44.8271,country:'Грузия',flag:'🇬🇪',continent:'Азия'},
+        'батуми':{lat:41.6168,lon:41.6367,country:'Грузия',flag:'🇬🇪',continent:'Азия'},
+        'ереван':{lat:40.1792,lon:44.4991,country:'Армения',flag:'🇦🇲',continent:'Азия'},
+        'алматы':{lat:43.2220,lon:76.8512,country:'Казахстан',flag:'🇰🇿',continent:'Азия'},
+        'ташкент':{lat:41.2995,lon:69.2401,country:'Узбекистан',flag:'🇺🇿',continent:'Азия'},
+        'киев':{lat:50.4501,lon:30.5234,country:'Украина',flag:'🇺🇦',continent:'Европа'},
+        'минск':{lat:53.9045,lon:27.5615,country:'Беларусь',flag:'🇧🇾',continent:'Европа'},
+        'варшава':{lat:52.2297,lon:21.0122,country:'Польша',flag:'🇵🇱',continent:'Европа'},
+        'краков':{lat:50.0647,lon:19.9450,country:'Польша',flag:'🇵🇱',continent:'Европа'},
+        'будапешт':{lat:47.4979,lon:19.0402,country:'Венгрия',flag:'🇭🇺',continent:'Европа'}
+    };
+
+    var ALL_COUNTRIES = [
+        {name:'Россия',flag:'🇷🇺'},{name:'Турция',flag:'🇹🇷'},{name:'ОАЭ',flag:'🇦🇪'},{name:'Египет',flag:'🇪🇬'},
+        {name:'Франция',flag:'🇫🇷'},{name:'Италия',flag:'🇮🇹'},{name:'Испания',flag:'🇪🇸'},{name:'Великобритания',flag:'🇬🇧'},
+        {name:'Германия',flag:'🇩🇪'},{name:'Нидерланды',flag:'🇳🇱'},{name:'Австрия',flag:'🇦🇹'},{name:'Чехия',flag:'🇨🇿'},
+        {name:'Греция',flag:'🇬🇷'},{name:'Португалия',flag:'🇵🇹'},{name:'Швейцария',flag:'🇨🇭'},{name:'Швеция',flag:'🇸🇪'},
+        {name:'Финляндия',flag:'🇫🇮'},{name:'Норвегия',flag:'🇳🇴'},{name:'Дания',flag:'🇩🇰'},{name:'Польша',flag:'🇵🇱'},
+        {name:'Венгрия',flag:'🇭🇺'},{name:'Украина',flag:'🇺🇦'},{name:'Беларусь',flag:'🇧🇾'},{name:'Грузия',flag:'🇬🇪'},
+        {name:'Армения',flag:'🇦🇲'},{name:'Казахстан',flag:'🇰🇿'},{name:'Узбекистан',flag:'🇺🇿'},{name:'Таиланд',flag:'🇹🇭'},
+        {name:'Индонезия',flag:'🇮🇩'},{name:'Япония',flag:'🇯🇵'},{name:'Ю. Корея',flag:'🇰🇷'},{name:'Китай',flag:'🇨🇳'},
+        {name:'Индия',flag:'🇮🇳'},{name:'Мальдивы',flag:'🇲🇻'},{name:'США',flag:'🇺🇸'},{name:'Канада',flag:'🇨🇦'},
+        {name:'Мексика',flag:'🇲🇽'},{name:'Куба',flag:'🇨🇺'},{name:'Бразилия',flag:'🇧🇷'},{name:'Аргентина',flag:'🇦🇷'},
+        {name:'Австралия',flag:'🇦🇺'},{name:'Новая Зеландия',flag:'🇳🇿'},{name:'ЮАР',flag:'🇿🇦'},{name:'Марокко',flag:'🇲🇦'}
+    ];
+
     var ONBOARDING_SLIDES = [
-        {icon:'🧳',bg:'🧳',title:'Добро пожаловать в byBag',text:'Ваш личный помощник для сбора багажа и планирования поездок. Никогда не забудьте важное.'},
-        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Можно вести до 2 активных поездок одновременно и переключаться между ними свайпом.'},
+        {icon:'🧳',bg:'🧳',title:'Добро пожаловать в byBag',text:'Ваш личный помощник для сбора багажа и планирования поездок.'},
+        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Можно вести до 2 активных поездок одновременно и переключаться свайпом.'},
         {icon:'👆',bg:'✅',title:'Собирайте багаж',text:'Отмечайте вещи одним касанием.',list:[{icon:'👈',text:'Свайп влево — удалить вещь'},{icon:'👉',text:'Свайп вправо — отметить или сбросить'},{icon:'🔍',text:'Поиск по списку вещей'}]},
         {icon:'📊',bg:'📊',title:'Умный помощник',text:'Приложение подскажет:',list:[{icon:'💡',text:'Сколько вещей взять'},{icon:'⚖️',text:'Вес багажа и лимиты'},{icon:'🌤️',text:'Погоду в городе'},{icon:'📅',text:'Обратный отсчёт'}]},
-        {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды, следите за прогрессом и делайте каждую поездку лучше.',list:[{icon:'🏆',text:'Достижения за поездки'},{icon:'📊',text:'Личная статистика'},{icon:'🎨',text:'Свои списки и палитры'}]}
+        {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды и следите за прогрессом.',list:[{icon:'🌍',text:'Карта всех посещённых стран'},{icon:'✈️',text:'Сколько километров налетали'},{icon:'📋',text:'Личные списки вещей'},{icon:'📊',text:'Достижения и прогресс'}]}
     ];
 
     var customTypes = {};
@@ -896,10 +1071,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     var currentStoryIdx = 0;
     var weatherCache = {};
     var storyHandlersBound = false;
-    var carouselBound = false;
     var searchDebounceTimer = null;
     var currentOnbSlide = 0;
 
+    // ===== УТИЛИТЫ =====
     function $(id) { try { return document.getElementById(id); } catch (e) { return null; } }
     function escapeHtml(str) {
         try { return String(str).replace(/[&<>"']/g, function(m) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
@@ -948,7 +1123,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (currentTripIndex >= activeTrips.length) currentTripIndex = 0;
         return activeTrips[currentTripIndex];
     }
+    function capitalizeFirst(s) { if (!s) return ''; return s.charAt(0).toUpperCase() + s.slice(1); }
+    function formatNumber(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+        return n.toString();
+    }
 
+    // ===== ХРАНЕНИЕ =====
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
         if (!Array.isArray(activeTrips)) activeTrips = [];
@@ -1042,7 +1224,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         } catch (e) { return ''; }
     }
 
-    // STORIES
+    // ===== STORIES =====
     function buildStories() {
         var slot = $('storiesSlot'); if (!slot) return;
         slot.innerHTML = '';
@@ -1267,7 +1449,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         buildStories();
     }
 
-    // HOME
+    // ===== ГЛАВНАЯ =====
     function renderHome() {
         try {
             buildStories();
@@ -1275,9 +1457,22 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             ws.innerHTML = '';
             if (activeTrips.length === 0) ws.appendChild(buildEmptyState());
             else ws.appendChild(buildTripsCarousel());
+            renderAddTripButton();
             renderMyLists();
             renderHistory();
         } catch (e) { console.error('renderHome error', e); }
+    }
+
+    function renderAddTripButton() {
+        var wrap = $('addTripBtnWrap'); if (!wrap) return;
+        wrap.innerHTML = '';
+        if (activeTrips.length >= MAX_ACTIVE_TRIPS) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'add-trip-btn';
+        btn.innerHTML = '<span class="plus">+</span><span>Добавить поездку</span>';
+        btn.addEventListener('click', openTypeModal);
+        wrap.appendChild(btn);
     }
 
     function buildEmptyState() {
@@ -1291,17 +1486,11 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     function buildTripsCarousel() {
         var wrap = document.createElement('div');
         wrap.className = 'trips-carousel';
-
         var track = document.createElement('div');
         track.className = 'trips-track';
         track.id = 'tripsTrack';
-
-        activeTrips.forEach(function(trip) {
-            var w = buildWidget(trip);
-            track.appendChild(w);
-        });
+        activeTrips.forEach(function(trip) { track.appendChild(buildWidget(trip)); });
         wrap.appendChild(track);
-
         if (activeTrips.length > 1) {
             var dots = document.createElement('div');
             dots.className = 'trips-dots';
@@ -1312,7 +1501,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 dots.appendChild(d);
             });
             wrap.appendChild(dots);
-
             if (!localStorage.getItem('bybag_swipe_hint_shown')) {
                 var hint = document.createElement('div');
                 hint.className = 'swipe-hint';
@@ -1321,12 +1509,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                 try { localStorage.setItem('bybag_swipe_hint_shown', '1'); } catch (e) {}
             }
         }
-
         setTimeout(function() {
             var tr = $('tripsTrack');
             if (tr) tr.style.transform = 'translateX(-' + (currentTripIndex * 100) + '%)';
         }, 0);
-
         bindCarouselSwipe(wrap);
         return wrap;
     }
@@ -1345,7 +1531,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (activeTrips.length < 2) return;
         var startX = 0, startY = 0, isDown = false, isHoriz = false;
         var track = null;
-
         el.addEventListener('touchstart', function(e) {
             if (e.target.closest('.hero-close')) return;
             startX = e.touches[0].clientX; startY = e.touches[0].clientY;
@@ -1353,7 +1538,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             track = $('tripsTrack');
             if (track) track.style.transition = 'none';
         }, { passive: true });
-
         el.addEventListener('touchmove', function(e) {
             if (!isDown || !track) return;
             var dx = e.touches[0].clientX - startX;
@@ -1363,7 +1547,6 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
             var base = -currentTripIndex * 100;
             track.style.transform = 'translateX(calc(' + base + '% + ' + dx + 'px))';
         }, { passive: true });
-
         el.addEventListener('touchend', function(e) {
             if (!isDown || !track) return;
             isDown = false;
@@ -1448,7 +1631,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var section = document.createElement('div');
         section.className = 'stats-section';
         section.innerHTML = '<div class="stats-title">Мои списки</div>';
-        keys.forEach(function(key) {
+        keys.slice(0, 3).forEach(function(key) {
             var t = customTypes[key];
             var item = document.createElement('div');
             item.className = 'my-list-item';
@@ -1534,10 +1717,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         };
         activeTrips.push(newTrip);
         currentTripIndex = activeTrips.length - 1;
-        saveActive(); renderHome(); vibrate();
-        showToast('Поездка создана заново!');
+        saveActive(); renderHome(); vibrate(); showToast('Поездка создана заново!');
     }
 
+    // ===== ТИПЫ =====
     function renderTypeGrid() {
         var grid = $('typeGrid'); if (!grid) return;
         grid.innerHTML = '';
@@ -1597,8 +1780,10 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         activeTrips.push(newTrip);
         currentTripIndex = activeTrips.length - 1;
         saveActive(); closeModal('typeModal'); renderHome(); vibrate();
+        showToast('Поездка создана!');
     }
 
+    // ===== МАСТЕР =====
     function startWizard() {
         wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
         var ni = $('wiz1NameInput'); if (ni) ni.value = '';
@@ -1733,7 +1918,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         customTypes[id] = { name: wiz.name, emoji: wiz.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: wiz.items.slice(), builtin: false };
         saveCustomTypes();
         closeModal('wizardStep2');
-        renderHome(); renderProfile(); vibrate();
+        renderHome(); renderListsPage(); renderProfile(); vibrate();
         showToast('Список "' + wiz.name + '" создан!');
     }
     function openAdvanced(target) {
@@ -1754,11 +1939,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         var hintId = target === 'wizard' ? 'smartHintAdv' : 'smartHintAdv2';
         var hintEl = $(hintId);
         if (hintEl) hintEl.classList.remove('show');
-        var nameInput = $(p + 'Name');
-        var qtyInput = $(p + 'Qty');
-        var handler = target === 'wizard' ? hintAdvHandler : hintAdv2Handler;
-        if (nameInput) { nameInput.removeEventListener('input', handler); nameInput.addEventListener('input', handler); }
-        if (qtyInput) { qtyInput.removeEventListener('input', handler); qtyInput.addEventListener('input', handler); }
+        // Привязываем подсказки
+        bindSmartHint(p + 'Name', p + 'Qty', hintId, p);
         if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
@@ -1853,16 +2035,18 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         customTypes[editing.id] = { name: name, emoji: editing.emoji, c1: c.c1, c2: c.c2, ring: c.ring, items: editing.items.slice(), builtin: false };
         saveCustomTypes();
         closeModal('listEditorModal');
-        renderHome(); vibrate(); showToast('Сохранено!');
+        renderHome(); renderListsPage(); renderProfile(); vibrate();
+        showToast('Сохранено!');
     }
     function deleteCustomType(id) {
         if (!customTypes[id]) return;
         delete customTypes[id];
-        saveCustomTypes(); renderHome(); renderProfile();
+        saveCustomTypes(); renderHome(); renderProfile(); renderListsPage();
         if ($('typeModal') && $('typeModal').classList.contains('active')) {
             if (selectedType === id) { selectedType = null; if ($('createBtn')) $('createBtn').disabled = true; }
             renderTypeGrid();
         }
+        showToast('Список удалён');
     }
     function deleteEditingList() {
         if (!editing.id) return;
@@ -1881,14 +2065,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         });
         activeTrips.splice(currentTripIndex, 1);
         if (currentTripIndex >= activeTrips.length) currentTripIndex = Math.max(0, activeTrips.length - 1);
-        saveActive(); saveHistory(); renderHome(); renderProfile();
+        saveActive(); saveHistory(); renderHome(); renderProfile(); renderMapPage();
     }
     function deleteHistory(id) {
         history = history.filter(function(h) { return h.id !== id; });
-        saveHistory(); renderHome(); renderProfile();
+        saveHistory(); renderHome(); renderProfile(); renderMapPage();
     }
 
-    // CHECKLIST PAGE
+    // ===== ЧЕКЛИСТ =====
     function openChecklistPage() {
         var trip = getCurrentTrip();
         if (!trip) return;
@@ -2144,7 +2328,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
     }
 
-    // ADD ITEM
+    // ===== ДОБАВЛЕНИЕ ВЕЩИ =====
     function openAddItemModal() {
         var trip = getCurrentTrip();
         if (!trip) { showToast('Нет активной поездки'); return; }
@@ -2162,11 +2346,9 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
                     s.appendChild(o);
                 });
             }
-            var ai = $('addItemName');
-            if (ai) { ai.removeEventListener('input', hintAddHandler); ai.addEventListener('input', hintAddHandler); }
-            var aq = $('addItemQty');
-            if (aq) { aq.removeEventListener('input', hintAddHandler); aq.addEventListener('input', hintAddHandler); }
             var sh = $('smartHintBox'); if (sh) sh.classList.remove('show');
+            // Привязываем обработчики подсказок
+            bindSmartHint('addItemName', 'addItemQty', 'smartHintBox', 'addItem');
             var overlay = $('addItemModal');
             if (overlay) overlay.classList.add('above-checklist');
             openModal('addItemModal');
@@ -2197,7 +2379,106 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    // УМНЫЕ ПОДСКАЗКИ
+    // ===== ПРИВЯЗКА УМНЫХ ПОДСКАЗОК (ЕДИНЫЙ МЕХАНИЗМ) =====
+    var hintHandlers = {};
+
+    function bindSmartHint(nameId, qtyId, hintId, prefix) {
+        var nameInput = $(nameId);
+        var qtyInput = $(qtyId);
+        if (!nameInput || !qtyInput) return;
+
+        // Создаём хендлер один раз на префикс
+        if (!hintHandlers[prefix]) {
+            hintHandlers[prefix] = function() {
+                showSmartHintFor(nameId, qtyId, hintId, prefix);
+            };
+        }
+        var handler = hintHandlers[prefix];
+
+        // Удаляем старый (если есть) через сохранённую ссылку
+        if (nameInput._smartHandler) {
+            nameInput.removeEventListener('input', nameInput._smartHandler);
+        }
+        if (qtyInput._smartHandler) {
+            qtyInput.removeEventListener('input', qtyInput._smartHandler);
+        }
+
+        nameInput._smartHandler = handler;
+        qtyInput._smartHandler = handler;
+        nameInput.addEventListener('input', handler);
+        qtyInput.addEventListener('input', handler);
+        qtyInput.addEventListener('change', handler);
+    }
+
+    // Главная функция показа подсказки
+    function showSmartHintFor(nameId, qtyId, hintId, prefix) {
+        var hint = $(hintId);
+        var nameInput = $(nameId);
+        var qtyInput = $(qtyId);
+        if (!hint || !nameInput || !qtyInput) return;
+
+        var name = nameInput.value.trim();
+        var currentQty = parseInt(qtyInput.value) || 1;
+
+        // Отладка
+        console.log('[SmartHint]', prefix, 'name:', name, 'qty:', currentQty, 'enabled:', settings.smartHints);
+
+        if (!settings.smartHints) {
+            hint.classList.remove('show');
+            return;
+        }
+        if (!name || name.length < 3) {
+            hint.classList.remove('show');
+            return;
+        }
+
+        var trip = getCurrentTrip();
+        if (!trip) {
+            trip = { type: 'rest', daysCount: 3, city: '', startDate: null };
+        }
+
+        var hints = findSmartHints(name, trip);
+        console.log('[SmartHint] found:', hints.length, hints);
+        hints = hints.filter(function(h) { return h.qty !== currentQty; });
+
+        if (!hints.length) {
+            hint.classList.remove('show');
+            return;
+        }
+
+        var days = trip.daysCount || 3;
+        var contextParts = [days + ' ' + plural(days, 'день', 'дня', 'дней')];
+        if (trip.city) contextParts.push('📍 ' + escapeHtml(trip.city));
+        if (trip.type && DEFAULT_TYPES[trip.type]) contextParts.push(DEFAULT_TYPES[trip.type].emoji + ' ' + DEFAULT_TYPES[trip.type].name);
+        var contextText = contextParts.join(' · ');
+
+        var html = '<div class="sh-head"><span class="sh-icon">💡</span><span class="sh-title">Умная подсказка</span></div>';
+        html += '<div class="sh-context">' + contextText + '</div>';
+
+        hints.forEach(function(h) {
+            var memoryTag = h.isPersonal ? '<span class="sh-memory">📌 ваше</span>' : '';
+            html += '<div class="sh-suggestion"><div class="sh-emoji">' + h.icon + '</div><div class="sh-text">Рекомендуем <strong>' + h.qty + ' ' + h.unit + '</strong> вместо ' + currentQty + memoryTag + '</div><button type="button" class="sh-apply-btn" data-apply-qty="' + h.qty + '" data-apply-key="' + h.key + '">Взять ' + h.qty + '</button></div>';
+        });
+
+        html += '<button type="button" class="sh-dismiss" data-dismiss="1">Оставить ' + currentQty + '</button>';
+        hint.innerHTML = html;
+        hint.classList.add('show');
+
+        hint.querySelectorAll('[data-apply-qty]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var q = parseInt(btn.getAttribute('data-apply-qty'));
+                var k = btn.getAttribute('data-apply-key');
+                qtyInput.value = q;
+                if (k) savePersonalQty(k, q);
+                hint.classList.remove('show');
+                showToast('Запомнили: ' + q + ' ' + (hints[0] ? hints[0].unit : 'шт'));
+            });
+        });
+        hint.querySelectorAll('[data-dismiss]').forEach(function(btn) {
+            btn.addEventListener('click', function() { hint.classList.remove('show'); });
+        });
+    }
+
     function getSeason(dateStr) {
         if (!dateStr) return 'summer';
         try {
@@ -2257,52 +2538,230 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         }
         return results;
     }
-    function showSmartHintFor(prefix) {
-        var hintId = prefix === 'adv' ? 'smartHintAdv' : (prefix === 'adv2' ? 'smartHintAdv2' : 'smartHintBox');
-        var hint = $(hintId);
-        if (!hint) return;
-        var nameInput = $(prefix + 'Name');
-        var qtyInput = $(prefix + 'Qty');
-        var name = nameInput ? nameInput.value.trim() : '';
-        var currentQty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
-        if (!settings.smartHints || !name || name.length < 3) { hint.classList.remove('show'); return; }
-        var trip = getCurrentTrip();
-        if (!trip) trip = { type: 'rest', daysCount: 3, city: '', startDate: null };
-        var hints = findSmartHints(name, trip);
-        hints = hints.filter(function(h) { return h.qty !== currentQty; });
-        if (!hints.length) { hint.classList.remove('show'); return; }
-        var days = trip.daysCount || 3;
-        var contextParts = [days + ' ' + plural(days, 'день', 'дня', 'дней')];
-        if (trip.city) contextParts.push('📍 ' + escapeHtml(trip.city));
-        if (trip.type && DEFAULT_TYPES[trip.type]) contextParts.push(DEFAULT_TYPES[trip.type].emoji + ' ' + DEFAULT_TYPES[trip.type].name);
-        var contextText = contextParts.join(' · ');
-        var html = '<div class="sh-head"><span class="sh-icon">💡</span><span class="sh-title">Умная подсказка</span></div>';
-        html += '<div class="sh-context">' + contextText + '</div>';
-        hints.forEach(function(h) {
-            var memoryTag = h.isPersonal ? '<span class="sh-memory">📌 ваше</span>' : '';
-            html += '<div class="sh-suggestion"><div class="sh-emoji">' + h.icon + '</div><div class="sh-text">Рекомендуем <strong>' + h.qty + ' ' + h.unit + '</strong> вместо ' + currentQty + memoryTag + '</div><button type="button" class="sh-apply-btn" data-apply-qty="' + h.qty + '" data-apply-key="' + h.key + '">Взять ' + h.qty + '</button></div>';
-        });
-        html += '<button type="button" class="sh-dismiss" data-dismiss="' + prefix + '">Оставить ' + currentQty + '</button>';
-        hint.innerHTML = html;
-        hint.classList.add('show');
-        hint.querySelectorAll('[data-apply-qty]').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var q = parseInt(btn.getAttribute('data-apply-qty'));
-                var k = btn.getAttribute('data-apply-key');
-                if (qtyInput) qtyInput.value = q;
-                if (k) savePersonalQty(k, q);
-                hint.classList.remove('show');
-                showToast('Запомнили: ' + q + ' ' + (hints[0] ? hints[0].unit : 'шт'));
-            });
-        });
-        hint.querySelectorAll('[data-dismiss]').forEach(function(btn) {
-            btn.addEventListener('click', function() { hint.classList.remove('show'); });
-        });
-    }
-    function hintAddHandler() { showSmartHintFor('addItem'); }
-    function hintAdvHandler() { showSmartHintFor('adv'); }
-    function hintAdv2Handler() { showSmartHintFor('adv2'); }
 
+    // ===== СПИСКИ =====
+    function renderListsPage() {
+        var slot = $('listsPageSlot'); if (!slot) return;
+        slot.innerHTML = '';
+        var actions = document.createElement('div');
+        actions.className = 'lists-actions';
+        var createBtn = document.createElement('button');
+        createBtn.type = 'button';
+        createBtn.className = 'lists-create-btn';
+        createBtn.innerHTML = '<span class="plus">+</span><span>Создать свой список</span>';
+        createBtn.addEventListener('click', startWizard);
+        actions.appendChild(createBtn);
+        slot.appendChild(actions);
+
+        var keys = Object.keys(customTypes);
+        if (!keys.length) {
+            var empty = document.createElement('div');
+            empty.className = 'lists-empty';
+            empty.innerHTML = '<div class="le-icon">📭</div><h3>Пока нет своих списков</h3><p>Создайте первый список вещей</p>';
+            slot.appendChild(empty);
+            return;
+        }
+        keys.forEach(function(key) { slot.appendChild(buildListCard(key, customTypes[key])); });
+    }
+
+    function buildListCard(key, t) {
+        var card = document.createElement('div');
+        card.className = 'list-card';
+        var bg = 'linear-gradient(135deg,' + (t.c1 || '#ffb347') + ',' + (t.c2 || '#ff7e5f') + ')';
+        var previewItems = t.items.slice(0, 3);
+        var restCount = t.items.length - 3;
+        var previewHtml = '';
+        previewItems.forEach(function(item) {
+            var cat = CATEGORIES[item.category] || CATEGORIES.other;
+            previewHtml += '<div class="lc-tag">' + cat.icon + ' ' + escapeHtml(item.text) + '</div>';
+        });
+        if (restCount > 0) previewHtml += '<div class="lc-tag more">+' + restCount + '</div>';
+
+        card.innerHTML =
+            '<div class="lc-glow" style="background:' + (t.c1 || '#ffb347') + '"></div>' +
+            '<div class="lc-top">' +
+                '<div class="lc-emoji" style="background:' + bg + '">' + (t.emoji || '🎒') + '</div>' +
+                '<div class="lc-info"><h3>' + escapeHtml(t.name || 'Список') + '</h3>' +
+                '<div class="lc-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div></div>' +
+            '</div>' +
+            (previewHtml ? '<div class="lc-preview">' + previewHtml + '</div>' : '') +
+            '<div class="lc-actions">' +
+                '<button type="button" class="lc-edit" data-action="edit">✎ Редактировать</button>' +
+                '<button type="button" class="lc-duplicate" data-action="duplicate" title="Дублировать">📋</button>' +
+                '<button type="button" class="lc-delete" data-action="delete" title="Удалить">🗑</button>' +
+            '</div>';
+
+        card.querySelector('[data-action="edit"]').addEventListener('click', function(e) { e.stopPropagation(); openEditor(key); });
+        card.querySelector('[data-action="duplicate"]').addEventListener('click', function(e) { e.stopPropagation(); duplicateList(key); });
+        card.querySelector('[data-action="delete"]').addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (confirm('Удалить список "' + t.name + '"?')) deleteCustomType(key);
+        });
+        return card;
+    }
+
+    function duplicateList(key) {
+        if (!customTypes[key]) return;
+        var t = customTypes[key];
+        var newId = 'custom_' + Date.now();
+        customTypes[newId] = {
+            name: (t.name || 'Список') + ' (копия)',
+            emoji: t.emoji || '🎒',
+            c1: t.c1, c2: t.c2, ring: t.ring,
+            items: t.items.map(normalizeItem),
+            builtin: false
+        };
+        saveCustomTypes(); renderListsPage(); renderHome(); renderProfile();
+        vibrate(); showToast('Список скопирован');
+    }
+
+    // ===== КАРТА =====
+    function getCityKey(city) {
+        if (!city) return null;
+        var c = city.toLowerCase().trim().replace(/[^а-яa-z\-]/gi, '');
+        if (CITY_COORDS[c]) return c;
+        var keys = Object.keys(CITY_COORDS);
+        for (var i = 0; i < keys.length; i++) {
+            if (c.indexOf(keys[i]) !== -1 || keys[i].indexOf(c) !== -1) return keys[i];
+        }
+        return null;
+    }
+
+    function haversine(lat1, lon1, lat2, lon2) {
+        var R = 6371;
+        var dLat = (lat2 - lat1) * Math.PI / 180;
+        var dLon = (lon2 - lon1) * Math.PI / 180;
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function getAllTripsForMap() {
+        var all = [];
+        activeTrips.forEach(function(t) { if (t.city) all.push({ city: t.city }); });
+        history.forEach(function(h) { if (h.city) all.push({ city: h.city }); });
+        return all;
+    }
+
+    function getMapStats() {
+        var trips = getAllTripsForMap();
+        var cities = {}, countries = {}, continents = {};
+        var totalDistance = 0;
+        var points = [];
+        var homeCity = 'москва';
+
+        trips.forEach(function(t) {
+            var key = getCityKey(t.city);
+            if (!key) return;
+            var coords = CITY_COORDS[key];
+            cities[key] = (cities[key] || 0) + 1;
+            countries[coords.country] = (countries[coords.country] || 0) + 1;
+            continents[coords.continent] = true;
+            points.push({ key: key, lat: coords.lat, lon: coords.lon });
+        });
+
+        if (points.length > 0 && CITY_COORDS[homeCity]) {
+            var home = CITY_COORDS[homeCity];
+            points.forEach(function(p) { totalDistance += haversine(home.lat, home.lon, p.lat, p.lon) * 2; });
+        }
+
+        var topCities = Object.keys(cities)
+            .map(function(k) { return { key: k, count: cities[k], coords: CITY_COORDS[k] }; })
+            .sort(function(a, b) { return b.count - a.count; })
+            .slice(0, 3);
+
+        return { cities: cities, countries: countries, continents: Object.keys(continents), totalDistance: totalDistance, topCities: topCities, tripsCount: trips.length };
+    }
+
+    function renderMapPage() {
+        var slot = $('mapPageSlot'); if (!slot) return;
+        slot.innerHTML = '';
+        var stats = getMapStats();
+
+        var hero = document.createElement('div');
+        hero.className = 'map-hero';
+        if (stats.tripsCount === 0) {
+            hero.innerHTML = '<div class="mh-icon">🗺️</div><h2>Карта путешествий</h2><p>Добавьте города в свои поездки — и здесь появится ваша личная карта мира</p>';
+        } else {
+            hero.innerHTML = '<div class="mh-icon">🌍</div><h2>Ваша карта мира</h2><p>Стран: ' + Object.keys(stats.countries).length + ' · Городов: ' + Object.keys(stats.cities).length + '</p>';
+        }
+        slot.appendChild(hero);
+
+        if (stats.tripsCount === 0) {
+            var empty = document.createElement('div');
+            empty.className = 'map-empty';
+            empty.innerHTML = '<div class="me-icon">✈️</div><h3>Пока нечего показать</h3><p>Укажите город в поездке — и он появится на вашей карте</p>';
+            slot.appendChild(empty);
+            return;
+        }
+
+        var distances = document.createElement('div');
+        distances.className = 'map-distances';
+        var distKm = Math.round(stats.totalDistance);
+        var distEarth = (stats.totalDistance / 40075).toFixed(2);
+
+        var card1 = document.createElement('div');
+        card1.className = 'dist-card';
+        card1.innerHTML = '<div class="dc-glow" style="background:#ff9a5a"></div><div class="dc-icon">✈️</div><div class="dc-value">' + formatNumber(distKm) + '<span class="dc-unit">км</span></div><div class="dc-label">Всего налетано</div>';
+
+        var card2 = document.createElement('div');
+        card2.className = 'dist-card';
+        card2.innerHTML = '<div class="dc-glow" style="background:#c084fc"></div><div class="dc-icon">🏙️</div><div class="dc-value">' + Object.keys(stats.cities).length + '</div><div class="dc-label">Городов посещено</div>';
+
+        distances.appendChild(card1); distances.appendChild(card2);
+        slot.appendChild(distances);
+
+        var earthCard = document.createElement('div');
+        earthCard.className = 'earth-card';
+        earthCard.innerHTML = '<div class="ec-text">Это как облететь Землю</div><div class="ec-value">' + distEarth + '×</div><div class="ec-label">экватор Земли — 40 075 км</div>';
+        slot.appendChild(earthCard);
+
+        if (stats.topCities.length > 0) {
+            var topTitle = document.createElement('div');
+            topTitle.className = 'stats-title';
+            topTitle.textContent = 'Топ городов';
+            slot.appendChild(topTitle);
+
+            var topWrap = document.createElement('div');
+            topWrap.className = 'top-cities';
+            stats.topCities.forEach(function(tc, i) {
+                var rankClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : 'bronze');
+                var item = document.createElement('div');
+                item.className = 'top-city-item';
+                item.innerHTML = '<div class="tc-rank ' + rankClass + '">' + (i + 1) + '</div><div class="tc-flag">' + tc.coords.flag + '</div><div class="tc-body"><div class="tc-name">' + capitalizeFirst(tc.key) + '</div><div class="tc-count">' + tc.coords.country + '</div></div><div class="tc-times">×' + tc.count + '</div>';
+                topWrap.appendChild(item);
+            });
+            slot.appendChild(topWrap);
+        }
+
+        var countryTitle = document.createElement('div');
+        countryTitle.className = 'stats-title';
+        countryTitle.textContent = 'Все страны';
+        slot.appendChild(countryTitle);
+
+        var countriesWrap = document.createElement('div');
+        countriesWrap.className = 'countries-section';
+        var grid = document.createElement('div');
+        grid.className = 'countries-grid';
+        ALL_COUNTRIES.forEach(function(c) {
+            var visited = !!stats.countries[c.name];
+            var count = stats.countries[c.name] || 0;
+            var tile = document.createElement('div');
+            tile.className = 'country-tile ' + (visited ? 'visited' : 'not-visited');
+            tile.innerHTML = c.flag + (count > 0 ? '<span class="ct-count">' + count + '</span>' : '');
+            tile.title = c.name;
+            tile.addEventListener('click', function() {
+                if (visited) showToast('✅ ' + c.name + ' — посещено ' + count + ' ' + plural(count, 'раз', 'раза', 'раз'));
+                else showToast('🌍 ' + c.name + ' — пока не посещено');
+            });
+            grid.appendChild(tile);
+        });
+        countriesWrap.appendChild(grid);
+        slot.appendChild(countriesWrap);
+    }
+
+    // ===== СТАТИСТИКА ПРОФИЛЯ =====
     function fireConfetti() {
         var colors = ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
         if (settings.dark) colors = ['#6b8cff','#a06bff','#3ddc84','#ff6bcb','#ffd166'];
@@ -2411,7 +2870,7 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         renderProfile();
     }
 
-    // ОНБОРДИНГ
+    // ===== ОНБОРДИНГ =====
     function showOnboarding() {
         currentOnbSlide = 0;
         var viewer = $('onboardingViewer'); if (!viewer) return;
@@ -2421,14 +2880,14 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
     }
     function hideOnboarding() {
         var viewer = $('onboardingViewer'); if (viewer) viewer.classList.remove('active');
-        resetUIBlocks();
-        try { localStorage.setItem('bybag_onboarding_done', '1'); } catch (e) {}
-    }
+        resetEmUIBlocks();
+        try { localStorageoji.set)Item(' bgbybag_onboarding_done', '1'); } catch (e) {}
+Em    }
     function renderOnbSlide() {
         var slide = ONBOARDING_SLIDES[currentOnbSlide];
         var content = $('onbContent'), bgEmoji = $('onbBgEmoji');
         if (!content || !slide) return;
-        if (bgEmoji) bgEmoji.textContent = slide.bg || slide.icon;
+        if (bgoji.textContent = slide.bg || slide.icon;
         var html = '<div class="onb-icon">' + slide.icon + '</div><h2>' + escapeHtml(slide.title) + '</h2><p>' + escapeHtml(slide.text) + '</p>';
         if (slide.list && slide.list.length) {
             html += '<ul class="onb-list">';
@@ -2459,13 +2918,15 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
         currentOnbSlide++; renderOnbSlide(); renderOnbDots();
     }
 
-    // NAV
+    // ===== NAV =====
     function switchPage(page) {
         document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.toggle('active', n.getAttribute('data-page') === page); });
         document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
         var t = $('page-' + page); if (t) t.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (page === 'profile') renderProfile();
+        if (page === 'lists') renderListsPage();
+        if (page === 'map') renderMapPage();
     }
 
     function checkReminders() {
@@ -2595,6 +3056,8 @@ function hardReset() { try { localStorage.clear(); } catch (e) {} location.reloa
 
             renderHome();
             renderProfile();
+            renderListsPage();
+            renderMapPage();
 
             try {
                 if (!localStorage.getItem('bybag_onboarding_done')) setTimeout(showOnboarding, 800);
