@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="byBag">
-<title>byBag v1.3.2</title>
+<title>byBag v2.0.0</title>
 <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%23ff9a5a'/%3E%3Cstop offset='100%25' stop-color='%23ff6b8a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='42' fill='url(%23g)'/%3E%3Ctext x='90' y='128' font-size='100' text-anchor='middle' fill='white'%3E%F0%9F%A7%B3%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#ff9a5a">
@@ -27,56 +27,52 @@ body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50
 .header-spacer{height:60px}
 .container{padding:0 20px;max-width:500px;margin:0 auto;position:relative;z-index:1;width:100%}
 
-/* STORIES — редизайн */
-.stories-wrap{margin:6px 0 22px}
-.stories-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px;margin-bottom:12px}
-.stories-row{display:flex;gap:12px;overflow-x:auto;padding:4px 4px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.stories-row::-webkit-scrollbar{display:none}
-.story-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;width:78px}
-.story-ring{width:72px;height:72px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s cubic-bezier(.34,1.56,.64,1);position:relative}
-.story-item:active .story-ring{transform:scale(.9)}
-.story-ring.viewed{background:var(--border-soft);opacity:.6}
-.story-inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;border:2.5px solid var(--bg);position:relative;box-shadow:inset 0 -8px 16px rgba(0,0,0,.15)}
-.story-inner.metric{flex-direction:column;gap:0;font-size:0}
-.story-inner.metric .story-metric-value{font-size:20px;font-weight:900;color:#fff;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.3);margin-bottom:2px}
-.story-inner.metric .story-metric-icon{font-size:20px;line-height:1}
-.story-inner.metric .story-metric-sub{font-size:9px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
-.story-inner .story-badge{position:absolute;bottom:2px;right:2px;font-size:13px;width:21px;height:21px;border-radius:50%;background:var(--card-solid);display:flex;align-items:center;justify-content:center;border:2px solid var(--bg);box-shadow:0 1px 3px rgba(0,0,0,.15)}
-.story-inner.trip-preview{font-size:0}
-.story-inner.trip-preview .story-trip-emoji{font-size:30px;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
-.story-inner.trip-preview .story-trip-percent{position:absolute;bottom:4px;left:0;right:0;font-size:9px;font-weight:800;color:#fff;text-align:center;text-shadow:0 1px 2px rgba(0,0,0,.4)}
-.story-item .story-label{font-size:10.5px;font-weight:700;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:78px;line-height:1.2}
-.story-item .story-label .label-time{display:block;font-size:9px;font-weight:600;color:var(--text-3);opacity:.7;margin-top:1px}
+/* TIPS (бывшие истории) */
+.tips-wrap{margin:6px 0 22px}
+.tips-title{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-3);font-weight:700;padding-left:4px;margin-bottom:12px}
+.tips-row{display:flex;gap:12px;overflow-x:auto;padding:4px 4px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tips-row::-webkit-scrollbar{display:none}
+.tip-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;width:78px}
+.tip-ring{width:72px;height:72px;border-radius:50%;padding:3px;background:conic-gradient(from 180deg,#ff9a5a,#ff6b8a,#c084fc,#5ec7ff,#ff9a5a);transition:transform .25s cubic-bezier(.34,1.56,.64,1);position:relative}
+body.dark .tip-ring{background:conic-gradient(from 180deg,#6b8cff,#a06bff,#ff6bcb,#3ddc84,#6b8cff)}
+.tip-item:active .tip-ring{transform:scale(.9)}
+.tip-inner{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;overflow:hidden;border:2.5px solid var(--bg);position:relative;box-shadow:inset 0 -8px 16px rgba(0,0,0,.15)}
+.tip-item .tip-label{font-size:10.5px;font-weight:700;color:var(--text-2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:78px;line-height:1.2}
 
-/* STORY VIEWER */
-.story-viewer{position:fixed;inset:0;background:#000;z-index:200;display:none;flex-direction:column}
-.story-viewer.active{display:flex}
-.story-progress-row{position:absolute;top:14px;left:12px;right:12px;display:flex;gap:4px;z-index:10}
-.story-progress-bar{flex:1;height:3px;background:rgba(255,255,255,.3);border-radius:3px;overflow:hidden}
-.story-progress-fill{height:100%;background:#fff;width:0%}
-.story-progress-bar.done .story-progress-fill{width:100%}
-.story-header{position:absolute;top:28px;left:16px;right:16px;display:flex;align-items:center;gap:12px;z-index:10;color:#fff}
-.story-avatar-sm{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:2px solid rgba(255,255,255,.5)}
-.story-name-block{flex:1;min-width:0}
-.story-name-block .s-title{font-size:15px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-.story-name-block .s-time{font-size:12px;opacity:.8;font-weight:500}
-.story-close-btn{background:rgba(255,255,255,.2);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0}
-.story-content{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 30px 140px;text-align:center;overflow-y:auto}
-.story-big-emoji{font-size:120px;margin-bottom:24px;line-height:1;animation:storyZoom .6s cubic-bezier(.34,1.56,.64,1)}
-@keyframes storyZoom{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
-.story-content h2{color:#fff;font-size:26px;font-weight:800;margin-bottom:8px;text-shadow:0 2px 12px rgba(0,0,0,.4);animation:storyFade .8s .2s both}
-.story-content p{color:rgba(255,255,255,.85);font-size:15px;line-height:1.5;max-width:320px;animation:storyFade .8s .35s both}
-@keyframes storyFade{from{transform:translateY(15px);opacity:0}to{transform:translateY(0);opacity:1}}
-.story-stats{display:flex;gap:24px;margin-top:30px;animation:storyFade .8s .5s both}
-.story-stat{text-align:center}
-.story-stat .s-val{color:#fff;font-size:32px;font-weight:800;line-height:1;margin-bottom:6px}
-.story-stat .s-lbl{color:rgba(255,255,255,.7);font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
-.story-bg{position:absolute;inset:0;z-index:0;opacity:.4}
-.story-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.4),rgba(0,0,0,.15) 30%,rgba(0,0,0,.7))}
-.story-emoji-deco{position:absolute;font-size:300px;line-height:1;opacity:.08;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%)}
-.story-tap-zone{position:absolute;top:60px;bottom:0;width:30%;z-index:5;cursor:pointer}
-.story-tap-zone.prev{left:0}
-.story-tap-zone.next{right:0;width:50%}
+/* TIP VIEWER */
+.tip-viewer{position:fixed;inset:0;z-index:200;display:none;flex-direction:column}
+.tip-viewer.active{display:flex}
+.tip-viewer-bg{position:absolute;inset:0;z-index:0}
+.tip-viewer-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.35),rgba(0,0,0,.1) 30%,rgba(0,0,0,.6))}
+.tip-viewer-deco{position:absolute;font-size:340px;line-height:1;opacity:.07;pointer-events:none;top:50%;left:50%;transform:translate(-50%,-50%)}
+.tip-viewer-header{position:absolute;top:16px;left:16px;right:16px;display:flex;align-items:center;gap:12px;z-index:10;color:#fff}
+.tip-viewer-avatar{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:2px solid rgba(255,255,255,.4)}
+.tip-viewer-info{flex:1;min-width:0}
+.tip-viewer-info .t-title{font-size:16px;font-weight:800;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.tip-viewer-info .t-sub{font-size:12px;opacity:.85;font-weight:500;margin-top:2px}
+.tip-viewer-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;flex-shrink:0;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.tip-viewer-content{flex:1;display:flex;flex-direction:column;padding:90px 22px 40px;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;z-index:2}
+.tip-hero{text-align:center;margin-bottom:28px;animation:tipHeroIn .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes tipHeroIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.tip-hero-emoji{font-size:96px;line-height:1;margin-bottom:14px;filter:drop-shadow(0 6px 20px rgba(0,0,0,.3))}
+.tip-hero h2{color:#fff;font-size:24px;font-weight:800;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.5);letter-spacing:-.5px}
+.tip-hero p{color:rgba(255,255,255,.9);font-size:14px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.tip-cards{display:flex;flex-direction:column;gap:10px}
+.tip-card{background:rgba(255,255,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1.5px solid rgba(255,255,255,.25);border-radius:18px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;animation:tipCardIn .4s ease backwards}
+.tip-card:nth-child(1){animation-delay:.1s}
+.tip-card:nth-child(2){animation-delay:.2s}
+.tip-card:nth-child(3){animation-delay:.3s}
+.tip-card:nth-child(4){animation-delay:.4s}
+.tip-card:nth-child(5){animation-delay:.5s}
+.tip-card:nth-child(6){animation-delay:.6s}
+@keyframes tipCardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.tip-card-icon{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.tip-card-text{flex:1;color:#fff;font-size:14px;line-height:1.5;font-weight:500;padding-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.25)}
+.tip-card-text strong{font-weight:800;color:#fff}
+.tip-nav{display:flex;justify-content:center;gap:8px;margin-top:24px;padding-bottom:20px}
+.tip-nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35);transition:all .3s;cursor:pointer}
+.tip-nav-dot.active{width:24px;border-radius:100px;background:#fff}
+.tip-empty{color:rgba(255,255,255,.8);text-align:center;font-size:14px;font-weight:600;padding:40px 20px}
 
 /* WIDGET */
 .main-widget{position:relative;border-radius:25px;overflow:hidden;cursor:pointer;background:var(--card-solid);box-shadow:0 16px 40px var(--shadow);display:flex;flex-direction:column;width:100%;animation:slideIn .5s ease}
@@ -93,7 +89,7 @@ body.dark .app-header .logo{background:linear-gradient(135deg,#6b8cff,#a06bff 50
 .hero-title{position:relative;z-index:2}
 .hero-title h2{font-size:25px;font-weight:800;color:#fff;letter-spacing:-.6px;line-height:1.1;margin-bottom:6px;text-shadow:0 2px 12px rgba(0,0,0,.15);word-break:break-word}
 .hero-title .hero-date{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,.9);font-weight:600;flex-wrap:wrap}
-.hero-countdown,.hero-weight{display:inline-block;padding:2px 8px;background:rgba(255,255,255,.25);border-radius:100px;font-size:10.5px;color:#fff;font-weight:600}
+.hero-countdown{display:inline-block;padding:2px 8px;background:rgba(255,255,255,.25);border-radius:100px;font-size:10.5px;color:#fff;font-weight:600}
 .complete-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:rgba(255,255,255,.9);border-radius:100px;font-size:10px;font-weight:700;color:var(--success);margin-bottom:8px;position:relative;z-index:2}
 .widget-body{background:var(--card-solid);margin-top:-24px;border-radius:25px;padding:22px 20px 20px;position:relative;z-index:3;display:flex;align-items:center;gap:16px}
 .ring-wrap{position:relative;width:90px;height:90px;flex-shrink:0}
@@ -175,11 +171,11 @@ body.dark .list-card-actions .lca-btn.del{background:rgba(255,94,138,.12)}
 .profile-info h2{font-size:21px;font-weight:800;color:var(--text);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .profile-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border:1px solid rgba(255,154,90,.4);border-radius:100px;font-size:11px;font-weight:700;color:var(--danger)}
 body.dark .profile-badge{background:linear-gradient(135deg,rgba(107,140,255,.2),rgba(160,107,255,.2));border-color:rgba(107,140,255,.5);color:#a9bdff}
-.profile-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:22px}
-.profile-stat-card{padding:18px 16px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 6px 20px var(--shadow)}
-.profile-stat-card .ps-icon{font-size:22px;margin-bottom:8px}
-.profile-stat-card .ps-num{font-size:26px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
-.profile-stat-card .ps-label{font-size:12px;color:var(--text-3);font-weight:600}
+.profile-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}
+.profile-stat-card{padding:14px 10px;background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:0 6px 20px var(--shadow);text-align:center}
+.profile-stat-card .ps-icon{font-size:20px;margin-bottom:6px}
+.profile-stat-card .ps-num{font-size:22px;font-weight:800;color:var(--text);line-height:1;margin-bottom:4px}
+.profile-stat-card .ps-label{font-size:10.5px;color:var(--text-3);font-weight:600;line-height:1.2}
 .profile-menu{background:var(--card);border:1px solid var(--border);border-radius:24px;box-shadow:0 8px 32px var(--shadow);overflow:hidden;margin-bottom:20px}
 .profile-item{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border-soft);cursor:pointer}
 .profile-item:last-child{border-bottom:none}
@@ -218,10 +214,6 @@ body.dark .modal-overlay{background:rgba(0,0,0,.55)}
 .modal-handle{width:40px;height:4px;background:var(--border-soft);border-radius:10px;margin:0 auto 20px}
 .modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text-2);font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;font-family:inherit;padding:0}
 .modal h2{font-size:22px;font-weight:700;margin-bottom:20px;text-align:center;color:var(--text);padding:0 40px}
-.step-indicator{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
-.step-dot{width:32px;height:4px;border-radius:4px;background:var(--border-soft)}
-.step-dot.active{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));width:48px}
-.step-dot.done{background:var(--accent-1)}
 .type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
 .type-option{padding:12px 6px;border-radius:14px;background:var(--card);border:1.5px solid var(--border-soft);text-align:center;cursor:pointer;position:relative}
 .type-option.selected{background:linear-gradient(135deg,rgba(255,154,90,.2),rgba(255,107,138,.2));border-color:var(--accent-1)}
@@ -232,8 +224,21 @@ body.dark .type-option.selected{background:linear-gradient(135deg,rgba(107,140,2
 body.dark .type-option.create-new{background:linear-gradient(135deg,rgba(160,107,255,.15),rgba(107,140,255,.15));border-color:rgba(160,107,255,.5)}
 .type-option.create-new .name{color:#7e5bef}
 body.dark .type-option.create-new .name{color:#a06bff}
-.custom-type-badge{position:absolute;top:4px;right:4px;background:rgba(192,132,252,.9);color:#fff;font-size:7px;font-weight:700;padding:2px 4px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
+.type-option .checkmark{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:var(--success);display:none;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+.type-option.selected .checkmark{display:flex}
+.custom-type-badge{position:absolute;top:4px;left:4px;background:rgba(192,132,252,.9);color:#fff;font-size:7px;font-weight:700;padding:2px 4px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
 body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
+/* List picker */
+.list-picker{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;max-height:220px;overflow-y:auto;padding:2px}
+.list-picker-empty{text-align:center;padding:16px;color:var(--text-3);font-size:13px;font-weight:500}
+.list-picker-item{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--card);border:1.5px solid var(--border-soft);border-radius:14px;cursor:pointer;transition:all .2s}
+.list-picker-item.selected{background:linear-gradient(135deg,rgba(78,203,113,.12),rgba(56,178,172,.12));border-color:var(--success)}
+.list-picker-item .lp-emoji{font-size:22px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--card-solid);border-radius:10px;flex-shrink:0}
+.list-picker-item .lp-body{flex:1;min-width:0}
+.list-picker-item .lp-name{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-picker-item .lp-meta{font-size:11.5px;color:var(--text-3);font-weight:500;margin-top:1px}
+.list-picker-item .lp-check{width:24px;height:24px;border-radius:50%;border:2px solid var(--border-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;color:transparent;background:var(--card-solid);transition:all .15s}
+.list-picker-item.selected .lp-check{background:var(--success);border-color:transparent;color:#fff;font-weight:800}
 .input-field{width:100%;padding:16px;border-radius:16px;background:var(--card);border:1.5px solid var(--border-soft);color:var(--text);font-size:16px;font-family:inherit;margin-bottom:16px;outline:none;-webkit-appearance:none;appearance:none}
 .input-field::placeholder{color:var(--text-3);opacity:.7}
 .input-field:focus{border-color:var(--accent-1)}
@@ -242,6 +247,7 @@ body.dark .custom-type-badge{background:rgba(160,107,255,.9)}
 .btn-secondary{width:100%;padding:16px;border:1.5px solid var(--border-soft);border-radius:18px;background:var(--card);color:var(--text);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:10px}
 .btn-danger{width:100%;padding:16px;border:1.5px solid rgba(255,107,138,.3);border-radius:18px;background:rgba(255,107,138,.1);color:var(--danger);font-size:16px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:10px}
 .field-label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-3);font-weight:700;margin-bottom:8px;padding-left:4px;margin-top:4px}
+.field-label .hint{font-size:10.5px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--text-3);opacity:.7;margin-left:6px}
 .emoji-picker{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
 .emoji-choice{width:36px;height:36px;border-radius:9px;background:var(--card);border:1.5px solid var(--border-soft);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
 .emoji-choice.selected{background:linear-gradient(135deg,rgba(255,154,90,.25),rgba(255,107,138,.25));border-color:var(--accent-1)}
@@ -258,7 +264,7 @@ body.dark .emoji-choice.selected{background:linear-gradient(135deg,rgba(107,140,
 .advanced-item-head{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
 .advanced-item-head .item-text{flex:1;font-size:15px;font-weight:700;color:var(--text);word-break:break-word;padding-top:2px;min-width:0}
 .advanced-item-head .item-remove{background:rgba(255,107,138,.12);border:none;color:var(--accent-2);width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:inherit;padding:0}
-.advanced-item-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.advanced-item-fields{display:grid;grid-template-columns:1fr;gap:8px}
 .advanced-item-fields .mini-field{padding:8px 10px;border-radius:10px;background:var(--card-solid);border:1px solid var(--border-soft);font-family:inherit;font-size:13px;color:var(--text);outline:none;width:100%;-webkit-appearance:none;appearance:none}
 .advanced-item-fields .mini-field.full{grid-column:1/-1}
 .add-item-row{display:flex;gap:8px;margin-bottom:18px}
@@ -301,6 +307,7 @@ body.dark .check-item.checked{background:#1c2e26 !important;border-color:rgba(61
 .check-item.checked .check-text{text-decoration:line-through;color:var(--text-3)}
 .check-text{font-size:15px;color:var(--text);font-weight:500;word-break:break-word}
 .check-note{font-size:11.5px;color:var(--text-3);margin-top:2px;font-style:italic;font-weight:500}
+.check-from{font-size:10px;color:var(--text-3);margin-top:2px;font-weight:600;opacity:.7}
 .qty-stepper{display:flex;align-items:center;gap:6px;flex-shrink:0}
 .qty-btn{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border-soft);background:var(--card-solid);color:var(--text);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;line-height:1;padding:0}
 .qty-val{font-size:13px;font-weight:700;color:var(--text);min-width:16px;text-align:center}
@@ -312,22 +319,6 @@ body.dark .search-highlight{background:rgba(255,210,90,.4);color:#fff}
 .progress-bar{height:8px;background:var(--border-soft);border-radius:10px;overflow:hidden}
 .progress-fill{height:100%;border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);background:linear-gradient(90deg,var(--accent-1),var(--accent-2))}
 .progress-fill.complete{background:linear-gradient(90deg,#4ecb71,#38b2ac)}
-.weight-info{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border-soft);display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--text-3)}
-.weight-info .weight-val{color:var(--accent-2);font-weight:800}
-.weight-limits{margin-top:10px}
-.weight-track{position:relative;height:14px;background:var(--border-soft);border-radius:10px;overflow:hidden;display:flex;margin-bottom:6px}
-.weight-segment{height:100%}
-.weight-segment.hand{flex:8;background:linear-gradient(90deg,rgba(78,203,113,.25),rgba(78,203,113,.4))}
-.weight-segment.bag{flex:15;background:linear-gradient(90deg,rgba(255,209,102,.4),rgba(255,154,90,.5))}
-.weight-segment.over{flex:5;background:linear-gradient(90deg,rgba(255,107,138,.5),rgba(214,51,108,.6))}
-.weight-marker{position:absolute;top:-3px;width:4px;height:20px;background:var(--text);border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.3);transition:left .5s cubic-bezier(.4,0,.2,1);z-index:2}
-.weight-marker::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--text)}
-.weight-labels{display:flex;justify-content:space-between;font-size:10px;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px}
-.weight-status{text-align:center;font-size:12px;font-weight:700;margin-top:8px;padding:6px 12px;border-radius:100px;display:inline-block;width:100%}
-.weight-status.hand{background:rgba(78,203,113,.15);color:#2f9c53}
-.weight-status.bag{background:rgba(255,209,102,.2);color:#b8770f}
-body.dark .weight-status.bag{color:#ffd166;background:rgba(255,209,102,.15)}
-.weight-status.over{background:rgba(255,107,138,.15);color:var(--danger)}
 .weather-card{margin-bottom:12px;padding:11px 13px;background:linear-gradient(135deg,rgba(94,199,255,.15),rgba(58,134,255,.15));border:1.2px solid rgba(94,199,255,.3);border-radius:13px;display:none}
 .weather-card.show{display:block}
 .weather-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
@@ -362,23 +353,6 @@ body.dark #errorScreen .err-code{background:rgba(255,94,138,.15)}
 #errorScreen p{font-size:13px;color:var(--text-2);margin-bottom:16px;line-height:1.5;max-width:340px}
 #errorScreen button{padding:12px 18px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;border:none;border-radius:100px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;margin:3px}
 #errorScreen .err-msg{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:10.5px;color:var(--text-3);background:var(--card);padding:14px;border-radius:14px;margin-top:16px;max-width:100%;word-break:break-word;white-space:pre-wrap;text-align:left;-webkit-user-select:text;user-select:text;max-height:38vh;overflow-y:auto;-webkit-overflow-scrolling:touch;line-height:1.5}
-.smart-hint{margin-top:10px;padding:12px 14px;background:linear-gradient(135deg,rgba(255,154,90,.12),rgba(192,132,252,.12));border:1.5px solid rgba(255,154,90,.3);border-radius:14px;display:none;animation:slideIn .3s ease}
-body.dark .smart-hint{background:linear-gradient(135deg,rgba(107,140,255,.15),rgba(160,107,255,.15));border-color:rgba(107,140,255,.35)}
-.smart-hint.show{display:block}
-.smart-hint .sh-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.smart-hint .sh-icon{font-size:20px}
-.smart-hint .sh-title{flex:1;font-size:13.5px;font-weight:800;color:var(--text);letter-spacing:-.2px}
-.smart-hint .sh-context{font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:10px;padding:6px 10px;background:rgba(255,255,255,.4);border-radius:8px;display:inline-block}
-body.dark .smart-hint .sh-context{background:rgba(0,0,0,.2)}
-.smart-hint .sh-suggestion{padding:10px 12px;background:rgba(255,255,255,.5);border-radius:10px;margin-bottom:8px;display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.6)}
-body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgba(255,255,255,.06)}
-.smart-hint .sh-suggestion:last-child{margin-bottom:0}
-.smart-hint .sh-suggestion .sh-emoji{font-size:22px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--card-solid);border-radius:10px;flex-shrink:0}
-.smart-hint .sh-suggestion .sh-text{flex:1;min-width:0;font-size:13px;color:var(--text);line-height:1.4;font-weight:500}
-.smart-hint .sh-suggestion .sh-text strong{color:var(--accent-2);font-weight:800}
-.smart-hint .sh-suggestion .sh-apply-btn{padding:6px 12px;border:none;border-radius:8px;background:linear-gradient(135deg,var(--accent-1),var(--accent-2));color:#fff;font-size:12px;font-weight:700;font-family:inherit;cursor:pointer;flex-shrink:0;white-space:nowrap}
-.smart-hint .sh-dismiss{background:transparent;border:none;color:var(--text-3);font-size:11.5px;font-weight:600;cursor:pointer;padding:6px;font-family:inherit;width:100%;margin-top:6px;text-align:center;opacity:.7}
-.smart-hint .sh-memory{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;color:var(--accent-2);font-weight:700;background:rgba(255,107,138,.12);padding:3px 8px;border-radius:100px;margin-left:6px}
 .onboarding-viewer{position:fixed;inset:0;z-index:250;display:none;flex-direction:column;background:var(--bg)}
 .onboarding-viewer.active{display:flex}
 .onb-slide{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;text-align:center;position:relative;overflow:hidden}
@@ -422,7 +396,7 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
 
 <div class="page active" id="page-home">
     <div class="container">
-        <div id="storiesSlot"></div>
+        <div id="tipsSlot"></div>
         <div id="widgetSlot"></div>
         <div id="historySlot"></div>
     </div>
@@ -453,7 +427,6 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
             <div class="profile-stat-card"><div class="ps-icon">🧳</div><div class="ps-num" id="profileTotalTrips">0</div><div class="ps-label">Всего поездок</div></div>
             <div class="profile-stat-card"><div class="ps-icon">✅</div><div class="ps-num" id="profileCompletedTrips">0</div><div class="ps-label">Завершено</div></div>
             <div class="profile-stat-card"><div class="ps-icon">📦</div><div class="ps-num" id="profileItemsPacked">0</div><div class="ps-label">Вещей собрано</div></div>
-            <div class="profile-stat-card"><div class="ps-icon">⚖️</div><div class="ps-num" id="profileTotalWeight">0</div><div class="ps-label">Кг собрано</div></div>
         </div>
         <div class="stats-title">Достижения</div>
         <div class="achievements-grid" id="achievementsGrid"></div>
@@ -464,16 +437,14 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
             <div class="profile-item" id="darkModeToggleItem"><div class="pi-icon">🌙</div><div class="pi-label">Тёмная тема</div><div class="toggle" id="darkToggle"></div></div>
             <div class="profile-item" id="notifToggleItem"><div class="pi-icon">🔔</div><div class="pi-label">Напоминания</div><div class="toggle" id="notifToggle"></div></div>
             <div class="profile-item" id="vibrateToggleItem"><div class="pi-icon">📳</div><div class="pi-label">Вибрация</div><div class="toggle" id="vibrateToggle"></div></div>
-            <div class="profile-item" id="smartHintsToggleItem"><div class="pi-icon">💡</div><div class="pi-label">Умные подсказки</div><div class="toggle" id="smartHintsToggle"></div></div>
-            <div class="profile-item" id="resetHintsBtn"><div class="pi-icon">🔄</div><div class="pi-label">Сбросить запоминания</div><div class="pi-arrow">›</div></div>
             <div class="profile-item" id="showOnboardingBtn"><div class="pi-icon">📖</div><div class="pi-label">О приложении</div><div class="pi-arrow">›</div></div>
         </div>
         <div class="stats-title">О приложении</div>
         <div class="profile-menu">
-            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">1.3.2</div></div>
+            <div class="profile-item"><div class="pi-icon">ℹ️</div><div class="pi-label">Версия</div><div class="pi-value">2.0.0</div></div>
             <div class="profile-item" id="viewErrorLogBtn"><div class="pi-icon">🐛</div><div class="pi-label">Журнал ошибок</div><div class="pi-value" id="errorCountLabel">0</div><div class="pi-arrow">›</div></div>
         </div>
-        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v1.3.2</div>
+        <div style="text-align:center;font-size:11px;color:var(--text-3);font-weight:600;padding:8px 0 20px;opacity:.6">byBag v2.0.0</div>
     </div>
 </div>
 
@@ -496,15 +467,6 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <div class="modal-progress">
             <div class="progress-label"><span>Собрано вещей</span><span id="tripProgressText">0 / 0</span></div>
             <div class="progress-bar"><div class="progress-fill" id="tripProgressFill" style="width:0%"></div></div>
-            <div class="weight-info"><span>⚖️ Вес собранного</span><span class="weight-val" id="tripWeight">0 кг</span></div>
-            <div class="weight-limits" id="weightLimits" style="display:none">
-                <div class="weight-track">
-                    <div class="weight-segment hand"></div><div class="weight-segment bag"></div><div class="weight-segment over"></div>
-                    <div class="weight-marker" id="weightMarker" style="left:0%"></div>
-                </div>
-                <div class="weight-labels"><span>0</span><span>8 кг</span><span>23 кг</span><span>28+</span></div>
-                <div class="weight-status" id="weightStatus"></div>
-            </div>
         </div>
         <div class="weather-card" id="weatherCard">
             <div class="weather-header">
@@ -530,8 +492,11 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     <div class="modal">
         <button type="button" class="modal-close" data-close="typeModal">✕</button>
         <div class="modal-handle"></div>
-        <h2>Выберите тип поездки</h2>
+        <h2>Новая поездка</h2>
+        <div class="field-label">Базовый тип <span class="hint">(необязательно)</span></div>
         <div class="type-grid" id="typeGrid"></div>
+        <div class="field-label">Добавить свои списки <span class="hint">(можно несколько)</span></div>
+        <div class="list-picker" id="listPicker"></div>
         <input type="text" class="input-field" id="tripName" placeholder="Название поездки (необязательно)">
         <div class="field-label">Дата начала (необязательно)</div>
         <input type="date" class="input-field" id="tripStartDate">
@@ -547,15 +512,12 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     <div class="modal">
         <button type="button" class="modal-close" data-close="wizardStep1">✕</button>
         <div class="modal-handle"></div>
-        <div class="step-indicator"><div class="step-dot active"></div><div class="step-dot"></div></div>
-        <h2>Настройка типа</h2>
-        <div class="field-label">Превью</div>
         <div class="preview-card" id="wiz1Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f)">
             <div class="preview-emoji" id="wiz1Emoji">🎒</div>
-            <div class="preview-name" id="wiz1Name">Название типа</div>
+            <div class="preview-name" id="wiz1Name">Название списка</div>
             <div class="preview-count" id="wiz1Count">0 вещей</div>
         </div>
-        <div class="field-label">Название типа</div>
+        <div class="field-label">Название списка</div>
         <input type="text" class="input-field" id="wiz1NameInput" placeholder="Например: Кемпинг" maxlength="30">
         <div class="field-label">Иконка</div>
         <div class="emoji-picker" id="wiz1EmojiPicker"></div>
@@ -569,11 +531,9 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     <div class="modal">
         <button type="button" class="modal-close" data-close="wizardStep2">✕</button>
         <div class="modal-handle"></div>
-        <div class="step-indicator"><div class="step-dot done"></div><div class="step-dot active"></div></div>
-        <h2>Список вещей</h2>
         <div class="preview-card" id="wiz2Preview" style="background:linear-gradient(135deg,#ffb347,#ff7e5f);margin-bottom:20px">
             <div class="preview-emoji" id="wiz2Emoji">🎒</div>
-            <div class="preview-name" id="wiz2Name">Название типа</div>
+            <div class="preview-name" id="wiz2Name">Название списка</div>
             <div class="preview-count" id="wiz2Count">0 вещей</div>
         </div>
         <div class="field-label">Вещи в списке</div>
@@ -600,11 +560,8 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <select class="input-field" id="advCat"></select>
         <div class="field-label">Количество</div>
         <input type="number" class="input-field" id="advQty" value="1" min="1" max="99">
-        <div class="field-label">Вес 1 шт. (кг)</div>
-        <input type="number" class="input-field" id="advWeight" placeholder="0.2" step="0.1" min="0">
         <div class="field-label">Заметка</div>
         <input type="text" class="input-field" id="advNote" placeholder="Например: та, что с Type-C" maxlength="60">
-        <div class="smart-hint" id="smartHintAdv"></div>
         <button type="button" class="btn-primary" id="advConfirmBtn">Добавить</button>
     </div>
 </div>
@@ -614,7 +571,6 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <button type="button" class="modal-close" data-close="listEditorModal">✕</button>
         <div class="modal-handle"></div>
         <h2 id="listEditorTitle">Редактировать список</h2>
-        <div class="field-label">Превью</div>
         <div class="preview-card" id="previewCard">
             <div class="preview-emoji" id="previewEmoji">🎒</div>
             <div class="preview-name" id="previewName">Название списка</div>
@@ -649,11 +605,8 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <select class="input-field" id="adv2Cat"></select>
         <div class="field-label">Количество</div>
         <input type="number" class="input-field" id="adv2Qty" value="1" min="1" max="99">
-        <div class="field-label">Вес 1 шт. (кг)</div>
-        <input type="number" class="input-field" id="adv2Weight" placeholder="0.2" step="0.1" min="0">
         <div class="field-label">Заметка</div>
         <input type="text" class="input-field" id="adv2Note" placeholder="Например: та, что с Type-C" maxlength="60">
-        <div class="smart-hint" id="smartHintAdv2"></div>
         <button type="button" class="btn-primary" id="adv2ConfirmBtn">Добавить</button>
     </div>
 </div>
@@ -669,11 +622,8 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
         <select class="input-field" id="addItemCat"></select>
         <div class="field-label">Количество</div>
         <input type="number" class="input-field" id="addItemQty" value="1" min="1" max="99">
-        <div class="field-label">Вес (кг)</div>
-        <input type="number" class="input-field" id="addItemWeight" placeholder="0.2" step="0.1" min="0">
         <div class="field-label">Заметка</div>
         <input type="text" class="input-field" id="addItemNote" placeholder="Например: та, что с Type-C" maxlength="60">
-        <div class="smart-hint" id="smartHintBox"></div>
         <button type="button" class="btn-primary" id="confirmAddItemBtn">Добавить</button>
     </div>
 </div>
@@ -762,44 +712,47 @@ body.dark .smart-hint .sh-suggestion{background:rgba(0,0,0,.15);border-color:rgb
     </div>
 </div>
 
-<div class="story-viewer" id="storyViewer">
-    <div class="story-bg" id="storyBg"></div>
-    <div class="story-emoji-deco" id="storyDeco">🎒</div>
-    <div class="story-progress-row" id="storyProgressRow"></div>
-    <div class="story-header">
-        <div class="story-avatar-sm" id="storyAvatar">🧳</div>
-        <div class="story-name-block">
-            <div class="s-title" id="storyTitle">Поездка</div>
-            <div class="s-time" id="storyTime">сейчас</div>
+<div class="tip-viewer" id="tipViewer">
+    <div class="tip-viewer-bg" id="tipViewerBg"></div>
+    <div class="tip-viewer-deco" id="tipViewerDeco">💡</div>
+    <div class="tip-viewer-header">
+        <div class="tip-viewer-avatar" id="tipViewerAvatar">💡</div>
+        <div class="tip-viewer-info">
+            <div class="t-title" id="tipViewerTitle">Советы</div>
+            <div class="t-sub" id="tipViewerSub">полезное для поездки</div>
         </div>
-        <button type="button" class="story-close-btn" id="storyCloseBtn">✕</button>
+        <button type="button" class="tip-viewer-close" id="tipViewerClose">✕</button>
     </div>
-    <div class="story-tap-zone prev" id="storyTapPrev"></div>
-    <div class="story-tap-zone next" id="storyTapNext"></div>
-    <div class="story-content" id="storyContent"></div>
+    <div class="tip-viewer-content" id="tipViewerContent"></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 // ============================================================
-// СИСТЕМА ОБРАБОТКИ ОШИБОК
+// СИСТЕМА ОБРАБОТКИ ОШИБОК (v2.0.0)
 // ============================================================
-var BB_VERSION = '1.3.2';
+var BB_VERSION = '2.0.0';
 var BB_ERROR_LOG_KEY = 'bybag_error_log';
-var BB_MAX_LOG = 20;
+var BB_MAX_LOG = 30;
 
 var BB_ERROR_NAMES = {
     1001:'Ошибка инициализации приложения', 1002:'Не удалось загрузить данные', 1003:'Не удалось применить тему',
+    1004:'Не найдены обязательные элементы интерфейса',
     2001:'Ошибка чтения localStorage', 2002:'Ошибка записи в localStorage', 2003:'Повреждённые данные, сброшены',
+    2004:'Превышена квота localStorage', 2005:'Не удалось очистить хранилище',
     3001:'Ошибка рендера главной', 3002:'Ошибка рендера списков', 3003:'Ошибка рендера профиля',
-    3004:'Ошибка рендера чеклиста', 3005:'Ошибка рендера историй',
-    4001:'Ошибка открытия модалки', 4002:'Ошибка сохранения формы',
-    5001:'Не удалось загрузить погоду', 5002:'Город не найден',
-    6001:'Ошибка истории', 7001:'Ошибка изменения вещи', 7002:'Ошибка удаления вещи',
-    8001:'Ошибка аватара', 8002:'Ошибка профиля',
+    3004:'Ошибка рендера чеклиста', 3005:'Ошибка рендера советов', 3006:'Ошибка рендера истории поездок',
+    3007:'Ошибка открытия страницы',
+    4001:'Ошибка открытия модалки', 4002:'Ошибка сохранения формы', 4003:'Ошибка закрытия модалки',
+    4004:'Ошибка выбора типа поездки', 4005:'Ошибка выбора списков',
+    5001:'Не удалось загрузить погоду', 5002:'Город не найден', 5003:'Погодный сервис недоступен',
+    6001:'Ошибка истории поездок', 6002:'Не удалось повторить поездку', 6003:'Ошибка удаления истории',
+    7001:'Ошибка отметки вещи', 7002:'Ошибка удаления вещи', 7003:'Ошибка изменения количества',
+    7004:'Ошибка добавления вещи', 7005:'Ошибка поиска по списку',
+    8001:'Ошибка загрузки аватара', 8002:'Ошибка профиля', 8003:'Ошибка категории', 8004:'Ошибка достижений',
     9001:'Неизвестная ошибка', 9002:'Unhandled Promise Rejection', 9003:'Ошибка ресурса (img/script)',
-    9004:'Запрещённая конструкция в strict mode (arguments.callee)'
+    9004:'Запрещённая конструкция в strict mode', 9005:'Ошибка таймера', 9006:'Ошибка внешнего API'
 };
 
 function bbGetDeviceInfo() {
@@ -824,13 +777,14 @@ function bbGetDataState() {
             currentPage: (document.querySelector('.page.active') || {}).id || '?',
             modalsOpen: document.querySelectorAll('.modal-overlay.active').length,
             checklistOpen: !!(document.getElementById('checklistPage') && document.getElementById('checklistPage').classList.contains('active')),
-            storyOpen: !!(document.getElementById('storyViewer') && document.getElementById('storyViewer').classList.contains('active')),
+            tipViewerOpen: !!(document.getElementById('tipViewer') && document.getElementById('tipViewer').classList.contains('active')),
             onboardingOpen: !!(document.getElementById('onboardingViewer') && document.getElementById('onboardingViewer').classList.contains('active'))
         };
         try { st.trips = JSON.parse(localStorage.getItem('bybag_active_trips') || '[]').length; } catch (e) { st.trips = '?'; }
         try { st.history = JSON.parse(localStorage.getItem('bybag_history') || '[]').length; } catch (e) { st.history = '?'; }
         try { st.customTypes = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_types') || '{}')).length; } catch (e) { st.customTypes = '?'; }
         try { st.customCats = Object.keys(JSON.parse(localStorage.getItem('bybag_custom_categories') || '{}')).length; } catch (e) { st.customCats = '?'; }
+        try { st.lsTotal = (localStorage.length || 0); } catch (e) { st.lsTotal = '?'; }
         return st;
     } catch (e) { return { error: 'data state failed: ' + e.message }; }
 }
@@ -862,7 +816,7 @@ function bbGetErrorLog() {
     try { return JSON.parse(localStorage.getItem(BB_ERROR_LOG_KEY) || '[]'); } catch (e) { return []; }
 }
 function bbClearErrorLog() {
-    try { localStorage.removeItem(BB_ERROR_LOG_KEY); } catch (e) {}
+    try { localStorage.removeItem(BB_ERROR_LOG_KEY); } catch (e) { bbLogError(2005, 'Не удалось очистить журнал'); }
     try { var lbl = document.getElementById('errorCountLabel'); if (lbl) lbl.textContent = '0'; } catch (e) {}
 }
 
@@ -871,19 +825,14 @@ function bbBuildErrorReport(code, message, err) {
     var lines = [];
     lines.push('🐛 byBag v' + BB_VERSION + ' — отчёт об ошибке');
     lines.push('');
-    lines.push('Код: BB-' + code + ' (' + (BB_ERROR_NAMES[code] || '?') + ')');
+    lines.push('Код: BB-' + code);
+    lines.push('Название: ' + (BB_ERROR_NAMES[code] || '?'));
     lines.push('Сообщение: ' + message);
     if (err && err.message && err.message !== message) lines.push('Технически: ' + err.message);
     lines.push('');
     lines.push('📱 Устройство:');
     var d = entry ? entry.device : bbGetDeviceInfo();
-    lines.push('  UA: ' + d.ua);
-    lines.push('  Платформа: ' + d.platform);
-    lines.push('  Экран: ' + d.screen + ' @ ' + d.dpr + 'x');
-    lines.push('  Язык: ' + d.lang + ' / ' + d.tz);
-    lines.push('  Online: ' + (d.online ? 'да' : 'нет'));
-    lines.push('  URL: ' + d.url);
-    lines.push('  Время: ' + d.time);
+    Object.keys(d).forEach(function(k) { lines.push('  ' + k + ': ' + d[k]); });
     lines.push('');
     lines.push('💾 Состояние:');
     var s = entry ? entry.data : bbGetDataState();
@@ -905,7 +854,7 @@ function showErrorScreen(code, message, err) {
         var report = bbBuildErrorReport(code, message, err);
         if (!es) { console.error('BB-' + code, message, err); return; }
         if (em) em.textContent = report;
-        if (ec) ec.textContent = 'Код: BB-' + code;
+        if (ec) ec.textContent = 'Код: BB-' + code + ' · ' + (BB_ERROR_NAMES[code] || '');
         if (et) et.textContent = message || (BB_ERROR_NAMES[code] || 'Что-то пошло не так');
         es.classList.add('show');
         var copyBtn = document.getElementById('errCopyBtn');
@@ -927,12 +876,17 @@ function showErrorScreen(code, message, err) {
 function bbDetectErrorCode(msg, stack) {
     msg = String(msg || ''); stack = String(stack || '');
     if (msg.indexOf('arguments.callee') !== -1 || stack.indexOf('callee') !== -1) return 9004;
-    if (stack.indexOf('localStorage') !== -1 || msg.indexOf('localStorage') !== -1 || msg.indexOf('QuotaExceeded') !== -1) return 2001;
+    if (msg.indexOf('QuotaExceeded') !== -1) return 2004;
+    if (stack.indexOf('localStorage') !== -1 || msg.indexOf('localStorage') !== -1) return 2001;
     if (stack.indexOf('renderHome') !== -1) return 3001;
     if (stack.indexOf('renderListsPage') !== -1) return 3002;
     if (stack.indexOf('renderProfile') !== -1) return 3003;
     if (stack.indexOf('renderChecklist') !== -1) return 3004;
-    if (stack.indexOf('renderWeather') !== -1 || stack.indexOf('loadWeather') !== -1) return 5001;
+    if (stack.indexOf('renderTips') !== -1 || stack.indexOf('buildTips') !== -1) return 3005;
+    if (stack.indexOf('renderHistory') !== -1) return 3006;
+    if (stack.indexOf('loadWeather') !== -1 || stack.indexOf('renderWeather') !== -1) return 5001;
+    if (stack.indexOf('toggleItem') !== -1) return 7001;
+    if (stack.indexOf('deleteActiveItem') !== -1) return 7002;
     if (stack.indexOf('init') !== -1 || msg.indexOf('init') !== -1) return 1001;
     return 9001;
 }
@@ -958,7 +912,7 @@ function hardReset() {
     try {
         if (!confirm('Сбросить ВСЕ данные приложения? Это нельзя отменить.')) return;
         localStorage.clear();
-    } catch (e) {}
+    } catch (e) { bbLogError(2005, 'Не удалось очистить хранилище', { stack: e.stack }); }
     location.reload();
 }
 
@@ -980,7 +934,7 @@ function downloadErrorLog() {
 }
 
 // ============================================================
-// ОСНОВНОЕ ПРИЛОЖЕНИЕ
+// ОСНОВНОЕ ПРИЛОЖЕНИЕ v2.0.0
 // ============================================================
 (function() {
     'use strict';
@@ -1003,7 +957,8 @@ function downloadErrorLog() {
         { id: 'five_trips', icon: '🔥', name: 'Опытный', desc: '5 поездок', check: function(s) { return s.totalTrips >= 5; } },
         { id: 'hundred_items', icon: '📦', name: 'Сто вещей', desc: '100 вещей собрано', check: function(s) { return s.allDone >= 100; } },
         { id: 'custom_list', icon: '🎨', name: 'Дизайнер', desc: 'Свой список', check: function(s) { return s.customCount >= 1; } },
-        { id: 'three_perfect', icon: '⭐', name: 'Перфекционист', desc: '3 идеальных', check: function(s) { return s.perfectTrips >= 3; } }
+        { id: 'three_perfect', icon: '⭐', name: 'Перфекционист', desc: '3 идеальных', check: function(s) { return s.perfectTrips >= 3; } },
+        { id: 'combined', icon: '🧩', name: 'Комбинатор', desc: 'Поездка с 2+ списками', check: function(s) { return s.combinedTrips >= 1; } }
     ];
 
     var DEFAULT_TYPES = {
@@ -1037,57 +992,103 @@ function downloadErrorLog() {
         81:{icon:'🌧️',desc:'Сильный ливень'},82:{icon:'⛈️',desc:'Очень сильный ливень'},95:{icon:'⛈️',desc:'Гроза'},96:{icon:'⛈️',desc:'Гроза с градом'}
     };
 
-    var SMART_HINTS = {
-        'носок':{per:'day',extra:1,unit:'пар',cat:'clothes'},'трусы':{per:'day',extra:1,unit:'шт',cat:'clothes'},
-        'трусов':{per:'day',extra:1,unit:'шт',cat:'clothes'},'футболк':{per:'days2',extra:1,unit:'шт',cat:'clothes'},
-        'майк':{per:'days2',extra:1,unit:'шт',cat:'clothes'},'рубашк':{per:'days3',extra:1,unit:'шт',cat:'clothes',business:'per_day'},
-        'шорт':{per:'days2',extra:0,unit:'шт',cat:'clothes'},'джинс':{per:'trip',base:2,unit:'шт',cat:'clothes'},
-        'худи':{per:'trip',base:1,unit:'шт',cat:'clothes'},'кофт':{per:'trip',base:1,unit:'шт',cat:'clothes'},
-        'куртк':{per:'trip',base:1,unit:'шт',cat:'clothes'},'шапк':{per:'trip',base:1,unit:'шт',cat:'clothes'},
-        'перчатк':{per:'trip',base:1,unit:'пар',cat:'clothes'},'купальник':{per:'trip',base:2,unit:'шт',cat:'clothes'},
-        'плавк':{per:'trip',base:2,unit:'шт',cat:'clothes'},'шарф':{per:'trip',base:1,unit:'шт',cat:'clothes'},
-        'сандал':{per:'trip',base:1,unit:'пар',cat:'clothes'},'шлёпк':{per:'trip',base:1,unit:'пар',cat:'clothes'},
-        'кроссовк':{per:'trip',base:1,unit:'пар',cat:'clothes'},'ботинк':{per:'trip',base:1,unit:'пар',cat:'clothes'},
-        'туфл':{per:'trip',base:1,unit:'пар',cat:'clothes'},'тапк':{per:'trip',base:1,unit:'пар',cat:'clothes'},
-        'полотенц':{per:'trip',base:1,unit:'шт',cat:'hygiene'},'зубная щётк':{per:'trip',base:1,unit:'шт',cat:'hygiene'},
-        'паста':{per:'trip',base:1,unit:'шт',cat:'hygiene'},'шампунь':{per:'trip',base:1,unit:'шт',cat:'hygiene'},
-        'гель для душ':{per:'trip',base:1,unit:'шт',cat:'hygiene'},'дезодорант':{per:'trip',base:1,unit:'шт',cat:'hygiene'},
-        'бритв':{per:'trip',base:1,unit:'шт',cat:'hygiene'},'расчёск':{per:'trip',base:1,unit:'шт',cat:'hygiene'},
-        'крем':{per:'trip',base:1,unit:'шт',cat:'hygiene'},'зарядк':{per:'trip',base:1,unit:'шт',cat:'tech'},
-        'пауэрбанк':{per:'trip',base:1,unit:'шт',cat:'tech'},'powerbank':{per:'trip',base:1,unit:'шт',cat:'tech'},
-        'наушник':{per:'trip',base:1,unit:'шт',cat:'tech'},'ноутбук':{per:'trip',base:1,unit:'шт',cat:'tech'},
-        'фотоаппарат':{per:'trip',base:1,unit:'шт',cat:'tech'},'паспорт':{per:'trip',base:1,unit:'шт',cat:'documents'},
-        'виз':{per:'trip',base:1,unit:'шт',cat:'documents'},'билет':{per:'trip',base:1,unit:'шт',cat:'documents'},
-        'страховк':{per:'trip',base:1,unit:'шт',cat:'documents'},'визитк':{per:'trip',base:5,unit:'шт',cat:'documents'},
-        'аптечк':{per:'trip',base:1,unit:'шт',cat:'meds'},'таблетк':{per:'trip',base:1,unit:'упак',cat:'meds'},
-        'лекарств':{per:'trip',base:1,unit:'упак',cat:'meds'},'бинт':{per:'trip',base:1,unit:'шт',cat:'meds'},
-        'пластыр':{per:'trip',base:1,unit:'упак',cat:'meds'},'очки':{per:'trip',base:1,unit:'шт',cat:'other'},
-        'бутылк':{per:'trip',base:1,unit:'шт',cat:'other'},'зонт':{per:'trip',base:1,unit:'шт',cat:'other'},
-        'книг':{per:'trip',base:1,unit:'шт',cat:'other'},'блокнот':{per:'trip',base:1,unit:'шт',cat:'other'},
-        'ручк':{per:'trip',base:2,unit:'шт',cat:'other'},'подушк':{per:'trip',base:1,unit:'шт',cat:'other'},
-        'маск':{per:'trip',base:2,unit:'шт',cat:'other'}
-    };
-
-    var SOUTH_CITIES = ['анталья','турция','египет','таиланд','бали','дубай','гоа','мальдивы','канкун','пхукет'];
-    var NORTH_CITIES = ['мурманск','норвегия','финляндия','исландия','швеция','осло','хельсинки'];
+    // Советы — 6 категорий
+    var TIPS_CATEGORIES = [
+        {
+            id: 'packing', name: 'Упаковка', emoji: '🧳', color1: '#ff9a5a', color2: '#ff6b8a',
+            desc: 'Как упаковать чемодан',
+            tips: [
+                { icon: '👕', text: '<strong>Скручивайте одежду в рулоны</strong> — экономит место и меньше мнётся' },
+                { icon: '👟', text: '<strong>Обувь — вниз, носки внутрь.</strong> Так они не деформируются и заполняют пустоты' },
+                { icon: '🧴', text: 'Жидкости <strong>в отдельный зип-пакет</strong> + пищевая плёнка под крышку' },
+                { icon: '👖', text: '<strong>Тяжёлое — на дно</strong> (у колесиков). Так чемодан устойчив и не переворачивается' },
+                { icon: '🎒', text: 'Мелочи и провода — в <strong>маленькие мешочки</strong> по типам, чтобы не путались' },
+                { icon: '🪥', text: '<strong>Зубную щётку в колпачок</strong> — гигиеничнее и не пачкает сумку' }
+            ]
+        },
+        {
+            id: 'docs', name: 'Документы', emoji: '📄', color1: '#5ec7ff', color2: '#3a86ff',
+            desc: 'Что взять из документов',
+            tips: [
+                { icon: '🛂', text: 'Паспорт + <strong>копия в отдельном месте</strong> (и фото в облаке)' },
+                { icon: '✈️', text: 'Посадочные и брони — <strong>скриншот + распечатка</strong>, в аэропорту пригодится' },
+                { icon: '💳', text: '<strong>2 разные карты</strong> в разных сумках + немного наличных' },
+                { icon: '🩺', text: 'Медстраховка для заграницы — <strong>распечатайте</strong>, иногда просят бумажный вариант' },
+                { icon: '🎫', text: 'Билеты на поезд/автобус <strong>в офлайн-доступе</strong> — сеть может пропасть' },
+                { icon: '📱', text: 'Запишите <strong>номер посольства</strong> на случай проблем за рубежом' }
+            ]
+        },
+        {
+            id: 'tech', name: 'Техника', emoji: '📱', color1: '#a06bff', color2: '#6b8cff',
+            desc: 'Про гаджеты в дороге',
+            tips: [
+                { icon: '🔌', text: '<strong>Один powerbank вместо пяти зарядок.</strong> 20000 мАч хватает на 3–4 дня' },
+                { icon: '🧵', text: 'Провода <strong>скрепите резинками</strong> или в стяжки — не запутаются в сумке' },
+                { icon: '🎧', text: 'Наушники <strong>в отдельном кейсе</strong>, чтобы не поцарапать в кармане' },
+                { icon: '💻', text: 'Ноутбук — <strong>в мягкий чехол</strong>, отдельно от жидкостей и обуви' },
+                { icon: '🔋', text: '<strong>Отключите авто-синк</strong> в роуминге: телефон проживёт вдвое дольше' },
+                { icon: '🔌', text: '<strong>Универсальный переходник</strong> пригодится в любой стране' }
+            ]
+        },
+        {
+            id: 'clothes', name: 'Одежда', emoji: '👕', color1: '#4ecb71', color2: '#2f9c53',
+            desc: 'Как собрать гардероб',
+            tips: [
+                { icon: '🎨', text: '<strong>Правило капсулы:</strong> 3 низа + 3 верха + 1 куртка = 9 образов' },
+                { icon: '👖', text: 'Возьмите <strong>2 пары обуви максимум</strong>: одна в дорогу, вторая в чемодан' },
+                { icon: '🧥', text: 'В холодный климат — <strong>слоями</strong>: термобельё + флиска + куртка' },
+                { icon: '🌧️', text: 'В дождь спасает <strong>компактный дождевик</strong> размером с кулак' },
+                { icon: '👕', text: 'Тёмные цвета <strong>практичнее в дороге</strong>: меньше видны пятна' },
+                { icon: '👙', text: 'Носки и нижнее бельё — <strong>+1 запасной комплект</strong> на всякий случай' }
+            ]
+        },
+        {
+            id: 'security', name: 'Безопасность', emoji: '🔒', color1: '#d6336c', color2: '#ff5e8a',
+            desc: 'Как защитить имущество',
+            tips: [
+                { icon: '🎒', text: 'Рюкзак — <strong>на грудь в толпе</strong>. За спиной легко стать целью' },
+                { icon: '💰', text: 'Деньги — <strong>в 2-3 местах</strong>: кошелёк, носки, внутренний карман' },
+                { icon: '📷', text: 'Фото содержимого чемодана <strong>поможет при потере</strong> — сохраните в облако' },
+                { icon: '🔐', text: 'На чемодане — <strong>кодовый замок</strong>, не простой навесной' },
+                { icon: '📞', text: '<strong>Скиньте маршрут близким</strong>: отели, рейсы, время прилёта' },
+                { icon: '🚕', text: 'Такси только <strong>официальное</strong>, не соглашайтесь на «быстрее и дешевле»' }
+            ]
+        },
+        {
+            id: 'lifehacks', name: 'Лайфхаки', emoji: '💡', color1: '#ffd166', color2: '#f4a261',
+            desc: 'Полезные мелочи',
+            tips: [
+                { icon: '🧊', text: 'Замороженная бутылка воды = <strong>и еда, и охлаждение</strong> для сумки' },
+                { icon: '🧴', text: 'Дезодорант-спрей <strong>не протечёт</strong> в отличие от роликового' },
+                { icon: '🧦', text: 'В обувь положите <strong>носки или бельё</strong> — экономия места' },
+                { icon: '🍫', text: 'Сникерс в кармане спасёт <strong>от голода в дороге</strong>, если нет кафе' },
+                { icon: '💊', text: 'Мини-аптечка: <strong>обезболивающее, пластырь, активированный уголь</strong>' },
+                { icon: '🧴', text: 'Пробники косметики <strong>вместо больших флаконов</strong>: легче и не жалко выкинуть' },
+                { icon: '📌', text: 'Булавка на молнии — <strong>быстрый «замок»</strong> от воришек в метро' },
+                { icon: '🛍️', text: 'Пустой складной мешок <strong>для сувениров</strong> занимает мало места' }
+            ]
+        }
+    ];
 
     var ONBOARDING_SLIDES = [
         {icon:'🧳',bg:'🧳',title:'Добро пожаловать в byBag',text:'Ваш личный помощник для сбора багажа и планирования поездок. Никогда не забудьте важное.'},
-        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Можно вести до 2 активных поездок одновременно и переключаться между ними свайпом.'},
+        {icon:'✈️',bg:'✈️',title:'Создавайте поездки',text:'Выбирайте базовый тип + свои списки. Объединяйте до 2 активных поездок.'},
         {icon:'👆',bg:'✅',title:'Собирайте багаж',text:'Отмечайте вещи одним касанием.',list:[{icon:'👈',text:'Свайп влево — удалить вещь'},{icon:'👉',text:'Свайп вправо — отметить или сбросить'},{icon:'🔍',text:'Поиск по списку вещей'}]},
-        {icon:'📊',bg:'📊',title:'Умный помощник',text:'Приложение подскажет:',list:[{icon:'💡',text:'Сколько вещей взять'},{icon:'⚖️',text:'Вес багажа и лимиты'},{icon:'🌤️',text:'Погоду в городе'},{icon:'📅',text:'Обратный отсчёт'}]},
+        {icon:'💡',bg:'💡',title:'Советы по упаковке',text:'Полезное для поездок:',list:[{icon:'🧳',text:'Как упаковать чемодан'},{icon:'📄',text:'Документы и визы'},{icon:'🔒',text:'Безопасность в дороге'},{icon:'💡',text:'Полезные лайфхаки'}]},
         {icon:'🏆',bg:'🏆',title:'Статистика и достижения',text:'Собирайте награды, следите за прогрессом и делайте каждую поездку лучше.',list:[{icon:'🏆',text:'Достижения за поездки'},{icon:'📊',text:'Личная статистика'},{icon:'🎨',text:'Свои списки и категории'}]}
     ];
 
     var customTypes = {}, customCategories = {}, activeTrips = [], history = [];
     var currentTripIndex = 0, selectedType = null;
+    var selectedListIds = [];
     var profile = { name: 'Эрик', avatar: null };
-    var settings = { dark: false, notif: true, vibrate: true, hideDone: false, smartHints: true };
-    var achievementsState = {}, viewedStories = {};
+    var settings = { dark: false, notif: true, vibrate: true, hideDone: false };
+    var achievementsState = {}, viewedTips = {};
     var wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
     var editing = { id: null, name: '', emoji: '🎒', colorIdx: 0, items: [] };
-    var searchQuery = '', storyTimer = null, currentStoryIdx = 0;
-    var weatherCache = {}, storyHandlersBound = false, searchDebounceTimer = null, currentOnbSlide = 0;
+    var searchQuery = '';
+    var weatherCache = {}, searchDebounceTimer = null, currentOnbSlide = 0;
+    var currentTipIdx = 0;
     var pendingCategoryTarget = null, categoryParent = null;
 
     function $(id) { try { return document.getElementById(id); } catch (e) { return null; } }
@@ -1109,16 +1110,16 @@ function downloadErrorLog() {
         return all;
     }
     function normalizeItem(i) {
-        if (!i) return { text: 'Без названия', qty: 1, weight: 0, note: '', category: 'other' };
-        if (typeof i === 'string') return { text: i, qty: 1, weight: 0, note: '', category: 'other' };
-        if (typeof i !== 'object') return { text: String(i), qty: 1, weight: 0, note: '', category: 'other' };
+        if (!i) return { text: 'Без названия', qty: 1, note: '', category: 'other', from: '' };
+        if (typeof i === 'string') return { text: i, qty: 1, note: '', category: 'other', from: '' };
+        if (typeof i !== 'object') return { text: String(i), qty: 1, note: '', category: 'other', from: '' };
         var allCats = getAllCategories();
         return {
             text: typeof i.text === 'string' ? i.text : String(i.text || 'Без названия'),
             qty: typeof i.qty === 'number' && i.qty > 0 ? i.qty : 1,
-            weight: typeof i.weight === 'number' && i.weight >= 0 ? i.weight : 0,
             note: typeof i.note === 'string' ? i.note : '',
-            category: allCats[i.category] ? i.category : 'other'
+            category: allCats[i.category] ? i.category : 'other',
+            from: typeof i.from === 'string' ? i.from : ''
         };
     }
     function vibrate() { try { if (settings.vibrate && navigator.vibrate) navigator.vibrate(8); } catch (e) {} }
@@ -1140,7 +1141,8 @@ function downloadErrorLog() {
     function saveJSON(key, val) {
         try { localStorage.setItem(key, JSON.stringify(val)); }
         catch (e) {
-            bbLogError(2002, 'Ошибка записи localStorage: ' + key, { stack: e.stack });
+            if (e.name === 'QuotaExceededError') bbLogError(2004, 'Превышена квота localStorage: ' + key, { stack: e.stack });
+            else bbLogError(2002, 'Ошибка записи localStorage: ' + key, { stack: e.stack });
         }
     }
     function resetUIBlocks() {
@@ -1154,36 +1156,28 @@ function downloadErrorLog() {
         if (currentTripIndex >= activeTrips.length) return null;
         return activeTrips[currentTripIndex];
     }
-    function getFallbackTrip() {
-        var t = activeTrips[currentTripIndex] || activeTrips[0];
-        return t || { type: 'rest', daysCount: 3, city: '', startDate: null };
-    }
     function openModal(id) { resetUIBlocks(); var el = $(id); if (el) el.classList.add('active'); }
     function closeModal(id) { var el = $(id); if (el) { el.classList.remove('active'); el.classList.remove('on-top2'); } resetUIBlocks(); }
 
+    // ============ DATA ============
     function loadData() {
         activeTrips = loadJSON('bybag_active_trips', []);
         if (!Array.isArray(activeTrips)) activeTrips = [];
-        var oldActive = loadJSON('bybag_active', null);
-        if (oldActive && typeof oldActive === 'object' && !activeTrips.length) {
-            activeTrips = [oldActive];
-            try { localStorage.removeItem('bybag_active'); } catch (e) {}
-        }
         history = loadJSON('bybag_history', []);
         customTypes = loadJSON('bybag_custom_types', {});
         customCategories = loadJSON('bybag_custom_categories', {});
         profile = loadJSON('bybag_profile', { name: 'Эрик', avatar: null });
-        settings = loadJSON('bybag_settings', { dark: false, notif: true, vibrate: true, hideDone: false, smartHints: true });
+        settings = loadJSON('bybag_settings', { dark: false, notif: true, vibrate: true, hideDone: false });
         achievementsState = loadJSON('bybag_achievements', {});
-        viewedStories = loadJSON('bybag_viewed_stories', {});
+        viewedTips = loadJSON('bybag_viewed_tips', {});
 
         if (!Array.isArray(history)) history = [];
         if (typeof customTypes !== 'object' || customTypes === null || Array.isArray(customTypes)) customTypes = {};
         if (typeof customCategories !== 'object' || customCategories === null || Array.isArray(customCategories)) customCategories = {};
         if (typeof profile !== 'object' || profile === null) profile = { name: 'Эрик', avatar: null };
-        if (typeof settings !== 'object' || settings === null) settings = { dark: false, notif: true, vibrate: true, hideDone: false, smartHints: true };
+        if (typeof settings !== 'object' || settings === null) settings = { dark: false, notif: true, vibrate: true, hideDone: false };
         if (typeof achievementsState !== 'object' || achievementsState === null) achievementsState = {};
-        if (typeof viewedStories !== 'object' || viewedStories === null) viewedStories = {};
+        if (typeof viewedTips !== 'object' || viewedTips === null) viewedTips = {};
 
         activeTrips = activeTrips.filter(function(t) { return t && typeof t === 'object'; });
         activeTrips.forEach(function(t) {
@@ -1226,7 +1220,7 @@ function downloadErrorLog() {
     function saveCustomCategories() { saveJSON('bybag_custom_categories', customCategories); }
     function saveSettings() { saveJSON('bybag_settings', settings); }
     function saveAchievements() { saveJSON('bybag_achievements', achievementsState); }
-    function saveViewedStories() { saveJSON('bybag_viewed_stories', viewedStories); }
+    function saveViewedTips() { saveJSON('bybag_viewed_tips', viewedTips); }
 
     function applyTheme() {
         try {
@@ -1236,7 +1230,6 @@ function downloadErrorLog() {
                 var el = $(id);
                 if (el) el.classList.toggle('on', !!(id === 'darkToggle' ? settings.dark : id === 'notifToggle' ? settings.notif : settings.vibrate));
             });
-            var sh = $('smartHintsToggle'); if (sh) sh.classList.toggle('on', !!settings.smartHints);
         } catch (e) { bbLogError(1003, 'Ошибка темы', { stack: e.stack }); }
     }
 
@@ -1258,14 +1251,10 @@ function downloadErrorLog() {
         } catch (e) { return ''; }
     }
     function getTripStats(trip) {
-        var done = 0, dw = 0, tw = 0;
+        var done = 0;
         var items = (trip && trip.items) ? trip.items : [];
-        items.forEach(function(i) {
-            var w = (i.weight || 0) * (i.qty || 1);
-            tw += w;
-            if (i.done) { done++; dw += w; }
-        });
-        return { done: done, total: items.length, percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0, doneWeight: dw, totalWeight: tw };
+        items.forEach(function(i) { if (i.done) done++; });
+        return { done: done, total: items.length, percent: items.length > 0 ? Math.round((done / items.length) * 100) : 0 };
     }
     function getSeason(dateStr) {
         if (!dateStr) return 'summer';
@@ -1277,354 +1266,102 @@ function downloadErrorLog() {
             return 'autumn';
         } catch (e) { return 'summer'; }
     }
-    function getDirection(city) {
-        if (!city) return 'neutral';
-        var c = city.toLowerCase();
-        for (var i = 0; i < SOUTH_CITIES.length; i++) if (c.indexOf(SOUTH_CITIES[i]) !== -1) return 'south';
-        for (var j = 0; j < NORTH_CITIES.length; j++) if (c.indexOf(NORTH_CITIES[j]) !== -1) return 'north';
-        return 'neutral';
-    }
-    function getPersonalQty(itemKey) {
-        try { var mem = loadJSON('bybag_personal_qty', {}); return mem[itemKey] || null; }
-        catch (e) { return null; }
-    }
-    function savePersonalQty(itemKey, qty) {
-        try { var mem = loadJSON('bybag_personal_qty', {}); mem[itemKey] = qty; saveJSON('bybag_personal_qty', mem); } catch (e) {}
-    }
 
-    // STORIES
-    function buildTripsForStories() {
-        var arr = [];
-        activeTrips.forEach(function(t) {
-            if (t.city) arr.push({ type: 'weather', trip: t, isActive: true });
-            if (t.startDate) arr.push({ type: 'countdown', trip: t, isActive: true });
-            arr.push({ type: 'weight', trip: t, isActive: true });
-            arr.push({ type: 'tips', trip: t, isActive: true });
-        });
-        activeTrips.forEach(function(t) { arr.push({ type: 'trip', trip: t, isActive: true }); });
-        history.slice(0, 8).forEach(function(h) { arr.push({ type: 'trip', trip: h, isActive: false }); });
-        return arr;
-    }
-
-    function buildStories() {
+    // ============ TIPS ============
+    function buildTips() {
         try {
-            var slot = $('storiesSlot'); if (!slot) return;
+            var slot = $('tipsSlot'); if (!slot) return;
             slot.innerHTML = '';
-            var trips = buildTripsForStories();
-            if (!trips.length) return;
-
             var wrap = document.createElement('div');
-            wrap.className = 'stories-wrap';
-            wrap.innerHTML = '<div class="stories-title">Истории</div>';
+            wrap.className = 'tips-wrap';
+            wrap.innerHTML = '<div class="tips-title">Советы</div>';
             var row = document.createElement('div');
-            row.className = 'stories-row';
+            row.className = 'tips-row';
 
-            trips.forEach(function(item, idx) {
-                var trip = item.trip;
-                var storyId = item.type + '_' + (trip.id || idx) + '_' + idx;
-                var el = document.createElement('div');
-                el.className = 'story-item';
-
+            TIPS_CATEGORIES.forEach(function(cat, idx) {
+                var item = document.createElement('div');
+                item.className = 'tip-item';
                 var ring = document.createElement('div');
-                ring.className = 'story-ring' + (viewedStories[storyId] ? ' viewed' : '');
+                ring.className = 'tip-ring';
                 var inner = document.createElement('div');
-                inner.className = 'story-inner';
-
-                var labelText = '';
-                var labelTime = '';
-
-                if (item.type === 'weather') {
-                    inner.classList.add('metric');
-                    inner.style.background = 'linear-gradient(135deg,#5ec7ff,#3a86ff)';
-                    inner.innerHTML = '<div class="story-metric-icon">🌤️</div><div class="story-metric-sub">Погода</div>';
-                    labelText = 'Погода';
-                    labelTime = trip.city || '';
-                } else if (item.type === 'countdown') {
-                    inner.classList.add('metric');
-                    inner.style.background = 'linear-gradient(135deg,#ff9a5a,#d6336c)';
-                    var cd = trip.startDate ? countdown(trip.startDate) : '';
-                    var cdShort = cd.indexOf('через') === 0 ? cd.replace('через ', '') : cd;
-                    var cdDisplay = cdShort.length > 8 ? '⏳' : escapeHtml(cdShort);
-                    inner.innerHTML = '<div class="story-metric-value" style="font-size:' + (cdShort.length > 8 ? '22' : cdShort.length > 5 ? '16' : '20') + 'px">' + cdDisplay + '</div><div class="story-metric-sub">Отсчёт</div>';
-                    labelText = 'Отсчёт';
-                    labelTime = cd;
-                } else if (item.type === 'weight') {
-                    inner.classList.add('metric');
-                    var sw = getTripStats(trip);
-                    var kg = sw.totalWeight;
-                    var color = kg <= 8 ? '#4ecb71' : kg <= 23 ? '#f4a261' : '#d6336c';
-                    inner.style.background = 'linear-gradient(135deg,' + color + ',#' + color.slice(1).replace(/(..)(..)(..)/, function(m, r, g, b) {
-                        var rr = Math.max(0, parseInt(r,16) - 30);
-                        var gg = Math.max(0, parseInt(g,16) - 30);
-                        var bb = Math.max(0, parseInt(b,16) - 30);
-                        return rr.toString(16).padStart(2,'0') + gg.toString(16).padStart(2,'0') + bb.toString(16).padStart(2,'0');
-                    }) + ')';
-                    inner.innerHTML = '<div class="story-metric-value">' + kg.toFixed(1) + '</div><div class="story-metric-sub">кг</div>';
-                    labelText = 'Вес';
-                    labelTime = kg <= 8 ? 'ручная' : kg <= 23 ? 'багаж' : 'перевес';
-                } else if (item.type === 'tips') {
-                    inner.classList.add('metric');
-                    inner.style.background = 'linear-gradient(135deg,#a06bff,#6b8cff)';
-                    var season = trip.startDate ? getSeason(trip.startDate) : 'summer';
-                    var seasonEmoji = { summer: '☀️', winter: '❄️', spring: '🌸', autumn: '🍂' }[season];
-                    inner.innerHTML = '<div class="story-metric-icon" style="font-size:28px">' + seasonEmoji + '</div><div class="story-metric-sub">Советы</div>';
-                    labelText = 'Советы';
-                    labelTime = { summer: 'лето', winter: 'зима', spring: 'весна', autumn: 'осень' }[season];
-                } else if (item.type === 'trip') {
-                    inner.classList.add('trip-preview');
-                    inner.style.background = 'linear-gradient(135deg,' + (trip.c1 || '#ffb347') + ',' + (trip.c2 || '#ff7e5f') + ')';
-                    var s2 = item.isActive ? getTripStats(trip) : { percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0 };
-                    inner.innerHTML =
-                        '<div class="story-trip-emoji">' + (trip.emoji || '🎒') + '</div>' +
-                        '<div class="story-trip-percent">' + s2.percent + '%</div>';
-                    labelText = trip.name || 'Поездка';
-                    if (!item.isActive) labelTime = trip.date || 'завершена';
-                    else {
-                        var s3 = getTripStats(trip);
-                        labelTime = s3.done + '/' + s3.total;
-                    }
-                }
-
+                inner.className = 'tip-inner';
+                inner.style.background = 'linear-gradient(135deg,' + cat.color1 + ',' + cat.color2 + ')';
+                inner.textContent = cat.emoji;
                 ring.appendChild(inner);
-
                 var label = document.createElement('div');
-                label.className = 'story-label';
-                label.innerHTML = escapeHtml(labelText) + (labelTime ? '<span class="label-time">' + escapeHtml(labelTime) + '</span>' : '');
-
-                el.appendChild(ring); el.appendChild(label);
-                el.addEventListener('click', function() { openStoryViewer(trips, idx); });
-                row.appendChild(el);
+                label.className = 'tip-label';
+                label.textContent = cat.name;
+                item.appendChild(ring);
+                item.appendChild(label);
+                item.addEventListener('click', function() { openTipViewer(idx); });
+                row.appendChild(item);
             });
             wrap.appendChild(row);
             slot.appendChild(wrap);
-        } catch (e) { bbLogError(3005, 'Ошибка рендера историй', { stack: e.stack }); }
+        } catch (e) { bbLogError(3005, 'Ошибка рендера советов', { stack: e.stack }); }
     }
 
-    function openStoryViewer(trips, idx) {
-        currentStoryIdx = idx;
-        var viewer = $('storyViewer'); if (!viewer) return;
-        viewer.classList.add('active');
+    function openTipViewer(idx) {
+        currentTipIdx = idx;
+        var cat = TIPS_CATEGORIES[idx]; if (!cat) return;
+        var v = $('tipViewer'); if (!v) return;
+        v.classList.add('active');
         resetUIBlocks();
-        var progressRow = $('storyProgressRow');
-        if (progressRow) {
-            progressRow.innerHTML = '';
-            trips.forEach(function(t, i) {
-                var bar = document.createElement('div');
-                bar.className = 'story-progress-bar' + (i < idx ? ' done' : '');
-                bar.innerHTML = '<div class="story-progress-fill"></div>';
-                progressRow.appendChild(bar);
-            });
-        }
-        showStorySlide(trips, idx);
-        if (!storyHandlersBound) {
-            storyHandlersBound = true;
-            var startX = 0, startY = 0, isDown = false;
-            viewer.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; startY = e.touches[0].clientY; isDown = true; stopStoryProgress(); }, { passive: true });
-            viewer.addEventListener('touchend', function(e) {
-                if (!isDown) return;
-                isDown = false;
-                var dx = e.changedTouches[0].clientX - startX, dy = e.changedTouches[0].clientY - startY;
-                if (Math.abs(dy) > 80 && Math.abs(dy) > Math.abs(dx)) { closeStoryViewer(); return; }
-                if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) nextStorySlide(); else prevStorySlide(); }
-                else resumeStory();
-            }, { passive: true });
-        }
-    }
-
-    function showStorySlide(trips, idx) {
-        if (idx < 0 || idx >= trips.length) { closeStoryViewer(); return; }
-        var item = trips[idx], trip = item.trip;
-        var storyId = item.type + '_' + (trip.id || idx) + '_' + idx;
-        viewedStories[storyId] = Date.now();
-        saveViewedStories();
-
-        document.querySelectorAll('.story-progress-bar').forEach(function(bar, i) {
-            bar.classList.toggle('done', i < idx);
-            var fill = bar.querySelector('.story-progress-fill');
-            if (fill) fill.style.width = i < idx ? '100%' : '0%';
+        var bg = $('tipViewerBg'); if (bg) bg.style.background = 'linear-gradient(135deg,' + cat.color1 + ',' + cat.color2 + ')';
+        var deco = $('tipViewerDeco'); if (deco) deco.textContent = cat.emoji;
+        var avatar = $('tipViewerAvatar'); if (avatar) avatar.textContent = cat.emoji;
+        var title = $('tipViewerTitle'); if (title) title.textContent = cat.name;
+        var sub = $('tipViewerSub'); if (sub) sub.textContent = cat.desc;
+        renderTipContent(cat, idx);
+        // Кнопки навигации
+        var nav = document.createElement('div');
+        nav.className = 'tip-nav';
+        TIPS_CATEGORIES.forEach(function(c, i) {
+            var d = document.createElement('div');
+            d.className = 'tip-nav-dot' + (i === idx ? ' active' : '');
+            d.addEventListener('click', function() { openTipViewer(i); });
+            nav.appendChild(d);
         });
-
-        var bg = $('storyBg'); if (bg) bg.style.background = 'linear-gradient(135deg,' + (trip.c1 || '#5ec7ff') + ',' + (trip.c2 || '#3a86ff') + ')';
-        var deco = $('storyDeco'); if (deco) deco.textContent = item.type === 'trip' ? (trip.emoji || '🎒') : '✨';
-        var avatar = $('storyAvatar');
-        var avatarMap = { weather: '🌤️', countdown: '⏳', weight: '⚖️', tips: '💡', trip: trip.emoji || '🎒' };
-        if (avatar) avatar.textContent = avatarMap[item.type] || '🧳';
-        var titleEl = $('storyTitle');
-        var titleMap = { weather: 'Погода · ' + (trip.city || 'Город'), countdown: 'До поездки', weight: 'Вес багажа', tips: 'Советы', trip: trip.name || 'Поездка' };
-        if (titleEl) titleEl.textContent = titleMap[item.type] || 'Поездка';
-        var timeEl = $('storyTime');
-        if (timeEl) {
-            if (item.type === 'trip' && !item.isActive) timeEl.textContent = trip.date || 'завершена';
-            else if (item.type === 'trip' && item.isActive) { var cd = trip.startDate ? countdown(trip.startDate) : ''; timeEl.textContent = cd || 'активная поездка'; }
-            else if (item.type === 'countdown' && trip.startDate) timeEl.textContent = countdown(trip.startDate);
-            else if (item.type === 'weather') timeEl.textContent = 'прогноз на поездку';
-            else timeEl.textContent = trip.name || '';
-        }
-        var content = $('storyContent'); if (!content) return;
-        var renderers = { weather: renderWeatherStory, countdown: renderCountdownStory, weight: renderWeightStory, tips: renderTipsStory, trip: renderTripStory };
-        var renderer = renderers[item.type] || renderTripStory;
-        renderer(item, trip, content);
-        startStoryProgress(trips, idx);
+        var content = $('tipViewerContent');
+        if (content) content.appendChild(nav);
+        viewedTips[cat.id] = Date.now();
+        saveViewedTips();
     }
 
-    function renderWeatherStory(item, trip, content) {
-        content.innerHTML = '<div class="story-big-emoji">🌤️</div><h2>' + escapeHtml(trip.city || 'Погода') + '</h2><p>Загрузка прогноза...</p>';
-        if (!trip.city) return;
-        var ck = 'weather_' + trip.city.toLowerCase();
-        var cached = weatherCache[ck];
-        if (cached && Date.now() - cached.ts < 1800000) { renderWeatherStoryData(cached.data, content); return; }
-        fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(trip.city) + '&count=1&language=ru&format=json')
-            .then(function(r) { return r.json(); })
-            .then(function(geo) {
-                if (!geo.results || !geo.results.length) throw new Error('nf');
-                var g = geo.results[0];
-                return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + g.latitude + '&longitude=' + g.longitude + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
-                    .then(function(r) { return r.json(); })
-                    .then(function(d) { d._cityName = g.name; weatherCache[ck] = { ts: Date.now(), data: d }; renderWeatherStoryData(d, content); });
-            })
-            .catch(function(e) {
-                bbLogError(5001, 'Не удалось загрузить погоду в сторис', { stack: e.stack });
-                content.innerHTML += '<p style="color:rgba(255,255,255,.7);margin-top:10px">Не удалось загрузить</p>';
-            });
-    }
-    function renderWeatherStoryData(data, content) {
-        var cur = data.current || {}, code = cur.weather_code || 0;
-        var w = WEATHER_CODES[code] || { icon: '🌡️', desc: 'Погода' };
-        var temp = cur.temperature_2m !== undefined ? Math.round(cur.temperature_2m) : '--';
-        var hint = w.desc;
-        if (cur.temperature_2m !== undefined) {
-            if (cur.temperature_2m < 0) hint += ' · Возьми тёплые вещи';
-            else if (cur.temperature_2m < 10) hint += ' · Нужна куртка';
-            else if (cur.temperature_2m > 28) hint += ' · Очень жарко';
-        }
-        if (code >= 51 && code <= 82) hint += ' · Не забудь зонт';
-        var daily = data.daily || {};
-        var days = daily.time || [], codes = daily.weather_code || [], maxT = daily.temperature_2m_max || [];
-        var dn = ['вс','пн','вт','ср','чт','пт','сб'];
-        var forecastHtml = '';
-        for (var i = 0; i < Math.min(5, days.length); i++) {
-            var d = new Date(days[i]);
-            var ww = WEATHER_CODES[codes[i]] || { icon: '🌡️' };
-            forecastHtml += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#fff;min-width:50px"><div style="font-size:11px;opacity:.7;font-weight:700;text-transform:uppercase">' + dn[d.getDay()] + '</div><div style="font-size:22px">' + ww.icon + '</div><div style="font-size:12px;font-weight:700">' + Math.round(maxT[i]) + '°</div></div>';
-        }
-        content.innerHTML = '<div class="story-big-emoji">' + w.icon + '</div><h2>' + temp + '°</h2><p>' + escapeHtml(hint) + '</p><div style="display:flex;gap:14px;justify-content:center;margin-top:20px;animation:storyFade .8s .5s both">' + forecastHtml + '</div>';
-    }
-    function renderCountdownStory(item, trip, content) {
-        var s = getTripStats(trip);
-        var remaining = s.total - s.done;
-        var cd = trip.startDate ? countdown(trip.startDate) : 'Скоро';
-        content.innerHTML = '<div class="story-big-emoji">⏳</div><h2>' + escapeHtml(cd) + '</h2><p>' + (remaining > 0 ? 'Осталось собрать ' + remaining + ' ' + plural(remaining, 'вещь', 'вещи', 'вещей') : 'Всё готово к отправлению! 🎉') + '</p><div class="story-stats"><div class="story-stat"><div class="s-val">' + s.percent + '%</div><div class="s-lbl">собрано</div></div><div class="story-stat"><div class="s-val">' + remaining + '</div><div class="s-lbl">осталось</div></div></div>';
-    }
-    function renderWeightStory(item, trip, content) {
-        var s = getTripStats(trip);
-        var kg = s.totalWeight;
-        var zone, color, emoji;
-        if (kg <= 8) { zone = '🎒 Ручная кладь'; color = '#4ecb71'; emoji = '🎒'; }
-        else if (kg <= 23) { zone = '🧳 Багаж'; color = '#f4a261'; emoji = '🧳'; }
-        else { zone = '⚠️ Перевес!'; color = '#ff5e8a'; emoji = '⚠️'; }
-        var pct = Math.min(100, (kg / 28) * 100);
-        content.innerHTML =
-            '<div class="story-big-emoji">' + emoji + '</div>' +
-            '<h2>' + kg.toFixed(1) + ' кг</h2>' +
-            '<p>' + zone + '</p>' +
-            '<div style="margin-top:24px;width:80%;max-width:280px">' +
-              '<div style="height:10px;background:rgba(255,255,255,.2);border-radius:10px;overflow:hidden">' +
-                '<div style="height:100%;width:' + pct + '%;background:' + color + ';border-radius:10px"></div>' +
-              '</div>' +
-              '<div style="display:flex;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.7);margin-top:8px;font-weight:700">' +
-                '<span>0</span><span>8 кг</span><span>23 кг</span><span>28+</span>' +
-              '</div>' +
-            '</div>';
-    }
-    function renderTipsStory(item, trip, content) {
-        var season = trip.startDate ? getSeason(trip.startDate) : 'summer';
-        var tips = {
-            summer: [['🧴','Солнцезащитный крем SPF 50+'],['🕶️','Солнечные очки и панама'],['💧','Бутылка для воды']],
-            winter: [['🧤','Тёплые перчатки и шапка'],['🧣','Шарф и термобельё'],['🧴','Крем от обветривания']],
-            spring: [['☂️','Компактный зонт'],['🧥','Ветровка с капюшоном'],['👟','Водонепроницаемая обувь']],
-            autumn: [['🧥','Тёплый свитер'],['☂️','Зонт и дождевик'],['🍵','Термос для горячего']]
-        };
-        var list = tips[season] || tips.summer;
-        var seasonName = { summer: 'Лето', winter: 'Зима', spring: 'Весна', autumn: 'Осень' }[season];
-        var html = list.map(function(t) {
-            return '<div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.1);border-radius:14px;margin-bottom:8px;text-align:left">' +
-                '<span style="font-size:24px">' + t[0] + '</span>' +
-                '<span style="color:#fff;font-size:14px;font-weight:600">' + escapeHtml(t[1]) + '</span>' +
-            '</div>';
-        }).join('');
-        content.innerHTML =
-            '<div class="story-big-emoji">💡</div>' +
-            '<h2>Не забудь</h2>' +
-            '<p>' + seasonName + ' · советы для поездки</p>' +
-            '<div style="width:100%;max-width:340px;margin-top:20px;animation:storyFade .8s .4s both">' + html + '</div>';
-    }
-    function renderTripStory(item, trip, content) {
-        var s = item.isActive ? getTripStats(trip) : { done: trip.done || 0, total: trip.total || 0, percent: trip.total > 0 ? Math.round((trip.done / trip.total) * 100) : 0, totalWeight: 0 };
-        var subText = item.isActive
-            ? (s.percent === 100 ? 'Всё собрано! Можно отправляться 🎉' : s.percent === 0 ? 'Ещё ничего не собрано. Начни сейчас!' : 'Собрано ' + s.done + ' из ' + s.total + ' вещей')
-            : 'Завершена ' + (trip.date || '') + ' · собрано ' + s.done + ' из ' + s.total;
-        content.innerHTML = '<div class="story-big-emoji">' + (trip.emoji || '🎒') + '</div><h2>' + escapeHtml(trip.name || 'Поездка') + '</h2><p>' + escapeHtml(subText) + '</p><div class="story-stats">' +
-            '<div class="story-stat"><div class="s-val">' + s.percent + '%</div><div class="s-lbl">собрано</div></div>' +
-            '<div class="story-stat"><div class="s-val">' + s.done + '/' + s.total + '</div><div class="s-lbl">вещей</div></div>' +
-            (s.totalWeight > 0 ? '<div class="story-stat"><div class="s-val">' + s.totalWeight.toFixed(1) + '</div><div class="s-lbl">кг</div></div>' : '') + '</div>';
+    function renderTipContent(cat, idx) {
+        var content = $('tipViewerContent'); if (!content) return;
+        content.innerHTML = '';
+        var hero = document.createElement('div');
+        hero.className = 'tip-hero';
+        hero.innerHTML = '<div class="tip-hero-emoji">' + cat.emoji + '</div><h2>' + escapeHtml(cat.name) + '</h2><p>' + escapeHtml(cat.desc) + '</p>';
+        content.appendChild(hero);
+        var cards = document.createElement('div');
+        cards.className = 'tip-cards';
+        cat.tips.forEach(function(tip) {
+            var c = document.createElement('div');
+            c.className = 'tip-card';
+            c.innerHTML = '<div class="tip-card-icon">' + tip.icon + '</div><div class="tip-card-text">' + tip.text + '</div>';
+            cards.appendChild(c);
+        });
+        content.appendChild(cards);
     }
 
-    function startStoryProgress(trips, idx) {
-        stopStoryProgress();
-        var bars = document.querySelectorAll('.story-progress-bar');
-        var cb = bars[idx]; if (!cb) return;
-        var fill = cb.querySelector('.story-progress-fill'); if (!fill) return;
-        fill.style.width = '0%';
-        var duration = 6000, start = Date.now();
-        storyTimer = setInterval(function() {
-            var p = Math.min(100, ((Date.now() - start) / duration) * 100);
-            fill.style.width = p + '%';
-            if (p >= 100) { stopStoryProgress(); nextStorySlide(); }
-        }, 50);
-    }
-    function stopStoryProgress() { if (storyTimer) { clearInterval(storyTimer); storyTimer = null; } }
-    function resumeStory() {
-        var bars = document.querySelectorAll('.story-progress-bar');
-        var cb = bars[currentStoryIdx]; if (!cb) return;
-        var fill = cb.querySelector('.story-progress-fill'); if (!fill) return;
-        var cp = parseFloat(fill.style.width) || 0;
-        if (cp >= 100) { nextStorySlide(); return; }
-        var remaining = (100 - cp) / 100 * 6000;
-        var start = Date.now();
-        storyTimer = setInterval(function() {
-            var add = Math.min(100 - cp, ((Date.now() - start) / remaining) * (100 - cp));
-            fill.style.width = (cp + add) + '%';
-            if (cp + add >= 100) { stopStoryProgress(); nextStorySlide(); }
-        }, 50);
-    }
-    function nextStorySlide() {
-        var trips = buildTripsForStories();
-        if (currentStoryIdx + 1 >= trips.length) { closeStoryViewer(); return; }
-        currentStoryIdx++; showStorySlide(trips, currentStoryIdx);
-    }
-    function prevStorySlide() {
-        var trips = buildTripsForStories();
-        if (currentStoryIdx - 1 < 0) { currentStoryIdx = 0; showStorySlide(trips, 0); return; }
-        currentStoryIdx--; showStorySlide(trips, currentStoryIdx);
-    }
-    function closeStoryViewer() {
-        stopStoryProgress();
-        var viewer = $('storyViewer'); if (viewer) viewer.classList.remove('active');
+    function closeTipViewer() {
+        var v = $('tipViewer'); if (v) v.classList.remove('active');
         resetUIBlocks();
-        buildStories();
+        buildTips();
     }
 
+    // ============ HOME ============
     function renderHome() {
         try {
-            buildStories();
+            buildTips();
             var ws = $('widgetSlot'); if (!ws) return;
             ws.innerHTML = '';
             if (activeTrips.length === 0) ws.appendChild(buildEmptyState());
             else ws.appendChild(buildTripsCarousel());
             renderHistory();
-        } catch (e) {
-            bbLogError(3001, 'Ошибка рендера главной', { stack: e.stack });
-        }
+        } catch (e) { bbLogError(3001, 'Ошибка рендера главной', { stack: e.stack }); }
     }
 
     function buildEmptyState() {
@@ -1735,7 +1472,6 @@ function downloadErrorLog() {
         var offset = circ - (s.percent / 100) * circ;
         var ringColor = complete ? '#2f9c53' : (trip.ring || '#ff7e5f');
         var cdText = trip.startDate ? countdown(trip.startDate) : '';
-        var wText = s.totalWeight > 0 ? '⚖️ ' + s.doneWeight.toFixed(1) + '/' + s.totalWeight.toFixed(1) + ' кг' : '';
         var widget = document.createElement('div');
         widget.className = 'main-widget';
         widget.style.setProperty('--c1', trip.c1 || '#ffb347');
@@ -1747,7 +1483,7 @@ function downloadErrorLog() {
                 '<div class="hero-title">' +
                     (complete ? '<div class="complete-badge">✓ Всё собрано</div>' : '') +
                     '<h2>' + escapeHtml(trip.name || 'Поездка') + '</h2>' +
-                    '<div class="hero-date">📅 ' + formatTripDate(trip) + (cdText ? '<span class="hero-countdown">' + cdText + '</span>' : '') + (wText ? '<span class="hero-weight">' + wText + '</span>' : '') + '</div>' +
+                    '<div class="hero-date">📅 ' + formatTripDate(trip) + (cdText ? '<span class="hero-countdown">' + cdText + '</span>' : '') + '</div>' +
                 '</div>' +
             '</div>' +
             '<div class="widget-body">' +
@@ -1778,6 +1514,7 @@ function downloadErrorLog() {
         return widget;
     }
 
+    // ============ LISTS ============
     function renderListsPage() {
         try {
             var cont = $('listsPageContent');
@@ -1787,7 +1524,7 @@ function downloadErrorLog() {
 
             var header = document.createElement('div');
             header.className = 'lists-page-header';
-            header.innerHTML = '<div class="lph-title">Все списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
+            header.innerHTML = '<div class="lph-title">Мои списки</div><div class="lph-count">' + keys.length + ' ' + plural(keys.length, 'список', 'списка', 'списков') + '</div>';
             cont.appendChild(header);
 
             if (!keys.length) {
@@ -1848,27 +1585,29 @@ function downloadErrorLog() {
     }
 
     function renderHistory() {
-        var slot = $('historySlot'); if (!slot) return;
-        slot.innerHTML = '';
-        if (!history.length) return;
-        var section = document.createElement('div');
-        section.className = 'stats-section';
-        section.innerHTML = '<div class="stats-title">История поездок</div>';
-        history.forEach(function(h) {
-            if (!h) return;
-            var percent = h.total > 0 ? Math.round((h.done / h.total) * 100) : 0;
-            var item = document.createElement('div');
-            item.className = 'history-item';
-            item.innerHTML = '<div class="h-emoji">' + (h.emoji || '🎒') + '</div><div class="h-body"><div class="h-name">' + escapeHtml(h.name || 'Поездка') + '</div><div class="h-meta">' + (h.date || '') + ' · ' + (h.done || 0) + ' из ' + (h.total || 0) + ' вещей</div></div><div class="h-badge">' + percent + '%</div>';
-            [['📤', function() { shareTrip(h); }], ['↻', function() { repeatTrip(h); }], ['✕', function() { deleteHistory(h.id); }]].forEach(function(pair) {
-                var b = document.createElement('button');
-                b.type = 'button'; b.className = 'icon-btn'; b.textContent = pair[0];
-                b.addEventListener('click', function(e) { e.stopPropagation(); pair[1](); });
-                item.appendChild(b);
+        try {
+            var slot = $('historySlot'); if (!slot) return;
+            slot.innerHTML = '';
+            if (!history.length) return;
+            var section = document.createElement('div');
+            section.className = 'stats-section';
+            section.innerHTML = '<div class="stats-title">История поездок</div>';
+            history.forEach(function(h) {
+                if (!h) return;
+                var percent = h.total > 0 ? Math.round((h.done / h.total) * 100) : 0;
+                var item = document.createElement('div');
+                item.className = 'history-item';
+                item.innerHTML = '<div class="h-emoji">' + (h.emoji || '🎒') + '</div><div class="h-body"><div class="h-name">' + escapeHtml(h.name || 'Поездка') + '</div><div class="h-meta">' + (h.date || '') + ' · ' + (h.done || 0) + ' из ' + (h.total || 0) + ' вещей</div></div><div class="h-badge">' + percent + '%</div>';
+                [['📤', function() { shareTrip(h); }], ['↻', function() { repeatTrip(h); }], ['✕', function() { deleteHistory(h.id); }]].forEach(function(pair) {
+                    var b = document.createElement('button');
+                    b.type = 'button'; b.className = 'icon-btn'; b.textContent = pair[0];
+                    b.addEventListener('click', function(e) { e.stopPropagation(); pair[1](); });
+                    item.appendChild(b);
+                });
+                section.appendChild(item);
             });
-            section.appendChild(item);
-        });
-        slot.appendChild(section);
+            slot.appendChild(section);
+        } catch (e) { bbLogError(3006, 'Ошибка рендера истории', { stack: e.stack }); }
     }
 
     function shareTrip(trip) {
@@ -1898,7 +1637,7 @@ function downloadErrorLog() {
         var trip = getCurrentTrip();
         if (!trip) return;
         var s = getTripStats(trip);
-        shareTrip({ name: trip.name, date: trip.date, total: s.total, done: s.done, fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category, done: i.done }; }) });
+        shareTrip({ name: trip.name, date: trip.date, total: s.total, done: s.done, fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, note: i.note, category: i.category, done: i.done }; }) });
     }
 
     function repeatTrip(h) {
@@ -1919,22 +1658,23 @@ function downloadErrorLog() {
         showToast('Поездка создана заново!');
     }
 
+    // ============ TYPE MODAL (базовый + списки) ============
     function renderTypeGrid() {
         var grid = $('typeGrid'); if (!grid) return;
         grid.innerHTML = '';
-        function makeOption(key, t, isCustom) {
+        function makeOption(key, t) {
             var div = document.createElement('div');
             div.className = 'type-option' + (selectedType === key ? ' selected' : '');
-            div.innerHTML = (isCustom ? '<span class="custom-type-badge">свой</span>' : '') + '<span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
+            div.innerHTML = '<span class="checkmark">✓</span><span class="emoji">' + (t.emoji || '🎒') + '</span><span class="name">' + escapeHtml(t.name || 'Список') + '</span>';
             div.addEventListener('click', function() {
-                selectedType = key;
-                var cb = $('createBtn'); if (cb) cb.disabled = false;
+                if (selectedType === key) { selectedType = null; }
+                else { selectedType = key; }
                 renderTypeGrid();
+                updateCreateBtn();
             });
             grid.appendChild(div);
         }
-        Object.keys(DEFAULT_TYPES).forEach(function(k) { makeOption(k, DEFAULT_TYPES[k], false); });
-        Object.keys(customTypes).forEach(function(k) { makeOption(k, customTypes[k], true); });
+        Object.keys(DEFAULT_TYPES).forEach(function(k) { makeOption(k, DEFAULT_TYPES[k]); });
         var createDiv = document.createElement('div');
         createDiv.className = 'type-option create-new';
         createDiv.innerHTML = '<span class="emoji">➕</span><span class="name">Создать свой</span>';
@@ -1942,18 +1682,133 @@ function downloadErrorLog() {
         grid.appendChild(createDiv);
     }
 
+    function renderListPicker() {
+        var p = $('listPicker'); if (!p) return;
+        p.innerHTML = '';
+        var keys = Object.keys(customTypes);
+        if (!keys.length) {
+            p.innerHTML = '<div class="list-picker-empty">Нет своих списков. Создайте в разделе «Списки» или нажмите «Создать свой» выше.</div>';
+            return;
+        }
+        keys.forEach(function(key) {
+            var t = customTypes[key];
+            var isSel = selectedListIds.indexOf(key) !== -1;
+            var item = document.createElement('div');
+            item.className = 'list-picker-item' + (isSel ? ' selected' : '');
+            item.innerHTML =
+                '<div class="lp-emoji">' + (t.emoji || '🎒') + '</div>' +
+                '<div class="lp-body"><div class="lp-name">' + escapeHtml(t.name || 'Список') + '</div><div class="lp-meta">' + t.items.length + ' ' + plural(t.items.length, 'вещь', 'вещи', 'вещей') + '</div></div>' +
+                '<div class="lp-check">✓</div>';
+            item.addEventListener('click', function() {
+                var i = selectedListIds.indexOf(key);
+                if (i === -1) selectedListIds.push(key);
+                else selectedListIds.splice(i, 1);
+                renderListPicker();
+                updateCreateBtn();
+            });
+            p.appendChild(item);
+        });
+    }
+
+    function updateCreateBtn() {
+        var cb = $('createBtn'); if (!cb) return;
+        cb.disabled = (!selectedType && !selectedListIds.length);
+    }
+
     function openTypeModal() {
         if (activeTrips.length >= MAX_ACTIVE_TRIPS) { showToast('Максимум ' + MAX_ACTIVE_TRIPS + ' активные поездки'); return; }
         selectedType = null;
+        selectedListIds = [];
         ['tripName','tripStartDate','tripEndDate','tripCity'].forEach(function(id) { var el = $(id); if (el) el.value = ''; });
-        var cb = $('createBtn'); if (cb) cb.disabled = true;
+        updateCreateBtn();
         renderTypeGrid();
+        renderListPicker();
         openModal('typeModal');
     }
 
+    // Объединение вещей из базового типа + списков
+    function buildCombinedItems() {
+        var allItems = [];
+        var sources = [];
+        if (selectedType) {
+            var type = getType(selectedType);
+            if (type && type.items && type.items.length) {
+                sources.push({ id: selectedType, name: type.name, emoji: type.emoji, items: type.items });
+            }
+        }
+        selectedListIds.forEach(function(listId) {
+            var t = customTypes[listId];
+            if (t && t.items && t.items.length) {
+                sources.push({ id: listId, name: t.name, emoji: t.emoji, items: t.items });
+            }
+        });
+
+        // Схлопывание дубликатов по названию
+        var merged = {};
+        var order = [];
+        sources.forEach(function(src) {
+            src.items.forEach(function(raw) {
+                var it = normalizeItem(raw);
+                var key = it.text.toLowerCase().trim();
+                if (merged[key]) {
+                    merged[key].qty += it.qty;
+                    if (src.name && merged[key].from.indexOf(src.name) === -1) {
+                        merged[key].from += (merged[key].from ? ', ' : '') + src.name;
+                    }
+                } else {
+                    merged[key] = {
+                        text: it.text,
+                        qty: it.qty,
+                        note: it.note,
+                        category: it.category,
+                        from: src.name || '',
+                        done: false
+                    };
+                    order.push(key);
+                }
+            });
+        });
+
+        return { items: order.map(function(k) { return merged[k]; }), sources: sources };
+    }
+
     function createTrip() {
-        if (!selectedType || activeTrips.length >= MAX_ACTIVE_TRIPS) return;
-        var type = getType(selectedType); if (!type) return;
+        if (activeTrips.length >= MAX_ACTIVE_TRIPS) return;
+        if (!selectedType && !selectedListIds.length) { showToast('Выберите тип или список'); return; }
+
+        var combined = buildCombinedItems();
+        if (!combined.items.length) { showToast('В выбранных источниках нет вещей'); return; }
+
+        // Определяем визуал: базовый тип приоритетнее, иначе берём первый список
+        var visual = { emoji: '🎒', c1: '#ffb347', c2: '#ff7e5f', ring: '#ff7e5f' };
+        var defaultName = '';
+        if (selectedType) {
+            var t = getType(selectedType);
+            visual = { emoji: t.emoji, c1: t.c1, c2: t.c2, ring: t.ring };
+            defaultName = t.name;
+        } else {
+            var firstList = customTypes[selectedListIds[0]];
+            if (firstList) {
+                visual = { emoji: firstList.emoji || '🎒', c1: firstList.c1 || '#ffb347', c2: firstList.c2 || '#ff7e5f', ring: firstList.ring || '#ff7e5f' };
+                defaultName = firstList.name;
+            }
+        }
+
+        // Формируем имя: пользовательское, иначе комбинация
+        var userInputName = (($('tripName') || {}).value || '').trim();
+        var finalName = userInputName;
+        if (!finalName) {
+            if (selectedListIds.length > 1) {
+                finalName = defaultName + ' +' + (selectedListIds.length - 1);
+            } else if (selectedType && selectedListIds.length === 1) {
+                finalName = defaultName + ' + ' + customTypes[selectedListIds[0]].name;
+            } else if (selectedListIds.length === 1 && !selectedType) {
+                finalName = customTypes[selectedListIds[0]].name;
+            } else {
+                finalName = defaultName || 'Поездка';
+            }
+        }
+
         var startDate = ($('tripStartDate') || {}).value || null;
         var endDate = ($('tripEndDate') || {}).value || null;
         var daysCount = 3;
@@ -1963,33 +1818,28 @@ function downloadErrorLog() {
                 daysCount = Math.max(1, Math.round((d2 - d1) / 86400000) + 1);
             } catch (e) {}
         }
+
         activeTrips.push({
-            id: Date.now(), type: selectedType,
-            name: (($('tripName') || {}).value || '').trim() || type.name,
-            emoji: type.emoji, c1: type.c1, c2: type.c2, ring: type.ring,
+            id: Date.now(),
+            type: selectedType || null,
+            listIds: selectedListIds.slice(),
+            name: finalName,
+            emoji: visual.emoji, c1: visual.c1, c2: visual.c2, ring: visual.ring,
             date: new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' }),
             startDate: startDate, endDate: endDate, daysCount: daysCount,
             city: (($('tripCity') || {}).value || '').trim(),
-            items: type.items.map(function(i) { var n = normalizeItem(i); n.done = false; return n; })
+            items: combined.items
         });
         currentTripIndex = activeTrips.length - 1;
         saveActive();
         closeModal('typeModal');
-        renderHome();
-        vibrate();
+        renderHome(); renderProfile(); vibrate();
         showToast('Поездка создана!');
     }
 
-    function pickWizEmoji(em) {
-        wiz.emoji = em;
-        renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji);
-        updateWiz1Preview();
-    }
-    function pickWizColor(i) {
-        wiz.colorIdx = i;
-        renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor);
-        updateWiz1Preview();
-    }
+    // ============ WIZARD ============
+    function pickWizEmoji(em) { wiz.emoji = em; renderEmojiPicker('wiz1EmojiPicker', wiz.emoji, pickWizEmoji); updateWiz1Preview(); }
+    function pickWizColor(i) { wiz.colorIdx = i; renderColorPicker('wiz1ColorPicker', wiz.colorIdx, pickWizColor); updateWiz1Preview(); }
     function startWizard() {
         wiz = { name: '', emoji: '🎒', colorIdx: 0, items: [] };
         var ni = $('wiz1NameInput'); if (ni) ni.value = '';
@@ -1999,7 +1849,6 @@ function downloadErrorLog() {
         updateWiz1Preview();
         openModal('wizardStep1');
     }
-
     function renderEmojiPicker(pickerId, current, onSelect) {
         var p = $(pickerId); if (!p) return;
         p.innerHTML = '';
@@ -2011,7 +1860,6 @@ function downloadErrorLog() {
             p.appendChild(d);
         });
     }
-
     function renderColorPicker(pickerId, currentIdx, onSelect) {
         var p = $(pickerId); if (!p) return;
         p.innerHTML = '';
@@ -2023,16 +1871,14 @@ function downloadErrorLog() {
             p.appendChild(d);
         });
     }
-
     function updateWiz1Preview() {
         var c = COLOR_PALETTES[wiz.colorIdx];
-        var name = (($('wiz1NameInput') || {}).value || '').trim() || 'Название типа';
+        var name = (($('wiz1NameInput') || {}).value || '').trim() || 'Название списка';
         var pr = $('wiz1Preview'); if (pr) pr.style.background = 'linear-gradient(135deg,' + c.c1 + ',' + c.c2 + ')';
         var e = $('wiz1Emoji'); if (e) e.textContent = wiz.emoji;
         var n = $('wiz1Name'); if (n) n.textContent = name;
         var cn = $('wiz1Count'); if (cn) cn.textContent = wiz.items.length + ' ' + plural(wiz.items.length, 'вещь', 'вещи', 'вещей');
     }
-
     function wiz1Next() {
         var name = (($('wiz1NameInput') || {}).value || '').trim();
         if (!name) { showToast('Введите название'); return; }
@@ -2063,7 +1909,7 @@ function downloadErrorLog() {
     function wiz2AddQuick() {
         var v = (($('wiz2NewItem') || {}).value || '').trim();
         if (!v) return;
-        wiz.items.push({ text: v, qty: 1, weight: 0, note: '', category: 'other' });
+        wiz.items.push({ text: v, qty: 1, note: '', category: 'other' });
         $('wiz2NewItem').value = '';
         renderWiz2Items();
         $('wiz2NewItem').focus();
@@ -2084,14 +1930,11 @@ function downloadErrorLog() {
         row.className = 'advanced-item-row';
         var allCats = getAllCategories();
         var cat = allCats[item.category] || allCats.other || { icon: '📦' };
-        var meta = [];
-        if (item.qty > 1) meta.push('×' + item.qty);
-        if (item.weight) meta.push((item.weight * (item.qty || 1)).toFixed(1) + ' кг');
         var head = document.createElement('div');
         head.className = 'advanced-item-head';
         var td = document.createElement('div');
         td.className = 'item-text';
-        td.innerHTML = cat.icon + ' ' + escapeHtml(item.text) + (meta.length ? ' <span style="font-size:11.5px;color:var(--text-3);font-weight:600">· ' + meta.join(' · ') + '</span>' : '');
+        td.innerHTML = cat.icon + ' ' + escapeHtml(item.text) + (item.qty > 1 ? ' <span style="font-size:11.5px;color:var(--text-3);font-weight:600">· ×' + item.qty + '</span>' : '');
         if (item.note) {
             var nd = document.createElement('div');
             nd.style.cssText = 'font-size:11.5px;color:var(--text-3);font-style:italic;margin-top:2px;font-weight:500';
@@ -2112,15 +1955,10 @@ function downloadErrorLog() {
         qi.type = 'number'; qi.className = 'mini-field'; qi.value = item.qty || 1;
         qi.min = '1'; qi.max = '99'; qi.placeholder = 'Кол-во';
         qi.addEventListener('input', function() { item.qty = parseInt(qi.value) || 1; });
-        var wi = document.createElement('input');
-        wi.type = 'number'; wi.className = 'mini-field'; wi.value = item.weight || '';
-        wi.step = '0.1'; wi.min = '0'; wi.placeholder = 'Вес, кг';
-        wi.addEventListener('input', function() { item.weight = parseFloat(wi.value) || 0; });
-        fields.appendChild(qi); fields.appendChild(wi);
+        fields.appendChild(qi);
         var cs = document.createElement('select');
         cs.className = 'mini-field full';
         fillCategorySelect(cs, item.category);
-        // Только сохранение значения — открытие модалки обрабатывается глобально
         cs.addEventListener('change', function() {
             if (cs.value === '__new__') return;
             item.category = cs.value;
@@ -2160,49 +1998,32 @@ function downloadErrorLog() {
 
     function openAdvanced(target) {
         var p = target === 'wizard' ? 'adv' : 'adv2';
-        ['Name','Qty','Weight','Note'].forEach(function(f) {
+        ['Name','Qty','Note'].forEach(function(f) {
             var el = $(p + f);
             if (el) el.value = f === 'Qty' ? '1' : '';
         });
         var s = $(p + 'Cat');
         if (s) { fillCategorySelect(s, 'other'); }
-        var hintId = target === 'wizard' ? 'smartHintAdv' : 'smartHintAdv2';
-        var hintEl = $(hintId); if (hintEl) hintEl.classList.remove('show');
-        var nameInput = $(p + 'Name');
-        var qtyInput = $(p + 'Qty');
-        var handler = target === 'wizard' ? hintAdvHandler : hintAdv2Handler;
-        if (nameInput) { nameInput.removeEventListener('input', handler); nameInput.addEventListener('input', handler); }
-        if (qtyInput) { qtyInput.removeEventListener('input', handler); qtyInput.addEventListener('input', handler); }
         if (target === 'wizard') { closeModal('wizardStep2'); openModal('advancedItemModal'); }
         else { closeModal('listEditorModal'); openModal('advancedItemModal2'); }
     }
     function advConfirm() {
         var n = (($('advName') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
-        wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, weight: parseFloat($('advWeight').value) || 0, note: (($('advNote') || {}).value || '').trim(), category: ($('advCat') || {}).value || 'other' });
+        wiz.items.push({ text: n, qty: parseInt($('advQty').value) || 1, note: (($('advNote') || {}).value || '').trim(), category: ($('advCat') || {}).value || 'other' });
         closeModal('advancedItemModal');
-        var h = $('smartHintAdv'); if (h) h.classList.remove('show');
         openWiz2();
     }
     function adv2Confirm() {
         var n = (($('adv2Name') || {}).value || '').trim();
         if (!n) { showToast('Введите название'); return; }
-        editing.items.push({ text: n, qty: parseInt($('adv2Qty').value) || 1, weight: parseFloat($('adv2Weight').value) || 0, note: (($('adv2Note') || {}).value || '').trim(), category: ($('adv2Cat') || {}).value || 'other' });
+        editing.items.push({ text: n, qty: parseInt($('adv2Qty').value) || 1, note: (($('adv2Note') || {}).value || '').trim(), category: ($('adv2Cat') || {}).value || 'other' });
         closeModal('advancedItemModal2');
-        var h = $('smartHintAdv2'); if (h) h.classList.remove('show');
         openEditorById(editing.id);
     }
 
-    function pickEditorEmoji(em) {
-        editing.emoji = em;
-        renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji);
-        updateEditorPreview();
-    }
-    function pickEditorColor(i) {
-        editing.colorIdx = i;
-        renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor);
-        updateEditorPreview();
-    }
+    function pickEditorEmoji(em) { editing.emoji = em; renderEmojiPicker('emojiPicker', editing.emoji, pickEditorEmoji); updateEditorPreview(); }
+    function pickEditorColor(i) { editing.colorIdx = i; renderColorPicker('colorPicker', editing.colorIdx, pickEditorColor); updateEditorPreview(); }
 
     function openEditor(id) {
         if (!customTypes[id]) return;
@@ -2246,7 +2067,7 @@ function downloadErrorLog() {
     function editorAddQuick() {
         var v = (($('newItemInput') || {}).value || '').trim();
         if (!v) return;
-        editing.items.push({ text: v, qty: 1, weight: 0, note: '', category: 'other' });
+        editing.items.push({ text: v, qty: 1, note: '', category: 'other' });
         $('newItemInput').value = '';
         renderEditorItems(); updateEditorPreview();
         $('newItemInput').focus();
@@ -2268,8 +2089,9 @@ function downloadErrorLog() {
         saveCustomTypes();
         renderHome(); renderProfile(); renderListsPage();
         if ($('typeModal') && $('typeModal').classList.contains('active')) {
-            if (selectedType === id) { selectedType = null; if ($('createBtn')) $('createBtn').disabled = true; }
-            renderTypeGrid();
+            var idx = selectedListIds.indexOf(id);
+            if (idx !== -1) selectedListIds.splice(idx, 1);
+            renderListPicker();
         }
     }
     function deleteEditingList() {
@@ -2285,7 +2107,8 @@ function downloadErrorLog() {
             name: trip.name, emoji: trip.emoji, date: trip.date,
             city: trip.city || '', startDate: trip.startDate || null,
             total: s.total, done: s.done,
-            fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, weight: i.weight, note: i.note, category: i.category }; })
+            listIds: trip.listIds || [],
+            fullItems: trip.items.map(function(i) { return { text: i.text, qty: i.qty, note: i.note, category: i.category }; })
         });
         activeTrips.splice(currentTripIndex, 1);
         if (currentTripIndex >= activeTrips.length) currentTripIndex = Math.max(0, activeTrips.length - 1);
@@ -2296,6 +2119,7 @@ function downloadErrorLog() {
         saveHistory(); renderHome(); renderProfile();
     }
 
+    // ============ CHECKLIST ============
     function openChecklistPage() {
         var trip = getCurrentTrip();
         if (!trip) return;
@@ -2332,8 +2156,6 @@ function downloadErrorLog() {
             var pt = $('tripProgressText'); if (pt) pt.textContent = s.done + ' / ' + s.total;
             var f = $('tripProgressFill');
             if (f) { f.style.width = s.percent + '%'; f.classList.toggle('complete', s.percent === 100 && s.total > 0); }
-            var tw = $('tripWeight'); if (tw) tw.textContent = s.doneWeight.toFixed(1) + ' / ' + s.totalWeight.toFixed(1) + ' кг';
-            renderWeightLimits(s.totalWeight);
             var tg = $('hideDoneToggle'); if (tg) tg.classList.toggle('active', !!settings.hideDone);
             var cont = $('checklistContainer'); if (!cont) return;
             cont.innerHTML = '';
@@ -2372,18 +2194,6 @@ function downloadErrorLog() {
             });
         } catch (e) { bbLogError(3004, 'Ошибка рендера чеклиста', { stack: e.stack }); }
     }
-    function renderWeightLimits(tw) {
-        var w = $('weightLimits'); if (!w) return;
-        if (tw <= 0) { w.style.display = 'none'; return; }
-        w.style.display = 'block';
-        var p = Math.min(100, (tw / 28) * 100);
-        var m = $('weightMarker'); if (m) m.style.left = 'calc(' + p + '% - 2px)';
-        var st = $('weightStatus'); if (!st) return;
-        st.className = 'weight-status';
-        if (tw <= 8) { st.classList.add('hand'); st.textContent = '✅ Ручная кладь (' + tw.toFixed(1) + ' кг)'; }
-        else if (tw <= 23) { st.classList.add('bag'); st.textContent = '⚠️ Багаж (' + tw.toFixed(1) + ' кг)'; }
-        else { st.classList.add('over'); st.textContent = '❌ Перевес (' + tw.toFixed(1) + ' кг)'; }
-    }
     function buildSwipeItem(item, idx) {
         var wrap = document.createElement('div');
         wrap.className = 'check-item-wrap';
@@ -2421,12 +2231,14 @@ function downloadErrorLog() {
         return wrap;
     }
     function deleteActiveItem(idx) {
-        var trip = getCurrentTrip();
-        if (!trip || !trip.items[idx]) return;
-        trip.items.splice(idx, 1);
-        saveActive(); vibrate();
-        renderChecklistPage(); renderHome(); renderProfile();
-        showToast('Удалено');
+        try {
+            var trip = getCurrentTrip();
+            if (!trip || !trip.items[idx]) return;
+            trip.items.splice(idx, 1);
+            saveActive(); vibrate();
+            renderChecklistPage(); renderHome(); renderProfile();
+            showToast('Удалено');
+        } catch (e) { bbLogError(7002, 'Ошибка удаления вещи', { stack: e.stack }); }
     }
     function buildCheckItem(item, idx) {
         var div = document.createElement('div');
@@ -2437,7 +2249,8 @@ function downloadErrorLog() {
         c.addEventListener('click', function(e) { e.stopPropagation(); toggleItem(idx); });
         var b = document.createElement('div');
         b.className = 'check-body';
-        b.innerHTML = '<div class="check-text">' + highlight(item.text) + '</div>' + (item.note ? '<div class="check-note">' + escapeHtml(item.note) + '</div>' : '');
+        var fromLine = item.from ? '<div class="check-from">из «' + escapeHtml(item.from) + '»</div>' : '';
+        b.innerHTML = '<div class="check-text">' + highlight(item.text) + '</div>' + (item.note ? '<div class="check-note">' + escapeHtml(item.note) + '</div>' : '') + fromLine;
         b.addEventListener('click', function() { toggleItem(idx); });
         div.appendChild(c); div.appendChild(b);
         if (item.qty && item.qty > 1) {
@@ -2478,7 +2291,7 @@ function downloadErrorLog() {
             if (!was && all) { fireConfetti(); vibrateStrong(); }
             saveActive();
             renderChecklistPage(); renderHome(); renderProfile();
-        } catch (e) { bbLogError(7001, 'Ошибка переключения вещи', { stack: e.stack }); }
+        } catch (e) { bbLogError(7001, 'Ошибка отметки вещи', { stack: e.stack }); }
     }
     function spawnPlusOne(x, y) {
         var el = document.createElement('div');
@@ -2489,6 +2302,7 @@ function downloadErrorLog() {
         setTimeout(function() { el.remove(); }, 1100);
     }
 
+    // ============ WEATHER ============
     function loadWeather() {
         var card = $('weatherCard'); if (!card) return;
         var trip = getCurrentTrip();
@@ -2505,7 +2319,7 @@ function downloadErrorLog() {
         fetch('https://geocoding-api.open-meteo.com/v1/search?name=' + encodeURIComponent(trip.city) + '&count=1&language=ru&format=json')
             .then(function(r) { return r.json(); })
             .then(function(g) {
-                if (!g.results || !g.results.length) throw new Error('nf');
+                if (!g.results || !g.results.length) { bbLogError(5002, 'Город не найден: ' + trip.city); throw new Error('nf'); }
                 var loc = g.results[0];
                 return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + loc.latitude + '&longitude=' + loc.longitude + '&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5')
                     .then(function(r) { return r.json(); })
@@ -2551,121 +2365,42 @@ function downloadErrorLog() {
         }
     }
 
+    // ============ ADD ITEM ============
     function openAddItemModal() {
         var trip = getCurrentTrip();
         if (!trip) { showToast('Нет активной поездки'); return; }
-        ['Name','Weight','Note'].forEach(function(f) { var el = $('addItem' + f); if (el) el.value = ''; });
+        ['Name','Note'].forEach(function(f) { var el = $('addItem' + f); if (el) el.value = ''; });
         var q = $('addItemQty'); if (q) q.value = '1';
         var s = $('addItemCat');
         if (s) { fillCategorySelect(s, 'other'); }
-        var ai = $('addItemName');
-        if (ai) { ai.removeEventListener('input', hintAddHandler); ai.addEventListener('input', hintAddHandler); }
-        var aq = $('addItemQty');
-        if (aq) { aq.removeEventListener('input', hintAddHandler); aq.addEventListener('input', hintAddHandler); }
-        var sh = $('smartHintBox'); if (sh) sh.classList.remove('show');
         var overlay = $('addItemModal'); if (overlay) overlay.classList.add('above-checklist');
         openModal('addItemModal');
     }
     function confirmAddItem() {
-        var trip = getCurrentTrip();
-        if (!trip) return;
-        var n = (($('addItemName') || {}).value || '').trim();
-        if (!n) { showToast('Введите название'); return; }
-        trip.items.push({
-            text: n, done: false,
-            qty: parseInt($('addItemQty').value) || 1,
-            weight: parseFloat($('addItemWeight').value) || 0,
-            note: (($('addItemNote') || {}).value || '').trim(),
-            category: ($('addItemCat') || {}).value || 'other'
-        });
-        saveActive();
-        closeAddItemModal();
-        renderChecklistPage(); renderHome(); vibrate();
-        showToast('Вещь добавлена!');
+        try {
+            var trip = getCurrentTrip();
+            if (!trip) return;
+            var n = (($('addItemName') || {}).value || '').trim();
+            if (!n) { showToast('Введите название'); return; }
+            trip.items.push({
+                text: n, done: false,
+                qty: parseInt($('addItemQty').value) || 1,
+                note: (($('addItemNote') || {}).value || '').trim(),
+                category: ($('addItemCat') || {}).value || 'other',
+                from: ''
+            });
+            saveActive();
+            closeAddItemModal();
+            renderChecklistPage(); renderHome(); vibrate();
+            showToast('Вещь добавлена!');
+        } catch (e) { bbLogError(7004, 'Ошибка добавления вещи', { stack: e.stack }); }
     }
     function closeAddItemModal() {
         closeModal('addItemModal');
         var overlay = $('addItemModal'); if (overlay) overlay.classList.remove('above-checklist');
     }
 
-    function findSmartHints(itemText, trip) {
-        var lower = itemText.toLowerCase().trim();
-        if (lower.length < 3) return [];
-        var days = (trip && trip.daysCount) || 3;
-        var tripType = trip ? trip.type : null;
-        var season = trip && trip.startDate ? getSeason(trip.startDate) : 'summer';
-        var direction = trip && trip.city ? getDirection(trip.city) : 'neutral';
-        var results = [];
-        var keys = Object.keys(SMART_HINTS);
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i];
-            if (lower.indexOf(key) === -1) continue;
-            var rule = SMART_HINTS[key];
-            var qty = rule.base || 0;
-            if (rule.per === 'day') qty = days + (rule.extra || 0);
-            else if (rule.per === 'days2') qty = Math.max(1, Math.ceil(days / 2) + (rule.extra || 0));
-            else if (rule.per === 'days3') qty = Math.max(1, Math.ceil(days / 3) + (rule.extra || 0));
-            else qty = rule.base + (rule.extra || 0);
-            if (tripType === 'business' && rule.business === 'per_day') qty = days + 1;
-            if (tripType === 'business' && key === 'футболк') qty = Math.max(1, Math.ceil(days / 3));
-            if (tripType === 'business' && key === 'шорт') qty = 0;
-            if (tripType === 'rest' && (key === 'купальник' || key === 'плавк')) qty = 2;
-            if (season === 'winter' && (key === 'шорт' || key === 'сандал' || key === 'шлёпк')) qty = 0;
-            if (season === 'winter' && key === 'футболк') qty = Math.max(1, Math.floor(qty / 2));
-            if (direction === 'north' && (key === 'шорт' || key === 'сандал' || key === 'купальник')) qty = 0;
-            if (qty <= 0) continue;
-            var personal = getPersonalQty(key);
-            var isPersonal = false;
-            if (personal) { qty = personal; isPersonal = true; }
-            var allCats = getAllCategories();
-            results.push({ key: key, qty: qty, unit: rule.unit, cat: rule.cat, icon: allCats[rule.cat] ? allCats[rule.cat].icon : '📦', isPersonal: isPersonal });
-            if (results.length >= 2) break;
-        }
-        return results;
-    }
-    function showSmartHintFor(prefix) {
-        var hintId = prefix === 'adv' ? 'smartHintAdv' : (prefix === 'adv2' ? 'smartHintAdv2' : 'smartHintBox');
-        var hint = $(hintId);
-        if (!hint) return;
-        var nameInput = $(prefix + 'Name');
-        var qtyInput = $(prefix + 'Qty');
-        var name = nameInput ? nameInput.value.trim() : '';
-        var currentQty = parseInt(qtyInput ? qtyInput.value : 1) || 1;
-        if (!settings.smartHints || !name || name.length < 3) { hint.classList.remove('show'); return; }
-        var trip = getFallbackTrip();
-        var hints = findSmartHints(name, trip).filter(function(h) { return h.qty !== currentQty; });
-        if (!hints.length) { hint.classList.remove('show'); return; }
-        var days = trip.daysCount || 3;
-        var contextParts = [days + ' ' + plural(days, 'день', 'дня', 'дней')];
-        if (trip.city) contextParts.push('📍 ' + escapeHtml(trip.city));
-        if (trip.type && DEFAULT_TYPES[trip.type]) contextParts.push(DEFAULT_TYPES[trip.type].emoji + ' ' + DEFAULT_TYPES[trip.type].name);
-        var html = '<div class="sh-head"><span class="sh-icon">💡</span><span class="sh-title">Умная подсказка</span></div>';
-        html += '<div class="sh-context">' + contextParts.join(' · ') + '</div>';
-        hints.forEach(function(h) {
-            var memoryTag = h.isPersonal ? '<span class="sh-memory">📌 ваше</span>' : '';
-            html += '<div class="sh-suggestion"><div class="sh-emoji">' + h.icon + '</div><div class="sh-text">Рекомендуем <strong>' + h.qty + ' ' + h.unit + '</strong> вместо ' + currentQty + memoryTag + '</div><button type="button" class="sh-apply-btn" data-apply-qty="' + h.qty + '" data-apply-key="' + h.key + '">Взять ' + h.qty + '</button></div>';
-        });
-        html += '<button type="button" class="sh-dismiss">Оставить ' + currentQty + '</button>';
-        hint.innerHTML = html;
-        hint.classList.add('show');
-        hint.querySelectorAll('[data-apply-qty]').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                var q = parseInt(btn.getAttribute('data-apply-qty'));
-                var k = btn.getAttribute('data-apply-key');
-                if (qtyInput) qtyInput.value = q;
-                if (k) savePersonalQty(k, q);
-                hint.classList.remove('show');
-                showToast('Запомнили: ' + q + ' ' + (hints[0] ? hints[0].unit : 'шт'));
-            });
-        });
-        hint.querySelectorAll('.sh-dismiss').forEach(function(btn) {
-            btn.addEventListener('click', function() { hint.classList.remove('show'); });
-        });
-    }
-    function hintAddHandler() { showSmartHintFor('addItem'); }
-    function hintAdvHandler() { showSmartHintFor('adv'); }
-    function hintAdv2Handler() { showSmartHintFor('adv2'); }
-
+    // ============ CONFETTI ============
     function fireConfetti() {
         var colors = settings.dark ? ['#6b8cff','#a06bff','#3ddc84','#ff6bcb','#ffd166'] : ['#ff9a5a','#ff6b8a','#4ecb71','#c084fc','#ffd166'];
         for (var i = 0; i < 60; i++) {
@@ -2684,16 +2419,18 @@ function downloadErrorLog() {
         }
     }
 
+    // ============ PROFILE ============
     function calcStats() {
         var tt = history.length + activeTrips.length;
-        var ad = 0, at = 0, aw = 0, pt = 0;
-        history.forEach(function(h) { ad += h.done || 0; at += h.total || 0; if (h.total > 0 && h.done === h.total) pt++; });
+        var ad = 0, at = 0, pt = 0, combined = 0;
+        history.forEach(function(h) { ad += h.done || 0; at += h.total || 0; if (h.total > 0 && h.done === h.total) pt++; if (h.listIds && h.listIds.length >= 2) combined++; });
         activeTrips.forEach(function(t) {
             var s = getTripStats(t);
-            ad += s.done; at += s.total; aw += s.doneWeight;
+            ad += s.done; at += s.total;
             if (s.total > 0 && s.done === s.total) pt++;
+            if (t.listIds && t.listIds.length >= 2) combined++;
         });
-        return { totalTrips: tt, completedTrips: history.length, allDone: ad, allTotal: at, allWeight: aw, perfectTrips: pt, customCount: Object.keys(customTypes).length };
+        return { totalTrips: tt, completedTrips: history.length, allDone: ad, allTotal: at, perfectTrips: pt, customCount: Object.keys(customTypes).length, combinedTrips: combined };
     }
 
     function renderProfile() {
@@ -2703,7 +2440,6 @@ function downloadErrorLog() {
             e = $('profileTotalTrips'); if (e) e.textContent = s.totalTrips;
             e = $('profileCompletedTrips'); if (e) e.textContent = s.completedTrips;
             e = $('profileItemsPacked'); if (e) e.textContent = s.allDone;
-            e = $('profileTotalWeight'); if (e) e.textContent = s.allWeight.toFixed(1);
             e = $('profileName'); if (e) e.textContent = profile.name || 'Эрик';
             e = $('catCountLabel'); if (e) e.textContent = Object.keys(customCategories).length;
             e = $('errorCountLabel'); if (e) e.textContent = bbGetErrorLog().length;
@@ -2778,6 +2514,7 @@ function downloadErrorLog() {
         renderProfile();
     }
 
+    // ============ CATEGORIES ============
     function openCategoryModal(targetSelect, parentModalId) {
         pendingCategoryTarget = targetSelect || null;
         categoryParent = parentModalId || null;
@@ -2795,7 +2532,6 @@ function downloadErrorLog() {
             });
             p.appendChild(d);
         });
-        // Скрываем родителя
         if (categoryParent) {
             var parent = $(categoryParent);
             if (parent) { parent.classList.remove('active'); parent.style.display = 'none'; }
@@ -2826,46 +2562,40 @@ function downloadErrorLog() {
     }
 
     function saveNewCategory() {
-        var name = (($('newCatName') || {}).value || '').trim();
-        if (!name) { showToast('Введите название'); return; }
-        var emojiEl = document.querySelector('#catEmojiPicker .emoji-choice.selected');
-        var emoji = emojiEl ? emojiEl.dataset.emoji : '📦';
-        var id = 'custcat_' + Date.now();
-        customCategories[id] = { name: name, icon: emoji };
-        saveCustomCategories();
-
-        // Скрываем модалку создания категории
-        var cm = $('categoryModal');
-        if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
-
-        // Обновляем селект, если есть
-        var target = pendingCategoryTarget;
-        if (target) {
-            fillCategorySelect(target, id);
-            target.value = id;
-        }
-
-        // Возвращаем родителя
-        if (categoryParent) {
-            var parent = $(categoryParent);
-            if (parent) {
-                parent.classList.add('active');
-                parent.style.display = '';
-                if (categoryParent === 'manageCategoriesModal') renderCatList();
+        try {
+            var name = (($('newCatName') || {}).value || '').trim();
+            if (!name) { showToast('Введите название'); return; }
+            var emojiEl = document.querySelector('#catEmojiPicker .emoji-choice.selected');
+            var emoji = emojiEl ? emojiEl.dataset.emoji : '📦';
+            var id = 'custcat_' + Date.now();
+            customCategories[id] = { name: name, icon: emoji };
+            saveCustomCategories();
+            var cm = $('categoryModal');
+            if (cm) { cm.classList.remove('active'); cm.classList.remove('on-top2'); cm.style.display = ''; }
+            var target = pendingCategoryTarget;
+            if (target) {
+                fillCategorySelect(target, id);
+                target.value = id;
             }
-            categoryParent = null;
-        }
-
-        pendingCategoryTarget = null;
-        renderProfile();
-        showToast('Категория создана!');
+            if (categoryParent) {
+                var parent = $(categoryParent);
+                if (parent) {
+                    parent.classList.add('active');
+                    parent.style.display = '';
+                    if (categoryParent === 'manageCategoriesModal') renderCatList();
+                }
+                categoryParent = null;
+            }
+            pendingCategoryTarget = null;
+            renderProfile();
+            showToast('Категория создана!');
+        } catch (e) { bbLogError(8003, 'Ошибка сохранения категории', { stack: e.stack }); }
     }
 
     function openManageCategories() {
         renderCatList();
         openModal('manageCategoriesModal');
     }
-
     function renderCatList() {
         var cont = $('catListContainer'); if (!cont) return;
         cont.innerHTML = '';
@@ -2899,6 +2629,7 @@ function downloadErrorLog() {
         });
     }
 
+    // ============ ERROR LOG ============
     function openErrorLog() {
         var cont = $('errorLogContainer'); if (!cont) return;
         cont.innerHTML = '';
@@ -2923,6 +2654,7 @@ function downloadErrorLog() {
         });
     }
 
+    // ============ ONBOARDING ============
     function showOnboarding() {
         currentOnbSlide = 0;
         var viewer = $('onboardingViewer'); if (!viewer) return;
@@ -2970,6 +2702,7 @@ function downloadErrorLog() {
         currentOnbSlide++; renderOnbSlide(); renderOnbDots();
     }
 
+    // ============ NAV ============
     function switchPage(page) {
         document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.toggle('active', n.getAttribute('data-page') === page); });
         document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
@@ -2979,6 +2712,7 @@ function downloadErrorLog() {
         if (page === 'lists') renderListsPage();
     }
 
+    // ============ REMINDERS ============
     function checkReminders() {
         try {
             if (!settings.notif || !('Notification' in window) || Notification.permission !== 'granted') return;
@@ -3016,6 +2750,7 @@ function downloadErrorLog() {
         if (el) { try { el.addEventListener(ev, fn); } catch (e) {} }
     }
 
+    // ============ INIT ============
     function init() {
         try {
             loadData();
@@ -3035,7 +2770,6 @@ function downloadErrorLog() {
                     }
                 });
             });
-            // categoryModal — закрытие по фону → cancelCategoryCreation
             var catOverlay = $('categoryModal');
             if (catOverlay) catOverlay.addEventListener('click', function(e) {
                 if (e.target === this) cancelCategoryCreation();
@@ -3092,25 +2826,13 @@ function downloadErrorLog() {
                 if (settings.notif && 'Notification' in window && Notification.permission === 'default') { try { Notification.requestPermission(); } catch (e) {} }
             });
             bind('vibrateToggleItem', 'click', function() { settings.vibrate = !settings.vibrate; saveSettings(); applyTheme(); vibrate(); });
-            bind('smartHintsToggleItem', 'click', function() {
-                settings.smartHints = !settings.smartHints; saveSettings(); applyTheme();
-                showToast(settings.smartHints ? 'Подсказки включены 💡' : 'Подсказки выключены');
-            });
-            bind('resetHintsBtn', 'click', function() {
-                if (confirm('Сбросить все персональные запоминания подсказок?')) {
-                    try { localStorage.removeItem('bybag_personal_qty'); } catch (e) {}
-                    showToast('Память подсказок очищена');
-                }
-            });
             bind('showOnboardingBtn', 'click', showOnboarding);
             bind('onbNextBtn', 'click', nextOnbSlide);
             bind('onbSkipBtn', 'click', function() {
                 hideOnboarding();
                 if (!localStorage.getItem('bybag_notif_asked')) setTimeout(showNotifOnboarding, 600);
             });
-            bind('storyCloseBtn', 'click', closeStoryViewer);
-            bind('storyTapPrev', 'click', prevStorySlide);
-            bind('storyTapNext', 'click', nextStorySlide);
+            bind('tipViewerClose', 'click', closeTipViewer);
             bind('notifAllowBtn', 'click', handleNotifAllow);
             bind('notifLaterBtn', 'click', handleNotifLater);
             bind('manageCategoriesBtn', 'click', openManageCategories);
@@ -3122,7 +2844,6 @@ function downloadErrorLog() {
                 if (confirm('Очистить журнал ошибок?')) { bbClearErrorLog(); openErrorLog(); renderProfile(); }
             });
 
-            // Обработчики для селектов категорий — с указанием родительской модалки
             ['advCat','adv2Cat'].forEach(function(selId) {
                 var sel = $(selId);
                 if (sel) sel.addEventListener('change', function() {
@@ -3136,6 +2857,24 @@ function downloadErrorLog() {
                 var fallback = addCat.value === '__new__' ? 'other' : addCat.value;
                 handleCategoryChange(addCat, fallback, 'addItemModal');
             });
+
+            // Советы — свайп для переключения
+            var tv = $('tipViewer');
+            if (tv) {
+                var tStartX = 0, tStartY = 0, tDown = false;
+                tv.addEventListener('touchstart', function(e) { tStartX = e.touches[0].clientX; tStartY = e.touches[0].clientY; tDown = true; }, { passive: true });
+                tv.addEventListener('touchend', function(e) {
+                    if (!tDown) return;
+                    tDown = false;
+                    var dx = e.changedTouches[0].clientX - tStartX;
+                    var dy = e.changedTouches[0].clientY - tStartY;
+                    if (Math.abs(dy) > 100 && Math.abs(dy) > Math.abs(dx)) { closeTipViewer(); return; }
+                    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+                        if (dx < 0 && currentTipIdx < TIPS_CATEGORIES.length - 1) openTipViewer(currentTipIdx + 1);
+                        else if (dx > 0 && currentTipIdx > 0) openTipViewer(currentTipIdx - 1);
+                    }
+                }, { passive: true });
+            }
 
             renderHome();
             renderProfile();
